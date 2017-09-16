@@ -4,14 +4,14 @@ include '../model/login.class.php';
 
 $nuevoSingleton = Login::singleton_login();
 
-if(isset($_POST['nick']))
+if(isset($_POST['usuario']))
 {
-    $nick = $_POST['nick'];
-    $password = $_POST['password'];
+    $usuario = $_POST['usuario'];
+    $clave = $_POST['clave'];
     //accedemos al método usuarios y los mostramos
-    $usuario = $nuevoSingleton->login_users($nick,$password);
+    $usr = $nuevoSingleton->login_users($usuario,$clave);
 
-    if($usuario == TRUE)
+    if($usr == TRUE)
     {
         header("Location:https://tallermr2g.000webhostapp.com/view/home.php");
     }
