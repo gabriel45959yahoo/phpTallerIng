@@ -32,6 +32,7 @@ input{
     width: 100%;
     margin: 30px 0;
     font-size: 20px;
+    border-radius: 5px;
 }
 input[type = "submit"] {
     background: linear-gradient(#ffda63, #ffb940);
@@ -41,6 +42,7 @@ input[type = "submit"] {
     cursor: pointer;
     border-radius: 20px;
     margin-bottom: 0;
+
     -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
@@ -60,6 +62,9 @@ form p a {
     color: white;
     width: 100%
 
+}
+form p a:hover{
+    text-decoration: underline;
 }
 
 @media (max-width:768px){
