@@ -98,7 +98,8 @@ form p a:hover {
     display: block;
     margin: auto;
     position: relative;
-    width: 50%;
+    width: 100%;
+    max-width: 400px;
 }
 
 @media (max-width:768px) {
