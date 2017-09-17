@@ -1,5 +1,5 @@
 <?php
-include '../model/login.class.php';
+include '../model/login.php';
 
 
 $nuevoSingleton = Login::singleton_login();

@@ -1,10 +1,10 @@
 <?php
-
+include './model/dao/DaoConnection.php';
 session_start();
 
 class Login
 {
-    private static $instancia;
+
     public static function singleton_login()
     {
 
@@ -18,7 +18,7 @@ class Login
         return self::$instancia;
 
     }
-    public function login_users($nick,$password)
+    public function login_users($usuario,$clave)
     {
 
         if($nick == "gaby"){
