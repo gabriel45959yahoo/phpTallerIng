@@ -1,19 +1,20 @@
 <?php
 include '../model/dao/DaoPadrinoImpl.php';
 class ABMPadrino{
-    private static $instancia;
+    
+    private static $instanciaPadrino;
 
     public static function singleton_Padrino()
     {
 
-        if (!isset(self::$instancia)) {
+        if (!isset(self::$instanciaPadrino)) {
 
-            $miclase = __CLASS__;
-            self::$instancia = new $miclase;
+            $miclasePadrino = __CLASS__;
+            self::$instanciaPadrino = new $miclasePadrino;
 
         }
 
-        return self::$instancia;
+        return self::$instanciaPadrino;
 
     }
     /**
@@ -24,9 +25,9 @@ class ABMPadrino{
      */
     public function cargarPadrino($padrino)
     {
+        $daoPadrino= new DaoPadrinoImpl();
+        $resultado=$daoPadrino->insertPadrino($padrino);
 
-        $padrino = new DaoPadrinoImpl();
-        $resultado=$padrino->insertPadrino($padrino);
         if($resultado=="OK"){
             return true;
         }else{

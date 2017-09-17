@@ -1,6 +1,6 @@
 <?php
-require '../model/dao/DaoConnection.php';
-require './DaoUsuario.php';
+include '../model/dao/DaoConnection.php';
+include '../model/dao/DaoUsuario.php';
 
 class DaoUsuarioImpl implements DaoUsuario {
 
@@ -13,18 +13,20 @@ class DaoUsuarioImpl implements DaoUsuario {
         $rest = mysqli_fetch_array($resultado);
 
     if($rest){
-        //sierro la conexion a la base de datos
+        //cierro la conexion a la base de datos
         mysqli_close($conexion);
 
         return true;
     }else{
-        //sierro la conexion a la base de datos
+        //cierro la conexion a la base de datos
         mysqli_close($conexion);
 
         return false;
     }
 
      }
-
+     public function crearUsuario($user){
+         
+     }
 }
 ?>
