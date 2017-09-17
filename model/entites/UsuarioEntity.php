@@ -1,11 +1,12 @@
 <?php
 class UsuarioEntity{
-    $usuario;
-    $clave;
-    $rol;
-    $nombre;
-    $apellido;
-    $email;
+    var $usuario;
+    var $clave;
+    var $rol;
+    var $nombre;
+    var $apellido;
+    var $email;
+
     public getUsuario(){
         return $this->usuario;
     }
