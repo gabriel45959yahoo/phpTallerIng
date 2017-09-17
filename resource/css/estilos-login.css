@@ -13,8 +13,8 @@ body{
 form{
     position: relative;
     margin: auto;
-    margin-top: 15%;
-    width: 50%;
+    margin-top: 10%;
+    width: 47%;
     max-width: 400px;
     /*background: #f3f3f3;*/
     background: rgba(68, 65, 65, 0.5);
@@ -95,9 +95,8 @@ form p a:hover{
 .Logo-central{
     display: block;
     margin: auto;
-    margin-top: 20%;
     position: relative;
-    width: 400px;
+    width: 60%;
 
 }
 @media (max-width:768px){
