@@ -7,40 +7,40 @@ class UsuarioEntity{
     var $apellido;
     var $email;
 
-    public getUsuario(){
+    public function getUsuario(){
         return $this->usuario;
     }
-    public getClave(){
+    public function getClave(){
         return $this->clave;
     }
-    public getRol(){
+    public function  getRol(){
         return $this->rol;
     }
-    public getNombre(){
+    public function  getNombre(){
         return $this->nombre;
     }
-    public getApellido(){
+    public function  getApellido(){
         return $this->apellido;
     }
-    public getEmail(){
+    public function  getEmail(){
         return $this->email;
     }
-    public setUsuario($usuario){
+    public function  setUsuario($usuario){
         $this->usuario=$usuario;
     }
-    public setClave($clave){
+    public function  function  setClave($clave){
         $this->clave=$clave;
     }
-    public setRol($rol){
+    public function  setRol($rol){
         $this->rol=$rol;
     }
-    public setNombre($nombre){
+    public function  setNombre($nombre){
         $this->nombre=$nombre;
     }
-    public setApellido($apellido){
+    public function  setApellido($apellido){
         $this->apellido=$apellido;
     }
-    public setEmail($email){
+    public function setEmail($email){
         $this->email=$email;
     }
 }

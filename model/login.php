@@ -1,5 +1,7 @@
 <?php
-include './model/dao/DaoConnection.php';
+include '../model/dao/DaoUsuarioImpl.php';
+include '../model/dao/entities/UsuarioEntity.php';
+
 session_start();
 
 class Login
@@ -18,19 +20,26 @@ class Login
         return self::$instancia;
 
     }
+    /**
+     * login del usuario
+     * @param  [[Type]] $usuario [[Description]]
+     * @param  [[Type]] $clave   [[Description]]
+     * @return [[Type]] [[Description]]
+     */
     public function login_users($usuario,$clave)
     {
-
-        if($nick == "gaby"){
-            $_SESSION['username'] = $nick;
-            return TRUE;
-        }
-        print "Error!: " ;
-        return false;
+        $daoUsuario= new DaoUsuarioImpl();
+        $usr=new UsuarioEntity();
+        $usr->setUsuario($usuario);
+        $usr->setClave($clave);
+        return $daoUsuario->esUsuario($usr);
     }
 
 
-    // Evita que el objeto se pueda clonar
+    /**
+     * [[Description]]
+     * @private
+     */
     public function __clone()
     {
 
