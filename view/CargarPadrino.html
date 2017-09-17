@@ -38,65 +38,70 @@
         </div>
     </header>
     <form action="./control/CargarController.php" method="post">
-        <div id="conteiner">
-            <div class="w3-container">
-                <div class="panel-heading">
-                    <h2>Datos Padrino</h2>
-                </div>
-                <p>Por favor, ingrese los siguientes datos</p>
-                <div class="panel-body w3-panel w3-blue w3-card-1">
+
+        <div class="w3-container">
+            <div class="panel-heading">
+                <h1><strong>Datos Padrino</strong></h1>
+            </div>
+            <h5>Por favor, ingrese los siguientes datos</h5>
+            <div class="w3-blue w3-card-1">
+                <div class="w3-container">
+
+                    <div class="panel-heading">
+                        <h3>Datos del Padrino</h3>
+                    </div>
+                    <div class="panel-body w3-panel w3-blue w3-card-1">
+                        <div class="panelEntrada ">
+                            <div class="form-group has-error">
+                                <p>Nombre <input type="text" name="nombre" /></p>
+                                <p>Apellido <input type="text" name="apellido" /></p>
+                                <p>Alia <input type="text" name="alia" /></p>
+                                <p>DNI <input type="text" name="dni" /></p>
+                                <p>Cuil/Cuit <input type="text" name="cuil" /></p>
+                                <p>E-mail <input type="text" name="email" /></p>
+                                <p>Teléfono <input type="text" name="telefono" /></p>
+                                <p>Calle <input type="text" name="calle" /></p>
+                                <p>Nro. <input type="text" name="numero" /></p>
+                                <p>Piso <input type="text" name="piso" /></p>
+                                <p>Depto. <input type="text" name="depto" /></p>
+                                <p>Provincia <input type="text" name="provincia" /></p>
+                                <p>Ciudad <input type="text" name="ciudad" /></p>
+                                <p>Contacto <input type="text" name="ciudad" /></p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="w3-container">
-                        <div class="panel-heading">Datos del Padrino</div>
+                        <div class="panel-heading">
+                            <h3>Datos de Facturación</h3>
+                        </div>
+
+                        <p>Nombre o razon social <input type="text" name="fact_nombre" /></p>
                         <div class="panel-body w3-panel w3-blue w3-card-1">
                             <div class="panelEntrada ">
-                                <div class="form-group has-error">
-                                    <p>Nombre <input type="text" name="nombre" /></p>
-                                    <p>Apellido <input type="text" name="apellido" /></p>
-                                    <p>Alia <input type="text" name="alia" /></p>
-                                    <p>DNI <input type="text" name="dni" /></p>
-                                    <p>Cuil/Cuit <input type="text" name="cuil" /></p>
-                                    <p>E-mail <input type="text" name="email" /></p>
-                                    <p>Teléfono <input type="text" name="telefono" /></p>
-                                    <p>Calle <input type="text" name="calle" /></p>
-                                    <p>Nro. <input type="text" name="numero" /></p>
-                                    <p>Piso <input type="text" name="piso" /></p>
-                                    <p>Depto. <input type="text" name="depto" /></p>
-                                    <p>Provincia <input type="text" name="provincia" /></p>
-                                    <p>Ciudad <input type="text" name="ciudad" /></p>
-                                    <p>Contacto <input type="text" name="ciudad" /></p>
-                                </div>
+                                <p>Apellido <input type="hiden" name="fact_apellido" /></p>
+                                <p>DNI <input type="text" name="fact_dni" /></p>
+                                <p>E-mail <input type="text" name="fact_email" /></p>
+                                <p>Cuil/Cuit <input type="text" name="fac_cuil" /></p>
+                                <p>Teléfono <input type="text" name="fac_telefono" /></p>
+                                <p>Calle <input type="text" name="fac_calle" /></p>
+                                <p>Nro. <input type="text" name="fac_numero" /></p>
+                                <p>Piso <input type="text" name="fac_piso" /></p>
+                                <p>Depto. <input type="text" name="fac_depto" /></p>
+                                <p>Provincia <input type="text" name="fac_provincia" /></p>
+                                <p>Ciudad <input type="text" name="fac_ciudad" /></p>
+                                <p>este no <input type="text" name="fac_ciudad1" /></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="panel-footer">
                         <br>
-                        <div class="w3-container">
-                            <div class="panel-heading">Datos de Facturación</div>
-                            <br/>
-                            <p>Nombre o razon social <input type="text" name="fact_nombre" /></p>
-                            <div class="panel-body w3-panel w3-blue w3-card-1">
-                                <div class="panelEntrada ">
-                                    <p>Apellido <input type="hiden" name="fact_apellido" /></p>
-                                    <p>DNI <input type="text" name="fact_dni" /></p>
-                                    <p>E-mail <input type="text" name="fact_email" /></p>
-                                    <p>Cuil/Cuit <input type="text" name="fac_cuil" /></p>
-                                    <p>Teléfono <input type="text" name="fac_telefono" /></p>
-                                    <p>Calle <input type="text" name="fac_calle" /></p>
-                                    <p>Nro. <input type="text" name="fac_numero" /></p>
-                                    <p>Piso <input type="text" name="fac_piso" /></p>
-                                    <p>Depto. <input type="text" name="fac_depto" /></p>
-                                    <p>Provincia <input type="text" name="fac_provincia" /></p>
-                                    <p>Ciudad <input type="text" name="fac_ciudad" /></p>
-                                    <p>este no <input type="text" name="fac_ciudad1" /></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <br>
-                            <input type="submit" value="Cargar" />
-                        </div>
+                        <input type="submit" value="Cargar" />
                     </div>
                 </div>
             </div>
         </div>
+
     </form>
 </body>
 
