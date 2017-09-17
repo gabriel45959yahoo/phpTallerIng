@@ -11,10 +11,10 @@ body{
 }
 form{
     display: inline-block;
-
+    position: relative;
     margin: auto;
     width: 50%;
-    max-width: 500px;
+    max-width: 400px;
     /*background: #f3f3f3;*/
     background: rgba(68, 65, 65, 0.5);
     padding: 30px;
@@ -26,9 +26,7 @@ h2{
     margin-bottom: 10px;
     color: rgba(0, 0, 0, .5);
 }
-p{
-    /*margin-bottom: 10px;*/
-}
+
 input{
     display: inline;
     float: left;
@@ -39,6 +37,59 @@ input{
     font-size: 15px;
     border-radius: 5px;
 
+}
+
+header{
+    width: 100%;
+    /*background: #1abc9c;*/
+    background: rgba(0,0,0,.5);
+    height: 80px;
+    position: fixed;
+    z-index: 10;
+}
+
+.ancho{
+    position: relative;
+    width: 70px;
+    height: 100%;
+    margin-left: 30%;
+    /*background: red;*/
+
+}
+.logo{
+    width: 8%;
+    height: 70px;
+    /*background: blue;*/
+    float: left;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+nav{
+    width: 90%;
+    height: 100px;
+    position: relative;
+    /*background: olive;*/
+    float: left;
+    text-align: right;
+    padding-top: 24px;
+    box-sizing: border-box;
+}
+nav ul li{
+    display: inline;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding-left: 10%;
+    font-weight: bold;
+
+
+}
+nav ul li a:hover{
+    color: black;
 }
 
 @media (max-width:768px){
