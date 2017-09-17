@@ -6,22 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link rel="stylesheet" href="resource/css/estilos-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resource/css/estilos-login.css">
 </head>
 <body>
     <form action="./control/login.php" method="post">
         <h2>Acceder al sistema</h2>
-        <input type="text" placeholder="Usuario" name="usuario" id = "users">
 
-        <label for="users" class="entypo-users"></label>
-
-        <input type="password" placeholder="Password" name="clave" id="pass">
-
-        <label for="pass" class="entypo-lock"></label>
-
+        <div class="elements">
+        <span class="fa fa-user"></span>
+        <input type="text" placeholder="Usuario" name="usuario">
+        </div>
+        <div>
+            <br>
+        </div>
+        <!--<i class="fa fa-lock"</i>-->
+        <div class="elements">
+        <span class="fa fa-lock"></span>
+        <input type="password" placeholder="Password" name="clave">
+        </div>
+        <div>
+            <br>
+        </div>
         <p><a href="">Olvido su contraseña?</a></p>
+        <div>
+            <br>
+        </div>
         <input type="submit" value="ingresar">
     </form>
-
+<!-- -->
 </body>
 </html>
