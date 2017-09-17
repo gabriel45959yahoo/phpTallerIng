@@ -1,24 +1,28 @@
 <?php
-include '../model/dao/entities/UsuarioEntity.php';
-include '../model/dao/DaoUsuario.php';
-include '..model/dao/DaoConnection.';
-class DaoUsuarioImpl implements DaoUsuario{
+require '../model/dao/DaoConnection.php';
+require './DaoUsuario.php';
 
-    var $coneccion= DaoConnection->connection();
+class DaoUsuarioImpl implements DaoUsuario {
 
-     public function esUsuario(UsuarioEntity $usuario){
+     public function esUsuario($usuario)  {
+         $conexion= DaoConnection::connection();
+         $usr=$usuario->usuario;
+         $clave=$usuario->clave;
+         $consulta = "SELECT nombre FROM usuario WHERE usr_id='$usr' AND clave = '$clave'";
+        $resultado = mysqli_query($conexion, $consulta);
+        $rest = mysqli_fetch_array($resultado);
 
-         $sql_stmt ="SELECT * FROM usuario WHERE usr_id=? and clave=?";
+    if($rest){
+        //sierro la conexion a la base de datos
+        mysqli_close($conexion);
 
-         $preparado=$coneccion->prepare($sql_stmt);
-         $preparado->bindParam(1,$usuario->usuario);
-         $preparado->bindParam(2, $usuario->clave);
+        return true;
+    }else{
+        //sierro la conexion a la base de datos
+        mysqli_close($conexion);
 
-         if($preparado->execute()){
-             return true;
-         }
-
-         return false;
+        return false;
+    }
 
      }
 

@@ -1,7 +1,6 @@
 <?php
 include '../model/Login.php';
 
-
 $nuevoSingleton = Login::singleton_login();
 
 if(isset($_POST['usuario']))
@@ -13,7 +12,12 @@ if(isset($_POST['usuario']))
 
     if($usr == TRUE)
     {
-        header("Location:https://tallermr2g.000webhostapp.com/view/home.php");
+       // header("Location: /view/CargarPadrino.html");
+         echo "<script> window.location.assign('/view/CargarPadrino.html'); </script>";
+
+    }else{
+         echo "<script> window.location.assign('/index.html'); </script>";
+
     }
 }
 ?>

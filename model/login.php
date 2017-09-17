@@ -1,12 +1,11 @@
 <?php
 include '../model/dao/DaoUsuarioImpl.php';
-include '../model/dao/entities/UsuarioEntity.php';
+include '../model/entities/UsuarioEntity.php';
 
-session_start();
 
 class Login
 {
-
+    private static $instancia;
     public static function singleton_login()
     {
 

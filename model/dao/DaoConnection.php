@@ -1,21 +1,21 @@
 <?php
 
-private static $coneccion;
+static $coneccion;
 
 abstract class DaoConnection {
 
-    private $user="id2846195_talleringmr2g";
-	private $pass="talleringmr2g";
-	private $server="localhost";
-	private $db="id2846195_tallering";
+
 /**
  * crear coneccion a la base
  * @return mysqli_connect devuelve la coneccion a la base de datos
  */
-public static connection()   {
-
+public static function connection()   {
+     $user="id2846195_talleringmr2g";
+	 $pass="talleringmr2g";
+	 $server="localhost";
+	 $db="id2846195_tallering";
     if (!isset(self::$coneccion)) {
-        $coneccion = mysqli_connect($this->server, $this->user, $this->pass, $this->db);
+        $coneccion = mysqli_connect($server, $user, $pass, $db);
     }
 
 	return $coneccion;
@@ -24,7 +24,7 @@ public static connection()   {
 /**
  * Sierra la coneccion a la base de datos
  */
-public close(){
+public static function close(){
     mysql_close($coneccion);
 }
 }

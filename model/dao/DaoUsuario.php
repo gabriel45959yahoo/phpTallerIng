@@ -1,8 +1,7 @@
 <?php
-include '../model/dao/entities/UsuarioEntity.php';
-/**
-*/
-interface DaoUsuaio implements DaoUsuarioImpl {
-    public function esUsuario(UsuarioEntity $usuario);
+ interface DaoUsuario {
+    public function esUsuario($usuario) ;
+    public function crearUsuario($user);
 }
 ?>
+

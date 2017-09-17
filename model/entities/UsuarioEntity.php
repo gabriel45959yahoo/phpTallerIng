@@ -7,10 +7,10 @@ class UsuarioEntity{
     var $apellido;
     var $email;
 
-    public function getUsuario(){
+    public function getUsuario() :String {
         return $this->usuario;
     }
-    public function getClave(){
+    public function getClave() :String {
         return $this->clave;
     }
     public function  getRol(){
@@ -28,7 +28,7 @@ class UsuarioEntity{
     public function  setUsuario($usuario){
         $this->usuario=$usuario;
     }
-    public function  function  setClave($clave){
+    public function  setClave($clave){
         $this->clave=$clave;
     }
     public function  setRol($rol){
