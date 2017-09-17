@@ -7,6 +7,4 @@ if (isset($_SESSION['nombre'])) {
 <a href="logout.php"> Logout </a>
 <?php
 
-} else {
-    header("Location: index.php");
 }
