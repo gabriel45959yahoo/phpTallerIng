@@ -7,19 +7,22 @@
 body{
     /*background: #dedede;*/
 
-    display: flex;
+    display: block;
     min-height: 100vh;
 }
 form{
+    position: relative;
     margin: auto;
+    margin-top: 15%;
     width: 50%;
-    max-width: 500px;
+    max-width: 400px;
     /*background: #f3f3f3;*/
     background: rgba(68, 65, 65, 0.5);
     padding: 40px;
 
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 15px;
+
 }
 
 h2{
@@ -87,6 +90,15 @@ form p a:hover{
 .fa-lock{
     font-size: 25px;
     color: lightgray;
+}
+
+.Logo-central{
+    display: block;
+    margin: auto;
+    margin-top: 20%;
+    position: relative;
+    width: 400px;
+
 }
 @media (max-width:768px){
     form{
