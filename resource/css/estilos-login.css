@@ -39,6 +39,9 @@ input {
     border-radius: 5px;
     border: none;
 }
+input:focus{
+    border: none;
+}
 
 input[type="submit"] {
     background: linear-gradient(#ffda63, #ffb940);
