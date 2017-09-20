@@ -88,11 +88,12 @@ nav {
 
 nav ul li {
     display: inline;
+    height: 40px;
 }
 
 nav ul li a {
     color: white;
-    font-size: 13px;
+    font-size: 20px;
     text-decoration: none;
     text-transform: uppercase;
     padding-left: 10%;
@@ -103,8 +104,8 @@ nav ul li a:hover {
     color: black;
 }
 
-.fa-user-circle {
-    font-size: 80px;
+.fa-user-circle{
+    font-size: 30px;
     padding-left: 10%;
 }
 
