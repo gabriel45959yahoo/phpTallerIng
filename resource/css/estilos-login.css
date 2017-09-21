@@ -4,6 +4,9 @@
     font-family: sans-serif;
     box-sizing: border-box;
 }
+*:focus{
+    outline: none;
+}
 
 body {
     /*background: #dedede;*/
