@@ -2,7 +2,6 @@
 include '../model/dao/DaoUsuarioImpl.php';
 include '../model/entities/UsuarioEntity.php';
 
-
 class Login
 {
     private static $instancia;
