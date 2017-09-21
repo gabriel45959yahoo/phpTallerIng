@@ -1,7 +1,7 @@
 <?php
-session_start();
-if(session_destroy())
-{
-    header("Location: https://tallermr2g.000webhostapp.com");
-}
+    session_start();
+    session_unset();
+    session_destroy();
+    session_regenerate_id(true);
+    echo "<script> window.location.assign('/index.html'); </script>";
 ?>
