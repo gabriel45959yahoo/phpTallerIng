@@ -1,3 +1,7 @@
+/**
+ * Para cargar un alumno
+ * @returns
+ */
 $(function(){
  $("#cargaAlumno").click(function(){
  var url = "../control/CargarController.php"; // El script a dónde se realizará la petición.
@@ -14,6 +18,10 @@ $(function(){
     return false; // Evitar ejecutar el submit del formulario.
  });
 });
+/**
+ * Para cargar un padrino
+ * @returns
+ */
 $(function(){
 	 $("#cargaPadrino").click(function(){
 	 var url = "../control/CargarController.php"; // El script a dónde se realizará la petición.
