@@ -2,8 +2,8 @@
  * Para cargar un alumno
  * @returns
  */
-$(function(){
- $("#cargaAlumno").click(function(){
+$(function () {
+ $("#cargaAlumno").click(function () {
  var url = "../control/CargarController.php"; // El script a dónde se realizará la petición.
     $.ajax({
            type: "POST",
