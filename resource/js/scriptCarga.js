@@ -1,10 +1,10 @@
 $(function(){
- $("#btn_enviar").click(function(){
+ $("#cargaAlumno").click(function(){
  var url = "../control/CargarController.php"; // El script a dónde se realizará la petición.
     $.ajax({
            type: "POST",
            url: url,
-           data: $("#formulario").serialize(), // Adjuntar los campos del formulario enviado.
+           data: $("#formularioAlumno").serialize()+"&tipo=Alumno", // Adjuntar los campos del formulario enviado.
            success: function(data)
            {
                $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
@@ -14,3 +14,19 @@ $(function(){
     return false; // Evitar ejecutar el submit del formulario.
  });
 });
+$(function(){
+	 $("#cargaPadrino").click(function(){
+	 var url = "../control/CargarController.php"; // El script a dónde se realizará la petición.
+	    $.ajax({
+	           type: "POST",
+	           url: url,
+	           data: $("#formularioPadrino").serialize()+"&tipo=Padrino", // Adjuntar los campos del formulario enviado.
+	           success: function(data)
+	           {
+	               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
+	           }
+	         });
+
+	    return false; // Evitar ejecutar el submit del formulario.
+	 });
+	});
