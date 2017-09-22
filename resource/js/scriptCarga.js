@@ -20,7 +20,7 @@ $(function(){
 });
 /**
  * Para cargar un padrino
- * @returns
+ * @returns 
  */
 $(function(){
 	 $("#cargaPadrino").click(function(){
