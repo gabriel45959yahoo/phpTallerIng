@@ -1,17 +1,3 @@
-
-<?php
-session_start();
-if(!isset($_SESSION['session']))
-{
-    
-    header('Location: https://tallermr2g.000webhostapp.com/index.php');
-
-    exit();
-} 
-header('Location: https://tallermr2g.000webhostapp.com/view/CargarPadrino.html');
-session_unset();
-session_destroy();
-?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,7 +7,7 @@ session_destroy();
 <script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
 <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
 </head>
-<body id="body">
+<body id="body" onload="redireccionar()">
 
 	<form method="POST" id="formulario">
 		<table>
