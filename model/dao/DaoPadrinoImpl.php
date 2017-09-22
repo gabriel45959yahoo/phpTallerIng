@@ -1,7 +1,8 @@
 <?php
-require '../model/dao/DaoConnection.php';
+include '../model/dao/DaoConnection.php';
+include '../model/dao/DaoPadrino.php';
 
-class DaoPadrinoImpl {
+class DaoPadrinoImpl implements DaoPadrino{
       public function insertPadrino($padrino){
         $conexion= DaoConnection::connection();
         $sql = "INSERT INTO  Padrino ( pa_apellido ,  pa_nombre ,  pa_alias ,  pa_dni ,  pa_cuil ,  pa_email ,  pa_telefono ,  pa_contacto ,  pa_fecha_alta ) ".

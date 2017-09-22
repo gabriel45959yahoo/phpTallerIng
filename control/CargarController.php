@@ -16,7 +16,7 @@ if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
    
         $padrinoSingleton = ABMPadrino::singleton_Padrino();
         // $nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto
-        $padrino = new PadrinoEntity($_POST['nombre'], $_POST['apellido'], $_POST['alia'], (int) $_POST['dni'], $_POST['cuil'], $_POST['email'], (int) $_POST['telefono'], $_POST['contacto']);
+        $padrino = new PadrinoEntity($_POST['nombre'], $_POST['apellido'], $_POST['alias'], (int) $_POST['dni'], $_POST['cuil'], $_POST['email'], (int) $_POST['telefono'], $_POST['contacto']);
         echo $_POST['nombre'];
         // accedemos al método cargar padrino
         $usr = $padrinoSingleton->cargarPadrino($padrino);
