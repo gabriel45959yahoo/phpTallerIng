@@ -13,7 +13,7 @@ $(function(){
            {
                $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
            }
-         });
+         }); 
 
     return false; // Evitar ejecutar el submit del formulario.
  });
