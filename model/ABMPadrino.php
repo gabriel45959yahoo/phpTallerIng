@@ -26,6 +26,7 @@ class ABMPadrino{
     public function cargarPadrino($padrino)
     {
         $daoPadrino= new DaoPadrinoImpl();
+        
         $resultado=$daoPadrino->insertPadrino($padrino);
 
         if($resultado=="OK"){
@@ -35,7 +36,9 @@ class ABMPadrino{
             return false;
         }
     }
-
+    public function Padrino getPadrino($padrino){
+        
+    }
 
     /**
      * [[Description]]
@@ -44,7 +47,7 @@ class ABMPadrino{
     public function __clone()
     {
 
-        trigger_error('La clonaci√≥n de este objeto no est√° permitida', E_USER_ERROR);
+        trigger_error('La clonaciÛnn de este objeto no est· permitida', E_USER_ERROR);
 
     }
 
