@@ -4,7 +4,10 @@ include '../model/dao/DaoDomicilioImpl.php';
 class ABMPadrino{
     
     private static $instanciaPadrino;
-
+    /**
+     * esto es para que no se cree mas de una vez la clase
+     * @return [[Type]] [[Description]]
+     */
     public static function singleton_Padrino()
     {
 
@@ -19,10 +22,9 @@ class ABMPadrino{
 
     }
     /**
-     * login del usuario
-     * @param  [[Type]] $usuario [[Description]]
-     * @param  [[Type]] $clave   [[Description]]
-     * @return [[Type]] [[Description]]
+     * Guardo los datos de un padrino y el domicilio
+     * @param  [[Type]] $padrino [[Description]]
+     * @return boolean  [[Description]]
      */
     public function cargarPadrino($padrino)
     {
@@ -55,10 +57,7 @@ class ABMPadrino{
         
     }
 
-    /**
-     * [[Description]]
-     * @private
-     */
+
     public function __clone()
     {
 
