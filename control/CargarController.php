@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../model/entities/PadrinoEntity.php';
+include '../model/entities/DomicilioEntity.php';
 include '../model/ABMPadrino.php';
 
 if (! isset($_SESSION['session'])) {
@@ -16,7 +17,7 @@ if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
    
         $padrinoSingleton = ABMPadrino::singleton_Padrino();
         // $calle,$numero,$piso,$depto,$provincia,$ciudad
-        $domicilio= new Domicilio($_POST['calle'], (int) $_POST['numero'], 
+        $domicilio= new model\entities\DomicilioEntity(0,$_POST['calle'], (int) $_POST['numero'], $_POST['piso'],
                                   $_POST['depto'], $_POST['provincia'], $_POST['ciudad']);
         
         // $nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto

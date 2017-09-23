@@ -1,5 +1,6 @@
 <?php
 include '../model/dao/DaoPadrinoImpl.php';
+include '../model/dao/DaoDomicilioImpl.php';
 class ABMPadrino{
     
     private static $instanciaPadrino;
@@ -25,18 +26,32 @@ class ABMPadrino{
      */
     public function cargarPadrino($padrino)
     {
-        $daoPadrino= new DaoPadrinoImpl();
+        $daoDomicilio= new model\dao\DaoDomicilioImpl();
         
-        $resultado=$daoPadrino->insertPadrino($padrino);
+        $retDoc=$daoDomicilio->insert($padrino->domicilio);
 
-        if($resultado=="OK"){
-            return true;
+        if($retDoc=="OK") {
+
+            $doc=$daoDomicilio->select($padrino->domicilio);
+
+            if(count($doc)>=0){
+                $padrino->domicilio=$doc[0];
+            }
+            echo $doc[0]->id;
+            $daoPadrino= new model\dao\DaoPadrinoImpl();
+
+            $resPadrino=$daoPadrino->insert($padrino);
+
+            if($resPadrino=="OK"){
+                return true;
+            }else{
+                echo $resPadrino;
+                return false;
+            }
         }else{
-            echo $resultado;
-            return false;
+           return false;
         }
-    }
-    public function Padrino getPadrino($padrino){
+
         
     }
 

@@ -7,7 +7,7 @@ class PadrinoEntity extends Persona{
     var $telefono;
     var $contacto;
     var $alia;
-    var $domicilio
+    var $domicilio;
 
 function __construct($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio){
     parent::__construct($nombre,$apellido,$dni);

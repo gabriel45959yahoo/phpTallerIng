@@ -1,4 +1,5 @@
 <?php
+namespace model\dao;
 
 static $coneccion;
 
