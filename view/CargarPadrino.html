@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head class="header">
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cargar Padrino</title>
@@ -13,35 +13,31 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 
-	<script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
-	<script type="text/javascript" src="../resource/js/scriptSession.js"></script>
+    <script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
+    <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
 </head>
 
 <body id="body" onload="redireccionar()">
 
     <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="/resource/images/icon-menu.png" alt=""></label>
 
-        <div>
-            <div class="logo">
+        <nav class="menu">
+            <ul>
+                <li><a href="">Opcion 1</a></li>
+                <li><a href="">Opcion 2</a></li>
+                <li><a href="">Opcion 3</a></li>
+                <li><a href="">Opcion 4</a></li>
+                <li><a href="">Opcion 5</a></li>
+            </ul>
+        </nav>
 
-                <img src="../resource/images/Logo_effeta.png" alt="" class="ancho">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Servios</a></li>
-                    <li class="fa fa-user-circle"></li>
-
-                </ul>
-
-            </nav>
-
-        </div>
     </header>
+
     <form id="formularioPadrino" method="post">
 
-        <div class="w3-container">
+        <div class="">
             <div class="panel-heading">
                 <h1><strong>Datos Padrino</strong></h1>
             </div>
@@ -52,63 +48,65 @@
                     <div class="panel-heading">
                         <h3>Datos del Padrino</h3>
                     </div>
-                    <div class="panel-body w3-panel  w3-card-1">
-                        <div class="panelEntrada ">
-                            <div class="form-group has-error">
-                                <p>Nombre <input type="text" name="nombre" required placeholder="Ingrese nombre" /></p>
-                                <p>Apellido <input type="text" name="apellido" required placeholder="Ingrese Apellido" /></p>
-                                <p>Alias <input type="text" name="alias" placeholder="Ingrese Alias" /></p>
-                                <p>DNI <input type="texta" name="dni" required placeholder="Ingrese DNI" /></p>
-                                <p>Cuil/Cuit <input type="text" name="cuil" required placeholder="Ingrese Cuil/Cuit" /></p>
-                                <p>E-mail <input type="email" name="email" required placeholder="Ingrese Email" /></p>
-                                <p>Teléfono <input type="text" name="telefono" placeholder="Ingrese Telefono" /></p>
-                                <p>Calle <input type="text" name="calle" placeholder="Ingrese Calle" /></p>
-                                <p>Nro. <input type="text" name="numero" placeholder="Ingrese Número" /></p>
-                                <p>Piso <input type="text" name="piso" placeholder="Ingrese Piso" /></p>
-                                <p>Depto. <input type="text" name="depto" placeholder="Ingrese Departamento" /></p>
-                                <p>Provincia <input type="text" name="provincia" placeholder="Ingrese Provincia" /></p>
-                                <p>Ciudad <input type="text" name="ciudad" placeholder="Ingrese Ciudad" /></p>
-                                <p>Contacto <input type="text" name="contacto" placeholder="Ingrese Contacto" /></p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="">
+                    <div class="panelEntrada">
                         <div class="">
-                            <h3>Datos de Facturación</h3>
+                            <p>Nombre<input type="text" name="nombre" required placeholder="Ingrese nombre" /></p>
+                            <p>Apellido<input type="text" name="apellido" required placeholder="Ingrese Apellido" /></p>
+                            <p>Alias <input type="text" name="alias" placeholder="Ingrese Alias" /></p>
+                            <p>DNI <input type="texta" name="dni" required placeholder="Ingrese DNI" /></p>
+                            <p>Cuil/Cuit<input type="text" name="cuil" required placeholder="Ingrese Cuil/Cuit" /></p>
+                            <p>E-mail<input type="email" name="email" required placeholder="Ingrese Email" /></p>
+                            <p>Telefono<input type="text" name="telefono" placeholder="Ingrese Telefono" /></p>
+                        </div>
+                        <div>
+                            <p>Calle <input type="text" name="calle" placeholder="Ingrese Calle" /></p>
+                            <p>Nro. <input type="text" name="numero" placeholder="Ingrese Número" /></p>
+                            <p>Piso <input type="text" name="piso" placeholder="Ingrese Piso" /></p>
+                            <p>Depto. <input type="text" name="depto" placeholder="Ingrese Departamento" /></p>
+                            <p>Provincia <input type="text" name="provincia" placeholder="Ingrese Provincia" /></p>
+                            <p>Ciudad <input type="text" name="ciudad" placeholder="Ingrese Ciudad" /></p>
+                            <p>Contacto <input type="text" name="contacto" placeholder="Ingrese Contacto" /></p>
                         </div>
 
-
-                        <div class="panel-body w3-panel w3-card-1">
-                            <div class="">
-                                <p>Nombre o razon social <input type="text" name="fact_nombre" /></p>
-                                <p>Apellido <input type="hiden" name="fact_apellido" /></p>
-                                <p>DNI <input type="number" name="fact_dni" /></p>
-                                <p>E-mail <input type="text" name="fact_email" /></p>
-                                <p>Cuil/Cuit <input type="text" name="fac_cuil" /></p>
-                                <p>Teléfono <input type="text" name="fac_telefono" /></p>
-                                <p>Calle <input type="text" name="fac_calle" /></p>
-                                <p>Nro. <input type="text" name="fac_numero" /></p>
-                                <p>Piso <input type="text" name="fac_piso" /></p>
-                                <p>Depto. <input type="text" name="fac_depto" /></p>
-                                <p>Provincia <input type="text" name="fac_provincia" /></p>
-                                <p>Ciudad <input type="text" name="fac_ciudad" /></p>
-
-                            </div>
-                        </div>
-
-
+                    </div>
                 </div>
+            </div>
+            <br>
+            <div class="">
+                <div class="">
+                    <h3>Datos de Facturación</h3>
+                </div>
+
+
+                <div class="">
+                    <div class="">
+                        <p>Nombre o razon social <input type="text" name="fact_nombre" /></p>
+                        <p>Apellido <input type="hiden" name="fact_apellido" /></p>
+                        <p>DNI <input type="number" name="fact_dni" /></p>
+                        <p>E-mail <input type="text" name="fact_email" /></p>
+                        <p>Cuil/Cuit <input type="text" name="fac_cuil" /></p>
+                        <p>Teléfono <input type="text" name="fac_telefono" /></p>
+                        <p>Calle <input type="text" name="fac_calle" /></p>
+                        <p>Nro. <input type="text" name="fac_numero" /></p>
+                        <p>Piso <input type="text" name="fac_piso" /></p>
+                        <p>Depto. <input type="text" name="fac_depto" /></p>
+                        <p>Provincia <input type="text" name="fac_provincia" /></p>
+                        <p>Ciudad <input type="text" name="fac_ciudad" /></p>
+
+                    </div>
+                </div>
+
 
             </div>
 
         </div>
-        <div class="foot">
-            <input type="submit" value="Cargar" id="cargaPadrino"/>
+
         </div>
-<div id="respuesta"></div>
-</form>
+        <div class="foot">
+            <input type="submit" value="Cargar" id="cargaPadrino" />
+        </div>
+        <div id="respuesta"></div>
+    </form>
 </body>
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
