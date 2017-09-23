@@ -54,7 +54,7 @@
                             <p>Nombre<input type="text" name="nombre" required placeholder="Ingrese nombre" /></p>
                             <p>Apellido<input type="text" name="apellido" required placeholder="Ingrese Apellido" /></p>
                             <p>Alias <input type="text" name="alias" placeholder="Ingrese Alias" /></p>
-                            <p>DNI <input type="texta" name="dni" required placeholder="Ingrese DNI" /></p>
+                            <p>DNI <input type="texta" name="dni" pattern="[0-9]" placeholder="Ingrese DNI" /></p>
                             <p>Cuil/Cuit<input type="text" name="cuil" required placeholder="Ingrese Cuil/Cuit" /></p>
                             <p>E-mail<input type="email" name="email" required placeholder="Ingrese Email" /></p>
                             <p>Telefono<input type="text" name="telefono" placeholder="Ingrese Telefono" /></p>
@@ -106,7 +106,9 @@
         <div class="foot">
             <input type="submit" value="Cargar" id="cargaPadrino" />
         </div>
-        <div id="respuesta"></div>
+        <div id="respuesta">
+
+        </div>
     </form>
 </body>
 
