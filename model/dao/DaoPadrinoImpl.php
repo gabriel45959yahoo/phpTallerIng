@@ -1,24 +1,26 @@
 <?php
 namespace model\dao;
 include '../model/dao/DaoConnection.php';
-include '../model/dao/DaoPadrino.php';
-include '../model/dao/DaoDomicilioImpl.php';
+include '../model/dao/DaoObject.php';
 
-class DaoPadrinoImpl implements DaoPadrino
+class DaoPadrinoImpl implements DaoObject
 {
 
-    public function insertPadrino($padrino)
+    public function insert($obj)
     {
-        $resDoc= DaoDomicilioImpl::   
+
         
         $conexion = DaoConnection::connection();
         
-        $sql = "INSERT INTO  Padrino ( pa_apellido ,  pa_nombre ,  pa_alias ,  pa_dni ,  pa_cuil ,  pa_email ,  pa_telefono ,  pa_contacto ,  pa_fecha_alta ) " .
-        "VALUES ('$padrino->apellido','$padrino->nombre','$padrino->alia','$padrino->dni','$padrino->cuil','$padrino->email','$padrino->telefono','$padrino->contacto',sysdate())";
+        $id_doc=(int)$obj->domicilio->id; //esto lo hice por que no se puede poner dos veces -> en el string da error de conversion a string
+
+        $sql = "INSERT INTO  Padrino ( pa_apellido ,  pa_nombre ,  pa_alias ,  pa_dni ,  pa_cuil ,  pa_email ,  pa_telefono ,  pa_contacto ,pa_id_domicilio, pa_fecha_alta ) " .
+            "VALUES ('$obj->apellido','$obj->nombre','$obj->alia','$obj->dni','$obj->cuil','$obj->email','$obj->telefono','$obj->contacto','$id_doc',sysdate())";
         
         if ($conexion->query($sql) === TRUE) {
             mysqli_commit($conexion);
             mysqli_close($conexion);
+
             return "OK";
         } else {
             $error = $conexion->error;
@@ -28,7 +30,7 @@ class DaoPadrinoImpl implements DaoPadrino
         }
     }
 
-    public function selectPadrino($padrino)
+    public function select($obj)
     {
        
         
