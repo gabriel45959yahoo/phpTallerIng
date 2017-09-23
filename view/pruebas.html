@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Enviar formulario con Ajax Jquery</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
+<script type="text/javascript" src="../resource/js/scriptSession.js"></script>
+</head>
+<body id="body" onload="redireccionar()">
+
+	<form method="POST" id="formulario">
+		<table>
+			<tr>
+				<td>nombre:</td>
+				<td><input type="text" name="nombre"></td>
+				<td></td>
+				<td><input type="button" id="btn_enviar" name="btn_enviar"
+					value="Buscar nombre"></td>
+					<td><input type="button" id="btn_enviar" name="btn_enviar2"
+					value="Buscar nombre"></td>
+			</tr>
+		</table>
+	</form>
+	<div id="respuesta"></div>
+
+</body>
+</html>
