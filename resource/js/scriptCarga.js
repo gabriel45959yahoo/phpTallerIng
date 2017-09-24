@@ -38,6 +38,9 @@ $(function(){
 	    return false; // Evitar ejecutar el submit del formulario.
 	 });
 	});
+
+
+//Modal *******************************************************************
 $(function () {
  $("#btn_enviar2").click(function () {
 
