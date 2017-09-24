@@ -21,6 +21,7 @@ if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
 } else if (isset($_POST["tipo"]) && $_POST["tipo"] == "Padrino") {
    
         $padrinoSingleton = ABMPadrino::singleton_Padrino();
+
         // $calle,$numero,$piso,$depto,$provincia,$ciudad
         $domicilio= new model\entities\DomicilioEntity(0,$_POST['calle'], (int) $_POST['numero'], $_POST['piso'],
                                   $_POST['depto'], $_POST['provincia'], $_POST['ciudad']);
@@ -29,16 +30,22 @@ if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
                                   $_POST['fact_depto'], $_POST['fact_provincia'], $_POST['fact_ciudad']);
         
          //$nombre,$apellido,$dni,$email,$cuil,$telefono,$domicilio)
-        $factDatos= new model\entities\DatosFactEntity($_POST['fact_nombre'], $_POST['fact_apellido'],
+        $factDatos= new model\entities\DatosFactEntity(0,$_POST['fact_nombre'], $_POST['fact_apellido'],
                                      (int)$_POST['fact_dni'],  $_POST['fact_email'],
                                      (int)$_POST['fact_cuil'], (int)$_POST['fact_telefono'],$domicilioFact);
 
+         // $nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto
+        $padrino = new PadrinoEntity($_POST['nombre'], $_POST['apellido'],
+                                     $_POST['alias'], (int) $_POST['dni'],
+                                     $_POST['cuil'], $_POST['email'],
+                                    (int) $_POST['telefono'], $_POST['contacto'],$domicilio,$factDatos);
+
         //Si almenos un dato esta cargado en la pantalla realizao el insert
-        if (isset($_POST["fact_nombre"])){
-            $facturaSingleton=ABMDatosFactura::singleton_DatosFactura();
+        if (!$_POST["fact_nombre"]==null){
+            $facturaSingleton=model\ABMDatosFactura::singleton_DatosFactura();
 
             // accedemos al método cargar padrino
-            $usr = $facturaSingleton->cargarDatosFactura($factDatos);
+            $usr = $facturaSingleton->cargarDatosFactura($padrino);
             if($usr){
                 echo "Datos de facturacion se cargados correctamente";
             }else{
@@ -46,13 +53,7 @@ if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
             }
 
         }
-        // $nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto
-        $padrino = new PadrinoEntity($_POST['nombre'], $_POST['apellido'],
-                                     $_POST['alias'], (int) $_POST['dni'], 
-                                     $_POST['cuil'], $_POST['email'], 
-                                    (int) $_POST['telefono'], $_POST['contacto'],$domicilio,$factDatos);
-        
-        
+
         // accedemos al método cargar padrino
         $usr = $padrinoSingleton->cargarPadrino($padrino);
         if($usr){

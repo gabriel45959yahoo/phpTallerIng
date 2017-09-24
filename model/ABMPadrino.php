@@ -29,6 +29,7 @@ class ABMPadrino{
      */
     public function cargarPadrino($padrino)
     {
+        $insertDatos = false;
         $daoDomicilio= new model\dao\DaoDomicilioImpl();
         
         $retDoc=$daoDomicilio->insert($padrino->domicilio);
@@ -37,28 +38,45 @@ class ABMPadrino{
 
             $doc=$daoDomicilio->select($padrino->domicilio);
 
-            if(count($doc)>=0){
+            if(count($doc)>0){
                 $padrino->domicilio=$doc[0];
             }
+            $insertDatos=true;
+        }else{
+           $insertDatos=false;
+        }
+
+
+        if(!$padrino->domicilioFact->nombre==null) {
+            $daoDatoFact= new model\dao\DaoDatosFactImpl();
+            $redatoFact=$daoDatoFact->select($padrino->domicilioFact);
+
+            if(count($redatoFact)>0){
+                $padrino->domicilioFact=$redatoFact[0];
+
+            }
+        }
+
+        if($insertDatos){
 
             $daoPadrino= new model\dao\DaoPadrinoImpl();
-
             $resPadrino=$daoPadrino->insert($padrino);
 
             if($resPadrino=="OK"){
-                return true;
-            }else{
-                echo $resPadrino;
-                return false;
-            }
+                    return true;
+                }else{
+                    echo $resPadrino;
+                    return false;
+                }
         }else{
-           return false;
+            return false;
         }
-
-        
     }
 
-
+    /**
+     * Generar error al intentar clonar el obj de la clase
+     * @private
+     */
     public function __clone()
     {
 
