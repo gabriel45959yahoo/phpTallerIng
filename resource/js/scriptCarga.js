@@ -11,6 +11,7 @@ $(function () {
            data: $("#formularioAlumno").serialize()+"&tipo=Alumno", // Adjuntar los campos del formulario enviado.
            success: function(data)
            {
+                $("#formularioAlumno")[0].reset(); //limpia el formulario
                $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
            }
          }); 
@@ -31,6 +32,7 @@ $(function(){
 	           data: $("#formularioPadrino").serialize()+"&tipo=Padrino", // Adjuntar los campos del formulario enviado.
 	           success: function(data)
 	           {
+                   $("#formularioPadrino")[0].reset();//limpia el formulario
 	               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
 	           }
 	         });
