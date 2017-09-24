@@ -1,6 +1,7 @@
 <?php
 include '../model/dao/DaoPadrinoImpl.php';
 include '../model/dao/DaoDomicilioImpl.php';
+include '../model/dao/DaoDatosFactImpl.php';
 class ABMPadrino{
     
     private static $instanciaPadrino;
@@ -39,7 +40,7 @@ class ABMPadrino{
             if(count($doc)>=0){
                 $padrino->domicilio=$doc[0];
             }
-            echo $doc[0]->id;
+
             $daoPadrino= new model\dao\DaoPadrinoImpl();
 
             $resPadrino=$daoPadrino->insert($padrino);

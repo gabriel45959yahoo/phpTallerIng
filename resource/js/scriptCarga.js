@@ -38,3 +38,11 @@ $(function(){
 	    return false; // Evitar ejecutar el submit del formulario.
 	 });
 	});
+$(function () {
+ $("#btn_enviar2").click(function () {
+
+               $("#respuesta").html("Esta es una prueba de gabriel"); // Mostrar la respuestas del script PHP.
+                $("#myModal").modal();
+
+ });
+});

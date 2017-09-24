@@ -1,6 +1,6 @@
 <?php
 namespace model\dao;
-
+use model\entities\DatosFactEntity as DatosFactEntity;
 class DaoDatosFactImpl implements DaoObject{
     /**
      * agrego una forma de facturacion
