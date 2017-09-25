@@ -34,6 +34,7 @@ $(function(){
 	           {
                    $("#formularioPadrino")[0].reset();//limpia el formulario
 	               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
+
 	           }
 	         });
 
