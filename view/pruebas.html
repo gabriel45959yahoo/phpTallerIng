@@ -1,73 +1,53 @@
-<!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
-<title>Enviar formulario con Ajax Jquery</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
-<script type="text/javascript" src="../resource/js/scriptSession.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<title>toastr.js test</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
+	<script type="text/javascript" src="../resource/js/alertas.js"></script>
+	<script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
+	<style>
+	body {
+		font-family: helvetica;
+	}
+	input {
+		width: 200px;
+		border: 2px solid black;
+		background: white;
+	}
+	::placeholder {
+		color: blue;
+	}
+	.container {
+    width: 500px;
+    height: 500px;
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    margin: auto;
+    text-align: center;
+	}
+	.container items {
+		padding: 20px;
+	}
+	</style>
 </head>
-<body id="body" >
-
-<div class="col-md-4 col-md-offset-4 alto">
-<div class="alert alert-success modal fade" align="center" id="myModal">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Success!</strong> This alert box could indicate a successful or positive action.
-  </div>
-</div>
-
-  <!-- <div class="alert alert-info">
-    <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
-  </div>
-  <div class="alert alert-warning">
-    <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
-  </div>
-  <div class="alert alert-danger">
-    <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
-  </div>-->
-
-	<form method="POST" id="formulario">
-		<table>
-			<tr>
-				<td>nombre:</td>
-				<td><input type="text" name="nombre"></td>
-				<td></td>
-				<td><input type="button" id="btn_enviar" name="btn_enviar"
-					value="Buscar nombre"></td>
-					<td><input type="button" id="btn_enviar2" name="btn_enviar2"
-					value="Buscar nombre" class="btn btn-info btn-lg"></td>
-			</tr>
-		</table>
-	</form>
-
-<!-- Modal -->
-  <!--<div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog">
-
-      Modal content-->
-      <!-- <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Carga de Padrino</h4>
-        </div>
-        <div class="modal-body">
-          <p><div id="respuesta"></div></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
+<body>
+	<div class="container">
+		<h1>Javascript toastr.js test</h1>
+		<hr><br>
+	<form id="checkform" onsubmit="return false">
+	<input type="textbox" id="name" placeholder="Your name">
+	<input type="textbox" id="comment" placeholder="Comment">
+	<button  style="background: white; color: black; border: 2px solid black; cursor: pointer;" class="submit" type="submit"   id="pruebaAlerta">submit</button>
+    </form>
+	    <br><hr>
+	<a style="color: red;">*</a><a>Fill all fields and press the "submit" button.</a>
     </div>
-  </div>-->
-
-
 </body>
 </html>
+

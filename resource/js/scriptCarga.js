@@ -36,10 +36,15 @@ $(function(){
 	           success: function(data)
 	           {
                    if(!data.includes("Error")){
-                    $("#formularioPadrino")[0].reset();//limpia el formulario
+                        $("#formularioPadrino")[0].reset();//limpia el formulario
+                        //tipo,titulo,mensaje
+                       check("success","OK",data);
+                    }else{
+                        //tipo,titulo,mensaje
+                        check("error","Error al cargar los datos",data);
                     }
 
-	               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
+	               //$("#respuesta").html(data); // Mostrar la respuestas del script PHP.
 
 	           }
 	         });
@@ -51,10 +56,10 @@ $(function(){
 
 //Modal *******************************************************************
 $(function () {
- $("#btn_enviar2").click(function () {
+ $("#pruebaAlerta").click(function () {
 
-               $("#respuesta").html("Esta es una prueba de gabriel"); // Mostrar la respuestas del script PHP.
-                $("#myModal").modal();
+            check(document.getElementById('name').value,"titulo","mensaje");  // $("#respuesta").html("Esta es una prueba de gabriel"); // Mostrar la respuestas del script PHP.
+              //  $("#myModal").modal();
 
  });
 });

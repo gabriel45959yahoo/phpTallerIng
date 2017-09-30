@@ -1,6 +1,7 @@
 <?php
 session_start();
 use model\entities\PadrinoEntity as PadrinoEntity;
+use model\entities\AlumnoEntity as AlumnoEntity;
 include '../model/entities/PadrinoEntity.php';
 include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
@@ -15,6 +16,11 @@ if (! isset($_SESSION['session'])) {
     //cuando quiero hacer una accion al momento de hacer para un tipo Alumno
     if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
 
+
+
+        $alumno= new AlumnoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),
+                                     (int)$_POST['fact_dni'],  $_POST['fact_email'],
+                                     (int)$_POST['fact_cuil'], (int)$_POST['fact_telefono']);
 
     //cuando quiero hacer una accion al momento de hacer para un tipo Padrino
     } else if (isset($_POST["tipo"]) && $_POST["tipo"] == "Padrino") {
