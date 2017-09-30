@@ -32,11 +32,11 @@ class ABMPadrino{
         $insertDatos = false;
         $daoDomicilio= new model\dao\DaoDomicilioImpl();
         
-        $retDoc=$daoDomicilio->insert($padrino->domicilio);
+        $retDoc=$daoDomicilio->insert($padrino->getDomicilio());
 
         if($retDoc=="OK") {
 
-            $doc=$daoDomicilio->select($padrino->domicilio);
+            $doc=$daoDomicilio->select($padrino->getDomicilio());
 
             if(count($doc)>0){
                 $padrino->domicilio=$doc[0];
@@ -49,7 +49,7 @@ class ABMPadrino{
 
         if(!$padrino->domicilioFact->nombre==null) {
             $daoDatoFact= new model\dao\DaoDatosFactImpl();
-            $redatoFact=$daoDatoFact->select($padrino->domicilioFact);
+            $redatoFact=$daoDatoFact->select($padrino->getDomicilioFact());
 
             if(count($redatoFact)>0){
                 $padrino->domicilioFact=$redatoFact[0];

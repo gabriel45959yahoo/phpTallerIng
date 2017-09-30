@@ -4,14 +4,17 @@
  */
 $(function () {
  $("#cargaAlumno").click(function () {
- var url = "../control/CargarController.php"; // El script a dónde se realizará la petición.
+ var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
     $.ajax({
            type: "POST",
            url: url,
            data: $("#formularioAlumno").serialize()+"&tipo=Alumno", // Adjuntar los campos del formulario enviado.
            success: function(data)
            {
-                $("#formularioAlumno")[0].reset(); //limpia el formulario
+               if(!data.includes("Error")){
+                   $("#formularioAlumno")[0].reset(); //limpia el formulario
+                  }
+
                $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
            }
          }); 
@@ -25,14 +28,17 @@ $(function () {
  */ 
 $(function(){
 	 $("#cargaPadrino").click(function(){
-	 var url = "../control/CargarController.php"; // El script a dónde se realizará la petición.
+	 var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
 	    $.ajax({
 	           type: "POST",
 	           url: url,
 	           data: $("#formularioPadrino").serialize()+"&tipo=Padrino", // Adjuntar los campos del formulario enviado.
 	           success: function(data)
 	           {
-                   $("#formularioPadrino")[0].reset();//limpia el formulario
+                   if(!data.includes("Error")){
+                    $("#formularioPadrino")[0].reset();//limpia el formulario
+                    }
+
 	               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
 
 	           }

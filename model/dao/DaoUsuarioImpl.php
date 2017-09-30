@@ -1,8 +1,9 @@
 <?php
 include '../model/dao/DaoConnection.php';
 include '../model/dao/DaoUsuario.php';
+include '../model/dao/DaoObject.php';
 
-class DaoUsuarioImpl implements DaoUsuario {
+class DaoUsuarioImpl implements DaoUsuario, DaoObject{
 
      public function esUsuario($usuario)  {
          $conexion= model\dao\DaoConnection::connection();
@@ -28,5 +29,13 @@ class DaoUsuarioImpl implements DaoUsuario {
      public function crearUsuario($user){
          
      }
+
+    public function insert($obj){
+
+    }
+
+    public function select($obj){
+
+    }
 }
 ?>

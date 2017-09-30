@@ -18,7 +18,48 @@ function __construct($id,$calle,$numero,$piso,$depto,$provincia,$ciudad){
     $this->provincia=$provincia;
     $this->ciudad=$ciudad;
 }
-
+     public function  getId(){
+        return $this->id;
+    }
+     public function  getCalle(){
+        return $this->calle;
+    }
+    public function  getNumero(){
+        return $this->numero;
+    }
+    public function  getPiso(){
+        return $this->piso;
+    }
+    public function  getDepto(){
+        return $this->depto;
+    }
+    public function  getProvincia(){
+        return $this->provincia;
+    }
+     public function  getCiudad(){
+        return $this->ciudad;
+    }
+     public function  setCiudad($ciudad){
+        $this->ciudad=$ciudad;
+    }
+     public function  setId($id){
+        $this->id=$id;
+    }
+     public function  setCalle($calle){
+        $this->calle=$calle;
+    }
+     public function  setNumero($numero){
+        $this->numero=$numero;
+    }
+     public function  setPiso($piso){
+        $this->piso=$piso;
+    }
+     public function  setDepto($depto){
+        $this->depto=$depto;
+    }
+     public function  setProvincia($provincia){
+        $this->provincia=$provincia;
+    }
 }
 
 ?>
