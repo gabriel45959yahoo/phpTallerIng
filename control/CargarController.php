@@ -5,7 +5,8 @@ class CargarController{
     
     function cargarPadrino($padrino){
         $padrinoSingleton = ABMPadrino::singleton_Padrino();
-
+        $restFact=false;
+        $restPadrino=false;
         
         if($padrino->getNombre()=='' || $padrino->getApellido()=='' || $padrino->getAlia()==''||$padrino->getEmail()==''){
             return "Error: Falta completar: Nombre ó Apellido ó Alia ó e-mail";
@@ -29,10 +30,13 @@ class CargarController{
 
         // accedemos al método cargar padrino
         $restPadrino = $padrinoSingleton->cargarPadrino($padrino);
+        if($restPadrino==null){
+            return "Error: El padrino ya existe.";
+        }
         if($restPadrino || $restFact){
-            return "Datos del Padrino cargados correctamente";
+            return "Datos del Padrino cargados correctamente.";
         }else{
-            return "Error: al cargar los datos del padrino";
+            return "Error: al cargar los datos del padrino.";
         }
     }
     function cargarAlumno($alumno){

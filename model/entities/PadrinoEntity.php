@@ -1,4 +1,5 @@
 <?php
+namespace model\entities;
 include '../model/entities/Persona.php';
 class PadrinoEntity extends Persona{
     var $id;
@@ -9,8 +10,25 @@ class PadrinoEntity extends Persona{
     var $alia;
     var $domicilio;
     var $domicilioFact;
+    var $fechaAlta;
+    var $fechaBaja;
+function __construct()
+	{
+		//obtengo un array con los parámetros enviados a la función
+		$params = func_get_args();
+		//saco el número de parámetros que estoy recibiendo
+		$num_params = func_num_args();
+		//cada constructor de un número dado de parámtros tendrá un nombre de función
+		//atendiendo al siguiente modelo __construct1() __construct2()...
+		$funcion_constructor ='__construct'.$num_params;
+		//compruebo si hay un constructor con ese número de parámetros
+		if (method_exists($this,$funcion_constructor)) {
+			//si existía esa función, la invoco, reenviando los parámetros que recibí en el constructor original
+			call_user_func_array(array($this,$funcion_constructor),$params);
+		}
+	}
 
-function __construct($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact){
+function __construct10($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact){
     parent::__construct($nombre,$apellido,$dni);
     $this->cuil=$cuil;
     $this->email=$email;
@@ -19,6 +37,19 @@ function __construct($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contac
     $this->alia=$alia;
     $this->domicilio=$domicilio;
     $this->domicilioFact=$domicilioFact;
+}
+function __construct13($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja){
+    parent::__construct($nombre,$apellido,$dni);
+    $this->id=$id;
+    $this->cuil=$cuil;
+    $this->email=$email;
+    $this->telefono=$telefono;
+    $this->contacto=$contacto;
+    $this->alia=$alia;
+    $this->domicilio=$domicilio;
+    $this->domicilioFact=$domicilioFact;
+    $this->fechaAlta=$fechaAlta;
+    $this->fechaBaja=$fechaBaja;
 }
   public function  getAlia(){
         return $this->alia;
@@ -41,8 +72,20 @@ function __construct($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contac
      public function  getDomicilioFact(){
         return $this->domicilioFact;
     }
-     public function  getId(){
+    public function  getId(){
         return $this->id;
+    }
+     public function  getFechaAlta(){
+        return $this->fechaAlta;
+    }
+      public function  getFechaBaja(){
+        return $this->fechaBaja;
+    }
+     public function  setFechaAlta($fechaAlta){
+        $this->fechaAlta=$fechaAlta;
+    }
+     public function  setFechaBaja($fechaBaja){
+        $this->fechaBaja=$fechaBaja;
     }
      public function  setId($id){
         $this->id=$id;

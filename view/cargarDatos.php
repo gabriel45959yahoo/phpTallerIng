@@ -1,5 +1,6 @@
 <?php
 session_start();
+use model\entities\PadrinoEntity as PadrinoEntity;
 include '../model/entities/PadrinoEntity.php';
 include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
@@ -25,13 +26,13 @@ if (! isset($_SESSION['session'])) {
                                   $_POST['fact_depto'], $_POST['fact_provincia'], $_POST['fact_ciudad']);
 
          //$nombre,$apellido,$dni,$email,$cuil,$telefono,$domicilio)
-        $factDatos= new model\entities\DatosFactEntity(0,$_POST['fact_nombre'], $_POST['fact_apellido'],
+        $factDatos= new model\entities\DatosFactEntity(0,ucwords($_POST['fact_nombre']), ucwords($_POST['fact_apellido']),
                                      (int)$_POST['fact_dni'],  $_POST['fact_email'],
                                      (int)$_POST['fact_cuil'], (int)$_POST['fact_telefono'],$domicilioFact);
 
          // $nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto
-        $padrino = new PadrinoEntity($_POST['nombre'], $_POST['apellido'],
-                                     $_POST['alias'], (int) $_POST['dni'],
+        $padrino = new PadrinoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),
+                                     ucwords($_POST['alias']), (int) $_POST['dni'],
                                      $_POST['cuil'], $_POST['email'],
                                     (int) $_POST['telefono'], $_POST['contacto'],$domicilio,$factDatos);
 

@@ -1,4 +1,5 @@
 <?php
+namespace model\entities;
 class Persona{
     var $nombre;
     var $apellido;

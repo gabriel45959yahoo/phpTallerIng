@@ -2,6 +2,7 @@
 include '../model/dao/DaoPadrinoImpl.php';
 include '../model/dao/DaoDomicilioImpl.php';
 include '../model/dao/DaoDatosFactImpl.php';
+use model\entities\PadrinoEntity as PadrinoEntity;
 class ABMPadrino{
     
     private static $instanciaPadrino;
@@ -29,6 +30,17 @@ class ABMPadrino{
      */
     public function cargarPadrino($padrino)
     {
+        try{
+        $daoPadrino= new model\dao\DaoPadrinoImpl();
+        $padrinoConsulta = new PadrinoEntity($padrino->nombre, $padrino->apellido,
+                                     null,$padrino->dni,
+                                     null, null,
+                                    null, null,null,null);
+
+        if(count($daoPadrino->select($padrinoConsulta))>0){
+            return null;
+        }
+
         $insertDatos = false;
         $daoDomicilio= new model\dao\DaoDomicilioImpl();
         
@@ -59,8 +71,7 @@ class ABMPadrino{
 
         if($insertDatos){
 
-            $daoPadrino= new model\dao\DaoPadrinoImpl();
-            $resPadrino=$daoPadrino->insert($padrino);
+           $resPadrino=$daoPadrino->insert($padrino);
 
             if($resPadrino=="OK"){
                     return true;
@@ -70,6 +81,10 @@ class ABMPadrino{
                 }
         }else{
             return false;
+        }
+
+     }catch (Exception $e) {
+                return 'Error: '.$e->getMessage(). "\n";
         }
     }
 
