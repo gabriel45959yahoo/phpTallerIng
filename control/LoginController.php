@@ -16,7 +16,7 @@ if(isset($_POST['usuario']))
     {
         $_SESSION['session'] = $usuario;
        // header("Location: /view/CargarPadrino.html");
-         echo "<script> window.location.assign('/view/CargarPadrino.html'); </script>";
+         echo "<script> window.location.assign('/view/home.html'); </script>";
 
     }else{
          echo "<script> window.location.assign('/index.html'); </script>";
