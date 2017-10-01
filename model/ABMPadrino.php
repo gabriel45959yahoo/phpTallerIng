@@ -87,7 +87,24 @@ class ABMPadrino{
                 return 'Error: '.$e->getMessage(). "\n";
         }
     }
+  function buscarPadrinosLibres($padrino){
+       $daoPadrino= new model\dao\DaoPadrinoImpl();
+      if($padrino==null){
 
+        $padrinoConsulta = new PadrinoEntity(null, null,
+                                     null,null,
+                                     null, null,
+                                    null, null,null,null);
+      }else{
+        $padrinoConsulta = new PadrinoEntity($padrino->nombre, $padrino->apellido,
+                                     null,$padrino->dni,
+                                     null, null,
+                                    null, null,null,null);
+      }
+      $resultado=$daoPadrino->buscarPadrinosLibres($padrinoConsulta);
+
+      return $resultado;
+  }
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private

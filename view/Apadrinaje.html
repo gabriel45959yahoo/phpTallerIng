@@ -1,20 +1,20 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head class="header">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cargar Alumno</title>
+    <title>Apadrinar Alumnos</title>
     <link rel="shortcut icon" href="../resource/images/logo_icon.ico">
-    <link rel="stylesheet" href="../resource/css/estilos-carga.css">
+    <link rel="stylesheet" href="../resource/css/estilos-consulta.css">
+    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
-	<script type="text/javascript" src="../resource/js/alertas.js"></script>
-    <script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
+    <script type="text/javascript" src="../resource/js/alertas.js"></script>
+    <script type="text/javascript" src="../resource/js/scriptConsulta.js"></script>
     <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
 </head>
 
@@ -37,30 +37,31 @@
 
     </header>
 
-    <form id="formularioAlumno" method="post">
+    <form id="formularioPadrinosLibres" method="post">
 
         <div class="">
             <div class="panel-heading">
-                <h1><strong>Datos Alumnos</strong></h1>
+                <h1><strong>Apadrinaje</strong></h1>
             </div>
-            <h5>Por favor, ingrese los siguientes datos</h5>
             <div class="">
                 <div class="w3-container-general">
 
                     <div class="">
-                        <h3>Datos del Alumno</h3>
+                        <h3>Datos Para apadrinar</h3>
                     </div>
                     <div class="panelEntrada">
                         <div class="panelInterno">
-                            <p>Nombre<input type="text" name="nombre" required placeholder="Ingrese nombre" /></p>
-                            <p>Apellido<input type="text" name="apellido" required placeholder="Ingrese Apellido" /></p>
-                            <p>DNI <input type="texta" name="dni" pattern="[0-9]" placeholder="Ingrese DNI" /></p>
-                            <p>Nivel/Curso<input type="text" name="nivelCurso" required placeholder="Ingrese Nivel/Curso" /></p>
-                            <p>Fecha de Nacimiento <input type="date" name="fechaNacimiento" placeholder="ej: dd/mm/yyyy" /></p>
-                            <p>Observaciones <input type="text" name="observaciones"/></p>
+                            <table id="tablaPadrinos">
+                                <tr>
+                                    <th>Apodo</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>dni</th>
+                                    <th>contacto</th>
+                                    <th>fecha de alta</th>
+                                </tr>
+                             </table>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -70,7 +71,7 @@
 
         </div>
         <div class="foot">
-            <input type="submit" value="Cargar" id="cargaAlumno" />
+            <input type="submit" value="Cargar" id="consultaPadrinosLibres" />
         </div>
     </form>
 </body>
@@ -90,6 +91,7 @@
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-XXXXXXXX-X', 'auto');
     ga('send', 'pageview');
+
 </script>
 
 </html>

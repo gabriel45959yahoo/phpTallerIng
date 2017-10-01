@@ -26,8 +26,8 @@ class Login
      */
     public function login_users($usuario,$clave)
     {
-        $daoUsuario= new DaoUsuarioImpl();
-        $usr=new UsuarioEntity();
+        $daoUsuario= new model\dao\DaoUsuarioImpl();
+        $usr=new model\entities\UsuarioEntity();
         $usr->setUsuario($usuario);
         $usr->setClave($clave);
         return $daoUsuario->esUsuario($usr);

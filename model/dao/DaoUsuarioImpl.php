@@ -1,4 +1,5 @@
 <?php
+namespace model\dao;
 include '../model/dao/DaoConnection.php';
 include '../model/dao/DaoUsuario.php';
 include '../model/dao/DaoObject.php';
@@ -6,7 +7,7 @@ include '../model/dao/DaoObject.php';
 class DaoUsuarioImpl implements DaoUsuario, DaoObject{
 
      public function esUsuario($usuario)  {
-         $conexion= model\dao\DaoConnection::connection();
+         $conexion= DaoConnection::connection();
          $usr=$usuario->usuario;
          $clave=$usuario->clave;
          $consulta = "SELECT nombre FROM usuario WHERE usr_id='$usr' AND clave = '$clave'";
