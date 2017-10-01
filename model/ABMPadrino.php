@@ -38,7 +38,7 @@ class ABMPadrino{
                                     null, null,null,null);
 
         if(count($daoPadrino->select($padrinoConsulta))>0){
-            return null;
+            return -1;
         }
 
         $insertDatos = false;
@@ -74,13 +74,13 @@ class ABMPadrino{
            $resPadrino=$daoPadrino->insert($padrino);
 
             if($resPadrino=="OK"){
-                    return true;
+                    return 0;
                 }else{
                     echo $resPadrino;
-                    return false;
+                    return 1;
                 }
         }else{
-            return false;
+            return 1;
         }
 
      }catch (Exception $e) {

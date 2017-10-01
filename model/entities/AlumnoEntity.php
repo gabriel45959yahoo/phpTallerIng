@@ -3,13 +3,11 @@ namespace model\entities;
 
 class AlumnoEntity extends Persona{
     var $id;
-    var $cuil;
-    var $email;
-    var $telefono;
-    var $contacto;
-    var $alia;
-    var $domicilio;
-    var $domicilioFact;
+    var $nivelCurso;
+    var $fechaNacimiento;
+    var $observaciones;
+    var $esAlumno;
+
 
 function __construct()
 	{
@@ -26,47 +24,33 @@ function __construct()
 			call_user_func_array(array($this,$funcion_constructor),$params);
 		}
 	}
-function __construct11($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact){
+function __construct8($id,$nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno){
     parent::__construct($nombre,$apellido,$dni);
     $this->id=$id;
-    $this->cuil=$cuil;
-    $this->email=$email;
-    $this->telefono=$telefono;
-    $this->contacto=$contacto;
-    $this->alia=$alia;
-    $this->domicilio=$domicilio;
-    $this->domicilioFact=$domicilioFact;
+    $this->nivelCurso=$nivelCurso;
+    $this->observaciones=$observaciones;
+    $this->fechaNacimiento=$fechaNacimiento;
+    $this->esAlumno=$esAlumno;
+
 }
-function __construct10($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact){
+function __construct6($nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento){
     parent::__construct($nombre,$apellido,$dni);
-    $this->cuil=$cuil;
-    $this->email=$email;
-    $this->telefono=$telefono;
-    $this->contacto=$contacto;
-    $this->alia=$alia;
-    $this->domicilio=$domicilio;
-    $this->domicilioFact=$domicilioFact;
+    $this->nivelCurso=$nivelCurso;
+    $this->observaciones=$observaciones;
+    $this->fechaNacimiento=$fechaNacimiento;
 }
-  public function  getAlia(){
-        return $this->alia;
-    }
-    public function  getCuil(){
-        return $this->cuil;
-    }
-     public function  getEmail(){
-        return $this->email;
-    }
-     public function  getTelefono(){
-        return $this->telefono;
+
+     public function  getFechaNacimiento(){
+        return $this->fechaNacimiento;
     }
      public function  getContacto(){
         return $this->contacto;
     }
-     public function  getDomicilio(){
-        return $this->domicilio;
+     public function  getObservaciones(){
+        return $this->observaciones;
     }
-     public function  getDomicilioFact(){
-        return $this->domicilioFact;
+     public function  getNivelCurso(){
+        return $this->nivelCurso;
     }
      public function  getId(){
         return $this->id;
@@ -74,31 +58,18 @@ function __construct10($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$cont
      public function  setId($id){
         $this->id=$id;
     }
-     public function  setDomicilioFact($domicilioFact){
-        $this->domicilioFact=$domicilioFact;
+     public function  setNivelCurso($nivelCurso){
+        $this->nivelCurso=$nivelCurso;
     }
-     public function  setDomicilio($domicilio){
-        $this->domicilio=$domicilio;
+     public function  setObservaciones($observaciones){
+        $this->observaciones=$observaciones;
     }
      public function  setContacto($contacto){
         $this->telefono=$contacto;
     }
-     public function  setTelefono($telefono){
-        $this->telefono=$telefono;
+     public function  setFechaNacimiento($fechaNacimiento){
+        $this->fechaNacimiento=$fechaNacimiento;
     }
-     public function  setEmail($email){
-        $this->email=$email;
-    }
-     public function  setAlia($alia){
-        $this->alia=$alia;
-    }
-    public function  setCuil($cuil){
-        $this->cuil=$cuil;
-    }
-
-
-}
-
 
 
 }

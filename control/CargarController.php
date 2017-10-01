@@ -1,12 +1,13 @@
 <?php
 include '../model/ABMPadrino.php';
+include '../model/ABMAlumno.php';
 include '../model/ABMDatosFactura.php';
 class CargarController{
     
     function cargarPadrino($padrino){
         $padrinoSingleton = ABMPadrino::singleton_Padrino();
-        $restFact=false;
-        $restPadrino=false;
+        $restFact=1;
+        $restPadrino=1;
         
         if($padrino->getNombre()=='' || $padrino->getApellido()=='' || $padrino->getAlia()==''||$padrino->getEmail()==''){
             return "Error: Falta completar: Nombre ó Apellido ó Alia ó e-mail";
@@ -30,17 +31,32 @@ class CargarController{
 
         // accedemos al método cargar padrino
         $restPadrino = $padrinoSingleton->cargarPadrino($padrino);
-        if($restPadrino==null){
+        if($restPadrino==-1){
             return "Error: El padrino ya existe.";
         }
-        if($restPadrino || $restFact){
-            return "Datos del Padrino cargados correctamente.";
+        if($restPadrino==0 || $restFact==0){
+            return "Datos del Padrino fueron cargados correctamente.";
         }else{
             return "Error: al cargar los datos del padrino.";
         }
     }
     function cargarAlumno($alumno){
+        $alumnoSingleton = ABMAlumno::singleton_Alumno();
+        $restAlumno=1;
+        if($alumno->getNombre()=='' || $alumno->getApellido()=='' || $alumno->getDni()==''||$alumno->getFechaNacimiento()==''){
+            return "Error: Faltan datos";
+        }
+         // accedemos al método cargar Alumno
+        $restAlumno = $alumnoSingleton->cargarAlumno($alumno);
 
+        if($restAlumno==-1){
+            return "Error: El Alumno ya existe.";
+        }
+        if($restAlumno==0){
+            return "Datos del Alumno fueron cargados correctamente.";
+        }else{
+            return "Error: al cargar los datos del Alumno.";
+        }
     }
     function cargarPagos($pagos){
 

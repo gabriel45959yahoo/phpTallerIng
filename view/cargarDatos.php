@@ -3,6 +3,7 @@ session_start();
 use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
 include '../model/entities/PadrinoEntity.php';
+include '../model/entities/AlumnoEntity.php';
 include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
 include '../control/CargarController.php';
@@ -17,10 +18,12 @@ if (! isset($_SESSION['session'])) {
     if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
 
 
-
+        //$nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento
         $alumno= new AlumnoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),
-                                     (int)$_POST['fact_dni'],  $_POST['fact_email'],
-                                     (int)$_POST['fact_cuil'], (int)$_POST['fact_telefono']);
+                                     (int)$_POST['dni'],  $_POST['nivelCurso'],
+                                      $_POST['observaciones'], $_POST['fechaNacimiento']);
+
+         echo $cargarController->cargarAlumno($alumno);
 
     //cuando quiero hacer una accion al momento de hacer para un tipo Padrino
     } else if (isset($_POST["tipo"]) && $_POST["tipo"] == "Padrino") {

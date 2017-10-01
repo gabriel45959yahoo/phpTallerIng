@@ -9,7 +9,9 @@ class Persona{
          $this->apellido=$apellido;
           $this->dni=$dni;
     }
-
+public function  getDni(){
+        return $this->dni;
+    }
     public function  getNombre(){
         return $this->nombre;
     }

@@ -12,10 +12,16 @@ $(function () {
            success: function(data)
            {
                if(!data.includes("Error")){
-                   $("#formularioAlumno")[0].reset(); //limpia el formulario
-                  }
+                        $("#formularioAlumno")[0].reset();//limpia el formulario
+                        //tipo,titulo,mensaje
+                       check("success","OK",data);
+                    }else{
+                        //tipo,titulo,mensaje
+                        check("error","Error al cargar los datos",data);
+                    }
 
-               $("#respuesta").html(data); // Mostrar la respuestas del script PHP.
+	               //$("#respuesta").html(data); // Mostrar la respuestas del script PHP.
+
            }
          }); 
 
