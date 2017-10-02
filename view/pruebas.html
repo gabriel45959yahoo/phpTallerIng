@@ -1,5 +1,3 @@
-<html lang="en">
-
 <head class="header">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +9,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    </style>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
     <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
     <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
     <script type="text/javascript" src="../resource/js/alertas.js"></script>
     <script type="text/javascript" src="../resource/js/scriptConsulta.js"></script>
     <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+
+    </script>
 </head>
 
 <body id="body" onload="redireccionar()">
@@ -54,17 +60,92 @@
                         <h3>Datos Para apadrinar</h3>
                     </div>
                     <div class="panelEntrada">
-                        <div class="panelInterno">
-                            <table id="tablaPadrinos">
-                                <tr>
-                                    <th onclick="sortTable(0)">Apodo</th>
-                                    <th onclick="sortTable(1)">Nombre</th>
-                                    <th onclick="sortTable(2)">Apellido</th>
-                                    <th>dni</th>
-                                    <th>contacto</th>
-                                    <th>fecha de alta</th>
-                                    <th>Ahijado</th>
-                                </tr>
+                        <div class="table-responsive">
+                            <table id="myTable" lass="display table" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>ENO</th>
+                                        <th>EMPName</th>
+                                        <th>Country</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>Anusha</td>
+                                        <td>India</td>
+                                        <td>10000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>Charles</td>
+                                        <td>United Kingdom</td>
+                                        <td>28000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>003</td>
+                                        <td>Sravani</td>
+                                        <td>Australia</td>
+                                        <td>7000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>004</td>
+                                        <td>Amar</td>
+                                        <td>India</td>
+                                        <td>18000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>005</td>
+                                        <td>Lakshmi</td>
+                                        <td>India</td>
+                                        <td>12000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>006</td>
+                                        <td>James</td>
+                                        <td>Canada</td>
+                                        <td>50000</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>007</td>
+                                        <td>Ronald</td>
+                                        <td>US</td>
+                                        <td>75000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>008</td>
+                                        <td>Mike</td>
+                                        <td>Belgium</td>
+                                        <td>100000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>009</td>
+                                        <td>Andrew</td>
+                                        <td>Argentina</td>
+                                        <td>45000</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>010</td>
+                                        <td>Stephen</td>
+                                        <td>Austria</td>
+                                        <td>30000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>011</td>
+                                        <td>Sara</td>
+                                        <td>China</td>
+                                        <td>750000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>012</td>
+                                        <td>JonRoot</td>
+                                        <td>Argentina</td>
+                                        <td>65000</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -76,8 +157,7 @@
 
         </div>
         <div class="foot">
-             <input type="submit" value="Cargar" id="consultaPadrinosLibres" />
-             <button type="button" class="btn" id="myBtn" data-toggle="modal" data-target="#Ahijado" data-show="true" >asignar</button>
+
         </div>
         <div class="modal fade" id="Ahijado" role="dialog">
             <div class="modal-dialog">
@@ -89,7 +169,9 @@
                         <h4 class="modal-title">Apadrinar</h4>
                     </div>
                     <div class="modal-body">
-                        <p><div id="apadrinarAlumno"></div></p>
+                        <p>
+                            <div id="apadrinarAlumno"></div>
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btnGuardar btn-default" data-dismiss="modal">Guardar</button>

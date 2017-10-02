@@ -51,7 +51,19 @@ class ABMAlumno{
                 return 'Error: '.$e->getMessage(). "\n";
         }
     }
+    public function buscarAlumnosLibres($alumno){
+        $daoAlumno= new model\dao\DaoAlumnoImpl();
 
+      if($alumno==null){
+
+        $alumnoConsulta = new AlumnoEntity(null, null,null,null, null,null);
+      }else{
+        $alumnoConsulta = new AlumnoEntity($alumno->nombre, $alumno->apellido,$alumno->dni,null, null,null);
+      }
+      $resultado=$daoAlumno->buscarAlumnosLibres($alumnoConsulta);
+
+      return $resultado;
+    }
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private

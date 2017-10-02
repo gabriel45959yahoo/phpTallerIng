@@ -15,8 +15,9 @@ if (! isset($_SESSION['session'])) {
 }else{
     $consultarController = new ConsultarController();
     //cuando quiero hacer una accion al momento de hacer para un tipo Alumno
-    if (isset($_POST["tipo"]) && $_POST["tipo"] == "Alumno") {
+    if (isset($_POST["tipo"]) && $_POST["tipo"] == "AlumnosLibres") {
 
+        echo $consultarController->buscarAllAlumnosLibres();
 
     //cuando quiero hacer una accion al momento de hacer para un tipo Padrino
     } else if (isset($_POST["tipo"]) && $_POST["tipo"] == "PadrinosLibres") {

@@ -87,7 +87,7 @@ class ABMPadrino{
                 return 'Error: '.$e->getMessage(). "\n";
         }
     }
-  function buscarPadrinosLibres($padrino){
+  public function buscarPadrinosLibres($padrino){
        $daoPadrino= new model\dao\DaoPadrinoImpl();
       if($padrino==null){
 
