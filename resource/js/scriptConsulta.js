@@ -38,11 +38,12 @@ $(function () {
             for (var x = rowCount - 1; x > 0; x--) {
                 table.deleteRow(x);
             }
-            var ary = document.getElementsByTagName("a");
-            for (var i = 0; i < ary.length; i++) {
+          //  var ary = document.getElementsByTagName("a");
+        //    for (var i = 0; i < ary.length; i++) {
                 // brain cramp: document.removeElement(ary[i]);
-                ary[i].parentNode.removeChild(ary[i]);
-            }
+         //       ary[i].parentNode.removeChild(ary[i]);
+         //   }
+            $('#nav').remove();
         }
         $.ajax({
             type: "POST",
