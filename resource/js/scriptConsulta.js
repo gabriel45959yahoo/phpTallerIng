@@ -1,3 +1,6 @@
+/**
+ * Es el paginador de la tabla de padrinos libres
+ */
 function paginartablaPadrinos() {
     $('#tablaPadrinos').after('<div id="nav"></div>');
     var rowsShown = 5;
@@ -54,7 +57,7 @@ $(function () {
                     var content = JSON.parse(data);
                     //$("#formularioPadrinosLibres")[0].reset();//limpia el formulario
                     //tipo,titulo,mensaje
-                    check("success", "OK", "Datos recuperados");
+                    //check("success", "OK", "Datos recuperados");
                     var n = content.length;
                     var tds = '<tbody> ';
                     for (var i = 0; i < n; i++) {
@@ -88,7 +91,10 @@ $(function () {
     });
 });
 
-
+/**
+ * Para mostrar la pantalla de alumnos a seleccionar para el padrino libre elegido
+ * @param {[[Type]]} id [[Description]]
+ */
 function mostrarModalAlumnos(id) {
     var table = document.getElementById("tablaPadrinos");
     var rows = table.getElementsByTagName("TR");
@@ -109,7 +115,7 @@ function mostrarModalAlumnos(id) {
                 var content = JSON.parse(data);
                 //$("#formularioPadrinosLibres")[0].reset();//limpia el formulario
                 //tipo,titulo,mensaje
-                check("success", "OK", "Datos recuperados");
+               // check("success", "OK", "Datos recuperados");
                 var n = content.length;
                 var tds;
                 for (var i = 0; i < n; i++) {
@@ -132,11 +138,15 @@ function mostrarModalAlumnos(id) {
     });
 
 }
-
+/**
+ * Cuando se guarda la asociacion entre padrino y alumno
+ */
 function guardarApadrinaje() {
     cancelarModalAlumnos();
 }
-
+/**
+ * No se desea hacer la asociacion entre parino y ahijado
+ */
 function cancelarModalAlumnos() {
     var table = document.getElementById("tablaAlumnosLibres");
     var rows = table.getElementsByTagName("TR");
@@ -146,7 +156,10 @@ function cancelarModalAlumnos() {
         table.deleteRow(x);
     }
 }
-
+/**
+ * Para que la tabla de Padrinos libres se ordene
+ * @param {[[Type]]} n [[Description]]
+ */
 function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("tablaPadrinos");
