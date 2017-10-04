@@ -2,10 +2,12 @@
 session_start();
 use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
+use model\entities\PlanPactadoEntity as PlanPactadoEntity;
 include '../model/entities/PadrinoEntity.php';
 include '../model/entities/AlumnoEntity.php';
 include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
+include '../model/entities/PlanPactadoEntity.php';
 include '../control/CargarController.php';
 if (! isset($_SESSION['session'])) {
 
@@ -19,7 +21,7 @@ if (! isset($_SESSION['session'])) {
 
 
         //$nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento
-        $alumno= new AlumnoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),
+        $alumno= new AlumnoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),ucwords($_POST['alias']),
                                      (int)$_POST['dni'],  $_POST['nivelCurso'],
                                       $_POST['observaciones'], $_POST['fechaNacimiento']);
 
@@ -34,16 +36,21 @@ if (! isset($_SESSION['session'])) {
         $domicilioFact= new model\entities\DomicilioEntity(0,$_POST['fact_calle'], (int) $_POST['fact_numero'], $_POST['fact_piso'],
                                   $_POST['fact_depto'], $_POST['fact_provincia'], $_POST['fact_ciudad']);
 
-         //$nombre,$apellido,$dni,$email,$cuil,$telefono,$domicilio)
-        $factDatos= new model\entities\DatosFactEntity(0,ucwords($_POST['fact_nombre']), ucwords($_POST['fact_apellido']),
-                                     (int)$_POST['fact_dni'],  $_POST['fact_email'],
-                                     (int)$_POST['fact_cuil'], (int)$_POST['fact_telefono'],$domicilioFact);
+         //$id,$nombre,$apellido,$dni,$cuil,$domicilio
+        $factDatos= new model\entities\DatosFactEntity(0,ucwords($_POST['fact_nombre']), ucwords($_POST['fact_apellido']),(int)$_POST['fact_dni'], (int)$_POST['fact_cuil'],$domicilioFact);
 
-         // $nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto
+
+         $fichaFisica=0;
+
+        if(isset($_POST['fichaFisica'])){
+            $fichaFisica=$_POST['fichaFisica'];
+        }
+
+         // $nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$montoPactado,$fichaFisicaIngreso
         $padrino = new PadrinoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),
                                      ucwords($_POST['alias']), (int) $_POST['dni'],
-                                     $_POST['cuil'], $_POST['email'],
-                                    (int) $_POST['telefono'], $_POST['contacto'],$domicilio,$factDatos);
+                                     $_POST['cuil'], $_POST['email'],$_POST['email_alt'],
+                                    (int) $_POST['telefono'], (int) $_POST['telefono_alt'], $_POST['contacto'],$domicilio,$factDatos,$_POST['monto_pactado'],$fichaFisica);
 
         echo $cargarController->cargarPadrino($padrino);
 

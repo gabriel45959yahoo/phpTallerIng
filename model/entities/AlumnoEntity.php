@@ -7,6 +7,7 @@ class AlumnoEntity extends Persona{
     var $fechaNacimiento;
     var $observaciones;
     var $esAlumno;
+    var $alias;
 
 
 function __construct()
@@ -24,20 +25,22 @@ function __construct()
 			call_user_func_array(array($this,$funcion_constructor),$params);
 		}
 	}
-function __construct8($id,$nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno){
+function __construct9($id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno){
     parent::__construct($nombre,$apellido,$dni);
     $this->id=$id;
     $this->nivelCurso=$nivelCurso;
     $this->observaciones=$observaciones;
     $this->fechaNacimiento=$fechaNacimiento;
     $this->esAlumno=$esAlumno;
+    $this->alias=$alias;
 
 }
-function __construct6($nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento){
+function __construct7($nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento){
     parent::__construct($nombre,$apellido,$dni);
     $this->nivelCurso=$nivelCurso;
     $this->observaciones=$observaciones;
     $this->fechaNacimiento=$fechaNacimiento;
+    $this->alias=$alias;
 }
 
      public function  getFechaNacimiento(){
@@ -54,6 +57,12 @@ function __construct6($nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNa
     }
      public function  getId(){
         return $this->id;
+    }
+     public function  getAlias(){
+        return $this->alias;
+    }
+     public function  setAlias($alias){
+        $this->alias=$alias;
     }
      public function  setId($id){
         $this->id=$id;

@@ -13,8 +13,8 @@ class DaoAlumnoImpl implements DaoObject
 
         $conexion = DaoConnection::connection();
 
-         $sql = "INSERT INTO Alumno(alu_nombre, alu_apellido, alu_cursado, alu_observaciones,alu_dni,alu_fecha_nacimiento) " .
-            "VALUES ('$obj->nombre','$obj->apellido','$obj->nivelCurso','$obj->observaciones','$obj->dni',STR_TO_DATE('$obj->fechaNacimiento', '%Y-%m-%d'))";
+         $sql = "INSERT INTO Alumno(alu_nombre, alu_apellido,alu_alias, alu_cursado, alu_observaciones,alu_dni,alu_fecha_nacimiento) " .
+            "VALUES ('$obj->nombre','$obj->apellido','$obj->alias','$obj->nivelCurso','$obj->observaciones','$obj->dni',STR_TO_DATE('$obj->fechaNacimiento', '%Y-%m-%d'))";
 
 
 
@@ -40,6 +40,7 @@ class DaoAlumnoImpl implements DaoObject
         $sql="SELECT alu_id,". //0
             " alu_nombre,".
             " alu_apellido,".
+            " alu_alias,".
             " alu_dni,".
             " alu_cursado,".
             " alu_observaciones,".
@@ -58,7 +59,7 @@ class DaoAlumnoImpl implements DaoObject
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                    //$id,$nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
+                    //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
                    $resAlumno[]= new AlumnoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
                                                    $re[6],$re[7]);
@@ -78,6 +79,7 @@ class DaoAlumnoImpl implements DaoObject
         $sql="SELECT alu_id,". //0
             " alu_nombre,".
             " alu_apellido,".
+            " alu_alias,".
             " alu_dni,".
             " alu_cursado,".
             " alu_observaciones,".
@@ -96,10 +98,10 @@ class DaoAlumnoImpl implements DaoObject
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                    //$id,$nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
+                    //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
                    $resAlumno[]= new AlumnoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
-                                                   $re[6],$re[7]);
+                                                   $re[6],$re[7],$re[8]);
                 }
         }
 

@@ -11,7 +11,7 @@ $(function () {
            data: $("#formularioAlumno").serialize()+"&tipo=Alumno", // Adjuntar los campos del formulario enviado.
            success: function(data)
            {
-               if(!data.includes("Error")){
+               if(data.includes("correctamente")){
                         $("#formularioAlumno")[0].reset();//limpia el formulario
                         //tipo,titulo,mensaje
                        check("success","OK",data);
@@ -41,7 +41,7 @@ $(function(){
 	           data: $("#formularioPadrino").serialize()+"&tipo=Padrino", // Adjuntar los campos del formulario enviado.
 	           success: function(data)
 	           {
-                   if(!data.includes("Error")){
+                   if(data.includes("correctamente")){
                         $("#formularioPadrino")[0].reset();//limpia el formulario
                         //tipo,titulo,mensaje
                        check("success","OK",data);

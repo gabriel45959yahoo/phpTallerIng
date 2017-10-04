@@ -30,8 +30,8 @@ class ABMAlumno{
     {
         try{
         $daoAlumno= new model\dao\DaoAlumnoImpl();
-            //$nombre,$apellido,$dni,$nivelCurso,$observaciones,$fechaNacimiento
-        $alumnoConsulta = new AlumnoEntity($alumno->nombre, $alumno->apellido,$alumno->dni,null, null,null);
+            //$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento
+        $alumnoConsulta = new AlumnoEntity($alumno->nombre, $alumno->apellido,null,$alumno->dni,null, null,null);
         $resAlumno=$daoAlumno->select($alumnoConsulta);
 
         if(count($resAlumno)>0){
@@ -56,9 +56,9 @@ class ABMAlumno{
 
       if($alumno==null){
 
-        $alumnoConsulta = new AlumnoEntity(null, null,null,null, null,null);
+        $alumnoConsulta = new AlumnoEntity(null, null,null,null, null,null,null);
       }else{
-        $alumnoConsulta = new AlumnoEntity($alumno->nombre, $alumno->apellido,$alumno->dni,null, null,null);
+        $alumnoConsulta = new AlumnoEntity($alumno->nombre, $alumno->apellido,null,$alumno->dni,null, null,null);
       }
       $resultado=$daoAlumno->buscarAlumnosLibres($alumnoConsulta);
 

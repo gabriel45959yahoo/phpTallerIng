@@ -1,11 +1,11 @@
 <?php
 namespace model\dao;
-include '../model/dao/DaoConnection.php';
 include '../model/dao/DaoObject.php';
+include '../model/dao/DaoConnection.php';
 use model\entities\PadrinoEntity as PadrinoEntity;
+//use model\dao\DaoObject as DaoObject;
 
-class DaoPadrinoImpl implements DaoObject
-{
+class DaoPadrinoImpl implements DaoObject{
 
     public function insert($obj)
     {
@@ -14,17 +14,10 @@ class DaoPadrinoImpl implements DaoObject
         $conexion = DaoConnection::connection();
         
         $id_doc=$obj->domicilio->id; //esto lo hice por que no se puede poner dos veces -> en el string da error de conversion a string
-        $id_datoFact=$obj->domicilioFact->id;
-
-        if($obj->domicilioFact->nombre==null){
-             $sql = "INSERT INTO  Padrino ( pa_apellido ,  pa_nombre ,  pa_alias ,  pa_dni ,  pa_cuil ,  pa_email ,  pa_telefono ,  pa_contacto ,pa_id_domicilio, pa_fecha_alta ) " .
-            "VALUES ('$obj->apellido','$obj->nombre','$obj->alia','$obj->dni','$obj->cuil','$obj->email','$obj->telefono','$obj->contacto','$id_doc',date_add(sysdate(), INTERVAL -3 hour))";
-        }else{
-             $sql = "INSERT INTO  Padrino ( pa_apellido ,  pa_nombre ,  pa_alias ,  pa_dni ,  pa_cuil ,  pa_email ,  pa_telefono ,  pa_contacto ,pa_id_domicilio,pa_id_doc_fact, pa_fecha_alta ) " .
-            "VALUES ('$obj->apellido','$obj->nombre','$obj->alia','$obj->dni','$obj->cuil','$obj->email','$obj->telefono','$obj->contacto','$id_doc','$id_datoFact',date_add(sysdate(), INTERVAL -3 hour))";
-        }
-
         
+        $sql = "INSERT INTO  Padrino ( pa_apellido ,  pa_nombre ,  pa_alias ,  pa_dni ,  pa_cuil ,  pa_email ,pa_email_alternativo,  pa_telefono ,pa_telefono_alternativo,  pa_referencia_contacto ,pa_id_domicilio,pa_ficha_fisica_ingreso, pa_fecha_alta ) " .
+            "VALUES ('$obj->apellido','$obj->nombre','$obj->alia','$obj->dni','$obj->cuil','$obj->email','$obj->emailAlt','$obj->telefono','$obj->telefonoAlt','$obj->contacto','$id_doc','$obj->fichaFisicaIngreso',date_add(sysdate(), INTERVAL -3 hour))";
+
         if ($conexion->query($sql) === TRUE) {
             mysqli_commit($conexion);
             mysqli_close($conexion);
@@ -43,16 +36,12 @@ class DaoPadrinoImpl implements DaoObject
         $resultado = array();
         $conexion = DaoConnection::connection();
         $idDom=0;
-        $idDomFact=0;
         if($obj->domicilio!=null){
 
            $idDom=$obj->domicilio->id;
         }
 
-        if($obj->domicilioFact!=null){
 
-           $idDomFact=$obj->domicilioFact->id;
-        }
         $sql="SELECT pa_id,". //0
             " pa_nombre,".
             " pa_apellido,".
@@ -60,12 +49,14 @@ class DaoPadrinoImpl implements DaoObject
             " pa_dni,".
             " pa_cuil,".//5
             " pa_email,".
+            " pa_email_alternativo,".
             " pa_telefono,".
-            " pa_contacto,".
+            " pa_telefono_alternativo,".
+            " pa_referencia_contacto,".//10
             " pa_id_domicilio,".
-            " pa_id_doc_fact,".//10
             " pa_fecha_alta,".
-            " pa_fecha_baja".
+            " pa_fecha_baja,".
+            " pa_ficha_fisica_ingreso".
             " FROM Padrino WHERE ".
             "pa_apellido='$obj->apellido' ".
             (($obj->nombre==null)?" ":"and pa_nombre='$obj->nombre' ").
@@ -74,11 +65,10 @@ class DaoPadrinoImpl implements DaoObject
             (($obj->cuil==null)?" ":"and pa_cuil='$obj->cuil'").
             (($obj->email==null)?" ":"and pa_email='$obj->email'").
             (($obj->telefono==null)?" ":"and pa_telefono='$obj->telefono'").
-            (($obj->contacto==null)?" ":"and pa_contacto='$obj->contacto'").
+            (($obj->contacto==null)?" ":"and pa_referencia_contacto='$obj->contacto'").
             (($idDom==0)?" ":"and pa_id_domicilio='$idDom'").
             (($obj->fechaAlta==null)?" ":"and pa_fecha_alta='$obj->fechaAlta'").
             (($obj->fechaBaja==null)?" ":"and pa_fecha_baja='$obj->fechaBaja'").
-            (($idDomFact==0)?" ":"and pa_id_doc_fact='$idDomFact'").
             " order by pa_id desc";
 
        // echo $sql;
@@ -87,15 +77,17 @@ class DaoPadrinoImpl implements DaoObject
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                    //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja
+                    //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso
                    $resultado[]= new PadrinoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
                                                    $re[6],$re[7], $re[8],
-                                                   $re[9],$re[10], $re[11], $re[12]);
+                                                   $re[9],$re[10], null,null,$re[12],$re[13],null,$re[14]);
                 }
         }
 
         mysqli_close($conexion);
+
+       // echo $conexion->error;
      return   $resultado;
 
         
@@ -105,15 +97,9 @@ class DaoPadrinoImpl implements DaoObject
         $conexion = DaoConnection::connection();
 
         $idDom=0;
-        $idDomFact=0;
         if($obj->domicilio!=null){
 
            $idDom=$obj->domicilio->id;
-        }
-
-        if($obj->domicilioFact!=null){
-
-           $idDomFact=$obj->domicilioFact->id;
         }
         $sql="SELECT pa_id,". //0
             " pa_nombre,".
@@ -122,12 +108,14 @@ class DaoPadrinoImpl implements DaoObject
             " pa_dni,".
             " pa_cuil,".//5
             " pa_email,".
+            " pa_email_alternativo,".
             " pa_telefono,".
-            " pa_contacto,".
+            " pa_telefono_alternativo,".
+            " pa_referencia_contacto,".//10
             " pa_id_domicilio,".
-            " pa_id_doc_fact,".//10
             " pa_fecha_alta,".
-            " pa_fecha_baja".
+            " pa_fecha_baja,".
+            " pa_ficha_fisica_ingreso".
             " FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id) ".
             (($obj->apellido==null)?" ":"and pa_apellido='$obj->apellido' ").
             (($obj->nombre==null)?" ":"and pa_nombre='$obj->nombre' ").
@@ -140,7 +128,6 @@ class DaoPadrinoImpl implements DaoObject
             (($idDom==0)?" ":"and pa_id_domicilio='$idDom'").
             (($obj->fechaAlta==null)?" ":"and pa_fecha_alta='$obj->fechaAlta'").
             (($obj->fechaBaja==null)?" ":"and pa_fecha_baja='$obj->fechaBaja'").
-            (($idDomFact==0)?" ":"and pa_id_doc_fact='$idDomFact'").
             " order by pa_id desc";
 
         //echo $sql;
@@ -153,7 +140,7 @@ class DaoPadrinoImpl implements DaoObject
                    $resultado[]= new PadrinoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
                                                    $re[6],$re[7], $re[8],
-                                                   $re[9],$re[10], $re[11], $re[12]);
+                                                   $re[9],$re[10], null,null,$re[12],$re[13],null,$re[14]);
                 }
         }
         echo $conexion->error;
