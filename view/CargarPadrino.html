@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
-	<script type="text/javascript" src="../resource/js/alertas.js"></script>
+    <script type="text/javascript" src="../resource/js/alertas.js"></script>
     <script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
     <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
 </head>
@@ -25,9 +25,9 @@
         <label for="btn-menu"><img src="/resource/images/icon-menu.png" alt="" >
         </label>
 
-          <nav class="menu">
+        <nav class="menu">
             <ul>
-                <li >cargar
+                <li>cargar
                     <ul>
                         <li><a href="../view/CargarPadrino.html">Padrino</a></li>
                         <li><a href="../view/CargarAlumno.html">Alumno</a></li>
@@ -59,20 +59,24 @@
                         <div class="panelInterno">
                             <p>Nombre<input type="text" name="nombre" required placeholder="Ingrese nombre" /></p>
                             <p>Apellido<input type="text" name="apellido" required placeholder="Ingrese Apellido" /></p>
-                            <p>Alias <input type="text" name="alias" placeholder="Ingrese Alias" /></p>
-                            <p>DNI <input type="texta" name="dni" pattern="[0-9]" placeholder="Ingrese DNI" /></p>
-                            <p>Cuil/Cuit<input type="text" name="cuil" required placeholder="Ingrese Cuil/Cuit" /></p>
-                            <p>E-mail<input type="email" name="email" required placeholder="Ingrese Email" /></p>
-                            <p>Telefono<input type="text" name="telefono" placeholder="Ingrese Telefono" /></p>
+                            <p>Alias <input type="text" name="alias" required placeholder="Ingrese Alias" /></p>
+                            <p>DNI <input type="number" name="dni" pattern="[0-9]" placeholder="Ingrese DNI" /></p>
+                            <p>Cuil/Cuit<input type="number" name="cuil"  placeholder="Ingrese Cuil/Cuit" /></p>
+                            <p>E-mail<input type="email" name="email"  placeholder="Ingrese Email" /></p>
+                             <p>E-mail alternativo<input type="email" name="email_alt" required placeholder="Ingrese Email" /></p>
+                            <p>Telefono<input type="number" name="telefono" placeholder="Ingrese Telefono" /></p>
+                            <p>Telefono alternativo<input type="number" name="telefono_alt" placeholder="Ingrese Telefono" /></p>
                         </div>
                         <div>
-                            <p>Calle <input type="text" name="calle" placeholder="Ingrese Calle" /></p>
-                            <p>Nro. <input type="text" name="numero" placeholder="Ingrese Número" /></p>
+                            <p>Calle <input type="text" name="calle" required placeholder="Ingrese Calle" /></p>
+                            <p>Nro. <input type="number" name="numero" required  placeholder="Ingrese Número" /></p>
                             <p>Piso <input type="text" name="piso" placeholder="Ingrese Piso" /></p>
                             <p>Depto. <input type="text" name="depto" placeholder="Ingrese Departamento" /></p>
                             <p>Provincia <input type="text" name="provincia" placeholder="Ingrese Provincia" /></p>
                             <p>Ciudad <input type="text" name="ciudad" placeholder="Ingrese Ciudad" /></p>
                             <p>Contacto <input type="text" name="contacto" placeholder="Ingrese Contacto" /></p>
+                            <p>Plan pactado <input type="number" name="monto_pactado" required placeholder="Plan pactado"/></p>
+                             <p>¿Tiene ficha física completa?<input type="checkbox" name="fichaFisica" value="1"/></p>
                         </div>
 
                     </div>
@@ -90,11 +94,9 @@
                         <p>Nombre o razon social <input type="text" name="fact_nombre" /></p>
                         <p>Apellido <input type="hiden" name="fact_apellido" /></p>
                         <p>DNI <input type="number" name="fact_dni" /></p>
-                        <p>E-mail <input type="text" name="fact_email" /></p>
-                        <p>Cuil/Cuit <input type="text" name="fact_cuil" /></p>
-                        <p>Teléfono <input type="text" name="fact_telefono" /></p>
+                        <p>Cuil/Cuit <input type="number" name="fact_cuil" /></p>
                         <p>Calle <input type="text" name="fact_calle" /></p>
-                        <p>Nro. <input type="text" name="fact_numero" /></p>
+                        <p>Nro. <input type="number" name="fact_numero" /></p>
                         <p>Piso <input type="text" name="fact_piso" /></p>
                         <p>Depto. <input type="text" name="fact_depto" /></p>
                         <p>Provincia <input type="text" name="fact_provincia" /></p>
@@ -133,6 +135,7 @@
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-XXXXXXXX-X', 'auto');
     ga('send', 'pageview');
+
 </script>
 
 </html>

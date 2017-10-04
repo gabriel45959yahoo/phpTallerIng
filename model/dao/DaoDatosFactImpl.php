@@ -12,8 +12,8 @@ class DaoDatosFactImpl implements DaoObject{
 
         $id_doc=(int)$obj->domicilio->id; //esto lo hice por que no se puede poner dos veces -> en el string da error de conversion a string
 
-        $sql = "INSERT INTO Datos_facturacion( df_nombre,df_apellido,df_id_domicilio,df_dni,df_cuil,df_email,df_telefono,df_fecha_alta) " .
-            "VALUES ('$obj->nombre','$obj->apellido','$id_doc','$obj->dni','$obj->cuil','$obj->email','$obj->telefono',date_add(sysdate(), INTERVAL -3 hour))";
+        $sql = "INSERT INTO Datos_facturacion( df_nombre,df_apellido,df_id_domicilio,df_dni,df_cuil_cuit,df_id_padrino,df_fecha_alta) " .
+            "VALUES ('$obj->nombre','$obj->apellido','$id_doc','$obj->dni','$obj->cuil','$obj->idPadrino',date_add(sysdate(), INTERVAL -3 hour))";
 
         if ($conexion->query($sql) === TRUE) {
             mysqli_commit($conexion);

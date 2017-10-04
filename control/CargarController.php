@@ -6,7 +6,7 @@ class CargarController{
     
     function cargarPadrino($padrino){
         $padrinoSingleton = ABMPadrino::singleton_Padrino();
-        $restFact=1;
+        $restFact=0;
         $restPadrino=1;
         
         if($padrino->getNombre()=='' || $padrino->getApellido()=='' || $padrino->getAlia()==''||$padrino->getEmail()==''){
@@ -15,31 +15,36 @@ class CargarController{
         if($padrino->getDomicilio()->getNumero()=='' || $padrino->getDomicilio()->getCalle()=='' ){
             return "Error: Falta completar: calle ó número";
         }
-        //Si almenos un dato esta cargado en la pantalla realizao el insert
-        if (!$_POST["fact_nombre"]==null){
-            $facturaSingleton=model\ABMDatosFactura::singleton_DatosFactura();
-
-            // accedemos al método cargar padrino
-            $restFact = $facturaSingleton->cargarDatosFactura($padrino);
-          /*  if($usr1){
-                echo "Datos de facturacion se cargados correctamente";
-            }else{
-                echo "Los datos de facturacion no se pudieron cargar";
-            }*/
-
-        }
 
         // accedemos al método cargar padrino
         $restPadrino = $padrinoSingleton->cargarPadrino($padrino);
+
+
+
         if($restPadrino==-1){
             return "Error: El padrino ya existe.";
         }
-        if($restPadrino==0 || $restFact==0){
-            return "Datos del Padrino fueron cargados correctamente.";
+        if($restPadrino==0){
+
+
+            //Si almenos un dato esta cargado en la pantalla realizao el insert
+        if (!$_POST["fact_nombre"]==null){
+            $facturaSingleton=model\ABMDatosFactura::singleton_DatosFactura();
+
+            // accedemos al método cargar datos de facturacion del padrino
+            $restFact = $facturaSingleton->cargarDatosFactura($padrino);
+
+        }
+            if($restFact!=0){
+                return "Error: al cargar los datos del padrino.";
+            }else{
+                return "Datos del Padrino fueron cargados correctamente.";
+            }
         }else{
             return "Error: al cargar los datos del padrino.";
         }
     }
+
     function cargarAlumno($alumno){
         $alumnoSingleton = ABMAlumno::singleton_Alumno();
         $restAlumno=1;

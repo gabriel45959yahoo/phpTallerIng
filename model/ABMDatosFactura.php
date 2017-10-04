@@ -1,5 +1,7 @@
 <?php
 namespace model;
+//include '../model/dao/DaoDomicilioImpl.php';
+//include '../model/ABMPadrino.php';
 
 class ABMDatosFactura{
 
@@ -32,15 +34,21 @@ class ABMDatosFactura{
             if(count($doc)>=0){
                 $padrino->domicilioFact->domicilio=$doc[0];
             }
+            $daoPadrino= new dao\DaoPadrinoImpl();
+
+            $restPadrino=$daoPadrino->select($padrino);
+
+            $padrino->domicilioFact->setIdPadrino($restPadrino[0]->id);
 
             $datosFactura= new dao\DaoDatosFactImpl();
 
             $res=$datosFactura->insert($padrino->domicilioFact);
 
             if($res=="OK"){
-                return true;
+                return 0;
             }else{
-                return false;
+                echo $res;
+                return 1;
             }
         }
     }

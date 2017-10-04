@@ -1,18 +1,13 @@
 <?php
 namespace model\entities;
 
-class DatosFactEntity{
+class DatosFactEntity extends Persona{
 
     var $id;
-    var $nombre;
-    var $apellido;
-    var $dni;
-    var $email;
     var $cuil;
-    var $telefono;
     var $domicilio;
     var $fechaAlta;
-    var $fechaBaja;
+    var $idPadrino;
 
 
 function __construct()
@@ -31,31 +26,45 @@ function __construct()
 		}
 	}
 
-
-
-function __construct8($id,$nombre,$apellido,$dni,$email,$cuil,$telefono,$domicilio){
-
+function __construct6($id,$nombre,$apellido,$dni,$cuil,$domicilio){
+    parent::__construct($nombre,$apellido,$dni);
     $this->id=$id;
-    $this->nombre=$nombre;
-    $this->apellido=$apellido;
-    $this->dni=$dni;
-    $this->email=$email;
     $this->cuil=$cuil;
-    $this->telefono=$telefono;
     $this->domicilio=$domicilio;
 }
-function __construct10($id,$nombre,$apellido,$dni,$email,$cuil,$telefono,$domicilio,$fechaAlta,$fecjaBaja){
-
+function __construct8($id,$nombre,$apellido,$dni,$cuil,$domicilio,$fechaAlta,$idPadrino){
+    parent::__construct($nombre,$apellido,$dni);
     $this->id=$id;
-    $this->nombre=$nombre;
-    $this->apellido=$apellido;
-    $this->dni=$dni;
-    $this->email=$email;
     $this->cuil=$cuil;
-    $this->telefono=$telefono;
     $this->domicilio=$domicilio;
     $this->fechaAlta=$fechaAlta;
-    $this->fechaBaja=$fecjaBaja;
 }
+     public function  getId(){
+        return $this->id;
+    }
+    public function  getCuil(){
+        return $this->cuil;
+    }
+       public function getFechaBaja(){
+        return $this->fechaBaja;
+    }
+     public function  getDomicilio(){
+        return $this->domicilio;
+    }
+     public function  getIdPadrino(){
+        return $this->idPadrino;
+    }
+     public function  setIdPadrino($idPadrino){
+        $this->idPadrino=$idPadrino;
+    }
+     public function  setDomicilio($domicilio){
+        $this->domicilio=$domicilio;
+    }
+    public function  setFechaAlta($fechaAlta){
+        $this->fechaAlta=$fechaAlta;
+    }
+     public function  setId($id){
+        $this->id=$id;
+    }
 }
 ?>

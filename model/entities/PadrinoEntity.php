@@ -6,12 +6,16 @@ class PadrinoEntity extends Persona{
     var $cuil;
     var $email;
     var $telefono;
+    var $emailAlt;
+    var $telefonoAlt;
     var $contacto;
     var $alia;
     var $domicilio;
     var $domicilioFact;
     var $fechaAlta;
     var $fechaBaja;
+    var $montoPactado;
+    var $fichaFisicaIngreso;
 function __construct()
 	{
 		//obtengo un array con los parámetros enviados a la función
@@ -28,28 +32,36 @@ function __construct()
 		}
 	}
 
-function __construct10($nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact){
+function __construct14($nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$montoPactado,$fichaFisicaIngreso){
     parent::__construct($nombre,$apellido,$dni);
     $this->cuil=$cuil;
     $this->email=$email;
     $this->telefono=$telefono;
+    $this->emailAlt=$emailAlt;
+    $this->telefonoAlt=$telefonoAlt;
     $this->contacto=$contacto;
     $this->alia=$alia;
     $this->domicilio=$domicilio;
     $this->domicilioFact=$domicilioFact;
+    $this->montoPactado=$montoPactado;
+    $this->fichaFisicaIngreso=$fichaFisicaIngreso;
 }
-function __construct13($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja){
+function __construct17($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso){
     parent::__construct($nombre,$apellido,$dni);
     $this->id=$id;
     $this->cuil=$cuil;
     $this->email=$email;
     $this->telefono=$telefono;
+    $this->emailAlt=$emailAlt;
+    $this->telefonoAlt=$telefonoAlt;
     $this->contacto=$contacto;
     $this->alia=$alia;
     $this->domicilio=$domicilio;
     $this->domicilioFact=$domicilioFact;
+    $this->montoPactado=$montoPactado;
     $this->fechaAlta=$fechaAlta;
     $this->fechaBaja=$fechaBaja;
+    $this->fichaFisicaIngreso=$fichaFisicaIngreso;
 }
   public function  getAlia(){
         return $this->alia;
@@ -61,6 +73,12 @@ function __construct13($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$
         return $this->email;
     }
      public function  getTelefono(){
+        return $this->telefono;
+    }
+     public function  getEmailAlt(){
+        return $this->email;
+    }
+     public function  getTelefonoAlt(){
         return $this->telefono;
     }
      public function  getContacto(){
@@ -80,6 +98,18 @@ function __construct13($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$
     }
       public function  getFechaBaja(){
         return $this->fechaBaja;
+    }
+      public function  getFeichaFisicaIngreso(){
+        return $this->fichaFisicaIngreso;
+    }
+    public function  getMontoPactado(){
+        return $this->montoPactado;
+    }
+    public function  setMontoPactado($montoPactado){
+        $this->montoPactado=$montoPactado;
+    }
+    public function  setFichaFisicaIngreso($fichaFisicaIngreso){
+        $this->fichaFisicaIngreso=$fichaFisicaIngreso;
     }
      public function  setFechaAlta($fechaAlta){
         $this->fechaAlta=$fechaAlta;
@@ -103,6 +133,12 @@ function __construct13($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$
         $this->telefono=$telefono;
     }
      public function  setEmail($email){
+        $this->email=$email;
+    }
+     public function  setTelefonoAlt($telefono){
+        $this->telefono=$telefono;
+    }
+     public function  setEmailAlt($email){
         $this->email=$email;
     }
      public function  setAlia($alia){

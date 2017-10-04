@@ -1,7 +1,9 @@
 <?php
+
 include '../model/dao/DaoPadrinoImpl.php';
 include '../model/dao/DaoDomicilioImpl.php';
 include '../model/dao/DaoDatosFactImpl.php';
+
 use model\entities\PadrinoEntity as PadrinoEntity;
 class ABMPadrino{
     
@@ -32,9 +34,10 @@ class ABMPadrino{
     {
         try{
         $daoPadrino= new model\dao\DaoPadrinoImpl();
+            //$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$montoPactado,$fichaFisicaIngreso
         $padrinoConsulta = new PadrinoEntity($padrino->nombre, $padrino->apellido,
                                      null,$padrino->dni,
-                                     null, null,
+                                     null, null,null, null,null, null,
                                     null, null,null,null);
 
         if(count($daoPadrino->select($padrinoConsulta))>0){
@@ -56,17 +59,6 @@ class ABMPadrino{
             $insertDatos=true;
         }else{
            $insertDatos=false;
-        }
-
-
-        if(!$padrino->domicilioFact->nombre==null) {
-            $daoDatoFact= new model\dao\DaoDatosFactImpl();
-            $redatoFact=$daoDatoFact->select($padrino->getDomicilioFact());
-
-            if(count($redatoFact)>0){
-                $padrino->domicilioFact=$redatoFact[0];
-
-            }
         }
 
         if($insertDatos){
@@ -92,13 +84,13 @@ class ABMPadrino{
       if($padrino==null){
 
         $padrinoConsulta = new PadrinoEntity(null, null,
-                                     null,null,
+                                     null,null,null, null,null, null,
                                      null, null,
                                     null, null,null,null);
       }else{
         $padrinoConsulta = new PadrinoEntity($padrino->nombre, $padrino->apellido,
                                      null,$padrino->dni,
-                                     null, null,
+                                     null, null,null, null,null, null,
                                     null, null,null,null);
       }
       $resultado=$daoPadrino->buscarPadrinosLibres($padrinoConsulta);
