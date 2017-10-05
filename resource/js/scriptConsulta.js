@@ -3,17 +3,18 @@
  */
 function paginartablaPadrinos() {
     $('#tablaPadrinos').after('<div id="nav"></div>');
-    var rowsShown = 5;
+    var rowsShown = 6;
     var rowsTotal = $('#tablaPadrinos tbody tr').length - 1;
     var numPages = rowsTotal / rowsShown;
     for (i = 0; i < numPages; i++) {
         var pageNum = i + 1;
-        $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
+        $('#nav').append('<li><a href="#" rel="' + i + '">' + pageNum + '</a></li>');
     }
+
     $('#tablaPadrinos tbody tr').hide();
     $('#tablaPadrinos thead tr').slice(0, rowsShown).show();
     $('#tablaPadrinos tbody tr').slice(0, rowsShown).show();
-    $('#nav a:first').addClass('active');
+    $('#nav li a:first').addClass('active');
     $('#nav a').bind('click', function () {
 
         $('#nav a').removeClass('active');
@@ -27,25 +28,16 @@ function paginartablaPadrinos() {
         }, 300);
     });
 }
-/**
- * Para consultar padrinos libres
- * @returns
- */
-$(function () {
-    $("#consultaPadrinosLibres").click(function () {
-        var url = "../view/consultarDatos.php"; // El script a dónde se realizará la petición.
+function loadTablaPadrino(){
+     var url = "../view/consultarDatos.php"; // El script a dónde se realizará la petición.
         var table = document.getElementById("tablaPadrinos");
         var rows = table.getElementsByTagName("TR");
-        var rowCount = rows.length;
+        var rowCount = rows.length-1;
         if (rowCount > 1) {
-            for (var x = rowCount - 1; x > 0; x--) {
+            for (var x = rowCount ; x > 0; x--) {
                 table.deleteRow(x);
             }
-          //  var ary = document.getElementsByTagName("a");
-        //    for (var i = 0; i < ary.length; i++) {
-                // brain cramp: document.removeElement(ary[i]);
-         //       ary[i].parentNode.removeChild(ary[i]);
-         //   }
+
             $('#nav').remove();
         }
         $.ajax({
@@ -59,8 +51,9 @@ $(function () {
                     //tipo,titulo,mensaje
                     //check("success", "OK", "Datos recuperados");
                     var n = content.length;
+
                     var tds = '<tbody> ';
-                    for (var i = 0; i < n; i++) {
+                    for (var i = 0; i <= n-1; i++) {
                         tds = '<tr>';
                         tds += '<td>' + content[i].alia + '</td>';
                         tds += '<td>' + content[i].nombre + '</td>';
@@ -75,8 +68,9 @@ $(function () {
 
                     }
                     tds += '</tbody>';
-                    $("#tablaPadrinos").append(tds);
-                    paginartablaPadrinos();
+
+                   paginartablaPadrinos();
+
                 } else {
                     //tipo,titulo,mensaje
                     check("error", "Error al cargar los datos", data);
@@ -88,14 +82,15 @@ $(function () {
         });
 
         return false; // Evitar ejecutar el submit del formulario.
-    });
-});
+}
+
 
 /**
  * Para mostrar la pantalla de alumnos a seleccionar para el padrino libre elegido
  * @param {[[Type]]} id [[Description]]
  */
 function mostrarModalAlumnos(id) {
+    cancelarModalAlumnos();
     var table = document.getElementById("tablaPadrinos");
     var rows = table.getElementsByTagName("TR");
     var apodo = rows[id].getElementsByTagName("TD")[0];
@@ -122,7 +117,9 @@ function mostrarModalAlumnos(id) {
                     var alumno = content[i].nombre + " " + content[i].apellido;
                     tds = '<tr>';
                     //tds += '<td contenteditable="true"><input type="radio" value="' + alumno + '" checked> ' + alumno + '<br></td>';
-                    tds += '<td><label for="' + content[i].id + '"><input type="checkbox" name="' + content[i].id + '" id="' + content[i].id + '" value="' + alumno + '" />' + alumno + '</label></td>';
+                   // tds += '<td><label for="' + content[i].id + '"><input type="checkbox" name="' + content[i].id + '" id="' + content[i].id + '" value="' + alumno + '" />' + alumno + '</label></td>';
+                    tds +='<td><input type="radio" name="radioAlumno" value="' + content[i].id + '"></td>';
+                    tds +='<td>' + alumno + '</td>';
                     tds += '</tr>';
                     $("#tablaAlumnosLibres").append(tds);
                 }
@@ -151,9 +148,10 @@ function cancelarModalAlumnos() {
     var table = document.getElementById("tablaAlumnosLibres");
     var rows = table.getElementsByTagName("TR");
     var rowCount = rows.length;
-
-    for (var x = rowCount - 1; x > 0; x--) {
-        table.deleteRow(x);
+    if(rowCount>0){
+        for (var x = rowCount - 1; x > 0; x--) {
+                table.deleteRow(x);
+        }
     }
 }
 /**

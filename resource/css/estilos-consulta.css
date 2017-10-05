@@ -8,18 +8,17 @@ min-height: 100vh;*/
     }
 
     form {
-        display: block;
-        margin: auto;
-        margin-top: 40px;
-        width: 95%;
-        max-width: 100%;
-        max-height: 100%;
-        background-color: white;
-        padding: 10px;
-        border: 1px solid rgba(0, 0, 0, .2);
-        border-radius: 15px;
-    }
-
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+    width: 80%;
+    max-width: 700px;
+    max-height: 100%;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 15px;
+}
     h2 {
         text-align: center;
         margin-bottom: 10px;
@@ -40,48 +39,7 @@ min-height: 100vh;*/
         color: black;
         font-weight: bolder;
     }
-/*inicio agregado de gaby*/
-.padrinosLibres {
-	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
-	-webkit-box-shadow: 0px 1px 0px 0px #fff6af;
-	box-shadow: 0px 1px 0px 0px #fff6af;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
-	background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-	background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-	background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-	background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
-	background-color:#ffec64;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #ffaa22;
-	display:inline-block;
-	cursor:pointer;
-	color:#333333;
-	font-family:Verdana;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 6px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #ffee66;
-}
-.padrinosLibres:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
-	background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-	background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-	background:-o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-	background:-ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
-	background-color:#ffab23;
-}
-.padrinosLibres:active {
-	position:relative;
-	top:1px;
-}
-/*fin agregado de gaby*/
+
     input {
         float: left;
         padding: 1px;
@@ -189,7 +147,7 @@ min-height: 100vh;*/
     }
 
     .panelInterno {
-        padding-right: 10%
+        padding-right: 1%
     }
 
     .Datos {

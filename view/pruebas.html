@@ -1,206 +1,131 @@
-<head class="header">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Apadrinar Alumnos</title>
-    <link rel="shortcut icon" href="../resource/images/logo_icon.ico">
-    <link rel="stylesheet" href="../resource/css/estilos-consulta.css">
-    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-    </style>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
-    <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
-    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
-    <script type="text/javascript" src="../resource/js/alertas.js"></script>
     <script type="text/javascript" src="../resource/js/scriptConsulta.js"></script>
-    <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#myTable').dataTable();
-        });
 
-    </script>
+
+    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
+    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
 </head>
 
-<body id="body" onload="redireccionar()">
+<body>
 
-    <header>
-        <input type="checkbox" id="btn-menu">
-        <label for="btn-menu"><img src="/resource/images/icon-menu.png" alt="" >
-        </label>
+    <div class="container">
+        <h2>Modal Example</h2>
+        <form>
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Ahijado">Open Modal</button>
+            <div class="datagrid">
+                <div class="datagrid table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>header</th>
+                                <th>header</th>
+                                <th>header</th>
+                                <th>header</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <div id="paging">
+                                        <ul>
+                                            <li><a href="#"><span>Previous</span></a></li>
+                                            <li><a href="#" class="active"><span>1</span></a></li>
+                                            <li><a href="#"><span>2</span></a></li>
+                                            <li><a href="#"><span>3</span></a></li>
+                                            <li><a href="#"><span>4</span></a></li>
+                                            <li><a href="#"><span>5</span></a></li>
+                                            <li><a href="#"><span>Next</span></a></li>
 
-        <nav class="menu">
-            <ul>
-                <li><a href="">Opcion 1</a></li>
-                <li><a href="">Opcion 2</a></li>
-                <li><a href="">Opcion 3</a></li>
-                <li><a href="">Opcion 4</a></li>
-                <li><a href="">Opcion 5</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
-    <form id="formularioPadrinosLibres" method="post">
-
-        <div class="">
-            <div class="panel-heading">
-                <h1><strong>Apadrinaje</strong></h1>
+                                        </ul>
+                                    </div>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                            </tr>
+                            <tr class="alt">
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                            </tr>
+                            <tr>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                            </tr>
+                            <tr class="alt">
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                            </tr>
+                            <tr>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                                <td>data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="nav"><ul><li><a href="#" rel="0" class="active">1</a></li></ul> </div>
+                </div>
             </div>
-            <div class="">
-                <div class="w3-container-general">
+            <!-- Modal -->
+            <div class="modal " id="Ahijado" role="dialog">
+                <div class="modal-dialog">
 
-                    <div class="">
-                        <h3>Datos Para apadrinar</h3>
-                    </div>
-                    <div class="panelEntrada">
-                        <div class="table-responsive">
-                            <table id="myTable" lass="display table" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>ENO</th>
-                                        <th>EMPName</th>
-                                        <th>Country</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </thead>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" onclick="cancelarModalAlumnos()">&times;</button>
+                            <h4 class="modal-title">Apadrinar</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                            </p>
+                            <div id="apadrinarAlumno">Padrino elegido: Elizabet Dominguez</div>
+                            <p></p>
+                            <table id="tablaAlumnosLibres">
                                 <tbody>
                                     <tr>
-                                        <td>001</td>
-                                        <td>Anusha</td>
-                                        <td>India</td>
-                                        <td>10000</td>
+                                        <th onclick="sortTable(0)">Alumnos</th>
                                     </tr>
                                     <tr>
-                                        <td>002</td>
-                                        <td>Charles</td>
-                                        <td>United Kingdom</td>
-                                        <td>28000</td>
+                                        <td><input type="radio" name="radioAlumno" value="2"> Bartolome Simpsons</td>
                                     </tr>
                                     <tr>
-                                        <td>003</td>
-                                        <td>Sravani</td>
-                                        <td>Australia</td>
-                                        <td>7000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>004</td>
-                                        <td>Amar</td>
-                                        <td>India</td>
-                                        <td>18000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>005</td>
-                                        <td>Lakshmi</td>
-                                        <td>India</td>
-                                        <td>12000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>006</td>
-                                        <td>James</td>
-                                        <td>Canada</td>
-                                        <td>50000</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>007</td>
-                                        <td>Ronald</td>
-                                        <td>US</td>
-                                        <td>75000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>008</td>
-                                        <td>Mike</td>
-                                        <td>Belgium</td>
-                                        <td>100000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>009</td>
-                                        <td>Andrew</td>
-                                        <td>Argentina</td>
-                                        <td>45000</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>010</td>
-                                        <td>Stephen</td>
-                                        <td>Austria</td>
-                                        <td>30000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>011</td>
-                                        <td>Sara</td>
-                                        <td>China</td>
-                                        <td>750000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>012</td>
-                                        <td>JonRoot</td>
-                                        <td>Argentina</td>
-                                        <td>65000</td>
+                                        <td><input type="radio" name="radioAlumno" value="1"> Jose Idalgo</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btnGuardar btn-default" data-dismiss="modal" onclick="guardarApadrinaje()">Guardar</button>
+                            <button type="button" class="btnCancelar btn-default" data-dismiss="modal" onclick="cancelarModalAlumnos()">Cancelar</button>
+
+                        </div>
                     </div>
+
                 </div>
             </div>
-            <br>
+        </form>
+    </div>
 
-        </div>
-
-        </div>
-        <div class="foot">
-
-        </div>
-        <div class="modal fade" id="Ahijado" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Apadrinar</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            <div id="apadrinarAlumno"></div>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btnGuardar btn-default" data-dismiss="modal">Guardar</button>
-                        <button type="button" class="btnCancelar btn-default" data-dismiss="modal">Cancelar</button>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </form>
 </body>
-
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-XXXXXXXX-X', 'auto');
-    ga('send', 'pageview');
-
-</script>
-
 </html>
