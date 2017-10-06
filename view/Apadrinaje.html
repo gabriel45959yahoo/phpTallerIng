@@ -10,9 +10,9 @@
 
     <link rel="stylesheet" href="../resource/css/estilos-consulta.css">
     <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
-    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
-    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
 
+    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
+    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -67,12 +67,12 @@
                                 <table id="tablaPadrinos" class="table">
                                     <thead>
                                         <tr>
-                                            <th onclick="sortTable(0)">Apodo</th>
-                                            <th onclick="sortTable(1)">Nombre</th>
-                                            <th onclick="sortTable(2)">Apellido</th>
+                                            <th onclick="ordenarTablaPadrinosLibres(0)">Apodo</th>
+                                            <th onclick="ordenarTablaPadrinosLibres(1)">Nombre</th>
+                                            <th onclick="ordenarTablaPadrinosLibres(2)">Apellido</th>
                                             <th>dni</th>
                                             <!-- <th>contacto</th>-->
-                                            <th>fecha de alta</th>
+                                            <!--<th>fecha de alta</th>-->
                                             <th>Ahijado</th>
                                             <th>Asignar</th>
                                         </tr>
@@ -92,7 +92,7 @@
             <!-- <input type="submit" value="Cargar" id="consultaPadrinosLibres" />-->
 
         </div>
-        <div class="modal fade" id="Ahijado" role="dialog">
+        <div class="modal " id="Ahijado" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -107,13 +107,18 @@
                         </p>
                         <table id="tablaAlumnosLibres">
                             <tr>
-                                <th>Seleccionar</th>
-                                <th onclick="sortTable(0)">Alumnos</th>
+
+                                <th onclick="ordenarTablaAlumnosLibres(1)">Alumnos</th>
                             </tr>
                         </table>
+
+                        <br>
+                       <input type="checkbox" name="seConocen" value="1" id="seConocen"/>
+                            <label for="seConocen">¿Se conocen?</label>
                     </div>
                     <div class="modal-footer">
-                       <br>
+                        <br>
+                        <br>
                         <button type="button" class="btnGuardar btn-default" data-dismiss="modal" onclick="guardarApadrinaje()">Guardar</button>
                         <button type="button" class="btnCancelar btn-default" data-dismiss="modal" onclick="cancelarModalAlumnos()">Cancelar</button>
 

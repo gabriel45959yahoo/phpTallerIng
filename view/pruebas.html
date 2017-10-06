@@ -9,10 +9,14 @@
 
 
     <script type="text/javascript" src="../resource/js/scriptConsulta.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="../resource/css/estilos-consulta.css">
+    <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
 
-    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
     <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
+    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
+
 </head>
 
 <body>
@@ -101,21 +105,17 @@
                             </p>
                             <div id="apadrinarAlumno">Padrino elegido: Elizabet Dominguez</div>
                             <p></p>
-                            <table id="tablaAlumnosLibres">
-                                <tbody>
-                                    <tr>
-                                        <th onclick="sortTable(0)">Alumnos</th>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="radio" name="radioAlumno" value="2"> Bartolome Simpsons</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="radio" name="radioAlumno" value="1"> Jose Idalgo</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                           <table id="tablaAlumnosLibres">
+                            <tbody><tr>
+
+                                <th onclick="ordenarTablaAlumnosLibres(1)">Alumnos</th>
+                            </tr>
+                        <tr><td><input type="radio" name="radioAlumno" value="Juancito Lopez*3*4">Juancito Lopez</td></tr><tr><td><input type="radio" name="radioAlumno" value="Bartolome Simpsons*2*4">Bartolome Simpsons</td></tr><tr><td><input type="radio" name="radioAlumno" value="Jose Idalgo*1*4">Jose Idalgo</td></tr></tbody></table>
+                            <div class="modal-footer">
+                           <input type="checkbox" name="seConocen" value="1" id="seConocen"/>
+                            <label for="seConocen">¿Se conocen?</label>
                         </div>
-                        <div class="modal-footer">
+                        <br></br>
                             <button type="button" class="btnGuardar btn-default" data-dismiss="modal" onclick="guardarApadrinaje()">Guardar</button>
                             <button type="button" class="btnCancelar btn-default" data-dismiss="modal" onclick="cancelarModalAlumnos()">Cancelar</button>
 
