@@ -23,7 +23,7 @@ class PlanPactadoEntity{
 		}
 	}
 
- function __construct4($id,$idPadrino,$montoTotalm,$yearLectivo){
+ function __construct4($id,$idPadrino,$montoTotal,$yearLectivo){
      $this->id=$id;
      $this->idPadrino=$idPadrino;
      $this->montoTotal=$montoTotal;
@@ -47,11 +47,11 @@ class PlanPactadoEntity{
   public function  setYearLectivo($yearLectivo){
         $this->yearLectivo=$yearLectivo;
     }
- public function  getMontoTotalm(){
-        return $this->montoTotalm;
+ public function  getMontoTotal(){
+        return $this->montoTotal;
     }
-  public function  setMontoTotalm($montoTotalm){
-        $this->montoTotalm=$montoTotalm;
+  public function  setMontoTotal($montoTotal){
+        $this->montoTotal=$montoTotal;
     }
 }
 

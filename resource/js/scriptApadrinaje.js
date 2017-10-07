@@ -84,7 +84,7 @@ function loadTablaPadrino(){
  * @param {[[Type]]} id [[Description]]
  */
 function mostrarModalAlumnos(id) {
-    cancelarModalAlumnos();
+    limpiarModalAlumnos();
     var table = document.getElementById("tablaPadrinos");
     var rows = table.getElementsByTagName("TR");
     var apodo = rows[id].getElementsByTagName("TD")[0];
@@ -136,12 +136,26 @@ function guardarApadrinaje() {
     var rows = table.getElementsByTagName("TR");
     rows[select.split("*")[2]].getElementsByTagName("TD")[4].innerHTML=select.split("*")[0];
 
-    cancelarModalAlumnos();
+     var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "&tipo=Apadrinar"+"&idPadrino="+select.split("*")[2]+"&idAlumno="+select.split("*")[1], // Adjuntar los campos del formulario enviado.
+        success: function (data) {
+            if (!data.includes("Error")) {
+                check("success", "OK", "El alumno "+select.split("*")[0]+" fue apadrinado correctamente");
+            } else {
+                //tipo,titulo,mensaje
+                check("error", "Error al resgistrar el apadrinaje", data);
+            }
+        }
+    });
+    limpiarModalAlumnos();
 }
 /**
  * No se desea hacer la asociacion entre parino y ahijado
  */
-function cancelarModalAlumnos() {
+function limpiarModalAlumnos() {
     var table = document.getElementById("tablaAlumnosLibres");
     var rows = table.getElementsByTagName("TR");
     var rowCount = rows.length;
@@ -159,49 +173,31 @@ function ordenarTablaPadrinosLibres(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("tablaPadrinos");
     switching = true;
-    //Set the sorting direction to ascending:
     dir = "asc";
-    /*Make a loop that will continue until
-    no switching has been done:*/
     while (switching) {
-        //start by saying: no switching is done:
         switching = false;
         rows = table.getElementsByTagName("TR");
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
         for (i = 1; i < (rows.length - 1); i++) {
-            //start by saying there should be no switching:
             shouldSwitch = false;
-            /*Get the two elements you want to compare,
-            one from current row and one from the next:*/
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
-            /*check if the two rows should switch place,
-            based on the direction, asc or desc:*/
-            if (dir == "asc") {
+             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
             } else if (dir == "desc") {
                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    //if so, mark as a switch and break the loop:
-                    shouldSwitch = true;
+                   shouldSwitch = true;
                     break;
                 }
             }
         }
         if (shouldSwitch) {
-            /*If a switch has been marked, make the switch
-            and mark that a switch has been done:*/
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
-            //Each time a switch is done, increase this count by 1:
             switchcount++;
         } else {
-            /*If no switching has been done AND the direction is "asc",
-            set the direction to "desc" and run the while loop again.*/
             if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
                 switching = true;
@@ -213,49 +209,31 @@ function ordenarTablaAlumnosLibres(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("tablaAlumnosLibres");
     switching = true;
-    //Set the sorting direction to ascending:
     dir = "asc";
-    /*Make a loop that will continue until
-    no switching has been done:*/
     while (switching) {
-        //start by saying: no switching is done:
         switching = false;
         rows = table.getElementsByTagName("TR");
-        /*Loop through all table rows (except the
-        first, which contains table headers):*/
         for (i = 1; i < (rows.length - 1); i++) {
-            //start by saying there should be no switching:
             shouldSwitch = false;
-            /*Get the two elements you want to compare,
-            one from current row and one from the next:*/
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
-            /*check if the two rows should switch place,
-            based on the direction, asc or desc:*/
             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
             } else if (dir == "desc") {
                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
             }
         }
         if (shouldSwitch) {
-            /*If a switch has been marked, make the switch
-            and mark that a switch has been done:*/
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+           rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
-            //Each time a switch is done, increase this count by 1:
             switchcount++;
         } else {
-            /*If no switching has been done AND the direction is "asc",
-            set the direction to "desc" and run the while loop again.*/
             if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
                 switching = true;

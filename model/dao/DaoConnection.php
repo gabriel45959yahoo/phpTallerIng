@@ -22,11 +22,14 @@ public static function connection()   {
 	 $db="id2846195_tallering";
     if (!isset(self::$coneccion)) {
         $coneccion = mysqli_connect($server, $user, $pass, $db);
+         /* Desactivar la autoconsigna */
+      //  $coneccion->autocommit(FALSE);
     }
 
 	return $coneccion;
 
 }
+
 /**
  * Sierra la coneccion a la base de datos
  */

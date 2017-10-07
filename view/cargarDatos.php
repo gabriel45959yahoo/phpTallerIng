@@ -47,12 +47,14 @@ if (! isset($_SESSION['session'])) {
         }
 
          // $nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$montoPactado,$fichaFisicaIngreso
-        $padrino = new PadrinoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),
+         $padrino = new PadrinoEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),
                                      ucwords($_POST['alias']), (int) $_POST['dni'],
                                      $_POST['cuil'], $_POST['email'],$_POST['email_alt'],
                                     (int) $_POST['telefono'], (int) $_POST['telefono_alt'], $_POST['contacto'],$domicilio,$factDatos,$_POST['monto_pactado'],$fichaFisica);
 
         echo $cargarController->cargarPadrino($padrino);
+
+    }else if (isset($_POST["tipo"]) && $_POST["tipo"] == "Apadrinar") {
 
     }
 }
