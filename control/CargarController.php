@@ -3,6 +3,7 @@ include '../model/ABMPadrino.php';
 include '../model/ABMAlumno.php';
 include '../model/ABMDatosFactura.php';
 include '../model/ABMPlanPactado.php';
+include '../model/ABMApadrinaje.php';
 class CargarController{
     
     function cargarPadrino($padrino){
@@ -76,7 +77,16 @@ class CargarController{
 
     }
     function apadrinar($apadrinar){
+        $apadrinarSingleton = ABMApadrinaje::singleton_Apadrinaje();
+        $rest=1;
 
+        $rest = $apadrinarSingleton->asociar($apadrinar);
+
+        if($rest==0){
+            return "Se realizo el apadrinaje correctamente.";
+        }else{
+            return "Error: al crear el apadrinaje.";
+        }
     }
     function cancelarApadrinaje($apadrinar){
 

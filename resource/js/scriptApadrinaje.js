@@ -53,11 +53,10 @@ function loadTablaPadrino(){
                     var tds = '<tbody> ';
                     for (var i = 0; i <= n-1; i++) {
                         tds = '<tr>';
+                        tds += '<td style="display:none;">' + content[i].id + '</td>';
                         tds += '<td>' + content[i].alia + '</td>';
                         tds += '<td>' + content[i].nombre + '</td>';
                         tds += '<td>' + content[i].apellido + '</td>';
-                        tds += '<td>' + content[i].dni + '</td>';
-                        tds += '<td>' + ' ' + '</td>';
                         tds += '<td><button type="button" class="btn" id="myBtn" data-toggle="modal" data-target="#Ahijado" data-show="true" onclick = "mostrarModalAlumnos(' + (i + 1) + ')">asignar</button></td>';
                         tds += '</tr>';
                         $("#tablaPadrinos").append(tds);
@@ -87,9 +86,10 @@ function mostrarModalAlumnos(id) {
     limpiarModalAlumnos();
     var table = document.getElementById("tablaPadrinos");
     var rows = table.getElementsByTagName("TR");
-    var apodo = rows[id].getElementsByTagName("TD")[0];
-    var nombre = rows[id].getElementsByTagName("TD")[1];
-    var apellido = rows[id].getElementsByTagName("TD")[2];
+    var idPadrino = rows[id].getElementsByTagName("TD")[0];
+    var apodo = rows[id].getElementsByTagName("TD")[1];
+    var nombre = rows[id].getElementsByTagName("TD")[2];
+    var apellido = rows[id].getElementsByTagName("TD")[3];
 
     $("#apadrinarAlumno").html("Padrino elegido: <b>" + nombre.innerHTML + " " + apellido.innerHTML+"</b>"); // Mostrar la respuestas del script PHP.
 
@@ -110,7 +110,7 @@ function mostrarModalAlumnos(id) {
                     var alumno = content[i].nombre + " " + content[i].apellido;
                     tds = '<tr>';
                     //en el value se colocan los id del alumno y el padrino, para poder asociarlos
-                    tds +='<td><input type="radio" name="radioAlumno" value="'+alumno+"*" + content[i].id+"*"+id+ '">' + alumno + '</td>';
+                    tds +='<td><input type="radio" name="radioAlumno" value="'+alumno+"*" + content[i].id+"*"+idPadrino.innerHTML+"*"+id+'">' + alumno + '</td>';
                   //  tds +='<td>' + alumno + '</td>';
                     tds += '</tr>';
                     $("#tablaAlumnosLibres").append(tds);
@@ -131,25 +131,30 @@ function mostrarModalAlumnos(id) {
  */
 function guardarApadrinaje() {
     var select=document.querySelector('input[name = "radioAlumno"]:checked').value;
-    check("info", "OK", select.split("*")[0]+" "+select.split("*")[1]+" "+select.split("*")[2]);
     var table = document.getElementById("tablaPadrinos");
     var rows = table.getElementsByTagName("TR");
-    rows[select.split("*")[2]].getElementsByTagName("TD")[4].innerHTML=select.split("*")[0];
+    var itemCheck=0;
+    var idAlumno=select.split("*")[1];
+    //rows[select.split("*")[2]].getElementsByTagName("TD")[4].innerHTML=select.split("*")[0];
 
+    if(document.getElementById("seConocen").checked){
+        itemCheck=1;
+       }
      var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
     $.ajax({
         type: "POST",
         url: url,
-        data: "&tipo=Apadrinar"+"&idPadrino="+select.split("*")[2]+"&idAlumno="+select.split("*")[1], // Adjuntar los campos del formulario enviado.
+        data: "&tipo=Apadrinar"+"&idPadrino="+select.split("*")[2]+"&idAlumno="+idAlumno+"&seConocen="+itemCheck+"&observacion="+document.getElementById("observaciones").value,
         success: function (data) {
             if (!data.includes("Error")) {
-                check("success", "OK", "El alumno "+select.split("*")[0]+" fue apadrinado correctamente");
+                check("success", "OK", data);
             } else {
                 //tipo,titulo,mensaje
                 check("error", "Error al resgistrar el apadrinaje", data);
             }
         }
     });
+    table.deleteRow(select.split("*")[3]);
     limpiarModalAlumnos();
 }
 /**
@@ -164,6 +169,9 @@ function limpiarModalAlumnos() {
                 table.deleteRow(x);
         }
     }
+}
+function cancelarModalAlumnos(){
+    limpiarModalAlumnos();
 }
 /**
  * Para que la tabla de Padrinos libres se ordene
