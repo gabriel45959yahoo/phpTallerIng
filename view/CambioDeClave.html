@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Cambio de Clave</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../resource/css/estilos-login.css">    
+        <script src="../resource/js/validarPass.js"></script>
+    </head>
+    <body>
+        <div><a href="./home.html"  ><span class="fa fa-arrow-left"></span></a></div>     
+        
+        <div><form action="../control/CambioClaveController.php" method="post" >
+        <h2>Datos de cambio de clave:</h2>
+
+        <div class="elements">
+            <span class="fa fa-lock"></span>
+            <input type="text" placeholder="Clave Actual" name="actual" require>
+        </div>
+        <div>
+            <br>
+        </div>        
+        <div class="elements">
+            <span class="fa fa-lock"></span>
+            <input type="password" placeholder="Clave Nueva" name="nueva">
+        </div>
+        <div>
+            <br>
+        </div>
+        <div class="elements">
+            <span class="fa fa-check"></span>
+            <input type="password" placeholder="Confirme Clave Nueva" name="cnueva">
+        </div>
+        <div>
+            <br>
+        </div>        
+        <input type="submit" value="Guardar Cambios">
+    </form></div>
+    </body>
+    <script>
+function validar(){
+    
+    alert("HOLA");
+}
+
+</script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</html>

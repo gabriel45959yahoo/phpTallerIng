@@ -161,8 +161,7 @@ input[type="submit"]:active {
 
 .panelEntrada {
     display: flex;
-    width: 100%;
-    background-color: ;
+    width: 100%;    
     justify-content: center;
 }
 
