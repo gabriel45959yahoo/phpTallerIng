@@ -96,7 +96,7 @@ form p a:hover {
 
 
 .fa-user-circle {
-    font-size: 25px;
+    font-size: 23px;
     color: lightgray;
 }
 
@@ -121,6 +121,10 @@ form p a:hover {
 @media (max-width:768px) {
     form {
         width: 75%
+    }
+    .fa-user-circle {
+        font-size: 20px;
+        color: lightgray;
     }
 }
 
