@@ -59,7 +59,32 @@ class DaoDatosFactImpl implements DaoObject{
         mysqli_close($conexion);
      return   $resultado;
     }
+    /**
+     * [[Description]]
+     * @param [[Type]] $idPadrino [[Description]]
+     */
+    public function buscarDomFactPorPadrino($idPadrino){
+       $resultado = array();
+        $conexion = DaoConnection::connection();
 
+       $sql="SELECT df_id, df_nombre, df_apellido,df_dni, df_cuil_cuit, df_fecha_alta,doc_id,doc_calle,doc_numero,doc_piso,doc_depto,doc_provincia,doc_ciudad FROM Datos_facturacion df, Domicilio doc WHERE df.df_id_domicilio=doc.doc_id ". "and df_id_padrino=$idPadrino".
+            " order by df_id desc";
+      //  echo $sql;
+
+        $result = mysqli_query($conexion, $sql);
+       if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($re = mysqli_fetch_row($result)) {
+                     //$id,$calle,$numero,$piso,$depto,$provincia,$ciudad
+                    $domi = new DomicilioEntity($re[6],$re[7], (int) $re[8], $re[9], $re[10], $re[11], $re[12]);
+                    //$id,$nombre,$apellido,$dni,$cuil,$domicilio,$fechaAlta,$idPadrino
+                    $resultado[] = new DatosFactEntity($re[0],$re[1],$re[2],$re[3],$re[4],$domi,$re[5],null);
+                }
+        }
+
+        mysqli_close($conexion);
+     return   $resultado;
+    }
 }
 
 ?>

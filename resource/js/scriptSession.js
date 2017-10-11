@@ -8,7 +8,9 @@ function redireccionar() {
            //data es la respuesta del php
            if(data == "error"){
         	   window.location.assign('/index.html');
+               return false;
            }
+             return true;
        }
  });
 };

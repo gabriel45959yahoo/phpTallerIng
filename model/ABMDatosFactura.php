@@ -52,7 +52,14 @@ class ABMDatosFactura{
             }
         }
     }
+    public function buscarDomFactPorPadrino($idPadrino){
 
+      $datosFactura= new dao\DaoDatosFactImpl();
+
+      $resultado=$datosFactura->buscarDomFactPorPadrino($idPadrino);
+
+      return $resultado;
+    }
 
     public function __clone()
     {

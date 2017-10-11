@@ -79,7 +79,5 @@ function __construct7($nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$
      public function  setFechaNacimiento($fechaNacimiento){
         $this->fechaNacimiento=$fechaNacimiento;
     }
-
-
 }
 ?>

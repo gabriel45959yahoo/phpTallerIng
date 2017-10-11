@@ -97,6 +97,12 @@ class ABMPadrino{
 
       return $resultado;
   }
+  public function buscarDomFactPorPadrino($padrino){
+
+  }
+
+
+
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private

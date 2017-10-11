@@ -51,6 +51,17 @@ class ABMApadrinaje{
     function historialPadrino(){
 
     }
+    function listarPadrinoAhijado(){
+      try{
+        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
+
+        return $daoApadrinaje->listaPadrinoAhijado();
+
+
+       }catch (Exception $e) {
+                return 'Error: '.$e->getMessage(). "\n";
+        }
+    }
    /**
      * Generar error al intentar clonar el obj de la clase
      * @private
