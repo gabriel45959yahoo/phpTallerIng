@@ -2,6 +2,7 @@
 namespace model\dao;
 include '../model/dao/DaoObject.php';
 include '../model/dao/DaoConnection.php';
+
 use model\entities\PadrinoEntity as PadrinoEntity;
 //use model\dao\DaoObject as DaoObject;
 

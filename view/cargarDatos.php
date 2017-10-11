@@ -4,6 +4,8 @@ use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
 use model\entities\PlanPactadoEntity as PlanPactadoEntity;
 use model\entities\ApadrinajeEntity as ApadrinajeEntity;
+
+
 include '../model/entities/PadrinoEntity.php';
 include '../model/entities/AlumnoEntity.php';
 include '../model/entities/DomicilioEntity.php';
@@ -11,6 +13,7 @@ include '../model/entities/DatosFactEntity.php';
 include '../model/entities/PlanPactadoEntity.php';
 include '../model/entities/ApadrinajeEntity.php';
 include '../control/CargarController.php';
+
 
 
 function cargarPadrino(){
@@ -40,8 +43,6 @@ function cargarPadrino(){
 
         echo $cargarController->cargarPadrino($padrino);
 
-
-
 }
 
 function cargarAlumno(){
@@ -53,6 +54,7 @@ function cargarAlumno(){
 
          echo $cargarController->cargarAlumno($alumno);
 }
+
 
 function cargarApadrinaje(){
     $cargarController = new CargarController();

@@ -15,12 +15,12 @@ abstract class DaoConnection {
         // $pass="desatalleringmr2g";
         // $server="localhost";
         // $db="id3133169_desatallermr2g";
-        //PRUEBA LOCAL
-        /*$user = "root";
-        $pass = "Tato1432";
-        $server = "localhost";
-        $db = "bdtallering";*/
-        //PRUEBA LOCAL
+//        //PRUEBA LOCAL
+//        $user = "root";
+//        $pass = "Tato1432";
+//        $server = "localhost";
+//        $db = "bdtallering";
+//        //PRUEBA LOCAL
 
         $user = "id2846195_talleringmr2g";
         $pass = "talleringmr2g";
