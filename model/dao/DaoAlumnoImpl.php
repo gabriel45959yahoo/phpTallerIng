@@ -59,6 +59,7 @@ class DaoAlumnoImpl implements DaoObject
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
                     //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
                    $resAlumno[]= new AlumnoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
@@ -98,6 +99,7 @@ class DaoAlumnoImpl implements DaoObject
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
                     //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
                    $resAlumno[]= new AlumnoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],

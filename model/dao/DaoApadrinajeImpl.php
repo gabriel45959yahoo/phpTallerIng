@@ -43,7 +43,7 @@ class DaoApadrinajeImpl implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-
+                $re = array_map('utf8_encode',$re);
                   //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
                    $alu = new AlumnoEntity($re[7],$re[8], $re[9],$re[10],null,$re[11],null,null,null);
 

@@ -49,6 +49,7 @@ class DaoDatosFactImpl implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
                      //$id,$calle,$numero,$piso,$depto,$provincia,$ciudad
                     $domi = new DomicilioEntity($re[9],$re[10], (int) $re[11], $re[12], $re[13], $re[14], $re[15]);
                     //$id,$nombre,$apellido,$dni,$email,$cuil,$telefono,$domicilio,$fechaAlta,$fecjaBaja
@@ -75,6 +76,7 @@ class DaoDatosFactImpl implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
                      //$id,$calle,$numero,$piso,$depto,$provincia,$ciudad
                     $domi = new DomicilioEntity($re[6],$re[7], (int) $re[8], $re[9], $re[10], $re[11], $re[12]);
                     //$id,$nombre,$apellido,$dni,$cuil,$domicilio,$fechaAlta,$idPadrino

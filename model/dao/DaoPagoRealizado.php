@@ -18,7 +18,7 @@ class DaoPagoRealizado implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-
+                $re = array_map('utf8_encode',$re);
                   //$id,$descripcion
                     $resultado[] = new TipoPagoEntity($re[0],$re[1]);
 

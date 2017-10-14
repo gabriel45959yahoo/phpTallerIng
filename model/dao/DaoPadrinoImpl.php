@@ -79,7 +79,8 @@ class DaoPadrinoImpl implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                    //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso
+                
+                   $re = array_map('utf8_encode',$re); //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso
                    $resultado[]= new PadrinoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
                                                    $re[6],$re[7], $re[8],
@@ -132,13 +133,15 @@ class DaoPadrinoImpl implements DaoObject{
             (($obj->fechaBaja==null)?" ":"and pa_fecha_baja='$obj->fechaBaja'").
             " order by pa_id desc";
 
-        //echo $sql;
+       // echo $sql;
 
         $result = mysqli_query($conexion, $sql);
+       // echo mysqli_num_rows($result);
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                    //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja
+                $re = array_map('utf8_encode',$re);
+                  //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja
                    $resultado[]= new PadrinoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
                                                    $re[6],$re[7], $re[8],
@@ -163,7 +166,8 @@ select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumn
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                   //
+                   $re = array_map('utf8_encode',$re);
+                
                   if($re[0]!=null){
                       $prom->total=$re[0];
                   }else if($re[1]!=null){

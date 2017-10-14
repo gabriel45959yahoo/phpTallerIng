@@ -94,7 +94,7 @@ class ABMPadrino{
                                     null, null,null,null);
       }
       $resultado=$daoPadrino->buscarPadrinosLibres($padrinoConsulta);
-
+      
       return $resultado;
   }
   public function buscarDomFactPorPadrino($padrino){
