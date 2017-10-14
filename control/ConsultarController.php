@@ -63,7 +63,17 @@ class ConsultarController{
             return json_encode($rest);
         }
     }
+    function listarPadrinoLibrePadrinoOcupado(){
+        $padrinoSingleton = ABMPadrino::singleton_Padrino();
 
+        // accedemos al método cargar padrino
+        $restPadrino = $padrinoSingleton->listarPadrinoLibrePadrinoOcupado();
+        if(count($restPadrino)==0){
+            return "Error: No se encontraron padrinos";
+        }else{
+            return json_encode($restPadrino);
+        }
+    }
 
 }
 

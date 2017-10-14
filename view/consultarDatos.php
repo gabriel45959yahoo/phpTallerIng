@@ -38,6 +38,11 @@ function listarTipoPago(){
 
     echo $consultarController->listarTipoPago();
 }
+function listarPadrinoLibrePadrinoOcupado(){
+     $consultarController = new ConsultarController();
+
+    echo $consultarController->listarPadrinoLibrePadrinoOcupado();
+}
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -61,6 +66,9 @@ if (! isset($_SESSION['session'])) {
                     listarDomFactPorPadrino();
                     break;
                  case "ListarTipoPago":
+                    listarTipoPago();
+                    break;
+                 case "PadrinoAlumnoLibreOcupado":
                     listarTipoPago();
                     break;
             }

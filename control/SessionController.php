@@ -8,7 +8,7 @@ if(!isset($_SESSION['session']))
     $response= 'error';
 
 } else{
-    $response = 'OK';
+    $response = $_SESSION['session'];
 }
 //json_encode(array('response' => $response))
 echo $response

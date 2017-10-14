@@ -14,9 +14,11 @@ if (isset($_POST['usuario'])) {
     if ($usr == TRUE) {
         $_SESSION['session'] = $usuario;
         // header("Location: /view/CargarPadrino.html");
-        echo "<script> window.location.assign('../view/home.html'); </script>";
+        //echo "<script> window.location.assign('../view/home.html'); </script>";
+        echo $usuario;
     } else {
-        echo "<script> window.location.assign('../index.html'); </script>";
+        //echo "<script> window.location.assign('../index.html'); </script>";
+        echo "Error de usuario o password";
     }
 }
 ?>

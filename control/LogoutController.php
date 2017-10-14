@@ -3,5 +3,5 @@
     session_unset();
     session_destroy();
    // session_regenerate_id(true);
-    echo "<script> window.location.assign('/index.html'); </script>";
+    echo "fin de session";
 ?>

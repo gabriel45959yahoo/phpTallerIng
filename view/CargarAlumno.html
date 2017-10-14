@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
-	<script type="text/javascript" src="../resource/js/alertas.js"></script>
+    <script type="text/javascript" src="../resource/js/alertas.js"></script>
     <script type="text/javascript" src="../resource/js/scriptCarga.js"></script>
     <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
 </head>
@@ -26,24 +26,26 @@
         </label>
 
          <nav class="menu">
-            <ul>
+            <ul id="menuid">
                <li><a href="../view/home.html">Home</a></li>
                 <li><a href="">Cargar</a>
+
                     <ul>
                         <li><a href="../view/CargarPadrino.html">Padrino</a></li>
                         <li><a href="../view/CargarAlumno.html">Alumno</a></li>
                     </ul>
                 </li>
+
                 <li><a href="../view/Apadrinaje.html">Apadrinar</a></li>
-                <li><a href="">Pagos</a>
+                <li><a href="../view/AdministrarUsuario.html">Administrar Usuario</a></li>
+                 <li><a href="">Pagos</a>
                     <ul>
                         <li><a href="../view/CargarPago.html">Registrar</a></li>
                         <li><a href="">Planes</a></li>
                     </ul>
                 </li>
-                <li><a href="../view/AdministrarUsuario.html">Administrar Usuario</a></li>
-                <li><a href="../view/CambioDeClave.html">Cambiar Clave</a></li>
-                <li><a href="">Opcion 4</a></li>
+                
+                
                 <li><a href="">Opcion 5</a></li>
             </ul>
         </nav>
@@ -70,7 +72,7 @@
                             <p>DNI <input type="texta" name="dni" pattern="[0-9]" placeholder="Ingrese DNI" /></p>
                             <p>Nivel/Curso<input type="text" name="nivelCurso" required placeholder="Ingrese Nivel/Curso" /></p>
                             <p>Fecha de Nacimiento <input type="date" name="fechaNacimiento" placeholder="ej: dd/mm/yyyy" /></p>
-                            <p>Observaciones <input type="text" name="observaciones"/></p>
+                            <p>Observaciones <input type="text" name="observaciones" /></p>
                         </div>
 
 
@@ -103,6 +105,7 @@
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-XXXXXXXX-X', 'auto');
     ga('send', 'pageview');
+
 </script>
 
 </html>

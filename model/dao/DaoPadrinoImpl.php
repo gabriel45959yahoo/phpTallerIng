@@ -4,6 +4,7 @@ include '../model/dao/DaoObject.php';
 include '../model/dao/DaoConnection.php';
 
 use model\entities\PadrinoEntity as PadrinoEntity;
+use model\entities\PorcLibOcup as PorcLibOcup;
 //use model\dao\DaoObject as DaoObject;
 
 class DaoPadrinoImpl implements DaoObject{
@@ -148,6 +149,43 @@ class DaoPadrinoImpl implements DaoObject{
         mysqli_close($conexion);
      return   $resultado;
     }
+    function listarPadrinoLibrePadrinoOcupado(){
+        $resultado = array();
+        $conexion = DaoConnection::connection();
+        $prom = new PorcLibOcup();
+        $sql="sselect count(1) as total, null as padrino_libre, null as alumno_libre FROM Apadrinaje 
+UNION 
+select null as total, count(1) as padrino_libre,  null as alumno_libre FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id) 
+UNION 
+select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumno WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id);";
+       
+          $result = mysqli_query($conexion, $sql);
+       if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($re = mysqli_fetch_row($result)) {
+                   //
+                  if($re[0]!=null){
+                      $prom->total=$re[0];
+                  }else if($re[1]!=null){
+                      $prom->padrinoLib=$re[1];
+                      
+                  }else if($re[2]!=null){
+                      $prom->alumnoLib=$re[2];
+                      
+                  }
+                   
+                }
+           $resultado[]= $prom;
+        }
+        echo $conexion->error;
+        mysqli_close($conexion);
+     return   $resultado;
+        
+        
+        
+    }
+    
+    
 }
 
 ?>

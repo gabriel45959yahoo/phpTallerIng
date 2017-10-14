@@ -100,7 +100,12 @@ class ABMPadrino{
   public function buscarDomFactPorPadrino($padrino){
 
   }
+  public function listarPadrinoLibrePadrinoOcupado(){
+      $daoPadrino= new model\dao\DaoPadrinoImpl();
+      $resultado=$daoPadrino->listarPadrinoLibrePadrinoOcupado();
 
+      return $resultado;
+  }
 
 
     /**
