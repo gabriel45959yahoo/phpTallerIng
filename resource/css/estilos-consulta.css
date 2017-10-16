@@ -113,13 +113,23 @@
       box-shadow: 10px 10px 0px -200px rgba(0, 0, 0, 0.75);
   }
 
-  .panelEntrada {
+.panelEntrada {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.panelInterno {
+    padding-right: 10%
+}
+
+  .panelEntradaHome {
       display: flex;
     justify-content: center;
 
   }
 
-  .panelInterno {
+  .panelInternoHome {
 
       width: 60%;
       display: inline-flex;
