@@ -99,12 +99,8 @@ class DaoPadrinoImpl implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
 
-        $idDom=0;
-        if($obj->domicilio!=null){
 
-           $idDom=$obj->domicilio->id;
-        }
-        $sql="SELECT pa_id,". //0
+$sql="SELECT pa_id,". //0
             " pa_nombre,".
             " pa_apellido,".
             " pa_alias,".
@@ -119,20 +115,8 @@ class DaoPadrinoImpl implements DaoObject{
             " pa_fecha_alta,".
             " pa_fecha_baja,".
             " pa_ficha_fisica_ingreso".
-            " FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id) ".
-            (($obj->apellido==null)?" ":"and pa_apellido='$obj->apellido' ").
-            (($obj->nombre==null)?" ":"and pa_nombre='$obj->nombre' ").
-            (($obj->alia==null)?" ":"and pa_alias='$obj->alia'").
-            (($obj->dni==null)?" ":"and pa_dni='$obj->dni'").
-            (($obj->cuil==null)?" ":"and pa_cuil='$obj->cuil'").
-            (($obj->email==null)?" ":"and pa_email='$obj->email'").
-            (($obj->telefono==null)?" ":"and pa_telefono='$obj->telefono'").
-            (($obj->contacto==null)?" ":"and pa_contacto='$obj->contacto'").
-            (($idDom==0)?" ":"and pa_id_domicilio='$idDom'").
-            (($obj->fechaAlta==null)?" ":"and pa_fecha_alta='$obj->fechaAlta'").
-            (($obj->fechaBaja==null)?" ":"and pa_fecha_baja='$obj->fechaBaja'").
+            " FROM Padrino".
             " order by pa_id desc";
-
        // echo $sql;
 
         $result = mysqli_query($conexion, $sql);
@@ -156,11 +140,11 @@ class DaoPadrinoImpl implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
         $prom = new PorcLibOcup();
-        $sql="select count(1) as total, null as padrino_libre, null as alumno_libre FROM Apadrinaje
+        $sql="select count(DISTINCT apa_id_padrino) as total_Padrino, null as padrino_libre, count(apa_id_ahijado) as alumno_libre FROM Apadrinaje where apa_fecha_baja is null
 UNION 
-select null as total, count(1) as padrino_libre,  null as alumno_libre FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id) 
+select null as total, count(1) as padrino_libre,  null as alumno_libre FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id and apa_fecha_baja is null)
 UNION 
-select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumno WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id);";
+select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumno WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id and apa_fecha_baja is null);";
        
           $result = mysqli_query($conexion, $sql);
        if (mysqli_num_rows($result) > 0) {
@@ -169,7 +153,8 @@ select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumn
                    $re = array_map('utf8_encode',$re);
                 
                   if($re[0]!=null){
-                      $prom->total=(int)$re[0];
+                      $prom->totalPadrino=(int)$re[0];
+                      $prom->totalAlumno=(int)$re[2];
                   }else if($re[1]!=null){
                       $prom->padrinoLib=(int)$re[1];
                       

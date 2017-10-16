@@ -13,10 +13,10 @@ $(document).ready(function () {
             var content = JSON.parse(data1);
             var n = content.length;
 
-            padrinosVinculados.push(new Array('Vinculados', content[0].total));
-            padrinosVinculados.push(new Array('Padrinos Libres', content[0].padrinoLib));
-            alumnosVinculados.push(new Array('Vinculados', content[0].total));
-            alumnosVinculados.push(new Array('Alumnos Libres', content[0].alumnoLib));
+            padrinosVinculados.push(new Array('Vinculados', content[0].totalPadrino));
+            padrinosVinculados.push(new Array('No Vinculados', content[0].padrinoLib));
+            alumnosVinculados.push(new Array('Vinculados', content[0].totalAlumno));
+            alumnosVinculados.push(new Array('No Vinculados', content[0].alumnoLib));
             //   scoreDato.push(new Array('Player: '+content[0].total));
             //     playerDato.push(new Array('Player',content[0].padrinoLib));
             //*********************************************
@@ -38,6 +38,7 @@ $(document).ready(function () {
                         borderWidth: 2
                     }
                 },
+
                 title: {
                     text: 'Padrinos vinculados VS. no vinculados'
                 },
@@ -60,7 +61,11 @@ $(document).ready(function () {
 
                         },
                         size: 150
-                    }
+                    },
+                    /*para cambiar el tamaño del grafico*/
+                     /*pie: {
+            size: 50
+        }*/
                 },
                 credits: {
                     enabled: false

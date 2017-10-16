@@ -56,21 +56,27 @@ if (! isset($_SESSION['session'])) {
     if(isset($_POST["tipo"])){
 
         switch ($_POST["tipo"]) {
+                //Pantalla Vincular
                 case "AlumnosLibres":
                     alumnosLibres();
                     break;
+                //Pantalla vincular
                 case "PadrinosLibres":
                     padrinosLibres();
                     break;
+                //Pantalla Pagos
                 case "ListarPadrinoAhijado":
                     listarPadrinoAhijado();
                     break;
+                //Pantalla Pagos
                 case "ListarDomFactPadrino":
                     listarDomFactPorPadrino();
                     break;
+                //Pantalla Pagos
                  case "ListarTipoPago":
                     listarTipoPago();
                     break;
+                // para grafico de torta
                  case "PadrinoAlumnoLibreOcupado":
                     listarPadrinoLibrePadrinoOcupado();
                     break;

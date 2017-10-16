@@ -37,7 +37,7 @@ class DaoApadrinajeImpl implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
 
-        $sql="SELECT apa_id,pa.pa_id, pa.pa_nombre,pa.pa_apellido,pa.pa_alias,pa.pa_dni,pa.pa_cuil,alu.alu_id, alu.alu_nombre,alu.alu_apellido,alu.alu_alias,alu.alu_cursado FROM Apadrinaje apa, Padrino pa, Alumno alu where apa.apa_id_padrino=pa.pa_id and apa.apa_id_ahijado=alu.alu_id;";
+        $sql="SELECT apa_id,pa.pa_id, pa.pa_nombre,pa.pa_apellido,pa.pa_alias,pa.pa_dni,pa.pa_cuil,alu.alu_id, alu.alu_nombre,alu.alu_apellido,alu.alu_alias,alu.alu_cursado FROM Apadrinaje apa, Padrino pa, Alumno alu where apa.apa_id_padrino=pa.pa_id and apa.apa_id_ahijado=alu.alu_id and apa.apa_fecha_baja is null;";
 
           $result = mysqli_query($conexion, $sql);
        if (mysqli_num_rows($result) > 0) {

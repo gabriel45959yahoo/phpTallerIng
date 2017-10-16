@@ -15,34 +15,35 @@
     <!-- Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="CHANGE-ME">
-    <link rel="icon" sizes="192x192" href="https://developers.google.com/web/images/web-fundamentals-icon192x192.png">
+    <link rel="icon" sizes="192x192" href="../resource/images/logo_icon.ico">
 
     <!-- Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="CHANGE-ME">
-    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="../resource/images/logo_icon.ico">
 
     <!-- Windows 8 -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon.png">
+    <meta name="msapplication-TileImage" content="../resource/images/logo_icon.ico">
     <meta name="msapplication-TileColor" content="#FFFFFF">
 
 
     <meta name="theme-color" content="#000000">
 
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../resource/images/logo_icon.ico">
 
     <title>Vincular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Data Tables ----------------------------------------------------->
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js">
-
-
     </script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 
@@ -51,11 +52,15 @@
     <script src="/resource/js/alertas.js"></script>
     <script src="/resource/js/scriptSession.js"></script>
     <script src="/resource/js/scriptVincular.js"></script>
+    <script src="/resource/js/scriptDesvincular.js"></script>
+    <script src="../resource/js/chosen.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 
+
     <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
     <link rel="stylesheet" href="/resource/css/estilo-menu.css">
+    <link rel="stylesheet" href="../resource/css/bootstrap.css" />
     <script src="/resource/js/scriptMenu.js"></script>
 
 </head>
@@ -111,17 +116,19 @@
                         <th class="text-center">Vincular</th>
                     </tr>
                 </thead>
-
             </table>
         </div>
+        <button id="desvincular" class="btn btn-primary btn-details">Desvincular</button>
+
+        <br>
     </div>
 
-    <!-- Scripts -->
-    <div class="modal fade in" id="dlg-details">
+    <!-- modal vincular -->
+    <div class="modal fade in" id="modal-vincular">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <button id="cerrarModal-vincular" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     <h4 class="modal-title">Vincular</h4>
                     <br>
                     <h5></h5>
@@ -145,8 +152,8 @@
                         <textarea class="form-control" rows="3" id="observaciones"></textarea></p>
                 </div>
                 <div class="modal-footer">
-                    <button id="cancelModal" type="button" class="btn btn-default">Cancelar</button>
-                    <button id="guardarModal" type="button" class="btn btn-primary" >Guardar</button>
+                    <button id="cancelModal-vincular" type="button" class="btn btn-default">Cancelar</button>
+                    <button id="guardarModal-vincular" type="button" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -154,7 +161,73 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <!-- modal desvincular -->
+    <div class="modal fade in" id="modal-desvincular">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="cerrarModal-desvincular" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Desvincular</h4>
+                    <br>
+                    <h5></h5>
 
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <select id="schedule_event" data-placeholder="Nombre ó apodo de Padrino ó Alumno" class="chosen-select" tabindex="2">
+              <option value=""></option>
+              <option value="1">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Afghanistan">Afghanistan</option>
+              <option value="Albania">Albania</option>
+              <option value="Algeria">Algeria</option>
+              <option value="American Samoa">American Samoa</option>
+              <option value="Andorra">Andorra</option>
+              <option value="Angola">Angola</option>
+              <option value="Anguilla">Anguilla</option>
+              <option value="Antarctica">Antarctica</option>
+              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Armenia">Armenia</option>
+              <option value="Aruba">Aruba</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Azerbaijan">Azerbaijan</option>
+              <option value="Bahamas">Bahamas</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Barbados">Barbados</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Belgium">Belgium</option>
+
+              <option value="Denmark">Denmark</option>
+
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Macao">Macao</option>
+
+
+
+              <option value="Western Sahara">Western Sahara</option>
+              <option value="Yemen">Yemen</option>
+              <option value="Zambia">Zambia</option>
+              <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+                        </div>
+                    </div>
+               </div>
+                <div class="modal-footer">
+
+                    <button id="cancelModal-desvincular" type="button" class="btn btn-default">Cancelar</button>
+                    <button id="guardarModal-desvincular" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -169,7 +242,6 @@
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-XXXXXXXX-X', 'auto');
         ga('send', 'pageview');
-
     </script>
 </body>
 

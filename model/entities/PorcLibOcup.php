@@ -4,7 +4,8 @@ namespace model\entities;
 class PorcLibOcup{
     var $padrinoLib;
     var $alumnoLib;
-    var $total;
+    var $totalPadrino;
+    var $totalAlumno;
     
 }
 ?>
