@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="CHANGE-ME">
+    <meta name="description" content="Tarjetas 3D">
+    <link rel="shortcut icon" href="">
+
+    <!-- Mobile Stuff -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="CHANGE-ME">
+    <link rel="icon" sizes="192x192" href="https://developers.google.com/web/images/web-fundamentals-icon192x192.png">
+
+    <!-- Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CHANGE-ME">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <!-- Windows 8 -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+
+
+    <meta name="theme-color" content="#000000">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <title>Vincular</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Data Tables ----------------------------------------------------->
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js">
+
+
+    </script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+    <!-- ----------------------------------------------------------------->
+    <link rel="stylesheet" href="/resource/css/estilos-alertas-toast.css">
+    <script src="/resource/js/alertas.js"></script>
+    <script src="/resource/js/scriptSession.js"></script>
+    <script src="/resource/js/scriptVincular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
+    <link rel="stylesheet" href="/resource/css/estilo-menu.css">
+    <script src="/resource/js/scriptMenu.js"></script>
+
+</head>
+
+<body onload="redireccionar();loadTablaPadrino()">
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class=""></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Page 1-1</a></li>
+                                <li><a href="#">Page 1-2</a></li>
+                                <li><a href="#">Page 1-3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h1 class="text-center">Vincular Padrino Alumno</h1>
+        </div>
+    </div>
+    <div class="contenedor">
+        <div class="table-responsive">
+            <table id="PadrinosLibre" class="table table-hover filas" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="table-inverse">
+                        <th class="text-center">Apodo</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Vincular</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <div class="modal fade in" id="dlg-details">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Vincular</h4>
+                    <br>
+                    <h5></h5>
+                </div>
+                <div class="modal-body">
+
+                    <table id="AlumnosLibre" class="table table-hover filas" cellspacing="0" width="100%">
+                        <thead>
+                            <tr class="table-inverse">
+                                <th class="text-center">Seleccionar</th>
+                                <th class="text-center">Apodo</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Apellido</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br>
+                    <input type="checkbox" name="seConocen" value="1" id="seConocen" />
+                    <label for="seConocen">¿Se conocen?</label>
+                    <p><label for="observaciones">Observaciones:</label>
+                        <textarea class="form-control" rows="3" id="observaciones"></textarea></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelModal" type="button" class="btn btn-default">Cancelar</button>
+                    <button id="guardarModal" type="button" class="btn btn-primary" >Guardar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-XXXXXXXX-X', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+
+</html>

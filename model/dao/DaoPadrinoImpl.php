@@ -142,7 +142,7 @@ class DaoPadrinoImpl implements DaoObject{
             while($re = mysqli_fetch_row($result)) {
                 $re = array_map('utf8_encode',$re);
                   //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja
-                   $resultado[]= new PadrinoEntity($re[0],$re[1], $re[2],
+                   $resultado["data"][]= new PadrinoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
                                                    $re[6],$re[7], $re[8],
                                                    $re[9],$re[10], null,null,$re[12],$re[13],null,$re[14]);

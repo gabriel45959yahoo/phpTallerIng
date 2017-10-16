@@ -1,0 +1,174 @@
+var idPadrino;
+$(document).ready(function () {
+
+    $('#dlg-details').modal({
+        show: false,
+        backdrop: 'static'
+    });
+    $('#cerrarModal').click(function () {
+
+        $('#dlg-details').modal('hide');
+
+        //para poder recargar la tabla
+        var table = $('#AlumnosLibre').DataTable();
+        table.clear().draw();
+        table.destroy();
+
+    });
+    $('#cancelModal').click(function () {
+
+        $('#dlg-details').modal('hide');
+
+        //para poder recargar la tabla
+        var table = $('#AlumnosLibre').DataTable();
+        table.clear().draw();
+        table.destroy();
+
+    });
+    $('#guardarModal').click(function () {
+        //check("info", "", "se ejecuta");
+
+        if (document.querySelector('input[name = "radioAlumno"]:checked') == null) {
+            check("error", "Error de datos", "Debe seleccionar un Alumno");
+        } else {
+
+            var idAlumno = document.querySelector('input[name = "radioAlumno"]:checked').value;
+            var seConocenCheck = 0;
+            var observaciones =document.getElementById("observaciones").value;
+
+            if (document.getElementById("seConocen").checked) {
+                seConocenCheck = 1;
+            }
+            guardarVinculacion(idAlumno,idPadrino,seConocenCheck,observaciones);
+
+            $('#dlg-details').modal('hide');
+
+            //para poder recargar la tabla
+            var table = $('#AlumnosLibre').DataTable();
+            table.clear().draw();
+            table.destroy();
+        }
+    });
+});
+
+function guardarVinculacion(idAlumno,idPadrino,seConocen,observaciones){
+      var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "&tipo=Apadrinar"+"&idPadrino="+idPadrino+"&idAlumno="+idAlumno+"&seConocen="+seConocen+"&observacion="+observaciones,
+        success: function (data) {
+            if (!data.includes("Error")) {
+                check("success", "OK", data);
+            } else {
+                //tipo,titulo,mensaje
+                check("error", "Error al resgistrar la vinculacion", data);
+            }
+        }
+    });
+}
+
+function loadTablaPadrino() {
+
+    listarPadrinoLibres();
+    return false; // Evitar ejecutar el submit del formulario.
+}
+var listarPadrinoLibres = function () {
+
+    var table = $("#PadrinosLibre").DataTable({
+
+        'initComplete': function () {
+            $('#PadrinosLibre tbody').on('click', 'tr', function () {
+                var $dlg = $(this);
+                // check("info","",table.row(this).data().dni+" "+table.row(this).data().nombre+" "+table.row(this).data().apellido);
+                $('#dlg-details').modal('show');
+                $('.modal-body', $dlg).html(table.row(this).data().dni + " " + table.row(this).data().nombre + " " + table.row(this).data().apellido);
+                $('h5').html("Padrino elegido: <b>" + table.row(this).data().nombre + " " + table.row(this).data().apellido + "</b>");
+                idPadrino = table.row(this).data().id;
+                listarAlumnosLibres();
+            });
+
+        },
+        "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
+        "pagingType": "simple_numbers",
+        "ajax": {
+            "method": "POST",
+            "url": "../view/consultarDatos.php",
+            "data": {
+                'tipo': "PadrinosLibres"
+            }
+        },
+        "columns": [
+            {
+                "data": "alia"
+            },
+            {
+                "data": "nombre"
+            },
+            {
+                "data": "apellido"
+            },
+            {
+                "defaultContent": '<button class="btn btn-primary btn-details">vincular</button>'
+            }
+        ],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ filas",
+            "zeroRecords": "No se encuentran registros",
+            "info": "Página _PAGE_ de _PAGES_ de _MAX_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(Filtro de _MAX_ lineas en total)",
+            "sSearch": "Buscar: "
+        },
+
+
+    });
+
+}
+
+var listarAlumnosLibres = function () {
+
+
+    var table = $("#AlumnosLibre").DataTable({
+        'select': {
+            'style': 'single'
+        },
+        "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
+        "pagingType": "simple_numbers",
+        "ajax": {
+            "method": "POST",
+            "url": "../view/consultarDatos.php",
+            "data": {
+                'tipo': "AlumnosLibres"
+            }
+        },
+        "columns": [
+            {
+                "data": "id",
+                "render": function (data, type, full, meta) {
+                    return '<input type="radio" name="radioAlumno" value="' + data + '">';
+                }
+            },
+            {
+                "data": "alias"
+            },
+            {
+                "data": "nombre"
+            },
+            {
+                "data": "apellido"
+            }
+        ],
+
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ filas",
+            "zeroRecords": "No se encuentran registros",
+            "info": "Página _PAGE_ de _PAGES_ de _MAX_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(Filtro de _MAX_ lineas en total)",
+            "sSearch": "Buscar: "
+        },
+
+
+    });
+}

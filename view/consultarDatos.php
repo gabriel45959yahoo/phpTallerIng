@@ -43,12 +43,14 @@ function listarPadrinoLibrePadrinoOcupado(){
 
     echo $consultarController->listarPadrinoLibrePadrinoOcupado();
 }
+
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
 
     exit();
 }else{
+
     //se la session es valida realizamos la siguiente accion
     if(isset($_POST["tipo"])){
 
@@ -71,6 +73,8 @@ if (! isset($_SESSION['session'])) {
                  case "PadrinoAlumnoLibreOcupado":
                     listarTipoPago();
                     break;
+                default:
+                    echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];
             }
     }
 
