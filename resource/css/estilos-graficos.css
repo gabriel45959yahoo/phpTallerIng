@@ -1,0 +1,22 @@
+body {
+    display: block;
+}
+
+#PadrinoGrafico {
+	height: 300px;
+	width: 50%;
+    min-width: 310;
+    max-width: 500px;
+	margin: 0 auto;
+    padding: auto;
+}
+
+#AlumnoGrafico {
+	height: 300px;
+	width: 50%;
+    min-width: 310;
+    max-width: 500px;
+	margin: 0 auto;
+    padding: auto;
+}
+

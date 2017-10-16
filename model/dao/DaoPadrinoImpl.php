@@ -156,7 +156,7 @@ class DaoPadrinoImpl implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
         $prom = new PorcLibOcup();
-        $sql="sselect count(1) as total, null as padrino_libre, null as alumno_libre FROM Apadrinaje 
+        $sql="select count(1) as total, null as padrino_libre, null as alumno_libre FROM Apadrinaje
 UNION 
 select null as total, count(1) as padrino_libre,  null as alumno_libre FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id) 
 UNION 
@@ -169,12 +169,12 @@ select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumn
                    $re = array_map('utf8_encode',$re);
                 
                   if($re[0]!=null){
-                      $prom->total=$re[0];
+                      $prom->total=(int)$re[0];
                   }else if($re[1]!=null){
-                      $prom->padrinoLib=$re[1];
+                      $prom->padrinoLib=(int)$re[1];
                       
                   }else if($re[2]!=null){
-                      $prom->alumnoLib=$re[2];
+                      $prom->alumnoLib=(int)$re[2];
                       
                   }
                    

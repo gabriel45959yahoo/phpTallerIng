@@ -1,10 +1,8 @@
   body {
-      /*background: #dedede;*/
-      /*display: flex;
-min-height: 100vh;*/
+
       background-color: rgba(255, 160, 122, 0.11);
       margin: 0;
-      font-family: sans-serif;
+      font-family: serif;
   }
 
   form {
@@ -12,14 +10,23 @@ min-height: 100vh;*/
       margin: auto;
       margin-top: 40px;
       width: 80%;
-      max-width: 700px;
       max-height: 100%;
       background-color: white;
       padding: 10px;
       border: 1px solid rgba(0, 0, 0, .2);
       border-radius: 15px;
   }
-
+.formHome{
+      display: block;
+      margin: auto;
+      margin-top: 40px;
+      width: 90%;
+      max-height: 100%;
+      background-color: white;
+      padding: 10px;
+      border: 1px solid rgba(0, 0, 0, .2);
+      border-radius: 15px;
+}
   h2 {
       text-align: center;
       margin-bottom: 10px;
@@ -82,44 +89,6 @@ min-height: 100vh;*/
       background: rgba(0, 0, 0, 0.3);
   }
 
-  .logo {
-      height: 30px;
-      width: 30px;
-  }
-
-  .menu ul {
-      margin: 0px;
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: flex-end;
-  }
-
-  .menu li {
-      text-align: center;
-  }
-
-  .menu li:hover {
-      background: rgba(0, 0, 0, 0.8);
-  }
-
-  .menu li a {
-      display: block;
-      padding: 15px 20px;
-      text-decoration: none;
-      color: white;
-  }
-
-  .menu ul li ul {
-
-      display: none;
-  }
-
-  .menu ul li:hover > ul {
-      display: block;
-      background-color: #626060;
-  }
-
   .ancho {
       position: relative;
       width: 60px;
@@ -156,19 +125,25 @@ min-height: 100vh;*/
 
   .panelEntrada {
       display: flex;
-      width: 100%;      
-      justify-content: center;
+    justify-content: center;
 
   }
 
   .panelInterno {
-      padding-right: 1%
+
+      width: 60%;
+      display: inline-flex;
   }
 
   .Datos {
       border-top: 1px solid black;
   }
-
+.padrinoGrafico{
+    border: 1px solid black;
+}
+.alumnoGrafico{
+    border: 1px solid black;
+}
   .foot {
       display: flex;
       margin: auto;
@@ -258,4 +233,29 @@ min-height: 100vh;*/
       #btn-menu:checked ~ .menu {
           margin: 0;
       }
+  }
+@media(max-width:320px) {
+    body{
+        display: flex;
+    }
+      header label {
+          display: block;
+          border-right: 1px solid white;
+      }
+
+ .formHome{
+      display: block;
+      margin: auto;
+      margin-top: 40px;
+      min-width: 80%;
+      max-height: 100%;
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0, .2);
+      border-radius: 15px;
+}
+    .panelInterno {
+      position: absolute;
+      max-width: 50%;
+      display: block;
+  }
   }

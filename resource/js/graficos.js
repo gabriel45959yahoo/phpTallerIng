@@ -7,39 +7,39 @@ $(document).ready(function () {
 
             var playerDato = [];
             var score = [];
-            var scoreDato = [];
+            var padrinosVinculados = [];
+            var alumnosVinculados = [];
             var aux = [];
             var content = JSON.parse(data1);
             var n = content.length;
-            for (var i = 0; i < n; i++) {
-                
-                //player.push(content[i].fecha.split(" ")[1]);
-                //player.push(new Array('p'+i,content[i].player));
-                scoreDato.push(new Array('Player: '+content[i].));
-                playerDato.push(new Array('Player',content[i].player));
-                
-            }
-    //*********************************************
-    //************  Grafico  **********************
-    //*********************************************
 
-Highcharts.setOptions({
-    colors: ['rgba(227, 140, 75, 0.85)', '##71397C', '#ED561B', '#DDDF00', '#596C68', '#64E572', '#FF9655', '#FFF263', '#6AF9C4', '#CF4647', 'rgba(140, 195, 52, 0.5)']
-});
-            
-            
-            $('#container').highcharts({
+            padrinosVinculados.push(new Array('Vinculados', content[0].total));
+            padrinosVinculados.push(new Array('Padrinos Libres', content[0].padrinoLib));
+            alumnosVinculados.push(new Array('Vinculados', content[0].total));
+            alumnosVinculados.push(new Array('Alumnos Libres', content[0].alumnoLib));
+            //   scoreDato.push(new Array('Player: '+content[0].total));
+            //     playerDato.push(new Array('Player',content[0].padrinoLib));
+            //*********************************************
+            //************  Grafico  **********************
+            //*********************************************
+
+            Highcharts.setOptions({
+                colors: ['rgb(227, 140, 75)', '#0F4392']
+            });
+
+
+            $('#PadrinoGrafico').highcharts({
                 chart: {
                     type: 'pie',
                     options3d: {
                         enabled: true,
                         alpha: 45,
-                        borderColor: '#333',
+                        borderColor: '#ffffff',
                         borderWidth: 2
                     }
                 },
                 title: {
-                    text: 'Comparaciones'
+                    text: 'Padrinos vinculados VS. no vinculados'
                 },
                 /*subtitle: {
                     text: '3D donut'
@@ -52,39 +52,87 @@ Highcharts.setOptions({
                 plotOptions: {
                     pie: {
                         allowPointSelect: true,
-                        innerSize: 80,
-                        depth: 85,
+                        innerSize: 40,
+                        depth: 25,
                         dataLabels: {
                             enabled: true,
                             //format:'{"score.point"}'
-                            
+
                         },
-                        size:150
+                        size: 150
                     }
                 },
                 credits: {
                     enabled: false
                 },
                 series: [{
-                    name: 'Score',
+                    name: 'Cantidad',
                     className: 'String',
-                    data: scoreDato
+                    data: padrinosVinculados
 
-                }/*,{
-                    name: 'Player',
-                    className: 'String',
-                    data: playerDato
-
-                }*/],
+                }],
                 responsive: {
                     rules: [{
                         condition: {
                             maxWidth: 400
-                                    }
+                        }
                             }]
                 }
             });
+            Highcharts.setOptions({
+                colors: ['#64E572', '#0F4392']
+            });
+            $('#AlumnoGrafico').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }
+                },
+                title: {
+                    text: 'Alumnos vinculados VS. no vinculados'
+                },
+                /*subtitle: {
+                    text: '3D donut'
+                },*/
 
+                tooltip: {
+                    enabled: true,
+                    pointFormat: '{series.name}: {point.y}</br>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        innerSize: 40,
+                        depth: 25,
+                        dataLabels: {
+                            enabled: true,
+                            //format:'{"score.point"}'
+
+                        },
+                        size: 150
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Cantidad',
+                    className: 'String',
+                    data: alumnosVinculados
+
+                }],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 400
+                        }
+                            }]
+                }
+            });
 
         }
     });

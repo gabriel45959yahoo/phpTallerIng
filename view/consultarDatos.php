@@ -9,6 +9,7 @@ include '../model/entities/DatosFactEntity.php';
 include '../model/entities/AlumnoEntity.php';
 include '../model/entities/TipoPagoEntity.php';
 include '../model/entities/ApadrinajeEntity.php';
+include '../model/entities/PorcLibOcup.php';
 include '../control/ConsultarController.php';
 
 
@@ -71,7 +72,7 @@ if (! isset($_SESSION['session'])) {
                     listarTipoPago();
                     break;
                  case "PadrinoAlumnoLibreOcupado":
-                    listarTipoPago();
+                    listarPadrinoLibrePadrinoOcupado();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];
