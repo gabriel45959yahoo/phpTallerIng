@@ -1,0 +1,9 @@
+.chosen-option{
+    text-align: left;
+    font-family: sans-serif;
+}
+.chosen-group{
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    font-family: sans-serif;
+}

@@ -76,6 +76,17 @@ class ConsultarController{
             return json_encode($restPadrino);
         }
     }
+    function buscarPadrinosVinculados(){
+        $padrinoSingleton = ABMPadrino::singleton_Padrino();
+
+        // accedemos al método cargar padrino
+        $restPadrino = $padrinoSingleton->buscarPadrinosVinculados();
+        if(count($restPadrino)==0){
+            return "Error: No se encontraron padrinos";
+        }else{
+            return json_encode($restPadrino);
+        }
+    }
 
 }
 

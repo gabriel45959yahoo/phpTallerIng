@@ -8,11 +8,15 @@ function redireccionar() {
         },
         success: function (data) {
             //data es la respuesta del php
-            if (data == "error") {
-                window.location.assign('/index.html');
+            if (!data.startsWith("<nav")) {
+                if(data.startsWith("no login")){
+                        window.location.assign('/index.html');
+                }else{
+                    check("error", "Error Login", data);
+                }
                 return false;
             }
-              $("#menuid").append('<li><a href=""><span class="fa fa-user-circle"></span><br/>' + data + '</a><ul><li><a href="../view/CambioDeClave.html">Cambiar Clave</a></li></ul></li>');
+              $("#menuid").append(data);
             return true;
         }
     });
@@ -40,18 +44,17 @@ $(function () {
         return false; // Evitar ejecutar el submit del formulario.
     });
 });
-$(function () {
-    $("#logout").click(function () {
+
+function logout() {
         var url = "../control/LogoutController.php";
         $.ajax({
             type: "POST",
             url: url,
             success: function (data) {
 
-                window.location.assign('/index.html');
+                window.location.assign('../index.html');
 
             }
         });
         return false; // Evitar ejecutar el submit del formulario.
-    });
-});
+    }

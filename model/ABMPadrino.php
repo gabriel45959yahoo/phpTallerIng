@@ -106,7 +106,12 @@ class ABMPadrino{
 
       return $resultado;
   }
+public function buscarPadrinosVinculados(){
+     $daoPadrino= new model\dao\DaoPadrinoImpl();
+      $resultado=$daoPadrino->buscarPadrinosVinculados();
 
+    return $resultado;
+}
 
     /**
      * Generar error al intentar clonar el obj de la clase

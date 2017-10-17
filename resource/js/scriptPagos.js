@@ -30,16 +30,24 @@ function cargaDatosChosen() {
                 contentJson = JSON.parse(data);
                 //check("success", "OK", "Datos recuperados");
                 var n = contentJson.length;
-
-                var tds = '';
+                var tds='';
+                var tds = '<optgroup label="Nombres y Apellidos" class="chosen-group">';
                 for (var i = 0; i <= n - 1; i++) {
-                    tds = '<option value="' + i + '">' + contentJson[i].idPadrino.nombre + ' ' + contentJson[i].idPadrino.apellido + '</option>';
-                    tds += '<option value="' + i + '">' + contentJson[i].idPadrino.alia + '</option>';
-                    tds += '<option value="' + i + '">' + contentJson[i].idAlumno.nombre + ' ' + contentJson[i].idAlumno.apellido + '</option>';
-                    tds += '<option value="' + i + '">' + contentJson[i].idAlumno.alias + '</option>';
-                    $("#schedule_event").append(tds);
+                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.nombre + ' ' + contentJson[i].idPadrino.apellido + '</option>';
+                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idAlumno.nombre + ' ' + contentJson[i].idAlumno.apellido + '</option>';
+                }
+                 tds += '</optgroup>';
+                 $("#schedule_event").append(tds);
+                tds='';
+                tds = '<optgroup label="Apodos"  class="chosen-group">';
+                for (var i = 0; i <= n - 1; i++) {
+                   tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.alia + '</option>';
+                   tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idAlumno.alias + '</option>';
+
 
                 }
+                 tds += '</optgroup>';
+                 $("#schedule_event").append(tds);
                 $("#schedule_event").trigger("chosen:updated");
             } else {
                 //tipo,titulo,mensaje

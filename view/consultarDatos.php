@@ -44,7 +44,11 @@ function listarPadrinoLibrePadrinoOcupado(){
 
     echo $consultarController->listarPadrinoLibrePadrinoOcupado();
 }
+function buscarPadrinosVinculados(){
+      $consultarController = new ConsultarController();
 
+    echo $consultarController->buscarPadrinosVinculados();
+}
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -79,6 +83,10 @@ if (! isset($_SESSION['session'])) {
                 // para grafico de torta
                  case "PadrinoAlumnoLibreOcupado":
                     listarPadrinoLibrePadrinoOcupado();
+                    break;
+                // para pantalla vincular (para desvincular)
+                 case "listarPadrinosVinculados":
+                    buscarPadrinosVinculados();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

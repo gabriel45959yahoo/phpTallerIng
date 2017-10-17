@@ -141,3 +141,11 @@ input[type="radio"] {
 	position:relative;
    	top:1px;
 }
+.row-modal{
+    min-width: 90%;
+    font-weight: bolder;
+    text-align: left;
+}
+.chosen-group-center{
+    text-align: center;
+}
