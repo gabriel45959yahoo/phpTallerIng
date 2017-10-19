@@ -4,7 +4,8 @@ use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
 use model\entities\PlanPactadoEntity as PlanPactadoEntity;
 use model\entities\ApadrinajeEntity as ApadrinajeEntity;
-
+use model\entities\PagoRealizadoEntity as PagoRealizadoEntity;
+use model\entities\DetallePagoEntity as DetallePagoEntity;
 
 include '../model/entities/PadrinoEntity.php';
 include '../model/entities/AlumnoEntity.php';
@@ -12,6 +13,8 @@ include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
 include '../model/entities/PlanPactadoEntity.php';
 include '../model/entities/ApadrinajeEntity.php';
+include '../model/entities/PagoRealizadoEntity.php';
+include '../model/entities/DetallePagoEntity.php';
 include '../control/CargarController.php';
 
 
@@ -69,6 +72,22 @@ function cargarApadrinaje(){
     }
 }
 
+function cargarPago(){
+    $cargarController = new CargarController();
+
+    //$idTipoPago,$facturaAcreditaPago,$comprobanteAcreditaPago,$descripcion
+    $detallePago =new DetallePagoEntity($_POST['tipoPago'],$_POST['nroFactura'],$_POST['comprobante'],$_POST['observaciones']);
+
+
+    //$montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$idUsuario
+    $pagoRealizado =new PagoRealizadoEntity($_POST['monto'],null,$_POST['vincular'],$_POST['fechaPago'],$_SESSION['session']);
+
+
+
+   echo $cargarController->cargarPagos($detallePago,$pagoRealizado);
+
+
+}
 
 /***
  Control de session
@@ -92,6 +111,9 @@ if (! isset($_SESSION['session'])) {
                     break;
                 case "Apadrinar":
                     cargarApadrinaje();
+                    break;
+                case "CargarPago":
+                    cargarPago();
                     break;
             }
     }

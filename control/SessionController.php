@@ -32,10 +32,10 @@ if(!isset($_SESSION['session']))
          '</ul>'.
          '<ul class="nav navbar-nav navbar-right">'.
          '<li class="dropdown">'.
-         '<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">&nbsp;</span>'.$usuario.'</span></a>'.
+         '<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">&nbsp;</span>'.$usuario.'</a>'.
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/CambioDeClave.html">Cambiar Clave</a></li>'.
-        '<li><a onclick="logout()">salir</a></li>'.
+        '<li><a onclick="logout()"><span class="glyphicon glyphicon-log-out">&nbsp;</span>salir</a></li>'.
          '</ul></li>'.
           '</ul>'.
          '</div></div></nav>';

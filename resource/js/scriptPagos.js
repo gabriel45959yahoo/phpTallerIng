@@ -1,5 +1,6 @@
 var contentJson;
 var tipoPagoSelect;
+var padrinoSeleccionado;
 
 $(document).ready(function () {
     if (!redireccionar()) {
@@ -71,6 +72,7 @@ $(function () {
             //check("info", "", 'selected: ' + contentJson[params.selected].idPadrino.nombre);
             cargarDatosPadrino(params.selected);
             cargarDatosAlumno(params.selected);
+            padrinoSeleccionado = params.selected;
 
         }
         if (params.deselected != undefined) {
@@ -78,15 +80,16 @@ $(function () {
         }
     });
     $("#tipoPago").change(function (evt, params) {
-        // check("info", "", 'selected: ' + $(this).val());
+        check("info", "", 'selected: ' + $(this).val());
         tipoPagoSelect = $(this).val();
     });
     $("#cargaPago").click(function () {
+
         var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
         $.ajax({
            type: "POST",
            url: url,
-           data: $("#formularioPago").serialize()+"&tipo=CargarPago", // Adjuntar los campos del formulario enviado.
+           data: $("#formularioPago").serialize()+"&tipo=CargarPago"+"&tipoPago="+tipoPagoSelect+"&vincular="+contentJson[padrinoSeleccionado].id, // Adjuntar los campos del formulario enviado.
            success: function(data)
            {
                if(data.includes("correctamente")){
@@ -133,7 +136,7 @@ function obtenerDatosFacturacionPadrino(idPadrino) {
         url: url,
         data: "&tipo=ListarDomFactPadrino&idPadrino=" + idPadrino, // Adjuntar los campos del formulario enviado.
         success: function (data) {
-            if (!data.includes("Error")) {
+            if (!data.includes("sin datos")) {
                 // check("success", "OK", data);
                 var contentJsonDomFact = JSON.parse(data);
                 //check("success", "OK", contentJsonDomFact[0].id);

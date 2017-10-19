@@ -1,5 +1,6 @@
 <?php
 include '../model/dao/DaoPagoRealizado.php';
+include '../model/dao/DaoDetallePago.php';
 
 class ABMPagos{
 
@@ -36,13 +37,38 @@ class ABMPagos{
       try{
         $daoPago= new model\dao\DaoPagoRealizado();
 
-        return $daoPago->select(null);
+        return $daoPago->listTipoPago(null);
 
 
        }catch (Exception $e) {
                 return 'Error: '.$e->getMessage(). "\n";
         }
  }
+
+public function cargarPago($detallePago,$pagoRealizado){
+      try{
+        $daoDetallePago= new model\dao\DaoDetallePago();
+        $daoPago= new model\dao\DaoPagoRealizado();
+
+        $rest = $daoDetallePago->insert($detallePago);
+
+        if($rest=="OK"){
+           $pagoRealizado->idDetallePago= $daoDetallePago->select($detallePago)[0]->id;
+        }else{
+            return $rest;
+        }
+
+
+        return $daoPago->insert($pagoRealizado);
+
+
+       }catch (Exception $e) {
+                return 'Error: '.$e->getMessage(). "\n";
+        }
+ }
+
+
+
 }
 
 ?>

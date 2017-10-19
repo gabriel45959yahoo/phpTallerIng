@@ -13,6 +13,8 @@ include '../model/ABMAlumno.php';
 include '../model/ABMDatosFactura.php';
 include '../model/ABMPlanPactado.php';
 include '../model/ABMApadrinaje.php';
+include '../model/ABMPagos.php';
+
 
 class CargarController {
 
@@ -77,7 +79,21 @@ class CargarController {
         }
     }
 
-    function cargarPagos($pagos) {
+    function cargarPagos($detallePago,$pagoRealizado) {
+         $pagosSingleton = ABMPagos::singleton_Pagos();
+         $rest= 1;
+
+         if ($detallePago->idTipoPago == '' || $detallePago->facturaAcreditaPago == '' || $detallePago->comprobanteAcreditaPago == '' || $pagoRealizado->montoPago==''||$pagoRealizado->idFechaPago =='') {
+            return "Error: Faltan datos de completar * ".$detallePago->idTipoPago.' * '.$detallePago->facturaAcreditaPago.' * '.$detallePago->comprobanteAcreditaPago.' * '.$pagoRealizado->montoPago.' * '.$pagoRealizado->idFechaPago;
+        }
+
+        $rest=$pagosSingleton->cargarPago($detallePago,$pagoRealizado);
+
+        if ($rest == 0) {
+            return "El pago se cargo correctamente.";
+        } else {
+            return "Error: al cargar los datos del pago.";
+        }
         
     }
 
