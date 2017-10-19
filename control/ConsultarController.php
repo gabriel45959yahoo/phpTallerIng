@@ -4,6 +4,7 @@ include '../model/ABMAlumno.php';
 include '../model/ABMApadrinaje.php';
 include '../model/ABMDatosFactura.php';
 include '../model/ABMPagos.php';
+include '../model/ABMPlanPactado.php';
 
 class ConsultarController{
 
@@ -86,6 +87,17 @@ class ConsultarController{
         }else{
             return json_encode($restPadrino);
         }
+    }
+    function listarPlanes(){
+         $planPactadoSingleton = ABMPlanPactado::singleton_PlanPactado();
+
+        $rest= $planPactadoSingleton->listarPlanes();
+        if(count($rest)==0){
+            return "Error: No se encontraron Planes";
+        }else{
+            return json_encode($rest);
+        }
+
     }
 
 }

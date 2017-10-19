@@ -46,6 +46,14 @@ class ABMPlanPactado{
         }
 
     }
+
+    function listarPlanes(){
+        $daoplanPactado = new dao\DaoPlanPactadoImpl();
+
+        return  $daoplanPactado->select(null);
+
+    }
+
     public function __clone()
     {
 

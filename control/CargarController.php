@@ -84,7 +84,7 @@ class CargarController {
          $rest= 1;
 
          if ($detallePago->idTipoPago == '' || $detallePago->facturaAcreditaPago == '' || $detallePago->comprobanteAcreditaPago == '' || $pagoRealizado->montoPago==''||$pagoRealizado->idFechaPago =='') {
-            return "Error: Faltan datos de completar * ".$detallePago->idTipoPago.' * '.$detallePago->facturaAcreditaPago.' * '.$detallePago->comprobanteAcreditaPago.' * '.$pagoRealizado->montoPago.' * '.$pagoRealizado->idFechaPago;
+            return "Error: Faltan datos de completar ";
         }
 
         $rest=$pagosSingleton->cargarPago($detallePago,$pagoRealizado);
@@ -94,10 +94,6 @@ class CargarController {
         } else {
             return "Error: al cargar los datos del pago.";
         }
-        
-    }
-
-    function cargarPlanPactado($plan) {
         
     }
 

@@ -3794,7 +3794,8 @@ tbody.collapse.in {
     clear: both;
     font-weight: normal;
     line-height: 1.42857143;
-    color: #333333;
+    color: #ffffff; /*color de la letra del submenu sin seleccionar*/
+    background-color: rgba(0, 0, 0, 0.15);
     white-space: nowrap;
 }
 
@@ -3831,6 +3832,7 @@ tbody.collapse.in {
 
 .open > .dropdown-menu {
     display: block;
+    background-color: black;/*fundo del submenu*/
 }
 
 .open > a {
@@ -4646,6 +4648,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     font-size: 18px;
     line-height: 20px;
     height: 50px;
+}
+.navbar-brand img{
+    height: 35px;
+    width: 28px;
+    padding-top: 5px;
 }
 
 .navbar-brand:hover,

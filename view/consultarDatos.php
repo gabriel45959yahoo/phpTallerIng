@@ -49,6 +49,14 @@ function buscarPadrinosVinculados(){
 
     echo $consultarController->buscarPadrinosVinculados();
 }
+
+function listarPlanes(){
+      $consultarController = new ConsultarController();
+
+    echo $consultarController->listarPlanes();
+}
+
+
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -87,6 +95,10 @@ if (! isset($_SESSION['session'])) {
                 // para pantalla vincular (para desvincular)
                  case "listarPadrinosVinculados":
                     buscarPadrinosVinculados();
+                    break;
+                 // para pantalla vincular (para desvincular)
+                 case "Planes":
+                    listarPlanes();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];
