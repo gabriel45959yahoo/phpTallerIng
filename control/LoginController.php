@@ -13,7 +13,8 @@ if (isset($_POST['usuario'])) {
 
     if ($usr == TRUE) {
         $_SESSION['session'] = $usuario;
-        // header("Location: /view/CargarPadrino.html");
+        $_SESSION['sessionRol']=$nuevoSingleton->rol_users($_SESSION['session'])[0]->getRol()->nombre;
+        // header("Location: /view/CargarPadrino.html");$user[0]->getRol();
         //echo "<script> window.location.assign('../view/home.html'); </script>";
         echo $usuario;
     } else {

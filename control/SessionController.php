@@ -10,15 +10,15 @@ if(!isset($_SESSION['session']))
     $response= 'no login';
 
 } else{
-    $nuevoSingleton = Login::singleton_login();
+   // $nuevoSingleton = Login::singleton_login();
 
-    $user=$nuevoSingleton->rol_users($_SESSION['session']);
+  //  $user=$nuevoSingleton->rol_users($_SESSION['session']);
 
     $usuario=$_SESSION['session'];
 
     $rol= array();
 
-    $rol=$user[0]->getRol();
+    $rol=$_SESSION['sessionRol'];
 
     $menu='<nav class="navbar navbar-inverse">'.
             '<div class="container-fluid">'.
@@ -31,7 +31,7 @@ if(!isset($_SESSION['session']))
          '</div><div class="collapse navbar-collapse" id="myMenuNavbar">'.
          '<ul class="nav navbar-nav">'.
          '<li class="active"><a href="../view/home.html">Home</a></li>';
-    if($rol->nombre=="ADMIN"){
+    if($rol=="ADMIN"){
 
          $menu=$menu.'<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Cargar </a>'.
