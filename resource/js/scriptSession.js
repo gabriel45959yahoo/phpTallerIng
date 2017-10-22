@@ -7,16 +7,17 @@ function redireccionar() {
             datos: "datos"
         },
         success: function (data) {
+            var datos = data.replace("\n","");
             //data es la respuesta del php
-            if (!data.startsWith("<nav")) {
-                if(data.startsWith("no login")){
+            if (!datos.includes("<nav")) {
+                if(datos.startsWith("no login")){
                         window.location.assign('/index.html');
                 }else{
-                    check("error", "Error Login", data);
+                    check("error", "Error Login", datos);
                 }
                 return false;
             }
-              $("#menuid").append(data);
+              $("#menuid").append(datos);
             return true;
         }
     });

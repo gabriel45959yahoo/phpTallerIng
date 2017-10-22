@@ -3,7 +3,7 @@
 namespace model\dao;
 
 use model\entities\UsuarioEntity;
-
+use model\entities\RolEntity;
 
 include '../model/dao/DaoConnection.php';
 include '../model/dao/DaoUsuario.php';
@@ -56,7 +56,28 @@ class DaoUsuarioImpl implements DaoUsuario, DaoObject {
     }
 
     public function select($obj) {
+        $resultado = array();
+        $conexion = DaoConnection::connection();
         
+        if($obj!= null){
+            $sql="SELECT usr_id, nombre, apellido, email, rol.rol_name,rol.rol_descripcion FROM usuario usr,rol_usr_fun rol WHERE usr.usr_id_rol=rol.rol_id and usr.usr_id='$obj->usuario';";
+        }else {
+             $sql="SELECT usr_id, nombre, apellido, email, rol.rol_name,rol.rol_descripcion FROM usuario usr,rol_usr_fun rol WHERE usr.usr_id_rol=rol.rol_id;";
+        }
+          $result = mysqli_query($conexion, $sql);
+       // echo mysqli_num_rows($result);
+       if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
+                $rol=new RolEntity(null,$re[4],$re[5]);
+                //$nombre, $apellido, $usuario, $clave, $rol, $email
+                $resultado[]= new UsuarioEntity($re[1],$re[2],$re[0],null,$rol,$re[3]);
+            }
+       }
+      //  echo $conexion->error;
+        mysqli_close($conexion);
+     return   $resultado;
     }
 
 }
