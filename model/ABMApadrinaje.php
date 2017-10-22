@@ -41,8 +41,21 @@ class ABMApadrinaje{
                 return 'Error: '.$e->getMessage(). "\n";
         }
     }
-    function anularAsocicion(){
+    function anularVinculacion($idVinculacion){
+      try{
+        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
 
+        $res=$daoApadrinaje->delete($idVinculacion);
+
+        if($res=="OK"){
+                return 0;
+            }else{
+                echo $res;
+                return 1;
+            }
+       }catch (Exception $e) {
+                return 'Error: '.$e->getMessage(). "\n";
+        }
 
     }
     function buscarAsociacion(){

@@ -108,14 +108,23 @@ class CargarController {
         $rest = $apadrinarSingleton->asociar($apadrinar);
 
         if ($rest == 0) {
-            return "Se realizo el apadrinaje correctamente.";
+            return "Se realizo la vnculación correctamente.";
         } else {
-            return "Error: al crear el apadrinaje.";
+            return "Error: al crear la vinculación.";
         }
     }
 
-    function cancelarApadrinaje($apadrinar) {
-        
+    function cancelarVinculacion($idVinculacion) {
+         $apadrinarSingleton = ABMApadrinaje::singleton_Apadrinaje();
+        $rest = 1;
+
+        $rest = $apadrinarSingleton->anularVinculacion($idVinculacion);
+
+        if ($rest == 0) {
+            return "Se realizo la desvinculacón correctamente.";
+        } else {
+            return "Error: al crear el apadrinaje.";
+        }
     }
 
 }

@@ -14,11 +14,8 @@ if (isset($_POST['usuario'])) {
     if ($usr == TRUE) {
         $_SESSION['session'] = $usuario;
         $_SESSION['sessionRol']=$nuevoSingleton->rol_users($_SESSION['session'])[0]->getRol()->nombre;
-        // header("Location: /view/CargarPadrino.html");$user[0]->getRol();
-        //echo "<script> window.location.assign('../view/home.html'); </script>";
         echo $usuario;
     } else {
-        //echo "<script> window.location.assign('../index.html'); </script>";
         echo "Error de usuario o password";
     }
 }

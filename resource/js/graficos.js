@@ -1,6 +1,7 @@
 var sinDatosAlu = 0;
 var sinDatosPadri = 0;
 $(document).ready(function () {
+    redireccionar();
     $.ajax({
         url: "../view/consultarDatos.php",
         method: "POST",

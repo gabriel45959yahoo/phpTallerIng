@@ -36,8 +36,6 @@ $(function () {
                   window.location.assign('/view/home.html');
                  
                 } else {
-                    //tipo,titulo,mensaje
-                    //  window.location.assign('/index.html');
                     check("error", "Error Login", data);
                 }
             }

@@ -11,22 +11,34 @@ $(document).ready(function () {
     $('#cerrarModal-desvincular').click(function () {
 
         $('#modal-vincular').modal('hide');
-
+        //para poder recargar la tabla
+        var table = $('#PadrinoAlumnoVinculados').DataTable();
+        table.clear().draw();
+        table.destroy();
 
 
     });
     $('#cancelModal-desvincular').click(function () {
 
         $('#modal-desvincular').modal('hide');
-
+        //para poder recargar la tabla
+        var table = $('#PadrinoAlumnoVinculados').DataTable();
+        table.clear().draw();
+        table.destroy();
 
     });
     $('#guardarModal-desvincular').click(function () {
         //check("info", "", "se ejecuta");
-
-
-        $('#modal-desvincular').modal('hide');
-
+         if (document.querySelector('input[name = "radioDesvincular"]:checked') == null) {
+            check("error", "Error de datos", "Debe seleccionar algún registro para ser desvinculado");
+        } else {
+            desvincular(document.querySelector('input[name = "radioDesvincular"]:checked').value);
+            $('#modal-desvincular').modal('hide');
+            //para poder recargar la tabla
+            var table = $('#PadrinoAlumnoVinculados').DataTable();
+            table.clear().draw();
+            table.destroy();
+        }
     });
     $('#desvincular').click(function () {
 
@@ -37,57 +49,75 @@ $(document).ready(function () {
                 allow_single_deselect: true
             });
         });
-        var url = "../view/consultarDatos.php"; // El script a dónde se realizará la petición.
 
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: "&tipo=ListarPadrinoAhijado", // Adjuntar los campos del formulario enviado.
-            success: function (data) {
-                if (!data.includes("Error") || !data.includes("\\")) {
-                    //check("success", "OK", data);
-                    contentJson = JSON.parse(data);
-                    //check("success", "OK", "Datos recuperados");
-                    var n = contentJson.length;
-                    var tds = '';
-                    tds = '<optgroup label="Nombres y Apellidos" class="chosen-group">';
-
-                    for (var i = 0; i <= n - 1; i++) {
-                        tds += '<option value="' + i + '" class="chosen-option">' +
-                            contentJson[i].idPadrino.nombre + ' ' + contentJson[i].idPadrino.apellido + '</option>';
-                    }
-                    tds += '</optgroup>';
-                    $("#chosen-alumnos").append(tds);
-
-                    tds = '';
-                    tds = '<optgroup label="Apodos"  class="chosen-group">';
-
-                    for (var i = 0; i <= n - 1; i++) {
-
-                        tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.alia + '</option>';
-                    }
-                    tds += '</optgroup>';
-                    $("#chosen-alumnos").append(tds);
-                    $("#chosen-alumnos").trigger("chosen:updated");
-                } else {
-                    //tipo,titulo,mensaje
-                    check("error", "Error al cargar los datos", data);
-                }
-
-            }
-        });
-
+       llenarTablaPadrinoAlumnoVinculados();
     });
 
-     $("#chosen-alumnos").change(function (evt, params) {
-        if (params.selected != undefined) {
-            check("info", "", 'selected: ' + contentJson[params.selected].idPadrino.nombre);
-
-
-        }
-        if (params.deselected != undefined) {
-            alert('deselected: ' + params.deselected);
-        }
-    });
 });
+function desvincular(idVinculacion){
+     var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "&tipo=DesvincularPadrinoAlumno" + "&desvincular=" + idVinculacion ,
+        success: function (data) {
+            if (!data.includes("Error")) {
+                check("success", "OK", data);
+            } else {
+                //tipo,titulo,mensaje
+                check("error", "Error al desvincular", data);
+            }
+        }
+    });
+}
+function llenarTablaPadrinoAlumnoVinculados(){
+     var table = $("#PadrinoAlumnoVinculados").DataTable({
+        "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
+        "pagingType": "simple_numbers",
+        "ajax": {
+            "method": "POST",
+            "url": "../view/consultarDatos.php",
+            "data": {
+                'tipo': "ListarPadrinoAhijado"
+            }
+        },
+        "columns": [
+            {
+                "data": "id",
+                "render": function (data, type, full, meta) {
+                    return '<input type="radio" name="radioDesvincular" value="' + data + '">';
+                }
+            },
+            {
+                "data": "idPadrino.alia"
+            },
+            {
+                "data": "idPadrino.nombre"
+            },
+            {
+                "data": "idPadrino.apellido"
+            },
+            {
+                "data": "idAlumno.alias"
+            },
+            {
+                "data": "idAlumno.nombre"
+            },
+            {
+                "data": "idAlumno.apellido"
+            }
+        ],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ filas",
+            "zeroRecords": "No se encuentran registros",
+            "info": "Página _PAGE_ de _PAGES_ de _MAX_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(Filtro de _MAX_ lineas en total)",
+            "sSearch": "Buscar: "
+        },
+    });
+    table.buttons(0, null).container().prependTo(
+        table.table().container()
+    );
 
+}

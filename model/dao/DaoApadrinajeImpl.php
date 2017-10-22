@@ -28,7 +28,23 @@ class DaoApadrinajeImpl implements DaoObject{
             return "Error: " . $error;
         }
     }
+    public function delete($obj){
+     $conexion = DaoConnection::connection();
 
+     $sql="DELETE FROM apadrinaje WHERE apa_id='$obj'";
+    //   echo $sql;
+      if ($conexion->query($sql) === TRUE) {
+            mysqli_commit($conexion);
+            mysqli_close($conexion);
+
+            return "OK";
+        } else {
+            $error = $conexion->error;
+            mysqli_rollback($conexion);
+            mysqli_close($conexion);
+            return "Error: " . $error;
+        }
+    }
     public function select($obj){
 
     }
@@ -53,7 +69,7 @@ class DaoApadrinajeImpl implements DaoObject{
 
 
                 //$id,$idPadrino,$idAlumno,$seConocen,$observaciones,$fechaAlta,$fechaBaja
-                $resultado[]= new ApadrinajeEntity($re[0],$padrino,$alu,null,null,null,null);
+                $resultado['data'][]= new ApadrinajeEntity($re[0],$padrino,$alu,null,null,null,null);
 
                 }
         }

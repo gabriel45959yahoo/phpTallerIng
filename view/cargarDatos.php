@@ -71,7 +71,10 @@ function cargarApadrinaje(){
         echo $cargarController->apadrinar($apadrinar);
     }
 }
-
+function desvincular(){
+    $cargarController = new CargarController();
+        echo $cargarController->cancelarVinculacion($_POST['desvincular']);
+}
 function cargarPago(){
     $cargarController = new CargarController();
 
@@ -111,6 +114,9 @@ if (! isset($_SESSION['session'])) {
                     break;
                 case "Apadrinar":
                     cargarApadrinaje();
+                    break;
+                 case "DesvincularPadrinoAlumno":
+                    desvincular();
                     break;
                 case "CargarPago":
                     cargarPago();

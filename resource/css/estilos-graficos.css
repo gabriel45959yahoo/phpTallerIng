@@ -1,5 +1,6 @@
 body {
     display: block;
+    position: relative;
 }
 
 #PadrinoGrafico {
@@ -9,6 +10,7 @@ body {
     max-width: 500px;
 	margin: 0 auto;
     padding: auto;
+
 }
 
 #AlumnoGrafico {

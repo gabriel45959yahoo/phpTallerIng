@@ -28,7 +28,7 @@ function cargaDatosChosen() {
         success: function (data) {
             if (!data.includes("Error") || !data.includes("\\")) {
                 //check("success", "OK", data);
-                contentJson = JSON.parse(data);
+                contentJson = JSON.parse(data).data;
                 //check("success", "OK", "Datos recuperados");
                 var n = contentJson.length;
                 var tds='';

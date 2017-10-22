@@ -77,6 +77,7 @@ if (! isset($_SESSION['session'])) {
                     padrinosLibres();
                     break;
                 //Pantalla Pagos
+                //Pantalla vincular boton desvincular
                 case "ListarPadrinoAhijado":
                     listarPadrinoAhijado();
                     break;

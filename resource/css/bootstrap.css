@@ -1404,6 +1404,12 @@ mark,
     text-align: center;
 }
 
+.text-center-group {
+    text-align: center;
+    vertical-align: middle !important;
+    border-right: 3px solid white !important;
+}
+
 .text-justify {
     text-align: justify;
 }
@@ -3712,6 +3718,7 @@ input[type="button"].btn-block {
 
 .collapse {
     display: none;
+    z-index: 99999;
 }
 
 .collapse.in {
@@ -3794,7 +3801,7 @@ tbody.collapse.in {
     clear: both;
     font-weight: normal;
     line-height: 1.42857143;
-    color: #ffffff; /*color de la letra del submenu sin seleccionar*/
+    color: #ffffff; /*gaby color de la letra del submenu sin seleccionar*/
     background-color: rgba(0, 0, 0, 0.15);
     white-space: nowrap;
 }
@@ -3832,7 +3839,7 @@ tbody.collapse.in {
 
 .open > .dropdown-menu {
     display: block;
-    background-color: black;/*fundo del submenu*/
+    background-color: black;/* gaby fundo del submenu*/
 }
 
 .open > a {
@@ -4678,6 +4685,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+
 }
 
 .navbar-toggle:focus {
@@ -5002,6 +5010,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse {
     background-color: #222222;
     border-color: #080808;
+    z-index: 1; /*gaby para que pase por ensima de todo*/
 }
 
 .navbar-inverse .navbar-brand {
@@ -6426,19 +6435,42 @@ button.close {
 }
 
 .modal.fade .modal-dialog {
-    -webkit-transform: translate3d(0, -25%, 0);
-    transform: translate3d(0, -25%, 0);
-    -webkit-transition: -webkit-transform 0.3s ease-out;
-    -moz-transition: -moz-transform 0.3s ease-out;
-    -o-transition: -o-transform 0.3s ease-out;
-    transition: transform 0.3s ease-out;
+    -webkit-transform: scale(0.1);
+    -moz-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    transform: scale(0.1);
+    top: 300px;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+
 }
 
-.modal.in .modal-dialog {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+.modal.fade.in .modal-dialog {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform: translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0);
+    opacity: 1;
+    width:80%;
 }
 
+.modal.fade.in.modal-desvincular .modal-dialog {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform: translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0);
+    opacity: 1;
+    width:80%;
+}
+.modal-desvincular{
+
+}
 .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto;
