@@ -1,24 +1,38 @@
-body {
-    display: block;
-    position: relative;
-}
-
 #PadrinoGrafico {
-	height: 300px;
-	width: 50%;
-    min-width: 310;
+    height: 300px;
+    width: 50%;
+    min-width: 310px;
     max-width: 500px;
-	margin: 0 auto;
+    margin: 0 auto;
     padding: auto;
-
+    border: 1px solid black;
 }
 
 #AlumnoGrafico {
-	height: 300px;
-	width: 50%;
-    min-width: 310;
+    height: 300px;
+    width: 50%;
+    min-width: 310px;
     max-width: 500px;
-	margin: 0 auto;
+    margin: 0 auto;
     padding: auto;
+    border: 1px solid black;
 }
 
+@media(max-width:320px) {
+    #PadrinoGrafico {
+        height: 300px;
+        width: 2%;
+        min-width: 300px;
+        max-width: 500px;
+
+    }
+
+    #AlumnoGrafico {
+        height: 300px;
+        width: 2%;
+        min-width: 300px;
+        max-width: 500px;
+
+    }
+
+}
