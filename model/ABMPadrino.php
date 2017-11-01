@@ -112,7 +112,12 @@ public function buscarPadrinosVinculados(){
 
     return $resultado;
 }
+public function buscarHistoricoPadrinosVinculados(){
+     $daoPadrino= new model\dao\DaoPadrinoImpl();
+      $resultado=$daoPadrino->buscarHistoricoPadrinosVinculados();
 
+    return $resultado;
+}
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private

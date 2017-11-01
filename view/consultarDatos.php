@@ -61,6 +61,16 @@ function listaPlanCompletadoPadrino(){
 
     echo $consultarController->listaPlanCompletadoPadrino();
 }
+function buscarHistoricoPadrinosVinculados(){
+    $consultarController = new ConsultarController();
+
+    echo $consultarController->buscarHistoricoPadrinosVinculados();
+}
+function buscarAhijadosdelPadrino(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->buscarAhijadosdelPadrino($_POST['idPadrino']);
+}
 
 if (! isset($_SESSION['session'])) {
 
@@ -109,6 +119,14 @@ if (! isset($_SESSION['session'])) {
                   // para pantalla home
                  case "listaPlanCompletadoPadrino":
                     listaPlanCompletadoPadrino();
+                    break;
+                  // para pantalla historicos de padrinos
+                 case "buscarHistoricoVinculados":
+                    buscarHistoricoPadrinosVinculados();
+                    break;
+                  // para pantalla historicos de padrinos
+                 case "buscarAhijadosdelPadrino":
+                    buscarAhijadosdelPadrino();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

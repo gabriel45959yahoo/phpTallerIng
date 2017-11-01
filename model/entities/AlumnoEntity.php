@@ -8,6 +8,7 @@ class AlumnoEntity extends Persona{
     var $observaciones;
     var $esAlumno;
     var $alias;
+    var $edad;
 
 
 function __construct()

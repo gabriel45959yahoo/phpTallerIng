@@ -1,8 +1,6 @@
 <?php
 namespace model\dao;
-//include '../model/dao/DaoObject.php';
-//include '../model/dao/DaoConnection.php';
-//include '../model/entities/AlumnoEntity.php';
+
 use model\entities\AlumnoEntity as AlumnoEntity;
 use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\ApadrinajeEntity as ApadrinajeEntity;
@@ -51,21 +49,30 @@ class DaoApadrinajeImpl implements DaoObject{
     public function select($obj){
         $resultado = array();
         $conexion = DaoConnection::connection();
-
-       $sql="SELECT apa_id,". //0
+        if($obj==null){
+           $sql="SELECT apa_id,".
             " apa_id_padrino,".
             " apa_id_ahijado,".
             " apa_se_conocen,".
             " apa_fecha_alta,".
             " apa_fecha_baja".
-            " FROM Apadrinaje WHERE ".
-            "apa_id_padrino='$obj->idPadrino' ".
-            (($obj->idAlumno==null)?" ":"and apa_id_ahijado='$obj->idAlumno' ").
-            (($obj->seConocen==null)?" ":"and apa_se_conocen='$obj->seConocen'").
-            (($obj->fechaAlta==null)?" ":"and apa_fecha_alta='$obj->fechaAlta'").
-            (($obj->fechaBaja==null)?" ":"and apa_fecha_baja='$obj->fechaBaja'").
+            " FROM Apadrinaje ".
             " order by apa_id desc";
-
+        }else{
+            $sql="SELECT apa_id,".
+                " apa_id_padrino,".
+                " apa_id_ahijado,".
+                " apa_se_conocen,".
+                " apa_fecha_alta,".
+                " apa_fecha_baja".
+                " FROM Apadrinaje WHERE ".
+                "apa_id_padrino='$obj->idPadrino' ".
+                (($obj->idAlumno==null)?" ":"and apa_id_ahijado='$obj->idAlumno'").
+                (($obj->seConocen==null)?" ":"and apa_se_conocen='$obj->seConocen'").
+                (($obj->fechaAlta==null)?" ":"and apa_fecha_alta='$obj->fechaAlta'").
+                (($obj->fechaBaja==null)?" ":"and apa_fecha_baja='$obj->fechaBaja'").
+                " order by apa_id desc";
+        }
           $result = mysqli_query($conexion, $sql);
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
@@ -87,7 +94,19 @@ class DaoApadrinajeImpl implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
 
-        $sql="SELECT apa_id,pa.pa_id, pa.pa_nombre,pa.pa_apellido,pa.pa_alias,pa.pa_dni,pa.pa_cuil,alu.alu_id, alu.alu_nombre,alu.alu_apellido,alu.alu_alias,alu.alu_cursado FROM Apadrinaje apa, Padrino pa, Alumno alu where apa.apa_id_padrino=pa.pa_id and apa.apa_id_ahijado=alu.alu_id and apa.apa_fecha_baja is null;";
+        $sql="SELECT apa_id,".
+            " pa.pa_id,".
+            " pa.pa_nombre,".
+            " pa.pa_apellido,".
+            " pa.pa_alias,".
+            " pa.pa_dni,".
+            " pa.pa_cuil,".
+            " alu.alu_id, ".
+            " alu.alu_nombre,".
+            " alu.alu_apellido,".
+            " alu.alu_alias,".
+            " alu.alu_cursado FROM Apadrinaje apa, Padrino pa, Alumno alu ".
+            " where apa.apa_id_padrino=pa.pa_id and apa.apa_id_ahijado=alu.alu_id and apa.apa_fecha_baja is null;";
 
           $result = mysqli_query($conexion, $sql);
        if (mysqli_num_rows($result) > 0) {
@@ -111,7 +130,6 @@ class DaoApadrinajeImpl implements DaoObject{
         mysqli_close($conexion);
      return   $resultado;
     }
-
 
 }
 

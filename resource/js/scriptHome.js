@@ -57,20 +57,22 @@ function loadTablaPadrinoAhijado() {
             {
                 "data": "idPadrino.apellido"
             },
-            {
-                "data": "estadoPlanPactado.porcentajePagado",
-                "render": function (data, type, full, meta) {
-                    var porcentaje;
-                    if(data==''){
-                       porcentaje=0;
-                       }else{
-                         porcentaje=data;
-                       }
-                    return '<div class="generalProgress"><progress max="100" value="' + porcentaje + '" class="html5"></progress><p data-value="' + porcentaje + '" class="pProgress"></p></div>';
-                }
-            },
+
             {
                 "data": "estadoPlanPactado.fechaUltimaPaga"
+            },
+            {
+                "data": "estadoPlanPactado.porcentajePagado",
+                "orderable": false,
+                "render": function (data, type, full, meta) {
+                    var porcentaje;
+                    if (data == '') {
+                        porcentaje = 0;
+                    } else {
+                        porcentaje = data;
+                    }
+                    return '<div class="generalProgress"><progress max="100" value="' + porcentaje + '" class="html5"></progress><p data-value="' + porcentaje + '" class="pProgress"></p></div>';
+                }
             },
             {
                 "data": "estadoPlanPactado.cuotasPagas"
@@ -88,8 +90,8 @@ function loadTablaPadrinoAhijado() {
     table.buttons(0, null).container().prependTo(
         table.table().container()
     );
-table
-    .order( [ 1, 'asc' ] )
-    .draw();
+    table
+        .order([1, 'asc'])
+        .draw();
     return false; // Evitar ejecutar el submit del formulario.
 }

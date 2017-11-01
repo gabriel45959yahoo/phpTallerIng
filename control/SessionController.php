@@ -59,6 +59,7 @@ if(!isset($_SESSION['session']))
          '<li><a href="/view/ListarPadrinoAhijado.html">Padrino y Ahijado</a></li>'.
          '<li><a href="">Padrino</a></li>'.
          '<li><a href="/view/GraficoVinculados.html">Grafico de Vinculados</a></li>'.
+         '<li><a href="/view/HistoricoVinculados.html">Historicos de Vinculados</a></li>'.
          '</ul></li>'.
          '</ul>'.
          '<ul class="nav navbar-nav navbar-right">'.

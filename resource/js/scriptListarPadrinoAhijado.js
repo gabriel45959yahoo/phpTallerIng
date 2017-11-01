@@ -60,10 +60,6 @@ function loadTablaPadrinoAhijado() {
             {
                 "data": "idAlumno.nivelCurso"
             }
-            ,
-            {
-                "defaultContent": '<div class="generalProgress"><progress max="100" value="80" class="html5"></progress><p data-value="80" class="pProgress"></p></div>'
-            }
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ filas",

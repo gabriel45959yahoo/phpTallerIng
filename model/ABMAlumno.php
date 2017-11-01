@@ -64,6 +64,13 @@ class ABMAlumno{
 
       return $resultado;
     }
+    public function buscarAhijadosdelPadrino($idPadrino){
+      $daoAlumno= new model\dao\DaoAlumnoImpl();
+
+      $resultado=$daoAlumno->buscarAhijadosdelPadrino($idPadrino);
+
+      return $resultado;
+    }
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private
