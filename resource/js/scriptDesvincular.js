@@ -29,15 +29,11 @@ $(document).ready(function () {
     });
     $('#guardarModal-desvincular').click(function () {
         //check("info", "", "se ejecuta");
-         if (document.querySelector('input[name = "radioDesvincular"]:checked') == null) {
+        if (document.querySelector('input[name = "radioDesvincular"]:checked') == null) {
             check("error", "Error de datos", "Debe seleccionar algún registro para ser desvinculado");
         } else {
             desvincular(document.querySelector('input[name = "radioDesvincular"]:checked').value);
-            $('#modal-desvincular').modal('hide');
-            //para poder recargar la tabla
-            var table = $('#PadrinoAlumnoVinculados').DataTable();
-            table.clear().draw();
-            table.destroy();
+
         }
     });
     $('#desvincular').click(function () {
@@ -50,19 +46,26 @@ $(document).ready(function () {
             });
         });
 
-       llenarTablaPadrinoAlumnoVinculados();
+        llenarTablaPadrinoAlumnoVinculados();
     });
 
 });
-function desvincular(idVinculacion){
-     var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
+
+function desvincular(idVinculacion) {
+    var observaciones = document.getElementById("DesvincularObs").value;
+    var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
     $.ajax({
         type: "POST",
         url: url,
-        data: "&tipo=DesvincularPadrinoAlumno" + "&desvincular=" + idVinculacion ,
+        data: "&tipo=DesvincularPadrinoAlumno" + "&desvincular=" + idVinculacion + "&DesvincularObs=" + observaciones,
         success: function (data) {
             if (!data.includes("Error")) {
                 check("success", "OK", data);
+                $('#modal-desvincular').modal('hide');
+                //para poder recargar la tabla
+                var table = $('#PadrinoAlumnoVinculados').DataTable();
+                table.clear().draw();
+                table.destroy();
             } else {
                 //tipo,titulo,mensaje
                 check("error", "Error al desvincular", data);
@@ -70,8 +73,9 @@ function desvincular(idVinculacion){
         }
     });
 }
-function llenarTablaPadrinoAlumnoVinculados(){
-     var table = $("#PadrinoAlumnoVinculados").DataTable({
+
+function llenarTablaPadrinoAlumnoVinculados() {
+    var table = $("#PadrinoAlumnoVinculados").DataTable({
         "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
         "pagingType": "simple_numbers",
         "ajax": {

@@ -86,7 +86,7 @@ class DaoAlumnoImpl implements DaoObject
             " alu_observaciones,".
             " alu_fecha_nacimiento,".
             " alu_es_alumno".
-            " FROM Alumno WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id) ".
+            " FROM Alumno WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id and apa_fecha_baja is null) ".
             (($obj->apellido==null)?" ":"and alu_apellido='$obj->apellido' ").
             (($obj->nombre==null)?" ":"and alu_nombre='$obj->nombre' ").
             (($obj->nivelCurso==null)?" ":"and alu_cursado='$obj->nivelCurso'").

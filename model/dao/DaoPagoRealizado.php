@@ -1,6 +1,11 @@
 <?php
 namespace model\dao;
 use model\entities\TipoPagoEntity as TipoPagoEntity;
+use model\entities\AlumnoEntity as AlumnoEntity;
+use model\entities\PadrinoEntity as PadrinoEntity;
+use model\entities\ApadrinajeEntity as ApadrinajeEntity;
+use model\entities\EstadoPlan as EstadoPlan;
+
 
 class DaoPagoRealizado implements DaoObject{
 
@@ -70,6 +75,58 @@ class DaoPagoRealizado implements DaoObject{
         mysqli_close($conexion);
      return   $resultado;
     }
+
+     public function listaPlanCompletadoPadrino(){
+        $resultado = array();
+        $conexion = DaoConnection::connection();
+
+        $sql="SELECT apa_id,".
+            "pa.pa_id, ".
+            "pa.pa_nombre,".
+            "pa.pa_apellido,".
+            "pa.pa_alias,".
+            "pa.pa_dni,".
+            "pa.pa_cuil,".
+            "alu.alu_id, ".
+            "alu.alu_nombre,".
+            "alu.alu_apellido,".
+            "alu.alu_alias,".
+            "alu.alu_cursado,".
+            "ifnull(TRUNCATE(sum(pr.pr_monto_pago)*100/pp.pp_monto_total,2),0) as porcentajePagado, ".
+            "ifnull(count(pr.pr_id_apadrinaje),0) as cuotasPagas, ".
+            "ifnull(DATE_FORMAT(max(pr.pr_id_fecha_pago), '%d/%m/%Y'),'-/-/-') as fechaUltimaPaga ".
+            "FROM pago_realizado pr RIGHT JOIN plan_pactado pp on(pr.pr_id_apadrinaje=pp.pp_pa_id) ".
+            "LEFT JOIN Apadrinaje apa on(apa.apa_id=pp.pp_pa_id) ".
+            "INNER JOIN Padrino pa on(apa.apa_id_padrino=pa.pa_id) ".
+            "INNER JOIN Alumno alu on(apa.apa_id_ahijado=alu.alu_id) ".
+            "where apa.apa_fecha_baja is null ".
+            "group by apa.apa_id;";
+
+          $result = mysqli_query($conexion, $sql);
+       if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
+                  //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
+                   $alu = new AlumnoEntity($re[7],$re[8], $re[9],$re[10],null,$re[11],null,null,null);
+
+                    //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja
+                   $padrino= new PadrinoEntity($re[1],$re[2], $re[3],$re[4],null, null,null,null, null,null,null, null,null,null,null,null,null);
+
+                //$porcentajePagado,$cuotasPagas,$fechaUltimaPaga
+                $pagoCompletado= new EstadoPlan($re[12],$re[13], $re[14]);
+                //$id,$idPadrino,$idAlumno,$seConocen,$observaciones,$fechaAlta,$fechaBaja
+                $vinculardos=new ApadrinajeEntity($re[0],$padrino,$alu,null,null,null,null);
+                $vinculardos->estadoPlanPactado=$pagoCompletado;
+                $resultado['data'][]= $vinculardos;
+                }
+        }
+        echo $conexion->error;
+        mysqli_close($conexion);
+     return   $resultado;
+    }
+
+
 }
 
 ?>

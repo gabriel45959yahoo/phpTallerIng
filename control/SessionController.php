@@ -58,6 +58,7 @@ if(!isset($_SESSION['session']))
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/ListarPadrinoAhijado.html">Padrino y Ahijado</a></li>'.
          '<li><a href="">Padrino</a></li>'.
+         '<li><a href="/view/GraficoVinculados.html">Grafico de Vinculados</a></li>'.
          '</ul></li>'.
          '</ul>'.
          '<ul class="nav navbar-nav navbar-right">'.
@@ -70,7 +71,7 @@ if(!isset($_SESSION['session']))
           '</ul>'.
          '</div></div></nav>';
 
-//ListarPadrinoAhijado.html
+//GraficoVinculados.html
     $response = $menu;
 }
 //json_encode(array('response' => $response))

@@ -3,6 +3,7 @@
 use model\ABMDatosFactura;
 use model\ABMPlanPactado;
 use model\dao\DaoUsuarioImpl;
+use model\entities\ObsVincularEntity as ObsVincularEntity;
 
 
 //include '../model/dao/DaoUsuarioImpl.php';
@@ -14,7 +15,7 @@ include '../model/ABMDatosFactura.php';
 include '../model/ABMPlanPactado.php';
 include '../model/ABMApadrinaje.php';
 include '../model/ABMPagos.php';
-
+include '../model/ABMObsVincular.php';
 
 class CargarController {
 
@@ -103,28 +104,49 @@ class CargarController {
 
     function apadrinar($apadrinar) {
         $apadrinarSingleton = ABMApadrinaje::singleton_Apadrinaje();
+        $ObsVincularSingleton = ABMObsVincular::singleton_ObsVincular();
         $rest = 1;
-
         $rest = $apadrinarSingleton->asociar($apadrinar);
 
+
         if ($rest == 0) {
-            return "Se realizo la vnculación correctamente.";
+            if($apadrinar->observaciones!=''){
+                $restVinculacion = $apadrinarSingleton->buscarAsociacion($apadrinar);
+                $rest = $ObsVincularSingleton->cargarObs(new ObsVincularEntity($restVinculacion[0]->id,$apadrinar->observaciones));
+            }
+            if ($rest == 0) {
+                return "Se realizo la vnculación correctamente.";
+            } else {
+                return "Error: al crear la vinculación.";
+            }
         } else {
             return "Error: al crear la vinculación.";
         }
     }
 
-    function cancelarVinculacion($idVinculacion) {
+    function cancelarVinculacion($idVinculacion,$observaciones) {
+
          $apadrinarSingleton = ABMApadrinaje::singleton_Apadrinaje();
-        $rest = 1;
+         $ObsVincularSingleton = ABMObsVincular::singleton_ObsVincular();
+         $rest = 1;
+         if($observaciones->observaciones==''){
+            return "Error: Se debe cargar una Observación.";
+         }
 
-        $rest = $apadrinarSingleton->anularVinculacion($idVinculacion);
+         $rest = $ObsVincularSingleton->cargarObs($observaciones);
 
-        if ($rest == 0) {
-            return "Se realizo la desvinculacón correctamente.";
-        } else {
-            return "Error: al crear el apadrinaje.";
-        }
+         if ($rest == 0) {
+
+            $rest = $apadrinarSingleton->anularVinculacion($idVinculacion);
+
+            if ($rest == 0) {
+                return "Se realizo la desvinculacón correctamente.";
+            } else {
+                return "Error: al cancelar la vinculacón.";
+            }
+         } else {
+            return "Error: al cancelar la vinculacón.";
+         }
     }
 
 }

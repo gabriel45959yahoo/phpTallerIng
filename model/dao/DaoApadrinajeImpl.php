@@ -13,8 +13,8 @@ class DaoApadrinajeImpl implements DaoObject{
     public function insert($obj){
      $conexion = DaoConnection::connection();
 
-     $sql="INSERT INTO Apadrinaje(apa_id_padrino, apa_id_ahijado, apa_se_conocen, apa_observaciones, apa_fecha_alta)".
-     " VALUES ('$obj->idPadrino','$obj->idAlumno','$obj->seConocen','$obj->observaciones',date_add(sysdate(), INTERVAL -3 hour))";
+     $sql="INSERT INTO Apadrinaje(apa_id_padrino, apa_id_ahijado, apa_se_conocen, apa_fecha_alta)".
+     " VALUES ('$obj->idPadrino','$obj->idAlumno','$obj->seConocen',date_add(sysdate(), INTERVAL -3 hour))";
     //   echo $sql;
       if ($conexion->query($sql) === TRUE) {
             mysqli_commit($conexion);
@@ -29,9 +29,12 @@ class DaoApadrinajeImpl implements DaoObject{
         }
     }
     public function delete($obj){
+
+    }
+    public function desvincular($obj){
      $conexion = DaoConnection::connection();
 
-     $sql="DELETE FROM apadrinaje WHERE apa_id='$obj'";
+     $sql="update Apadrinaje set apa_fecha_baja=date_add(sysdate(), INTERVAL -3 hour) WHERE apa_id='$obj'";
     //   echo $sql;
       if ($conexion->query($sql) === TRUE) {
             mysqli_commit($conexion);
@@ -46,7 +49,38 @@ class DaoApadrinajeImpl implements DaoObject{
         }
     }
     public function select($obj){
+        $resultado = array();
+        $conexion = DaoConnection::connection();
 
+       $sql="SELECT apa_id,". //0
+            " apa_id_padrino,".
+            " apa_id_ahijado,".
+            " apa_se_conocen,".
+            " apa_fecha_alta,".
+            " apa_fecha_baja".
+            " FROM Apadrinaje WHERE ".
+            "apa_id_padrino='$obj->idPadrino' ".
+            (($obj->idAlumno==null)?" ":"and apa_id_ahijado='$obj->idAlumno' ").
+            (($obj->seConocen==null)?" ":"and apa_se_conocen='$obj->seConocen'").
+            (($obj->fechaAlta==null)?" ":"and apa_fecha_alta='$obj->fechaAlta'").
+            (($obj->fechaBaja==null)?" ":"and apa_fecha_baja='$obj->fechaBaja'").
+            " order by apa_id desc";
+
+          $result = mysqli_query($conexion, $sql);
+       if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
+
+
+                //$id,$idPadrino,$idAlumno,$seConocen,$observaciones,$fechaAlta,$fechaBaja
+                $resultado[]= new ApadrinajeEntity($re[0],$re[1],$re[2],$re[3],null,$re[4],$re[5]);
+
+                }
+        }
+        echo $conexion->error;
+        mysqli_close($conexion);
+     return   $resultado;
     }
 
     public function listaPadrinoAhijado(){

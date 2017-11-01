@@ -67,6 +67,17 @@ public function cargarPago($detallePago,$pagoRealizado){
         }
  }
 
+    public function listaPlanCompletadoPadrino(){
+       try{
+        $daoPago= new model\dao\DaoPagoRealizado();
+
+        return $daoPago->listaPlanCompletadoPadrino();
+
+
+       }catch (Exception $e) {
+                return 'Error: '.$e->getMessage(). "\n";
+        }
+    }
 
 
 }

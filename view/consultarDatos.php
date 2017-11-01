@@ -8,6 +8,7 @@ include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
 include '../model/entities/AlumnoEntity.php';
 include '../model/entities/TipoPagoEntity.php';
+include '../model/entities/EstadoPlan.php';
 include '../model/entities/ApadrinajeEntity.php';
 include '../model/entities/PorcLibOcup.php';
 include '../control/ConsultarController.php';
@@ -51,11 +52,15 @@ function buscarPadrinosVinculados(){
 }
 
 function listarPlanes(){
-      $consultarController = new ConsultarController();
+    $consultarController = new ConsultarController();
 
     echo $consultarController->listarPlanes();
 }
+function listaPlanCompletadoPadrino(){
+     $consultarController = new ConsultarController();
 
+    echo $consultarController->listaPlanCompletadoPadrino();
+}
 
 if (! isset($_SESSION['session'])) {
 
@@ -100,6 +105,10 @@ if (! isset($_SESSION['session'])) {
                  // para pantalla vincular (para desvincular)
                  case "Planes":
                     listarPlanes();
+                    break;
+                  // para pantalla home
+                 case "listaPlanCompletadoPadrino":
+                    listaPlanCompletadoPadrino();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

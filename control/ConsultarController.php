@@ -99,6 +99,16 @@ class ConsultarController{
         }
 
     }
+    function listaPlanCompletadoPadrino(){
+         $pagosSingleton = ABMPagos::singleton_Pagos();
+                // accedemos al método cargar padrino
+        $rest = $pagosSingleton->listaPlanCompletadoPadrino();
+        if(count($rest)==0){
+            return "sin datos";
+        }else{
+            return json_encode($rest);
+        }
+    }
 
 }
 

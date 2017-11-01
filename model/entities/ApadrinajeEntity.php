@@ -9,6 +9,7 @@ class ApadrinajeEntity{
     var $observaciones;
     var $fechaAlta;
     var $fechaBaja;
+    var $estadoPlanPactado;
 
 function __construct()
 	{

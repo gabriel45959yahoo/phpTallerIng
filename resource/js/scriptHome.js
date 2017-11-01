@@ -3,7 +3,7 @@ function loadTablaPadrinoAhijado() {
 
 
 
-    var table = $("#PadrinosAhijado").DataTable({
+    var table = $("#PadrinosVinculados").DataTable({
         dom: 'Blfrtip',
         buttons: [
 
@@ -33,36 +33,47 @@ function loadTablaPadrinoAhijado() {
             "method": "POST",
             "url": "../view/consultarDatos.php",
             "data": {
-                'tipo': "ListarPadrinoAhijado"
+                'tipo': "listaPlanCompletadoPadrino"
             }
         },
         "columns": [
             {
-                "data": "idPadrino.alia"
-            },
-            {
-                "data": "idPadrino.nombre",
-                "visible": false
-            },
-            {
-                "data": "idPadrino.apellido",
-                "visible": false
-            },
-            {
                 "data": "idAlumno.alias"
             },
             {
-                "data": "idAlumno.nombre"
+                "data": "idAlumno.nombre",
+                "visible": false
             },
             {
-                "data": "idAlumno.apellido"
+                "data": "idAlumno.apellido",
+                "visible": false
             },
             {
-                "data": "idAlumno.nivelCurso"
-            }
-            ,
+                "data": "idPadrino.alia"
+            },
             {
-                "defaultContent": '<div class="generalProgress"><progress max="100" value="80" class="html5"></progress><p data-value="80" class="pProgress"></p></div>'
+                "data": "idPadrino.nombre"
+            },
+            {
+                "data": "idPadrino.apellido"
+            },
+            {
+                "data": "estadoPlanPactado.porcentajePagado",
+                "render": function (data, type, full, meta) {
+                    var porcentaje;
+                    if(data==''){
+                       porcentaje=0;
+                       }else{
+                         porcentaje=data;
+                       }
+                    return '<div class="generalProgress"><progress max="100" value="' + porcentaje + '" class="html5"></progress><p data-value="' + porcentaje + '" class="pProgress"></p></div>';
+                }
+            },
+            {
+                "data": "estadoPlanPactado.fechaUltimaPaga"
+            },
+            {
+                "data": "estadoPlanPactado.cuotasPagas"
             }
         ],
         "language": {
@@ -77,6 +88,8 @@ function loadTablaPadrinoAhijado() {
     table.buttons(0, null).container().prependTo(
         table.table().container()
     );
-
+table
+    .order( [ 1, 'asc' ] )
+    .draw();
     return false; // Evitar ejecutar el submit del formulario.
 }

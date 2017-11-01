@@ -1,0 +1,73 @@
+progress:not(value) {}
+
+
+progress[value] {
+    appearance: none;
+    border: none;
+    width: 80%;
+    height: 20px;
+    background-color: whiteSmoke;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .5) inset;
+    color: royalblue;
+    position: relative;
+
+}
+
+
+progress[value]::-webkit-progress-bar {
+    background-color: whiteSmoke;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .5) inset;
+
+}
+
+progress[value]::-webkit-progress-value {
+    position: relative;
+    border-radius: 3px;
+    animation: animate-stripes 5s linear infinite;
+
+}
+
+.generalProgress {
+    display: flex;
+}
+
+
+p[data-value] {
+
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+p[data-value]:after {
+    content: attr(data-value) '%';
+    position: relative;
+    padding-left: 5px;
+
+}
+
+
+.html5::-webkit-progress-value {
+    background-image: -webkit-linear-gradient( top,
+    rgba(255, 255, 255, .25),
+    rgba(0, 0, 0, .2)),
+    -webkit-linear-gradient( left, #457756, #0dff03);
+    width: 40%;
+
+}
+
+.html5::-moz-progress-bar {
+    background-image: -moz-linear-gradient( 135deg,
+    transparent,
+    transparent 33%,
+    rgba(0, 0, 0, .1) 33%,
+    rgba(0, 0, 0, .1) 66%,
+    transparent 66%),
+    -moz-linear-gradient( top,
+    rgba(255, 255, 255, .25),
+    rgba(0, 0, 0, .2)),
+    -moz-linear-gradient( left, #09c, #f44);
+
+}

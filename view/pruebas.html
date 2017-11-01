@@ -1,229 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <title>Bootstrap Example</title>
     <meta charset="utf-8">
+    <meta name="author" content="CHANGE-ME">
+    <meta name="description" content="Tarjetas 3D">
+    <link rel="shortcut icon" href="">
+
+    <!-- Mobile Stuff -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="CHANGE-ME">
+    <link rel="icon" sizes="192x192" href="../resource/images/logo_icon.ico">
+
+    <!-- Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CHANGE-ME">
+    <link rel="apple-touch-icon" href="../resource/images/logo_icon.ico">
+
+    <!-- Windows 8 -->
+    <meta name="msapplication-TileImage" content="../resource/images/logo_icon.ico">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+
+
+    <meta name="theme-color" content="#000000">
+
+    <link rel="shortcut icon" href="../resource/images/logo_icon.ico">
+
+    <title>Listar Padrinos y sus Ahijados</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Menu-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-    <link rel="stylesheet" href="../resource/css/estilos-consulta.css">
-    <link rel="stylesheet" href="../resource/css/estilos-alertas-toast.css">
-
-    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
-    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
-
-    <link rel="stylesheet" href="http://alxlit.name/bootstrap-chosen/bootstrap.css" />
-
-    <script src="../resource/js/chosen.js"></script>
-    <script src="../resource/js/alertas.js"></script>
-    <script src="../resource/js/scriptPagos.js"></script>
-
+    <link rel="stylesheet" href="/resource/css/estilos-alertas-toast.css">
+    <link rel="stylesheet" href="/resource/css/estilo-menu.css">
+    <link rel="stylesheet" href="../resource/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
     <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
+    <script type="text/javascript" src="../resource/js/alertas.js"></script>
+    <!--Menu-->
+
+    <!-- Data Tables ----------------------------------------------------->
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.colVis.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
+    <!-- ----------------------------------------------------------------->
+
+
+
+    <script src="/resource/js/scriptListarPadrinoAhijado.js"></script>
+
+    <link rel="stylesheet" href="/resource/css/estilo-progressBar.css">
+
 </head>
-<script>
-$( document ).ready(function() {
-  check("info","","prueba de carga");
-});
-</script>
-<script>
-      $(function() {
-        $('.chosen-select').chosen();
-        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-      });
-    </script>
-<body>
-    <header>
-        <input type="checkbox" id="btn-menu">
-        <label for="btn-menu"><img src="/resource/images/icon-menu.png" alt="" >
-        </label>
 
-        <nav class="menu">
-            <ul>
-                <li><a href="">Cargar</a>
+<body onload="redireccionar();loadTablaPadrinoAhijado()">
 
-                    <ul>
-                        <li><a href="../view/CargarPadrino.html">Padrino</a></li>
-                        <li><a href="../view/CargarAlumno.html">Alumno</a></li>
-                    </ul>
-                </li>
+    <!--Menu-->
+    <header id="menuid">
 
-                <li><a href="../view/Apadrinaje.html">Apadrinar</a></li>
-                <li><a href="../view/AdministrarUsuario.html">Administrar Usuario</a></li>
-                <li><a href="">Opcion 3</a></li>
-                <li><a href="">Opcion 4</a></li>
-                <li><a href="">Opcion 5</a></li>
-            </ul>
-        </nav>
     </header>
-    <div class="container">
-        <h2>Modal Example</h2>
-        <form>
-     <div class="row">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h1 class="text-center">Listar Padrinos y sus Ahijados</h1>
+        </div>
+    </div>
+    <div class="contenedor">
+        <div class="table-responsive">
+            <table id="PadrinosAhijado" class="table table-hover filas" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="table-inverse">
+                        <th class="text-center-group" colspan="3">Padrino</th>
+                        <th class="text-center" colspan="4">Alumno</th>
+                    </tr>
+                    <tr class="table-inverse">
+                        <th class="text-center">Padrino Apodo</th>
+                        <th class="text-center">Padrino Nombre</th>
+                        <th class="text-center">Padrino Apellido</th>
+                        <th class="text-center">Alumno Apodo</th>
+                        <th class="text-center">Alumno Nombre</th>
+                        <th class="text-center">Alumno Apellido</th>
+                        <th class="text-center">Alumno Curso</th>
+                        <th class="text-center">Porcentaje</th>
+                    </tr>
+                </thead>
+            </table>
 
-        <div class="col-lg-3">
-            <select id="schedule_event" data-placeholder="Nombre ó apodo de Padrino ó Alumno" class="chosen-select" tabindex="2">
-              <option value=""></option>
-              <option value="1">United States</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Afghanistan">Afghanistan</option>
-              <option value="Albania">Albania</option>
-              <option value="Algeria">Algeria</option>
-              <option value="American Samoa">American Samoa</option>
-              <optgroup label="Nombre Apellido">
-              <option value="Andorra">Andorra</option>
-              <option value="Angola">Angola</option>
-              <option value="Anguilla">Anguilla</option>
-              <option value="Antarctica">Antarctica</option>
-              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-              <option value="Argentina">Argentina</option>
-              <option value="Armenia">Armenia</option>
-              <option value="Aruba">Aruba</option>
-              <option value="Australia">Australia</option>
-              <option value="Austria">Austria</option>
-              <option value="Azerbaijan">Azerbaijan</option>
-              <option value="Bahamas">Bahamas</option>
-              <option value="Bahrain">Bahrain</option>
-              <option value="Bangladesh">Bangladesh</option>
-              <option value="Barbados">Barbados</option>
-              <option value="Belarus">Belarus</option>
-              <option value="Belgium">Belgium</option>
-                </optgroup>
-              <option value="Denmark">Denmark</option>
+        </div>
 
-              <option value="Lithuania">Lithuania</option>
-              <option value="Luxembourg">Luxembourg</option>
-              <option value="Macao">Macao</option>
-
-
-
-              <option value="Western Sahara">Western Sahara</option>
-              <option value="Yemen">Yemen</option>
-              <option value="Zambia">Zambia</option>
-              <option value="Zimbabwe">Zimbabwe</option>
-            </select>
-          </div>
-      </div>
-
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Ahijado">Open Modal</button>
-            <div class="datagrid">
-                <div class="datagrid table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>header</th>
-                                <th>header</th>
-                                <th>header</th>
-                                <th>header</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <td colspan="4">
-                                    <div id="paging">
-                                        <ul>
-                                            <li><a href="#"><span>Previous</span></a></li>
-                                            <li><a href="#" class="active"><span>1</span></a></li>
-                                            <li><a href="#"><span>2</span></a></li>
-                                            <li><a href="#"><span>3</span></a></li>
-                                            <li><a href="#"><span>4</span></a></li>
-                                            <li><a href="#"><span>5</span></a></li>
-                                            <li><a href="#"><span>Next</span></a></li>
-
-                                        </ul>
-                                    </div>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                            </tr>
-                            <tr class="alt">
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                            </tr>
-                            <tr class="alt">
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                                <td>data</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div id="nav">
-                        <ul>
-                            <li><a href="#" rel="0" class="active">1</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal " id="Ahijado" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" onclick="cancelarModalAlumnos()">&times;</button>
-                            <h4 class="modal-title">Apadrinar</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                            </p>
-                            <div id="apadrinarAlumno">Padrino elegido: Elizabet Dominguez</div>
-                            <p></p>
-                            <table id="tablaAlumnosLibres">
-                                <tbody>
-                                    <tr>
-
-                                        <th onclick="ordenarTablaAlumnosLibres(1)">Alumnos</th>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="radio" name="radioAlumno" value="Juancito Lopez*3*4">Juancito Lopez</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="radio" name="radioAlumno" value="Bartolome Simpsons*2*4">Bartolome Simpsons</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="radio" name="radioAlumno" value="Jose Idalgo*1*4">Jose Idalgo</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="modal-footer">
-                                <input type="checkbox" name="seConocen" value="1" id="seConocen" />
-                                <label for="seConocen">¿Se conocen?</label>
-                            </div>
-                            <br>
-                            <button type="button" class="btnGuardar btn-default" data-dismiss="modal" onclick="guardarApadrinaje()">Guardar</button>
-                            <button type="button" class="btnCancelar btn-default" data-dismiss="modal" onclick="cancelarModalAlumnos()">Cancelar</button>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </form>
+        <br>
     </div>
 
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-XXXXXXXX-X', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </body>
+
 </html>

@@ -45,7 +45,7 @@ class ABMApadrinaje{
       try{
         $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
 
-        $res=$daoApadrinaje->delete($idVinculacion);
+        $res=$daoApadrinaje->desvincular($idVinculacion);
 
         if($res=="OK"){
                 return 0;
@@ -58,8 +58,16 @@ class ABMApadrinaje{
         }
 
     }
-    function buscarAsociacion(){
+    function buscarAsociacion($obj){
+     try{
+        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
 
+        return $daoApadrinaje->select($obj);
+
+
+       }catch (Exception $e) {
+                return 'Error: '.$e->getMessage(). "\n";
+        }
     }
     function historialPadrino(){
 
