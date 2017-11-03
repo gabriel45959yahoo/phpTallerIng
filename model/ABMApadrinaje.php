@@ -83,6 +83,17 @@ class ABMApadrinaje{
                 return 'Error: '.$e->getMessage(). "\n";
         }
     }
+    public function buscarAhijadosdelPadrino($idPadrino){
+      try{
+        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
+
+        return $daoApadrinaje->buscarAhijadosdelPadrino($idPadrino);
+
+
+       }catch (Exception $e) {
+                return 'Error: '.$e->getMessage(). "\n";
+        }
+    }
    /**
      * Generar error al intentar clonar el obj de la clase
      * @private

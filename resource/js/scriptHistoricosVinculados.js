@@ -1,4 +1,4 @@
-function loadTablaPadrinoAhijado() {
+function loadTablaVinculados() {
 
     var table = $("#historicosVinculados").DataTable({
         dom: 'Blfrtip',
@@ -8,19 +8,6 @@ function loadTablaPadrinoAhijado() {
                 extend: 'colvis',
                 text: 'Columnas',
                 columns: ':not(.noVis)'
-            }, {
-                extend: 'excelHtml5',
-                title: 'Datos de Padrino y Ahijados',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                title: 'Datos de Padrino y Ahijados',
-                exportOptions: {
-                    columns: ':visible'
-                }
             }
         ],
 
@@ -78,7 +65,7 @@ function loadTablaPadrinoAhijado() {
         if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
-            var tableAhijado = $('#historicosAhijados').DataTable();
+            var tableAhijado = $('#historicosAhijados'+row.data().id).DataTable();
             tableAhijado.clear().draw();
             tableAhijado.destroy();
             tr.removeClass('shown');
@@ -96,21 +83,27 @@ function loadTablaPadrinoAhijado() {
 
 function format(d) {
 
-    return '<div><table id="historicosAhijados" class="table" cellspacing="0" width="98%">' +
+    return '<div><table id="historicosAhijados'+d.id+'" class="table" cellspacing="0" width="98%">' +
         '<thead>' +
-        '<tr class="table-bordered">' +
+        '<tr class="table-bordered danger">' +
         '<th class="text-center">Apodo</th>' +
         '<th class="text-center">Nombre</th>' +
         '<th class="text-center">Apellido</th>' +
         '<th class="text-center">Edad</th>' +
-        '<th class="text-center">Grado/Corso</th>' +
+        '<th class="text-center">Grado / Curso</th>' +
+        '<th class="text-center">Fecha desde</th>' +
+        '<th class="text-center">Fecha hasta</th>' +
         '</tr>' +
         '</thead>' +
         '</table></div>';
 }
 
 function loadTableAhijado(id) {
-    var tableAhijado = $("#historicosAhijados").DataTable({
+    var tableAhijado = $("#historicosAhijados"+id).DataTable({
+        "bLengthChange": false,
+        "bPaginate": false,
+        "searching": false,
+        "info": false,
         "ajax": {
             "method": "POST",
             "url": "../view/consultarDatos.php",
@@ -121,23 +114,29 @@ function loadTableAhijado(id) {
         },
         "columns": [
             {
-                "data": "alias"
+                "data": "idAlumno.alias"
             },
             {
-                "data": "nombre"
+                "data": "idAlumno.nombre"
             },
             {
-                "data": "apellido"
+                "data": "idAlumno.apellido"
             },
             {
-                "data": "edad"
+                "data": "idAlumno.edad"
             },
             {
-                "data": "nivelCurso"
+                "data": "idAlumno.nivelCurso"
+            },
+            {
+                "data": "fechaAlta"
+            },
+            {
+                "data": "fechaBaja"
             }
         ]
 
     });
-
+ tableAhijado.order([6, 'asc']).draw();
 
 }

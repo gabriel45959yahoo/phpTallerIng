@@ -5,7 +5,8 @@ use model\entities\AlumnoEntity as AlumnoEntity;
 use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\ApadrinajeEntity as ApadrinajeEntity;
 use model\entities\EstadoPlan as EstadoPlan;
-
+use model\entities\DetallePagoEntity as DetallePagoEntity;
+use model\entities\PagoRealizadoEntity as PagoRealizadoEntity;
 
 class DaoPagoRealizado implements DaoObject{
 
@@ -121,6 +122,48 @@ class DaoPagoRealizado implements DaoObject{
                 $resultado['data'][]= $vinculardos;
                 }
         }
+        echo $conexion->error;
+        mysqli_close($conexion);
+     return   $resultado;
+    }
+  public function detallePagosPadrinos($idVinculado,$fechaDesde,$fechahasta){
+        $resultado = array();
+        $conexion = DaoConnection::connection();
+
+        $sql="SELECT pr.pr_monto_pago,".
+            "ifnull(DATE_FORMAT(pr.pr_id_fecha_pago, '%d/%m/%Y'),'-/-/-'),".
+            "ifnull(DATE_FORMAT(pr.pr_fecha_registro, '%d/%m/%Y'),'-/-/-'),".
+            "pr.pr_id_usuario,".
+            "pp.pp_monto_total,".
+            "dp.dp_tipo_pago,".
+            "tp.tp_descripcion,".
+            "dp.dp_factura_acredita_pago,".
+            "dp.dp_comprobante_acredita_pago,".
+            "dp.dp_descripcion ".
+            "FROM pago_realizado pr ".
+            "LEFT JOIN detalle_pago dp ON(dp.dp_id=pr.pr_id_detalle_pago) ".
+            "RIGHT JOIN plan_pactado pp on(pr.pr_id_apadrinaje=pp.pp_pa_id) ".
+            "RIGHT JOIN Apadrinaje apa on(apa.apa_id=pp.pp_pa_id) ".
+            "LEFT JOIN tipo_pagos tp ON(tp.tp_id=dp.dp_tipo_pago) ".
+            "where apa.apa_id='$idVinculado' ".
+            "and pr.pr_id_fecha_pago BETWEEN STR_TO_DATE('$fechaDesde', '%d/%m/%Y') and STR_TO_DATE('$fechahasta', '%d/%m/%Y')".
+            "ORDER BY apa.apa_id ASC ";
+
+          $result = mysqli_query($conexion, $sql);
+      // if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
+
+                //$idTipoPago,$facturaAcreditaPago,$comprobanteAcreditaPago,$descripcion)
+                $detallePago=new DetallePagoEntity(new TipoPagoEntity($re[5],$re[6]),$re[7],$re[8],$re[9]);
+
+                 //$id,$montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$fechaRegistro,$idUsuario
+                $PagoRealizado=new PagoRealizadoEntity(null,$re[0],$detallePago,$idVinculado,$re[1],$re[2],$re[3]);
+
+                $resultado['data'][]= $PagoRealizado;
+                }
+      //  }
         echo $conexion->error;
         mysqli_close($conexion);
      return   $resultado;

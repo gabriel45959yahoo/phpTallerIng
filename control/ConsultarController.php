@@ -121,14 +121,23 @@ class ConsultarController{
     }
     function buscarAhijadosdelPadrino($idPadrino){
 
-        $alumnoSingleton = ABMAlumno::singleton_Alumno();
+         $apadrinajeSingleton = ABMApadrinaje::singleton_Apadrinaje();
 
-        $restAlumno = $alumnoSingleton->buscarAhijadosdelPadrino($idPadrino);
-        if(count($restAlumno)==0){
+        // accedemos al método cargar padrino
+        $rest = $apadrinajeSingleton->buscarAhijadosdelPadrino($idPadrino);
+        if(count($rest)==0){
             return "Error: No se encontraron Alumnos";
         }else{
-            return json_encode($restAlumno);
+            return json_encode($rest);
         }
+    }
+    function detallePagosPadrinos($idVinculado,$fechaDesde,$fechaHasta){
+         $pagosSingleton = ABMPagos::singleton_Pagos();
+
+        $rest = $pagosSingleton->detallePagosPadrinos($idVinculado,$fechaDesde,$fechaHasta);
+
+            return json_encode($rest);
+
     }
 }
 

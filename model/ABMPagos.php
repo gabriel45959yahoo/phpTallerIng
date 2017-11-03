@@ -78,7 +78,15 @@ public function cargarPago($detallePago,$pagoRealizado){
                 return 'Error: '.$e->getMessage(). "\n";
         }
     }
+public function detallePagosPadrinos($idVinculado,$fechaDesde,$fechaHasta){
+    try{
+        $daoPago= new model\dao\DaoPagoRealizado();
 
+        return $daoPago->detallePagosPadrinos($idVinculado,$fechaDesde,$fechaHasta);
+    }catch (Exception $e) {
+        return 'Error: '.$e->getMessage(). "\n";
+    }
+}
 
 }
 

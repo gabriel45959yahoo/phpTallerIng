@@ -56,10 +56,15 @@ if(!isset($_SESSION['session']))
     $menu=$menu.'<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados </a>'.
          '<ul class="dropdown-menu">'.
-         '<li><a href="/view/ListarPadrinoAhijado.html">Padrino y Ahijado</a></li>'.
-         '<li><a href="">Padrino</a></li>'.
-         '<li><a href="/view/GraficoVinculados.html">Grafico de Vinculados</a></li>'.
-         '<li><a href="/view/HistoricoVinculados.html">Historicos de Vinculados</a></li>'.
+         '<li><a href="/view/ListarPadrinoAhijado.html">Vinculaciones activas</a></li>'.
+         '<li><a href="">Detalle de Padrinos</a></li>'.
+         '<li><a href="/view/GraficoVinculados.html">Gr&aacute;fico de Vinculados</a></li>'.
+         '</ul></li>'.
+         '<li class="dropdown">'.
+         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes </a>'.
+         '<ul class="dropdown-menu">'.
+         '<li><a href="/view/HistoricoVinculados.html">Historico de Vinculaci&oacute;n</a></li>'.
+         '<li><a href="/view/DetalleDePagos.html">Detalle de pagos</a></li>'.
          '</ul></li>'.
          '</ul>'.
          '<ul class="nav navbar-nav navbar-right">'.

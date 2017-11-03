@@ -110,42 +110,7 @@ class DaoAlumnoImpl implements DaoObject
         mysqli_close($conexion);
      return   $resAlumno;
     }
-    public function buscarAhijadosdelPadrino($idPadrino){
-         $resAlumno = array();
-        $conexion = DaoConnection::connection();
 
-        //SELECT alu_id, alu_nombre, alu_apellido, alu_cursado, alu_observaciones, alu_es_alumno, alu_fecha_nacimiento FROM Alumno WHERE 1
-        $sql="SELECT alu_id,". //0
-            " alu_nombre,".
-            " alu_apellido,".
-            " alu_alias,".
-            " alu_dni,".
-            " alu_cursado,".
-            " alu_observaciones,".
-            " alu_fecha_nacimiento,".
-            " alu_es_alumno,".
-            "TRUNCATE(DATEDIFF(CURDATE() ,alu_fecha_nacimiento)/365,0) as edad".
-            " FROM Alumno WHERE EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id and apa_id_padrino='$idPadrino') ".
-            " order by alu_id desc";
-
-
-        $result = mysqli_query($conexion, $sql);
-       if (mysqli_num_rows($result) > 0) {
-            // output data of each row
-            while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
-                    //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
-                    $alu=new AlumnoEntity($re[0],$re[1], $re[2],
-                                                   $re[3],$re[4], $re[5],
-                                                   $re[6],$re[7],$re[8]);
-                   $alu->edad=$re[9];
-                   $resAlumno["data"][]= $alu;
-                }
-        }
-
-        mysqli_close($conexion);
-     return   $resAlumno;
-    }
 }
 
 ?>
