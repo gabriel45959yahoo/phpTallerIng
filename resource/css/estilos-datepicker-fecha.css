@@ -1,0 +1,14 @@
+.label-datepicker {
+    margin-right: 10px;
+    padding-top: 5px;
+}
+
+.div-datepicker {
+    background: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+.span-text-responsive{
+    font-size:80%;
+}
