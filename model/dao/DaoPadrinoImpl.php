@@ -140,11 +140,20 @@ $sql="SELECT pa_id,". //0
         $resultado = array();
         $conexion = DaoConnection::connection();
         $prom = new PorcLibOcup();
-        $sql="select count(DISTINCT apa_id_padrino) as total_Padrino, null as padrino_libre, count(apa_id_ahijado) as alumno_libre FROM Apadrinaje where apa_fecha_baja is null
-UNION 
-select null as total, count(1) as padrino_libre,  null as alumno_libre FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id and apa_fecha_baja is null)
-UNION 
-select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumno WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id and apa_fecha_baja is null);";
+        $sql="select count(DISTINCT apa_id_padrino) as total_Padrino,".
+            "  null as padrino_libre,".
+            "  count(apa_id_ahijado) as alumno_libre".
+            "  FROM Apadrinaje where apa_fecha_baja is null".
+            " UNION".
+            "  select null as total,".
+            "  count(1) as padrino_libre,".
+            "   null as alumno_libre ".
+            "  FROM Padrino WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_padrino=pa_id and apa_fecha_baja is null)".
+            " UNION".
+            "  select null as total,".
+            "  null as padrino_libre,".
+            "  count(1) as alumno_libre".
+            "  FROM Alumno WHERE not EXISTS(SELECT 1 FROM Apadrinaje WHERE apa_id_ahijado=alu_id and apa_fecha_baja is null);";
        
           $result = mysqli_query($conexion, $sql);
        if (mysqli_num_rows($result) > 0) {
@@ -178,7 +187,7 @@ select null as total, null as padrino_libre, count(1) as alumno_libre FROM Alumn
         $conexion = DaoConnection::connection();
 
 
-$sql="SELECT pa_id,". //0
+  $sql="SELECT pa_id,". //0
             " pa_nombre,".
             " pa_apellido,".
             " pa_alias,".
@@ -214,7 +223,47 @@ $sql="SELECT pa_id,". //0
         mysqli_close($conexion);
      return   $resultado;
     }
-    
+     function buscarHistoricoPadrinosVinculados(){
+        $resultado = array();
+        $conexion = DaoConnection::connection();
+
+
+  $sql="SELECT pa_id,". //0
+            " pa_nombre,".
+            " pa_apellido,".
+            " pa_alias,".
+            " pa_dni,".
+            " pa_cuil,".//5
+            " pa_email,".
+            " pa_email_alternativo,".
+            " pa_telefono,".
+            " pa_telefono_alternativo,".
+            " pa_referencia_contacto,".//10
+            " pa_id_domicilio,".
+            " DATE_FORMAT(pa_fecha_alta, '%d/%m/%Y'),".
+            " pa_fecha_baja,".
+            " pa_ficha_fisica_ingreso".
+            " FROM Padrino pa where EXISTS(select 1 from Apadrinaje apa where apa.apa_id_padrino=pa.pa_id)".
+            " order by pa_id desc";
+       // echo $sql;
+
+        $result = mysqli_query($conexion, $sql);
+       // echo mysqli_num_rows($result);
+       if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($re = mysqli_fetch_row($result)) {
+                $re = array_map('utf8_encode',$re);
+                  //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja
+                   $resultado["data"][]= new PadrinoEntity($re[0],$re[1], $re[2],
+                                                   $re[3],$re[4], $re[5],
+                                                   $re[6],$re[7], $re[8],
+                                                   $re[9],$re[10], null,null,$re[12],$re[13],null,$re[14]);
+                }
+        }
+        echo $conexion->error;
+        mysqli_close($conexion);
+     return   $resultado;
+    }
 }
 
 ?>

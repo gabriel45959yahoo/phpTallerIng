@@ -64,6 +64,7 @@ class ABMAlumno{
 
       return $resultado;
     }
+
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private

@@ -8,6 +8,9 @@ include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
 include '../model/entities/AlumnoEntity.php';
 include '../model/entities/TipoPagoEntity.php';
+include '../model/entities/DetallePagoEntity.php';
+include '../model/entities/PagoRealizadoEntity.php';
+include '../model/entities/EstadoPlan.php';
 include '../model/entities/ApadrinajeEntity.php';
 include '../model/entities/PorcLibOcup.php';
 include '../control/ConsultarController.php';
@@ -51,12 +54,30 @@ function buscarPadrinosVinculados(){
 }
 
 function listarPlanes(){
-      $consultarController = new ConsultarController();
+    $consultarController = new ConsultarController();
 
     echo $consultarController->listarPlanes();
 }
+function listaPlanCompletadoPadrino(){
+     $consultarController = new ConsultarController();
 
+    echo $consultarController->listaPlanCompletadoPadrino();
+}
+function buscarHistoricoPadrinosVinculados(){
+    $consultarController = new ConsultarController();
 
+    echo $consultarController->buscarHistoricoPadrinosVinculados();
+}
+function buscarAhijadosdelPadrino(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->buscarAhijadosdelPadrino($_POST['idPadrino']);
+}
+function detallePagosPadrinos(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->detallePagosPadrinos($_POST['idVinculado'],$_POST['fechaDesde'],$_POST['fechaHasta']);
+}
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -100,6 +121,22 @@ if (! isset($_SESSION['session'])) {
                  // para pantalla vincular (para desvincular)
                  case "Planes":
                     listarPlanes();
+                    break;
+                  // para pantalla home
+                 case "listaPlanCompletadoPadrino":
+                    listaPlanCompletadoPadrino();
+                    break;
+                  // para pantalla historicos de padrinos y detalles de pago
+                 case "buscarHistoricoVinculados":
+                    buscarHistoricoPadrinosVinculados();
+                    break;
+                  // para pantalla historicos de padrinos
+                 case "buscarAhijadosdelPadrino":
+                    buscarAhijadosdelPadrino();
+                    break;
+                // para pantalla detalles de pago
+                 case "detallePagosPadrinos":
+                    detallePagosPadrinos();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

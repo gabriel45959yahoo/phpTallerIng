@@ -32,7 +32,7 @@
 
     <link rel="shortcut icon" href="../resource/images/logo_icon.ico">
 
-    <title>Listar Padrinos y sus Ahijados</title>
+    <title>Vinculaciones activas</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--Menu-->
@@ -66,16 +66,9 @@
     <!-- ----------------------------------------------------------------->
 
 
-    <!-- rango de fechas -->
-    <script type="text/javascript" src="/resource/js/moment_RangoFechas.min.js"></script>
-    <script type="text/javascript" src="/resource/js/daterangepicker_RangoFechas.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resource/css/daterangepicker_RangoFechas.css" />
-    <script src="/resource/js/scriptRangoFecha.js"></script>
-    <!-- ----------------------------------------------------------------->
 
     <script src="/resource/js/scriptListarPadrinoAhijado.js"></script>
 
-    <link rel="stylesheet" href="/resource/css/estilo-progressBar.css">
 
 </head>
 
@@ -85,19 +78,13 @@
     <header id="menuid">
 
     </header>
+
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">Listar Padrinos y sus Ahijados</h1>
-
+            <h1 class="text-center">Vinculaciones activas</h1>
         </div>
-
     </div>
     <div class="contenedor">
-        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 30%">
-            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-            <span></span> <b class="caret"></b>
-        </div>
-
         <div class="table-responsive">
             <table id="PadrinosAhijado" class="table table-hover filas" cellspacing="0" width="100%">
                 <thead>
@@ -113,11 +100,9 @@
                         <th class="text-center">Alumno Nombre</th>
                         <th class="text-center">Alumno Apellido</th>
                         <th class="text-center">Alumno Curso</th>
-                        <th class="text-center">Porcentaje</th>
                     </tr>
                 </thead>
             </table>
-
         </div>
 
         <br>

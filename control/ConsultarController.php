@@ -11,7 +11,6 @@ class ConsultarController{
     function buscarAllPadrinoLibres(){
          $padrinoSingleton = ABMPadrino::singleton_Padrino();
 
-        // accedemos al método cargar padrino
         $restPadrino = $padrinoSingleton->buscarPadrinosLibres(null);
          
         if(count($restPadrino)==0){
@@ -99,7 +98,47 @@ class ConsultarController{
         }
 
     }
+    function listaPlanCompletadoPadrino(){
+         $pagosSingleton = ABMPagos::singleton_Pagos();
+                // accedemos al método cargar padrino
+        $rest = $pagosSingleton->listaPlanCompletadoPadrino();
+        if(count($rest)==0){
+            return "sin datos";
+        }else{
+            return json_encode($rest);
+        }
+    }
+    function buscarHistoricoPadrinosVinculados(){
+         $padrinoSingleton = ABMPadrino::singleton_Padrino();
 
+        // accedemos al método cargar padrino
+        $restPadrino = $padrinoSingleton->buscarHistoricoPadrinosVinculados();
+        if(count($restPadrino)==0){
+            return "Error: No se encontraron padrinos";
+        }else{
+            return json_encode($restPadrino);
+        }
+    }
+    function buscarAhijadosdelPadrino($idPadrino){
+
+         $apadrinajeSingleton = ABMApadrinaje::singleton_Apadrinaje();
+
+        // accedemos al método cargar padrino
+        $rest = $apadrinajeSingleton->buscarAhijadosdelPadrino($idPadrino);
+        if(count($rest)==0){
+            return "Error: No se encontraron Alumnos";
+        }else{
+            return json_encode($rest);
+        }
+    }
+    function detallePagosPadrinos($idVinculado,$fechaDesde,$fechaHasta){
+         $pagosSingleton = ABMPagos::singleton_Pagos();
+
+        $rest = $pagosSingleton->detallePagosPadrinos($idVinculado,$fechaDesde,$fechaHasta);
+
+            return json_encode($rest);
+
+    }
 }
 
 ?>

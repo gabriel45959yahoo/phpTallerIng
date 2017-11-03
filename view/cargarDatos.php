@@ -6,6 +6,7 @@ use model\entities\PlanPactadoEntity as PlanPactadoEntity;
 use model\entities\ApadrinajeEntity as ApadrinajeEntity;
 use model\entities\PagoRealizadoEntity as PagoRealizadoEntity;
 use model\entities\DetallePagoEntity as DetallePagoEntity;
+use model\entities\ObsVincularEntity as ObsVincularEntity;
 
 include '../model/entities/PadrinoEntity.php';
 include '../model/entities/AlumnoEntity.php';
@@ -15,6 +16,7 @@ include '../model/entities/PlanPactadoEntity.php';
 include '../model/entities/ApadrinajeEntity.php';
 include '../model/entities/PagoRealizadoEntity.php';
 include '../model/entities/DetallePagoEntity.php';
+include '../model/entities/ObsVincularEntity.php';
 include '../control/CargarController.php';
 
 
@@ -73,7 +75,7 @@ function cargarApadrinaje(){
 }
 function desvincular(){
     $cargarController = new CargarController();
-        echo $cargarController->cancelarVinculacion($_POST['desvincular']);
+        echo $cargarController->cancelarVinculacion($_POST['desvincular'],new ObsVincularEntity($_POST['desvincular'],$_POST['DesvincularObs']));
 }
 function cargarPago(){
     $cargarController = new CargarController();

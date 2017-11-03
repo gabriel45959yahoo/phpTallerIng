@@ -42,8 +42,7 @@ if(!isset($_SESSION['session']))
          '</ul></li>'.
          '<li><a href="/view/CargarPago.html">Pagos</a></li>'.
          '<li><a href="/view/AdministrarUsuario.html">Administrar Usuarios</a></li>'.
-         '<li><a href="#">Listados</a></li>'.
-         '<li><a href="/view/Vincular.html">Vincular</a></li>'.'</ul>';
+         '<li><a href="/view/Vincular.html">Vincular</a></li>';
     }else{
         $menu=$menu.'<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Cargar </a>'.
@@ -51,11 +50,24 @@ if(!isset($_SESSION['session']))
          '<li><a href="/view/CargarAlumno.html">Alumno</a></li>'.
          '<li><a href="/view/CargarPadrino.html">Padrino</a></li>'.
          '</ul></li>'.
-         '<li><a href="#">Listados</a></li>'.
-         '<li><a href="/view/Vincular.html">Vincular</a></li>'.'</ul>';
+         '<li><a href="/view/Vincular.html">Vincular</a></li>';
     }
 
-    $menu=$menu.'<ul class="nav navbar-nav navbar-right">'.
+    $menu=$menu.'<li class="dropdown">'.
+         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados </a>'.
+         '<ul class="dropdown-menu">'.
+         '<li><a href="/view/ListarPadrinoAhijado.html">Vinculaciones activas</a></li>'.
+         '<li><a href="">Detalle de Padrinos</a></li>'.
+         '<li><a href="/view/GraficoVinculados.html">Gr&aacute;fico de Vinculados</a></li>'.
+         '</ul></li>'.
+         '<li class="dropdown">'.
+         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes </a>'.
+         '<ul class="dropdown-menu">'.
+         '<li><a href="/view/HistoricoVinculados.html">Historico de Vinculaci&oacute;n</a></li>'.
+         '<li><a href="/view/DetalleDePagos.html">Detalle de pagos</a></li>'.
+         '</ul></li>'.
+         '</ul>'.
+         '<ul class="nav navbar-nav navbar-right">'.
          '<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">&nbsp;</span>'.$usuario.'</a>'.
          '<ul class="dropdown-menu">'.
@@ -65,7 +77,7 @@ if(!isset($_SESSION['session']))
           '</ul>'.
          '</div></div></nav>';
 
-
+//GraficoVinculados.html
     $response = $menu;
 }
 //json_encode(array('response' => $response))
