@@ -1,35 +1,35 @@
 <?php
-include '../model/dao/DaoApadrinajeImpl.php';
-use model\entities\ApadrinajeEntity as ApadrinajeEntity;
+include '../model/dao/DaoVincularImpl.php';
+use model\entities\VincularEntity as VincularEntity;
 
-class ABMApadrinaje{
+class ABMVincular{
 
 
-      private static $instanciaApadrinaje;
+      private static $instanciaVincular;
     /**
      * esto es para que no se cree mas de una vez la clase
      * @return [[Type]] [[Description]]
      */
-    public static function singleton_Apadrinaje()
+    public static function singleton_Vincular()
     {
 
-        if (!isset(self::$instanciaApadrinaje)) {
+        if (!isset(self::$instanciaVincular)) {
 
-            $miclaseApadrinaje = __CLASS__;
-            self::$instanciaApadrinaje = new $miclaseApadrinaje;
+            $miclaseVincular = __CLASS__;
+            self::$instanciaVincular = new $miclaseVincular;
 
         }
 
-        return self::$instanciaApadrinaje;
+        return self::$instanciaVincular;
 
     }
 
 
-    function asociar($apadrinaje){
+    function asociar($vincular){
       try{
-        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
+        $daoVincular= new model\dao\DaoVincularImpl();
 
-        $res=$daoApadrinaje->insert($apadrinaje);
+        $res=$daoVincular->insert($vincular);
 
         if($res=="OK"){
                 return 0;
@@ -43,9 +43,9 @@ class ABMApadrinaje{
     }
     function anularVinculacion($idVinculacion){
       try{
-        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
+        $daoVincular= new model\dao\DaoVincularImpl();
 
-        $res=$daoApadrinaje->desvincular($idVinculacion);
+        $res=$daoVincular->desvincular($idVinculacion);
 
         if($res=="OK"){
                 return 0;
@@ -60,9 +60,9 @@ class ABMApadrinaje{
     }
     function buscarAsociacion($obj){
      try{
-        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
+        $daoVincular= new model\dao\DaoVincularImpl();
 
-        return $daoApadrinaje->select($obj);
+        return $daoVincular->select($obj);
 
 
        }catch (Exception $e) {
@@ -74,9 +74,9 @@ class ABMApadrinaje{
     }
     function listarPadrinoAhijado(){
       try{
-        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
+        $daoVincular= new model\dao\DaoVincularImpl();
 
-        return $daoApadrinaje->listaPadrinoAhijado();
+        return $daoVincular->listaPadrinoAhijado();
 
 
        }catch (Exception $e) {
@@ -85,9 +85,9 @@ class ABMApadrinaje{
     }
     public function buscarAhijadosdelPadrino($idPadrino){
       try{
-        $daoApadrinaje= new model\dao\DaoApadrinajeImpl();
+        $daoVincular= new model\dao\DaoVincularImpl();
 
-        return $daoApadrinaje->buscarAhijadosdelPadrino($idPadrino);
+        return $daoVincular->buscarAhijadosdelPadrino($idPadrino);
 
 
        }catch (Exception $e) {

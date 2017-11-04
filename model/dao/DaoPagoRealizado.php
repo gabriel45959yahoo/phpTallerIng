@@ -3,7 +3,7 @@ namespace model\dao;
 use model\entities\TipoPagoEntity as TipoPagoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
 use model\entities\PadrinoEntity as PadrinoEntity;
-use model\entities\ApadrinajeEntity as ApadrinajeEntity;
+use model\entities\VincularEntity as VincularEntity;
 use model\entities\EstadoPlan as EstadoPlan;
 use model\entities\DetallePagoEntity as DetallePagoEntity;
 use model\entities\PagoRealizadoEntity as PagoRealizadoEntity;
@@ -13,8 +13,8 @@ class DaoPagoRealizado implements DaoObject{
     public function insert($obj){
 
           $conexion = DaoConnection::connection();
-        //$id,$montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$fechaRegistro,$idUsuario
-        $sql="INSERT INTO pago_realizado(pr_monto_pago, pr_id_detalle_pago, pr_id_apadrinaje, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario) VALUES ('$obj->montoPago','$obj->idDetallePago','$obj->idApadrinaje','$obj->idFechaPago',date_add(sysdate(), INTERVAL -3 hour),'$obj->idUsuario')";
+        //$id,$montoPago,$idDetallePago,$idVincular,$idFechaPago,$fechaRegistro,$idUsuario
+        $sql="INSERT INTO pago_realizado(pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario) VALUES ('$obj->montoPago','$obj->idDetallePago','$obj->idVincular','$obj->idFechaPago',date_add(sysdate(), INTERVAL -3 hour),'$obj->idUsuario')";
 
 
         if ($conexion->query($sql) === TRUE) {
@@ -35,9 +35,9 @@ class DaoPagoRealizado implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
         if($obj!=null){
-            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_apadrinaje, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM pago_realizado WHERE 1";
+            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM pago_realizado WHERE 1";
         }else{
-            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_apadrinaje, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM pago_realizado;";
+            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM pago_realizado;";
         }
         $result = mysqli_query($conexion, $sql);
 
@@ -81,7 +81,7 @@ class DaoPagoRealizado implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
 
-        $sql="SELECT apa_id,".
+        $sql="SELECT vin_id,".
             "pa.pa_id, ".
             "pa.pa_nombre,".
             "pa.pa_apellido,".
@@ -94,16 +94,21 @@ class DaoPagoRealizado implements DaoObject{
             "alu.alu_alias,".
             "alu.alu_cursado,".
             "ifnull(TRUNCATE(sum(pr.pr_monto_pago)*100/pp.pp_monto_total,2),0) as porcentajePagado, ".
-            "ifnull(count(pr.pr_id_apadrinaje),0) as cuotasPagas, ".
+            "ifnull(count(pr.pr_id_vincular),0) as cuotasPagas, ".
             "ifnull(DATE_FORMAT(max(pr.pr_id_fecha_pago), '%d/%m/%Y'),'-/-/-') as fechaUltimaPaga ".
-            "FROM pago_realizado pr RIGHT JOIN plan_pactado pp on(pr.pr_id_apadrinaje=pp.pp_pa_id) ".
-            "LEFT JOIN Apadrinaje apa on(apa.apa_id=pp.pp_pa_id) ".
-            "INNER JOIN Padrino pa on(apa.apa_id_padrino=pa.pa_id) ".
-            "INNER JOIN Alumno alu on(apa.apa_id_ahijado=alu.alu_id) ".
-            "where apa.apa_fecha_baja is null ".
-            "group by apa.apa_id;";
+            "FROM pago_realizado pr RIGHT JOIN plan_pactado pp on(pr.pr_id_vincular=pp.pp_pa_id) ".
+            "LEFT JOIN Vincular vin on(vin.vin_id=pp.pp_pa_id) ".
+            "INNER JOIN Padrino pa on(vin.vin_id_padrino=pa.pa_id) ".
+            "INNER JOIN Alumno alu on(vin.vin_id_ahijado=alu.alu_id) ".
+            "where vin.vin_fecha_baja is null ".
+            "group by vin.vin_id;";
 
           $result = mysqli_query($conexion, $sql);
+
+        if(empty($result)){
+            return   $resultado;
+        }
+
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
@@ -117,11 +122,12 @@ class DaoPagoRealizado implements DaoObject{
                 //$porcentajePagado,$cuotasPagas,$fechaUltimaPaga
                 $pagoCompletado= new EstadoPlan($re[12],$re[13], $re[14]);
                 //$id,$idPadrino,$idAlumno,$seConocen,$observaciones,$fechaAlta,$fechaBaja
-                $vinculardos=new ApadrinajeEntity($re[0],$padrino,$alu,null,null,null,null);
+                $vinculardos=new VincularEntity($re[0],$padrino,$alu,null,null,null,null);
                 $vinculardos->estadoPlanPactado=$pagoCompletado;
                 $resultado['data'][]= $vinculardos;
                 }
         }
+
         echo $conexion->error;
         mysqli_close($conexion);
      return   $resultado;
@@ -142,28 +148,30 @@ class DaoPagoRealizado implements DaoObject{
             "dp.dp_descripcion ".
             "FROM pago_realizado pr ".
             "LEFT JOIN detalle_pago dp ON(dp.dp_id=pr.pr_id_detalle_pago) ".
-            "RIGHT JOIN plan_pactado pp on(pr.pr_id_apadrinaje=pp.pp_pa_id) ".
-            "RIGHT JOIN Apadrinaje apa on(apa.apa_id=pp.pp_pa_id) ".
+            "RIGHT JOIN plan_pactado pp on(pr.pr_id_vincular=pp.pp_pa_id) ".
+            "RIGHT JOIN Vincular vin on(vin.vin_id=pp.pp_pa_id) ".
             "LEFT JOIN tipo_pagos tp ON(tp.tp_id=dp.dp_tipo_pago) ".
-            "where apa.apa_id='$idVinculado' ".
+            "where vin.vin_id='$idVinculado' ".
             "and pr.pr_id_fecha_pago BETWEEN STR_TO_DATE('$fechaDesde', '%d/%m/%Y') and STR_TO_DATE('$fechahasta', '%d/%m/%Y')".
-            "ORDER BY apa.apa_id ASC ";
+            "ORDER BY vin.vin_id ASC ";
 
           $result = mysqli_query($conexion, $sql);
-      // if (mysqli_num_rows($result) > 0) {
-            // output data of each row
+
+       if(empty($result)){
+            return   $resultado;
+        }
             while($re = mysqli_fetch_row($result)) {
                 $re = array_map('utf8_encode',$re);
 
                 //$idTipoPago,$facturaAcreditaPago,$comprobanteAcreditaPago,$descripcion)
                 $detallePago=new DetallePagoEntity(new TipoPagoEntity($re[5],$re[6]),$re[7],$re[8],$re[9]);
 
-                 //$id,$montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$fechaRegistro,$idUsuario
+                 //$id,$montoPago,$idDetallePago,$idVincular,$idFechaPago,$fechaRegistro,$idUsuario
                 $PagoRealizado=new PagoRealizadoEntity(null,$re[0],$detallePago,$idVinculado,$re[1],$re[2],$re[3]);
 
                 $resultado['data'][]= $PagoRealizado;
                 }
-      //  }
+
         echo $conexion->error;
         mysqli_close($conexion);
      return   $resultado;

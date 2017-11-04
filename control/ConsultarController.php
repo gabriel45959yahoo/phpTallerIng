@@ -1,7 +1,7 @@
 <?php
 include '../model/ABMPadrino.php';
 include '../model/ABMAlumno.php';
-include '../model/ABMApadrinaje.php';
+include '../model/ABMVincular.php';
 include '../model/ABMDatosFactura.php';
 include '../model/ABMPagos.php';
 include '../model/ABMPlanPactado.php';
@@ -34,10 +34,10 @@ class ConsultarController{
 
     }
     function listarPadrinoAhijado(){
-        $apadrinajeSingleton = ABMApadrinaje::singleton_Apadrinaje();
+        $vincularSingleton = ABMVincular::singleton_Vincular();
 
         // accedemos al método cargar padrino
-        $rest = $apadrinajeSingleton->listarPadrinoAhijado(null);
+        $rest = $vincularSingleton->listarPadrinoAhijado(null);
         if(count($rest)==0){
             return "Error: No se encontraron padrinos";
         }else{
@@ -102,11 +102,9 @@ class ConsultarController{
          $pagosSingleton = ABMPagos::singleton_Pagos();
                 // accedemos al método cargar padrino
         $rest = $pagosSingleton->listaPlanCompletadoPadrino();
-        if(count($rest)==0){
-            return "sin datos";
-        }else{
-            return json_encode($rest);
-        }
+
+        return json_encode($rest);
+
     }
     function buscarHistoricoPadrinosVinculados(){
          $padrinoSingleton = ABMPadrino::singleton_Padrino();
@@ -121,10 +119,10 @@ class ConsultarController{
     }
     function buscarAhijadosdelPadrino($idPadrino){
 
-         $apadrinajeSingleton = ABMApadrinaje::singleton_Apadrinaje();
+         $vincularSingleton = ABMVincular::singleton_Vincular();
 
         // accedemos al método cargar padrino
-        $rest = $apadrinajeSingleton->buscarAhijadosdelPadrino($idPadrino);
+        $rest = $vincularSingleton->buscarAhijadosdelPadrino($idPadrino);
         if(count($rest)==0){
             return "Error: No se encontraron Alumnos";
         }else{
