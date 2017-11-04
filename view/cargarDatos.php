@@ -3,7 +3,7 @@ session_start();
 use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
 use model\entities\PlanPactadoEntity as PlanPactadoEntity;
-use model\entities\ApadrinajeEntity as ApadrinajeEntity;
+use model\entities\VincularEntity as VincularEntity;
 use model\entities\PagoRealizadoEntity as PagoRealizadoEntity;
 use model\entities\DetallePagoEntity as DetallePagoEntity;
 use model\entities\ObsVincularEntity as ObsVincularEntity;
@@ -13,7 +13,7 @@ include '../model/entities/AlumnoEntity.php';
 include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
 include '../model/entities/PlanPactadoEntity.php';
-include '../model/entities/ApadrinajeEntity.php';
+include '../model/entities/VincularEntity.php';
 include '../model/entities/PagoRealizadoEntity.php';
 include '../model/entities/DetallePagoEntity.php';
 include '../model/entities/ObsVincularEntity.php';
@@ -61,16 +61,16 @@ function cargarAlumno(){
 }
 
 
-function cargarApadrinaje(){
+function cargarVincular(){
     $cargarController = new CargarController();
 
     if($_POST['idPadrino']==''||$_POST['idAlumno']==''){
         echo "Error: faltan los datos del Alumno ó el Padrino";
     }else{
         //$idPadrino,$idAlumno,$seConocen,$observaciones
-        $apadrinar = new ApadrinajeEntity($_POST['idPadrino'],$_POST['idAlumno'],$_POST['seConocen'],$_POST['observacion']);
+        $apadrinar = new VincularEntity($_POST['idPadrino'],$_POST['idAlumno'],$_POST['seConocen'],$_POST['observacion']);
 
-        echo $cargarController->apadrinar($apadrinar);
+        echo $cargarController->vincular($apadrinar);
     }
 }
 function desvincular(){
@@ -84,7 +84,7 @@ function cargarPago(){
     $detallePago =new DetallePagoEntity($_POST['tipoPago'],$_POST['nroFactura'],$_POST['comprobante'],$_POST['observaciones']);
 
 
-    //$montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$idUsuario
+    //$montoPago,$idDetallePago,$idVincular,$idFechaPago,$idUsuario
     $pagoRealizado =new PagoRealizadoEntity($_POST['monto'],null,$_POST['vincular'],$_POST['fechaPago'],$_SESSION['session']);
 
 
@@ -115,7 +115,7 @@ if (! isset($_SESSION['session'])) {
                     cargarPadrino();
                     break;
                 case "Apadrinar":
-                    cargarApadrinaje();
+                    cargarVincular();
                     break;
                  case "DesvincularPadrinoAlumno":
                     desvincular();

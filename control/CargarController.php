@@ -13,7 +13,7 @@ include '../model/ABMPadrino.php';
 include '../model/ABMAlumno.php';
 include '../model/ABMDatosFactura.php';
 include '../model/ABMPlanPactado.php';
-include '../model/ABMApadrinaje.php';
+include '../model/ABMVincular.php';
 include '../model/ABMPagos.php';
 include '../model/ABMObsVincular.php';
 
@@ -102,17 +102,17 @@ class CargarController {
         
     }
 
-    function apadrinar($apadrinar) {
-        $apadrinarSingleton = ABMApadrinaje::singleton_Apadrinaje();
+    function vincular($vincular) {
+        $vincularSingleton = ABMVincular::singleton_Vincular();
         $ObsVincularSingleton = ABMObsVincular::singleton_ObsVincular();
         $rest = 1;
-        $rest = $apadrinarSingleton->asociar($apadrinar);
+        $rest = $vincularSingleton->asociar($vincular);
 
 
         if ($rest == 0) {
-            if($apadrinar->observaciones!=''){
-                $restVinculacion = $apadrinarSingleton->buscarAsociacion($apadrinar);
-                $rest = $ObsVincularSingleton->cargarObs(new ObsVincularEntity($restVinculacion[0]->id,$apadrinar->observaciones));
+            if($vincular->observaciones!=''){
+                $restVinculacion = $vincularSingleton->buscarAsociacion($vincular);
+                $rest = $ObsVincularSingleton->cargarObs(new ObsVincularEntity($restVinculacion[0]->id,$vincular->observaciones));
             }
             if ($rest == 0) {
                 return "Se realizo la vnculación correctamente.";
@@ -126,7 +126,7 @@ class CargarController {
 
     function cancelarVinculacion($idVinculacion,$observaciones) {
 
-         $apadrinarSingleton = ABMApadrinaje::singleton_Apadrinaje();
+         $vincularSingleton = ABMVincular::singleton_Vincular();
          $ObsVincularSingleton = ABMObsVincular::singleton_ObsVincular();
          $rest = 1;
          if($observaciones->observaciones==''){
@@ -137,7 +137,7 @@ class CargarController {
 
          if ($rest == 0) {
 
-            $rest = $apadrinarSingleton->anularVinculacion($idVinculacion);
+            $rest = $vincularSingleton->anularVinculacion($idVinculacion);
 
             if ($rest == 0) {
                 return "Se realizo la desvinculacón correctamente.";

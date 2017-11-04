@@ -33,22 +33,27 @@ function cargaDatosChosen() {
                 var n = contentJson.length;
                 var tds='';
                 var tds = '<optgroup label="Nombres y Apellidos" class="chosen-group">';
+                 tds += '<optgroup label="Padrinos" class="chosen-group">';
                 for (var i = 0; i <= n - 1; i++) {
-                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.nombre + ' ' + contentJson[i].idPadrino.apellido + '</option>';
-                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idAlumno.nombre + ' ' + contentJson[i].idAlumno.apellido + '</option>';
+                    tds += '<option value="' + i + '" class="chosen-option">'+ contentJson[i].idPadrino.alia + ', ' + contentJson[i].idPadrino.nombre + ' ' + contentJson[i].idPadrino.apellido + '</option>';
                 }
-                 tds += '</optgroup>';
+                tds += '</optgroup>';
+
+                tds += '<optgroup label="Ahijados" class="chosen-group">';
+                for (var i = 0; i <= n - 1; i++) {
+                    tds += '<option value="' + i + '" class="chosen-option">'+ contentJson[i].idAlumno.alias + ', ' + contentJson[i].idAlumno.nombre + ' ' + contentJson[i].idAlumno.apellido + '</option>';
+                }
+                tds += '</optgroup>';
+
                  $("#schedule_event").append(tds);
-                tds='';
+               /* tds='';
                 tds = '<optgroup label="Apodos"  class="chosen-group">';
                 for (var i = 0; i <= n - 1; i++) {
                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.alia + '</option>';
                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idAlumno.alias + '</option>';
-
-
                 }
                  tds += '</optgroup>';
-                 $("#schedule_event").append(tds);
+                 $("#schedule_event").append(tds);*/
                 $("#schedule_event").trigger("chosen:updated");
             } else {
                 //tipo,titulo,mensaje
@@ -80,7 +85,7 @@ $(function () {
         }
     });
     $("#tipoPago").change(function (evt, params) {
-        check("info", "", 'selected: ' + $(this).val());
+
         tipoPagoSelect = $(this).val();
     });
     $("#cargaPago").click(function () {

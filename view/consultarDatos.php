@@ -2,7 +2,7 @@
 session_start();
 use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
-use model\entities\ApadrinajeEntity as ApadrinajeEntity;
+use model\entities\VincularEntity as VincularEntity;
 include '../model/entities/PadrinoEntity.php';
 include '../model/entities/DomicilioEntity.php';
 include '../model/entities/DatosFactEntity.php';
@@ -11,7 +11,7 @@ include '../model/entities/TipoPagoEntity.php';
 include '../model/entities/DetallePagoEntity.php';
 include '../model/entities/PagoRealizadoEntity.php';
 include '../model/entities/EstadoPlan.php';
-include '../model/entities/ApadrinajeEntity.php';
+include '../model/entities/VincularEntity.php';
 include '../model/entities/PorcLibOcup.php';
 include '../control/ConsultarController.php';
 

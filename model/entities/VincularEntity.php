@@ -1,7 +1,7 @@
 <?php
 namespace model\entities;
 
-class ApadrinajeEntity{
+class VincularEntity{
     var $id;
     var $idPadrino;
     var $idAlumno;
