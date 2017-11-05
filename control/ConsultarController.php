@@ -49,11 +49,9 @@ class ConsultarController{
         $datosFactSingleton = model\ABMDatosFactura::singleton_DatosFactura();
                 // accedemos al método cargar padrino
         $restPadrino = $datosFactSingleton->buscarDomFactPorPadrino($idPadrino);
-        if(count($restPadrino)==0){
-            return "sin datos";
-        }else{
+
             return json_encode($restPadrino);
-        }
+
     }
     function listarTipoPago(){
          $pagosSingleton = ABMPagos::singleton_Pagos();

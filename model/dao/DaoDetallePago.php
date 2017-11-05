@@ -32,9 +32,10 @@ public function insert($obj){
         if($obj!=null){
             $sql="SELECT dp_id, dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion FROM detalle_pago WHERE ".
             (($obj->idTipoPago==null)?" ":" dp_tipo_pago='$obj->idTipoPago' ").
-            (($obj->facturaAcreditaPago==null)?" ":"and dp_factura_acredita_pago='$obj->facturaAcreditaPago' ");
+            (($obj->facturaAcreditaPago==null)?" ":"and dp_factura_acredita_pago='$obj->facturaAcreditaPago' ").
+            " order by dp_id desc";
         }else{
-            $sql="SELECT dp_id, dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion FROM detalle_pago;";
+            $sql="SELECT dp_id, dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion FROM detalle_pago order by dp_id desc;";
         }
         $result = mysqli_query($conexion, $sql);
 

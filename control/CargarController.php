@@ -84,7 +84,11 @@ class CargarController {
          $pagosSingleton = ABMPagos::singleton_Pagos();
          $rest= 1;
 
-         if ($detallePago->idTipoPago == '' || $detallePago->facturaAcreditaPago == '' || $detallePago->comprobanteAcreditaPago == '' || $pagoRealizado->montoPago==''||$pagoRealizado->idFechaPago =='') {
+         if ($detallePago->idTipoPago != 4 && ( $detallePago->facturaAcreditaPago == '' || $detallePago->comprobanteAcreditaPago == '' || $pagoRealizado->montoPago==''||$pagoRealizado->idFechaPago =='')) {
+            return "Error: Faltan datos de completar ";
+        }
+
+        if ($detallePago->idTipoPago == 4 && ( $detallePago->facturaAcreditaPago == '' || $pagoRealizado->montoPago==''||$pagoRealizado->idFechaPago =='')) {
             return "Error: Faltan datos de completar ";
         }
 

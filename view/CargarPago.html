@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="CHANGE-ME">
     <link rel="icon" sizes="192x192" href="../resource/images/logo_icon.ico">
 
@@ -12,7 +13,7 @@
     <script src="../resource/js/chosen.js"></script>
     <script src="../resource/js/scriptPagos.js"></script>
 
-     <!--Menu-->
+    <!--Menu-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/resource/css/estilos-alertas-toast.css">
     <link rel="stylesheet" href="/resource/css/estilo-menu.css">
@@ -26,10 +27,28 @@
     <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
     <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
     <link rel="stylesheet" href="../resource/css/estilo-chosen.css" />
+
+    <!-- rango de fechas -->
+    <script type="text/javascript" src="/resource/js/moment_RangoFechas.min.js"></script>
+    <script type="text/javascript" src="/resource/js/daterangepicker_RangoFechas.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resource/css/daterangepicker_RangoFechas.css" />
+    <script src="/resource/js/scriptSingleFechaPago.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resource/css/estilos-datepicker-fecha.css" />
+    <!-- ----------------------------------------------------------------->
+
+    <!-- Data Tables ----------------------------------------------------->
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
+    <!-- ----------------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" href="/resource/css/estilos-cargarPagos.css" />
 </head>
 
 <body>
-     <!--Menu-->
+    <!--Menu-->
     <header id="menuid">
 
     </header>
@@ -54,8 +73,8 @@
                         </div>
                     </div>
                     <div class="">
-                       <br>
-                       <br>
+                        <br>
+                        <br>
                         <h3>Datos del Padrino</h3>
                     </div>
                     <div class="panelEntrada">
@@ -88,17 +107,19 @@
                     </div>
                     <div class="panelEntrada">
                         <div class="panelInterno col-md-12">
-                            <table id="tablaDatosFacturacion" class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>DNI</th>
-                                        <th>Cuil/Cuit</th>
-                                        <th>Calle</th>
-                                        <th>Altura</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <div class="table-responsive">
+                                <table id="datosfacturacion" class="table table-hover filas" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="table-inverse">
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">DNI</th>
+                                            <th class="text-center">Cuil/Cuit</th>
+                                            <th class="text-center">calle</th>
+                                            <th class="text-center">Altura</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="">
@@ -118,11 +139,23 @@
                             <br>
                             <br>
                             <br>
-                            <p>Monto<input type="text" name="monto" required placeholder="Ingrese monto" /></p>
-                            <p>Fecha de pago<input type="date" name="fechaPago" required /></p>
+
+
+                            <div class="col-md-12 div-label-div-datepicker">
+                                <label class="label-datepicker">Fecha de Pago:</label>
+                                <div id="singleFechaPago" class="div-datepicker">
+                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                    <span class="span-text-responsive"></span> <b class="caret"></b>
+                                </div>
+                                <br>
+
+                            </div>
+                            <br> <br>
+                            <p>Monto<input type="text" name="monto" required placeholder="Ingrese monto" pattern="[0-9]"/></p>
                             <p>N&uacute;mero de factura generada por la fundaci&oacute;n <input type="texta" name="nroFactura" pattern="[0-9]" placeholder="Ingrese número de factura" /></p>
-                            <p>Comprobante de pago<input type="text" name="comprobante" required placeholder="Ingrese comprobante" /></p>
-                            <p>Observaciones <input type="text" name="observaciones" /></p>
+                            <p>Comprobante de pago<input type="text" name="comprobante" placeholder="Ingrese comprobante" /></p>
+                            <p><label for="DesvincularObs">Observaciones:</label>
+                                <textarea class="form-control" rows="3" id="observaciones"></textarea></p>
                         </div>
 
 
@@ -139,4 +172,5 @@
         </form>
     </div>
 </body>
+
 </html>

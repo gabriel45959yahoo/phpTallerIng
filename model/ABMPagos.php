@@ -53,9 +53,8 @@ public function cargarPago($detallePago,$pagoRealizado){
         $rest = $daoDetallePago->insert($detallePago);
 
         if($rest=="OK"){
+
            $pagoRealizado->idDetallePago= $daoDetallePago->select($detallePago)[0]->id;
-        }else{
-            return $rest;
         }
 
 

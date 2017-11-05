@@ -73,16 +73,20 @@ class DaoDatosFactImpl implements DaoObject{
       //  echo $sql;
 
         $result = mysqli_query($conexion, $sql);
-       if (mysqli_num_rows($result) > 0) {
+
+        if(empty($result)){
+            return   $resultado;
+        }
+
+
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
                 $re = array_map('utf8_encode',$re);
                      //$id,$calle,$numero,$piso,$depto,$provincia,$ciudad
-                    $domi = new DomicilioEntity($re[6],$re[7], (int) $re[8], $re[9], $re[10], $re[11], $re[12]);
+                    $domi = new DomicilioEntity($re[6],$re[7], $re[8], $re[9], $re[10], $re[11], $re[12]);
                     //$id,$nombre,$apellido,$dni,$cuil,$domicilio,$fechaAlta,$idPadrino
-                    $resultado[] = new DatosFactEntity($re[0],$re[1],$re[2],$re[3],$re[4],$domi,$re[5],null);
+                    $resultado["data"][] = new DatosFactEntity($re[0],$re[1],$re[2],($re[3]==0)?"-":$re[3],($re[4]==0)?"-":$re[4],$domi,$re[5],null);
                 }
-        }
 
         mysqli_close($conexion);
      return   $resultado;

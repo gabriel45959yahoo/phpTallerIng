@@ -6,7 +6,7 @@ class PagoRealizadoEntity{
     var $id;
     var $montoPago;
     var $idDetallePago;
-    var $idApadrinaje;
+    var $idVincular;
     var $idFechaPago;
     var $fechaRegistro;
     var $idUsuario;
@@ -27,21 +27,21 @@ function __construct()
 		}
 	}
 
-function __construct7($id,$montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$fechaRegistro,$idUsuario){
+function __construct7($id,$montoPago,$idDetallePago,$idVincular,$idFechaPago,$fechaRegistro,$idUsuario){
 
     $this->id=$id;
     $this->montoPago=$montoPago;
     $this->idDetallePago=$idDetallePago;
-    $this->idApadrinaje=$idApadrinaje;
+    $this->idVincular=$idVincular;
     $this->idFechaPago=$idFechaPago;
     $this->fechaRegistro=$fechaRegistro;
     $this->idUsuario=$idUsuario;
 }
-function __construct5($montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$idUsuario){
+function __construct5($montoPago,$idDetallePago,$idVincular,$idFechaPago,$idUsuario){
 
     $this->montoPago=$montoPago;
     $this->idDetallePago=$idDetallePago;
-    $this->idApadrinaje=$idApadrinaje;
+    $this->idVincular=$idVincular;
     $this->idFechaPago=$idFechaPago;
     $this->idUsuario=$idUsuario;
 }

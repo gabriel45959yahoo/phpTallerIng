@@ -14,10 +14,10 @@ class DaoPagoRealizado implements DaoObject{
 
           $conexion = DaoConnection::connection();
         //$id,$montoPago,$idDetallePago,$idVincular,$idFechaPago,$fechaRegistro,$idUsuario
-        $sql="INSERT INTO pago_realizado(pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario) VALUES ('$obj->montoPago','$obj->idDetallePago','$obj->idVincular','$obj->idFechaPago',date_add(sysdate(), INTERVAL -3 hour),'$obj->idUsuario')";
+        $sql="INSERT INTO pago_realizado(pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario) VALUES ('$obj->montoPago','$obj->idDetallePago','$obj->idVincular',STR_TO_DATE('$obj->idFechaPago', '%d/%m/%Y'),date_add(sysdate(), INTERVAL -3 hour),'$obj->idUsuario')";
 
 
-        if ($conexion->query($sql) === TRUE) {
+        if ($conexion->query($sql) == TRUE) {
             mysqli_commit($conexion);
             mysqli_close($conexion);
 

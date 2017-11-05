@@ -31,29 +31,29 @@ function cargaDatosChosen() {
                 contentJson = JSON.parse(data).data;
                 //check("success", "OK", "Datos recuperados");
                 var n = contentJson.length;
-                var tds='';
+                var tds = '';
                 var tds = '<optgroup label="Nombres y Apellidos" class="chosen-group">';
-                 tds += '<optgroup label="Padrinos" class="chosen-group">';
+                tds += '<optgroup label="Padrinos" class="chosen-group">';
                 for (var i = 0; i <= n - 1; i++) {
-                    tds += '<option value="' + i + '" class="chosen-option">'+ contentJson[i].idPadrino.alia + ', ' + contentJson[i].idPadrino.nombre + ' ' + contentJson[i].idPadrino.apellido + '</option>';
+                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.alia + ', ' + contentJson[i].idPadrino.nombre + ' ' + contentJson[i].idPadrino.apellido + '</option>';
                 }
                 tds += '</optgroup>';
 
                 tds += '<optgroup label="Ahijados" class="chosen-group">';
                 for (var i = 0; i <= n - 1; i++) {
-                    tds += '<option value="' + i + '" class="chosen-option">'+ contentJson[i].idAlumno.alias + ', ' + contentJson[i].idAlumno.nombre + ' ' + contentJson[i].idAlumno.apellido + '</option>';
+                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idAlumno.alias + ', ' + contentJson[i].idAlumno.nombre + ' ' + contentJson[i].idAlumno.apellido + '</option>';
                 }
                 tds += '</optgroup>';
 
-                 $("#schedule_event").append(tds);
-               /* tds='';
-                tds = '<optgroup label="Apodos"  class="chosen-group">';
-                for (var i = 0; i <= n - 1; i++) {
-                   tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.alia + '</option>';
-                   tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idAlumno.alias + '</option>';
-                }
-                 tds += '</optgroup>';
-                 $("#schedule_event").append(tds);*/
+                $("#schedule_event").append(tds);
+                /* tds='';
+                 tds = '<optgroup label="Apodos"  class="chosen-group">';
+                 for (var i = 0; i <= n - 1; i++) {
+                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idPadrino.alia + '</option>';
+                    tds += '<option value="' + i + '" class="chosen-option">' + contentJson[i].idAlumno.alias + '</option>';
+                 }
+                  tds += '</optgroup>';
+                  $("#schedule_event").append(tds);*/
                 $("#schedule_event").trigger("chosen:updated");
             } else {
                 //tipo,titulo,mensaje
@@ -74,10 +74,14 @@ function cargaDatosChosen() {
 $(function () {
     $("#schedule_event").change(function (evt, params) {
         if (params.selected != undefined) {
+            var tableAhijado = $('#datosfacturacion').DataTable();
+            tableAhijado.clear().draw();
+            tableAhijado.destroy();
             //check("info", "", 'selected: ' + contentJson[params.selected].idPadrino.nombre);
             cargarDatosPadrino(params.selected);
             cargarDatosAlumno(params.selected);
             padrinoSeleccionado = params.selected;
+
 
         }
         if (params.deselected != undefined) {
@@ -90,31 +94,39 @@ $(function () {
     });
     $("#cargaPago").click(function () {
 
+        var fechaPago = $('#singleFechaPago span').text();
+        var observaciones = document.getElementById("observaciones").value;
         var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
         $.ajax({
-           type: "POST",
-           url: url,
-           data: $("#formularioPago").serialize()+"&tipo=CargarPago"+"&tipoPago="+tipoPagoSelect+"&vincular="+contentJson[padrinoSeleccionado].id, // Adjuntar los campos del formulario enviado.
-           success: function(data)
-           {
-               if(data.includes("correctamente")){
-                        $("#formularioPago")[0].reset();//limpia el formulario
-                        //tipo,titulo,mensaje
-                       check("success","OK",data);
-                    }else{
-                        //tipo,titulo,mensaje
-                        check("error","Error al cargar los datos",data);
-                    }
+            type: "POST",
+            url: url,
+            data: $("#formularioPago").serialize() + "&tipo=CargarPago" + "&tipoPago=" + tipoPagoSelect + "&vincular=" + contentJson[padrinoSeleccionado].id + "&fechaPago=" + fechaPago + "&observaciones=" + observaciones, // Adjuntar los campos del formulario enviado.
+            success: function (data) {
+                if (data.includes("correctamente")) {
+                    limpiarCampos();
+                    //tipo,titulo,mensaje
+                    check("success", "OK", data);
+                } else {
+                    //tipo,titulo,mensaje
+                    check("error", "Error al cargar los datos", data);
+                }
 
-           }
-         });
+            }
+        });
 
-    return false; // Evitar ejecutar el submit del formulario.
- });
+        return false; // Evitar ejecutar el submit del formulario.
+    });
 });
 
 
-
+function limpiarCampos() {
+    $("#formularioPago")[0].reset(); //limpia el formulario
+    $('.chosen-select').val('');
+    $("#schedule_event").trigger("chosen:updated");
+    var tableAhijado = $('#datosfacturacion').DataTable();
+    tableAhijado.clear().draw();
+    tableAhijado.destroy();
+}
 
 function cargarDatosPadrino(i) {
     $('#Palias').val(contentJson[i].idPadrino.alia);
@@ -134,41 +146,8 @@ function cargarDatosAlumno(i) {
 }
 
 function obtenerDatosFacturacionPadrino(idPadrino) {
-    limpiartablaDomFact();
-    var url = "../view/consultarDatos.php"; // El script a dónde se realizará la petición.
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: "&tipo=ListarDomFactPadrino&idPadrino=" + idPadrino, // Adjuntar los campos del formulario enviado.
-        success: function (data) {
-            if (!data.includes("sin datos")) {
-                // check("success", "OK", data);
-                var contentJsonDomFact = JSON.parse(data);
-                //check("success", "OK", contentJsonDomFact[0].id);
-                var n = contentJsonDomFact.length;
-                if (n > 0) {
-                    var tds = '<tbody> ';
-                    for (var i = 0; i <= n - 1; i++) {
-                        tds = '<tr>';
-                        tds += '<td style="display:none;">' + contentJsonDomFact[i].id + '</td>';
-                        tds += '<td>' + contentJsonDomFact[i].nombre + ' ' + contentJsonDomFact[i].apellido + ' ' + '</td>';
-                        tds += '<td>' + contentJsonDomFact[i].dni + '</td>';
-                        tds += '<td>' + contentJsonDomFact[i].cuil + '</td>';
-                        tds += '<td>' + contentJsonDomFact[i].domicilio.calle + '</td>';
-                        tds += '<td>' + contentJsonDomFact[i].domicilio.numero + '</td>';
-                        tds += '</tr>';
-                        $("#tablaDatosFacturacion").append(tds);
 
-                    }
-                    tds += '</tbody>';
-                }
-            } else if (data.includes("Error")) {
-                //tipo,titulo,mensaje
-                check("error", "Error al cargar los datos", data);
-            }
-
-        }
-    });
+    loadTableDatosFacturacion(idPadrino);
 }
 
 function listaTipoPago() {
@@ -201,13 +180,48 @@ function listaTipoPago() {
     });
 }
 
-function limpiartablaDomFact() {
-    var table = document.getElementById("tablaDatosFacturacion");
-    var rows = table.getElementsByTagName("TR");
-    var rowCount = rows.length;
-    if (rowCount > 0) {
-        for (var x = rowCount - 1; x > 0; x--) {
-            table.deleteRow(x);
+
+function loadTableDatosFacturacion(idPadrino) {
+    var tableDomFactclear = $('#datosfacturacion').DataTable();
+    tableDomFactclear.clear().draw();
+    tableDomFactclear.destroy();
+    var tableDomFact = $("#datosfacturacion").DataTable({
+        "bLengthChange": false,
+        "bPaginate": false,
+        "searching": false,
+        "info": false,
+        "ajax": {
+            "method": "POST",
+            "url": "../view/consultarDatos.php",
+            "data": {
+                'tipo': "ListarDomFactPadrino",
+                'idPadrino': idPadrino
+            }
+        },
+        "columns": [
+            {
+                "data": "nombre"
+            },
+            {
+                "data": "dni"
+            },
+            {
+                "data": "cuil"
+            },
+            {
+                "data": "domicilio.calle"
+            },
+            {
+                "data": "domicilio.numero"
+            }
+        ],
+        "language": {
+            "zeroRecords": "No se encuentran registros",
+            "infoEmpty": "No existen registros",
+
         }
-    }
+
+    });
+    // tableDomFact.order([0, 'asc']).draw();
+
 }
