@@ -14,7 +14,7 @@ class DaoPagoRealizado implements DaoObject{
 
           $conexion = DaoConnection::connection();
         //$id,$montoPago,$idDetallePago,$idVincular,$idFechaPago,$fechaRegistro,$idUsuario
-        $sql="INSERT INTO pago_realizado(pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario) VALUES ('$obj->montoPago','$obj->idDetallePago','$obj->idVincular',STR_TO_DATE('$obj->idFechaPago', '%d/%m/%Y'),date_add(sysdate(), INTERVAL -3 hour),'$obj->idUsuario')";
+        $sql="INSERT INTO Pago_realizado(pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario) VALUES ('$obj->montoPago','$obj->idDetallePago','$obj->idVincular',STR_TO_DATE('$obj->idFechaPago', '%d/%m/%Y'),date_add(sysdate(), INTERVAL -3 hour),'$obj->idUsuario')";
 
 
         if ($conexion->query($sql) == TRUE) {
@@ -35,16 +35,16 @@ class DaoPagoRealizado implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
         if($obj!=null){
-            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM pago_realizado WHERE 1";
+            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM Pago_realizado WHERE 1";
         }else{
-            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM pago_realizado;";
+            $sql="SELECT pr_id, pr_monto_pago, pr_id_detalle_pago, pr_id_vincular, pr_id_fecha_pago, pr_fecha_registro, pr_id_usuario FROM Pago_realizado;";
         }
         $result = mysqli_query($conexion, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+              //  $re = array_map('utf8_encode',$re);
                   //$id,$descripcion
                     $resultado[] = new TipoPagoEntity($re[0],$re[1]);
 
@@ -66,7 +66,7 @@ class DaoPagoRealizado implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+              //  $re = array_map('utf8_encode',$re);
                   //$id,$descripcion
                     $resultado[] = new TipoPagoEntity($re[0],$re[1]);
 
@@ -96,8 +96,8 @@ class DaoPagoRealizado implements DaoObject{
             "ifnull(TRUNCATE(sum(pr.pr_monto_pago)*100/pp.pp_monto_total,2),0) as porcentajePagado, ".
             "ifnull(count(pr.pr_id_vincular),0) as cuotasPagas, ".
             "ifnull(DATE_FORMAT(max(pr.pr_id_fecha_pago), '%d/%m/%Y'),'-/-/-') as fechaUltimaPaga ".
-            "FROM pago_realizado pr RIGHT JOIN plan_pactado pp on(pr.pr_id_vincular=pp.pp_pa_id) ".
-            "LEFT JOIN Vincular vin on(vin.vin_id=pp.pp_pa_id) ".
+            "FROM Pago_realizado pr RIGHT JOIN Vincular vin on(pr.pr_id_vincular=vin.vin_id)  ".
+            "LEFT JOIN  Plan_pactado pp on(vin.vin_id_padrino=pp.pp_pa_id) ".
             "INNER JOIN Padrino pa on(vin.vin_id_padrino=pa.pa_id) ".
             "INNER JOIN Alumno alu on(vin.vin_id_ahijado=alu.alu_id) ".
             "where vin.vin_fecha_baja is null ".
@@ -112,7 +112,7 @@ class DaoPagoRealizado implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+              //  $re = array_map('utf8_encode',$re);
                   //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
                    $alu = new AlumnoEntity($re[7],$re[8], $re[9],$re[10],null,$re[11],null,null,null);
 
@@ -146,11 +146,10 @@ class DaoPagoRealizado implements DaoObject{
             "dp.dp_factura_acredita_pago,".
             "dp.dp_comprobante_acredita_pago,".
             "dp.dp_descripcion ".
-            "FROM pago_realizado pr ".
-            "LEFT JOIN detalle_pago dp ON(dp.dp_id=pr.pr_id_detalle_pago) ".
-            "RIGHT JOIN plan_pactado pp on(pr.pr_id_vincular=pp.pp_pa_id) ".
-            "RIGHT JOIN Vincular vin on(vin.vin_id=pp.pp_pa_id) ".
-            "LEFT JOIN tipo_pagos tp ON(tp.tp_id=dp.dp_tipo_pago) ".
+            "FROM Pago_realizado pr LEFT JOIN Detalle_pago dp ON(dp.dp_id=pr.pr_id_detalle_pago) ".
+            "RIGHT JOIN Vincular vin on(pr.pr_id_vincular=vin.vin_id) ".
+            "RIGHT JOIN Plan_pactado pp on(vin.vin_id_padrino=pp.pp_pa_id) ".
+            "LEFT JOIN Tipo_pagos tp ON(tp.tp_id=dp.dp_tipo_pago) ".
             "where vin.vin_id='$idVinculado' ".
             "and pr.pr_id_fecha_pago BETWEEN STR_TO_DATE('$fechaDesde', '%d/%m/%Y') and STR_TO_DATE('$fechahasta', '%d/%m/%Y')".
             "ORDER BY vin.vin_id ASC ";
@@ -161,7 +160,7 @@ class DaoPagoRealizado implements DaoObject{
             return   $resultado;
         }
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+               // $re = array_map('utf8',$re);
 
                 //$idTipoPago,$facturaAcreditaPago,$comprobanteAcreditaPago,$descripcion)
                 $detallePago=new DetallePagoEntity(new TipoPagoEntity($re[5],$re[6]),$re[7],$re[8],$re[9]);
@@ -195,11 +194,10 @@ public function deudaPadrinos($soloActivos){
             "pa.pa_apellido, ".
             "pa.pa_alias, ".//10
             "ifnull(TRUNCATE(sum(pr.pr_monto_pago)*100/pp.pp_monto_total,2),0) as porcentajePagado ".
-            "FROM pago_realizado pr  ".
-            "RIGHT JOIN plan_pactado pp on(pr.pr_id_vincular=pp.pp_pa_id)  ".
-            "RIGHT JOIN vincular vin on(vin.vin_id=pp.pp_pa_id) ".
-            "INNER JOIN alumno alu ON(alu.alu_id=vin.vin_id_ahijado) ".
-            "INNER JOIN padrino pa ON(pa.pa_id=vin.vin_id_padrino) ".
+            "FROM Pago_realizado pr RIGHT JOIN Vincular vin on(pr.pr_id_vincular=vin.vin_id)  ".
+            "LEFT JOIN  Plan_pactado pp on(vin.vin_id_padrino=pp.pp_pa_id) ".
+            "INNER JOIN Alumno alu ON(alu.alu_id=vin.vin_id_ahijado) ".
+            "INNER JOIN Padrino pa ON(pa.pa_id=vin.vin_id_padrino) ".
             "WHERE vin.vin_fecha_baja is null ".
             "GROUP BY vin.vin_id ".
             "ORDER BY pa.pa_nombre,pa.pa_apellido ASC ;";
@@ -217,11 +215,10 @@ public function deudaPadrinos($soloActivos){
             "pa.pa_apellido, ".
             "pa.pa_alias, ".//10
             "ifnull(TRUNCATE(sum(pr.pr_monto_pago)*100/pp.pp_monto_total,2),0) as porcentajePagado ".
-            "FROM pago_realizado pr  ".
-            "RIGHT JOIN plan_pactado pp on(pr.pr_id_vincular=pp.pp_pa_id)  ".
-            "RIGHT JOIN vincular vin on(vin.vin_id=pp.pp_pa_id) ".
-            "INNER JOIN alumno alu ON(alu.alu_id=vin.vin_id_ahijado) ".
-            "INNER JOIN padrino pa ON(pa.pa_id=vin.vin_id_padrino) ".
+            "FROM Pago_realizado pr RIGHT JOIN Vincular vin on(pr.pr_id_vincular=vin.vin_id)  ".
+            "LEFT JOIN  Plan_pactado pp on(vin.vin_id_padrino=pp.pp_pa_id) ".
+            "INNER JOIN Alumno alu ON(alu.alu_id=vin.vin_id_ahijado) ".
+            "INNER JOIN Padrino pa ON(pa.pa_id=vin.vin_id_padrino) ".
             "GROUP BY vin.vin_id ".
             "ORDER BY pa.pa_nombre,pa.pa_apellido ASC ;";
     }
@@ -231,7 +228,7 @@ public function deudaPadrinos($soloActivos){
             return   $resultado;
         }
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+               // $re = array_map('utf8_encode',$re);
 
 
                 //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno

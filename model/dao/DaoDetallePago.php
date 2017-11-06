@@ -9,7 +9,7 @@ class DaoDetallePago implements DaoObject{
 public function insert($obj){
       $conexion = DaoConnection::connection();
          //$id,$montoPago,$idDetallePago,$idApadrinaje,$idFechaPago,$fechaRegistro,$idUsuario
-        $sql="INSERT INTO detalle_pago(dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion) VALUES ('$obj->idTipoPago','$obj->facturaAcreditaPago','$obj->comprobanteAcreditaPago','$obj->descripcion')";
+        $sql="INSERT INTO Detalle_pago(dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion) VALUES ('$obj->idTipoPago','$obj->facturaAcreditaPago','$obj->comprobanteAcreditaPago','$obj->descripcion')";
 
 
         if ($conexion->query($sql) === TRUE) {
@@ -30,12 +30,12 @@ public function insert($obj){
         $conexion = DaoConnection::connection();
 
         if($obj!=null){
-            $sql="SELECT dp_id, dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion FROM detalle_pago WHERE ".
+            $sql="SELECT dp_id, dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion FROM Detalle_pago WHERE ".
             (($obj->idTipoPago==null)?" ":" dp_tipo_pago='$obj->idTipoPago' ").
             (($obj->facturaAcreditaPago==null)?" ":"and dp_factura_acredita_pago='$obj->facturaAcreditaPago' ").
             " order by dp_id desc";
         }else{
-            $sql="SELECT dp_id, dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion FROM detalle_pago order by dp_id desc;";
+            $sql="SELECT dp_id, dp_tipo_pago, dp_factura_acredita_pago, dp_comprobante_acredita_pago, dp_descripcion FROM Detalle_pago order by dp_id desc;";
         }
         $result = mysqli_query($conexion, $sql);
 

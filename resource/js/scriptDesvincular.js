@@ -11,20 +11,13 @@ $(document).ready(function () {
     $('#cerrarModal-desvincular').click(function () {
 
         $('#modal-vincular').modal('hide');
-        //para poder recargar la tabla
-        var table = $('#PadrinoAlumnoVinculados').DataTable();
-        table.clear().draw();
-        table.destroy();
-
+        limpiarCampos();
 
     });
     $('#cancelModal-desvincular').click(function () {
 
         $('#modal-desvincular').modal('hide');
-        //para poder recargar la tabla
-        var table = $('#PadrinoAlumnoVinculados').DataTable();
-        table.clear().draw();
-        table.destroy();
+        limpiarCampos();
 
     });
     $('#guardarModal-desvincular').click(function () {
@@ -62,10 +55,7 @@ function desvincular(idVinculacion) {
             if (!data.includes("Error")) {
                 check("success", "OK", data);
                 $('#modal-desvincular').modal('hide');
-                //para poder recargar la tabla
-                var table = $('#PadrinoAlumnoVinculados').DataTable();
-                table.clear().draw();
-                table.destroy();
+                limpiarCampos();
             } else {
                 //tipo,titulo,mensaje
                 check("error", "Error al desvincular", data);
@@ -124,4 +114,12 @@ function llenarTablaPadrinoAlumnoVinculados() {
         table.table().container()
     );
 
+}
+
+function limpiarCampos() {
+    //para poder recargar la tabla
+    var table = $('#PadrinoAlumnoVinculados').DataTable();
+    table.clear().draw();
+    table.destroy();
+    document.getElementById("DesvincularObs").value = "";
 }
