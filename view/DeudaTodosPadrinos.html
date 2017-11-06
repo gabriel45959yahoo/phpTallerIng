@@ -32,7 +32,7 @@
 
     <link rel="shortcut icon" href="../resource/images/logo_icon.ico">
 
-    <title>Detalle de pagos</title>
+    <title>Deuda de los Padrinos activos</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--Menu-->
@@ -57,29 +57,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
 
+
+
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
     <!-- ----------------------------------------------------------------->
 
-    <!-- rango de fechas -->
-    <script src="../resource/js/chosen.js"></script>
-    <link rel="stylesheet" href="../resource/css/estilo-chosen.css" />
-    <!-- ----------------------------------------------------------------->
-
-    <!-- rango de fechas -->
-    <script type="text/javascript" src="/resource/js/moment_RangoFechas.min.js"></script>
-    <script type="text/javascript" src="/resource/js/daterangepicker_RangoFechas.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resource/css/daterangepicker_RangoFechas.css" />
-    <script src="/resource/js/scriptRangoFecha.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resource/css/estilos-datepicker-fecha.css" />
-    <!-- ----------------------------------------------------------------->
 
 
-    <script src="/resource/js/scriptDetallesDePagos.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resource/css/estilos-detallePagos.css" />
+    <script src="/resource/js/scriptDeudaTodosPadrinos.js"></script>
 
+
+    <link rel="stylesheet" href="/resource/css/estilo-progressBarDeudaPorPadrino.css">
 
 </head>
 
@@ -87,69 +78,34 @@
 
     <!--Menu-->
     <header id="menuid">
+
     </header>
+
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">Detalle de pagos</h1>
+            <h1 class="text-center">Deuda de los Padrinos activos</h1>
         </div>
     </div>
     <div class="contenedor">
-        <div class="row-modal">
-
-            <div class="col-md-12">
-                <label for="listaPadrino">Seleccionar Padrino:</label>
-                <select id="listaPadrino" name="listaPadrino" data-placeholder="Nombre ó apodo de Padrino" class="chosen-select chossen-detalle-pago" tabindex="2">
-
-              <option value="" selected></option>
-
-            </select>
-                <br><br>
-            </div>
-
-            <div class="col-md-12">
-                <label for="listaAhijados">Seleccionar Ahijado:</label>
-                <select id="listaAhijados" name="listaAhijados" data-placeholder="Nombre ó apodo de Ahijado" class="chosen-select chossen-detalle-pago" tabindex="2">
-
-              <option value="" selected></option>
-
-            </select>
-                <br><br>
-            </div>
-
-            <div class="col-md-12 div-label-div-datepicker">
-               <label class="label-datepicker">Seleccionar Ahijado:</label>
-                <div id="reportrange"  class="div-datepicker">
-                   <i class="glyphicon glyphicon-calendar fa fa-calendar" ></i>&nbsp;
-                    <span class="span-text-responsive"></span> <b class="caret"></b>
-                </div>
-              <br>
-
-            </div>
-            <div class="col-md-12" >
-
-              <br>
-            <button id="buscarDetallePago" class="btn btn-primary btn-details">Buscar Pagos</button>
-            <br>
-            </div>
-        </div>
         <div class="table-responsive">
-
-            <br>
-            <table id="detallePago" class="table table-hover filas" cellspacing="0" width="100%">
+            <table id="deudasAllPadrinos" class="table table-hover filas" cellspacing="0" width="100%">
                 <thead>
+                   <tr class="table-inverse">
+                        <th class="text-center-group" colspan="3">Alumno</th>
+                        <th class="text-center" colspan="8">Padrino</th>
+                    </tr>
                     <tr class="table-inverse">
-                        <th class="text-center">Monto pagado</th>
-                        <th class="text-center">Comprobante</th>
-                        <th class="text-center">Num. Factura</th>
-                        <th class="text-center">Tipo de Pago</th>
-                        <th class="text-center">Usuario</th>
-                        <th class="text-center">Fecha pago</th>
-                        <th class="text-center">Fecha registro pago</th>
-                        <th class="text-center">Descripci&oacute;n</th>
+                       <th class="text-center">Apodo</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Apodo</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Deuda</th>
+                        <th class="text-center">% Adeudado</th>
                     </tr>
                 </thead>
             </table>
-
         </div>
 
         <br>

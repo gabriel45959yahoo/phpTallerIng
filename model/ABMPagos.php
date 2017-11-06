@@ -86,6 +86,27 @@ public function detallePagosPadrinos($idVinculado,$fechaDesde,$fechaHasta){
         return 'Error: '.$e->getMessage(). "\n";
     }
 }
+public function deudaPadrinosActivos(){
+     try{
+        $daoPago= new model\dao\DaoPagoRealizado();
+
+        return $daoPago->deudaPadrinos(true);
+    }catch (Exception $e) {
+        return 'Error: '.$e->getMessage(). "\n";
+    }
+
+}
+
+public function deudaPadrinosAll(){
+     try{
+        $daoPago= new model\dao\DaoPagoRealizado();
+
+        return $daoPago->deudaPadrinos(false);
+    }catch (Exception $e) {
+        return 'Error: '.$e->getMessage(). "\n";
+    }
+
+}
 
 }
 

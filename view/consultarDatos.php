@@ -78,6 +78,16 @@ function detallePagosPadrinos(){
 
     echo $consultarController->detallePagosPadrinos($_POST['idVinculado'],$_POST['fechaDesde'],$_POST['fechaHasta']);
 }
+function deudaPadrinosActivos(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->deudaPadrinosActivos();
+}
+function deudaPadrinosAll(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->deudaPadrinosAll();
+}
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -137,6 +147,14 @@ if (! isset($_SESSION['session'])) {
                 // para pantalla detalles de pago
                  case "detallePagosPadrinos":
                     detallePagosPadrinos();
+                    break;
+                // para pantalla DeudaPorPadrinoActivos
+                 case "DeudaPadrinosActivos":
+                    deudaPadrinosActivos();
+                    break;
+                // para pantalla DeudaPorPadrino
+                 case "DeudaAllPadrinos":
+                    deudaPadrinosAll();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];
