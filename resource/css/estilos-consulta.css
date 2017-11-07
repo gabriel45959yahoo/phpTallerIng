@@ -165,8 +165,11 @@
   input::placeholder {
       color: gray;
   }
-
-  .btn {
+.btn{
+    float: right;
+    margin-bottom: 10px;
+}
+  /*.btn {
       -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
       -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
       box-shadow: inset 0px 1px 0px 0px #ffffff;
@@ -188,7 +191,7 @@
       padding: 6px 6px;
       text-decoration: none;
       text-shadow: 0px 1px 0px #ffffff;
-  }
+  }*/
 
   .btn:hover {
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));

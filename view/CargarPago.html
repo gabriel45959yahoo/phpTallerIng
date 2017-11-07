@@ -12,11 +12,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../resource/js/chosen.js"></script>
     <script src="../resource/js/scriptPagos.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!--Menu-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/resource/css/estilos-alertas-toast.css">
-    <link rel="stylesheet" href="/resource/css/estilo-menu.css">
+
     <link rel="stylesheet" href="../resource/css/bootstrap.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
     <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
@@ -64,15 +65,15 @@
                 <div class="w3-container-general">
                     <div class="row-modal">
 
-                        <div class="col-lg-12">
+                        <div class="col-md">
                             <select id="schedule_event" name="listaPadrinoAhijado" data-placeholder="Nombre ó apodo de Padrino ó Alumno" class="chosen-select" tabindex="2">
 
-              <option value="" selected></option>
+<option value="" selected></option>
 
-            </select>
+</select>
                         </div>
                     </div>
-                    <div class="">
+                    <div>
                         <br>
                         <br>
                         <h3>Datos del Padrino</h3>
@@ -105,6 +106,76 @@
                     <div class="">
                         <h3>Datos de Facturaci&oacute;n</h3>
                     </div>
+<!-- ********************* Nuevo ************************************ -->
+                    <div>
+                        <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#addMember">Nuevo</button>
+
+<!-- ********************* Modal ************************************ -->
+                        <div class="modal fade" tabindex="-1" role="dialog" id="addMember">
+                            <div class="modal-dialog modal-md" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><center>
+                                        <h3 class="modal-title">Datos de facturaci&oacute;n</h3></center>
+                                    </div>
+                                    <form method="post" action="" id="createForm">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Nombre o raz&oacute;n social </label>
+                                                <input type="text" class="form-control" id="fact_nombre" name="fact_nombre" placeholder="Nombre o razón social">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Apellido</label>
+                                                <input type="text" class="form-control" id="fact_apellido" name="fact_apellido" placeholder="Apellido">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>DNI</label>
+                                                <input type="text" class="form-control" id="fact_dni" name="fact_dni" placeholder="DNI">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>CUIL/CUIT </label>
+                                                <input type="text" class="form-control" id="fact_cuil" name="fact_cuil" placeholder="CUIL/CUIT">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Calle</label>
+                                                <input type="text" class="form-control" id="fact_calle" name="fact_calle" placeholder="Calle">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Nro.</label>
+                                                <input type="text" class="form-control" id="fact_numero" name="fact_numero" placeholder="Número">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Piso</label>
+                                                <input type="text" class="form-control" id="fact_piso" name="fact_piso" placeholder="Piso">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Depto.</label>
+                                                <input type="text" class="form-control" id="fact_depto" name="fact_depto" placeholder="Departamento">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Provincia</label>
+                                                <input type="text" class="form-control" id="fact_provincia" name="fact_provincia" placeholder="Provincia">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ciudad</label>
+                                                <input type="text" class="form-control" id="fact_ciudad" name="fact_ciudad" placeholder="Ciudad">
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                    </div>
+
+<!-- ********************************************************* -->
                     <div class="panelEntrada">
                         <div class="panelInterno col-md-12">
                             <div class="table-responsive">
@@ -138,9 +209,6 @@
                             <br>
                             <br>
                             <br>
-                            <br>
-
-
                             <div class="col-md-12 div-label-div-datepicker">
                                 <label class="label-datepicker">Fecha de Pago:</label>
                                 <div id="singleFechaPago" class="div-datepicker">
@@ -151,7 +219,7 @@
 
                             </div>
                             <br> <br>
-                            <p>Monto<input type="text" name="monto" required placeholder="Ingrese monto" pattern="[0-9]"/></p>
+                            <p>Monto<input type="text" name="monto" required placeholder="Ingrese monto" pattern="[0-9]" /></p>
                             <p>N&uacute;mero de factura generada por la fundaci&oacute;n <input type="texta" name="nroFactura" pattern="[0-9]" placeholder="Ingrese número de factura" /></p>
                             <p>Comprobante de pago<input type="text" name="comprobante" placeholder="Ingrese comprobante" /></p>
                             <p><label for="DesvincularObs">Observaciones:</label>
