@@ -23,7 +23,7 @@ include '../control/CargarController.php';
 
 function cargarPadrino(){
     $cargarController = new CargarController();
-   // $calle,$numero,$piso,$depto,$provincia,$ciudad
+        // $calle,$numero,$piso,$depto,$provincia,$ciudad
         $domicilio= new model\entities\DomicilioEntity(0,$_POST['calle'], (int) $_POST['numero'], $_POST['piso'],
                                   $_POST['depto'], $_POST['provincia'], $_POST['ciudad']);
 
@@ -93,7 +93,22 @@ function cargarPago(){
 
 
 }
+function cargarDatosFacturacion(){
+     $cargarController = new CargarController();
+     // $calle,$numero,$piso,$depto,$provincia,$ciudad
+              $domicilioFact= new model\entities\DomicilioEntity(0,$_POST['fact_calle'], (int) $_POST['fact_numero'], $_POST['fact_piso'],
+                                  $_POST['fact_depto'], $_POST['fact_provincia'], $_POST['fact_ciudad']);
 
+    //$id,$nombre,$apellido,$dni,$cuil,$domicilio
+        $factDatos= new model\entities\DatosFactEntity(0,ucwords($_POST['fact_nombre']), ucwords($_POST['fact_apellido']),(int)$_POST['fact_dni'], (int)$_POST['fact_cuil'],$domicilioFact);
+
+
+    $factDatos->setIdPadrino($_POST['idPadrino']);
+    //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso
+    $padrino = new PadrinoEntity($_POST['idPadrino'],null,null,null,null,null,null,null,null,null,null,null,$factDatos,null,null,null,null);
+
+    echo $cargarController->cargarDatosFacturacion($padrino);
+}
 /***
  Control de session
 ***/
@@ -122,6 +137,9 @@ if (! isset($_SESSION['session'])) {
                     break;
                 case "CargarPago":
                     cargarPago();
+                    break;
+                case "cargarDatosFacturacion":
+                    cargarDatosFacturacion();
                     break;
             }
     }

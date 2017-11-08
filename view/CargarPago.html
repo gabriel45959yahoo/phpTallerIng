@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../resource/js/alertas.js"></script>
     <!--Menu-->
 
-    <link rel="stylesheet" href="../resource/css/estilos-consulta.css">
+    <link rel="stylesheet" type="text/css" href="/resource/css/estilos-cargarPagos.css" />
     <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
     <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
     <link rel="stylesheet" href="../resource/css/estilo-chosen.css" />
@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
     <!-- ----------------------------------------------------------------->
 
-    <link rel="stylesheet" type="text/css" href="/resource/css/estilos-cargarPagos.css" />
+
 </head>
 
 <body>
@@ -106,76 +106,14 @@
                     <div class="">
                         <h3>Datos de Facturaci&oacute;n</h3>
                     </div>
-<!-- ********************* Nuevo ************************************ -->
+                    <!-- ********************* Nuevo ************************************ -->
                     <div>
-                        <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#addMember">Nuevo</button>
+                        <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#addDomFact">Nuevo</button>
 
-<!-- ********************* Modal ************************************ -->
-                        <div class="modal fade" tabindex="-1" role="dialog" id="addMember">
-                            <div class="modal-dialog modal-md" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><center>
-                                        <h3 class="modal-title">Datos de facturaci&oacute;n</h3></center>
-                                    </div>
-                                    <form method="post" action="" id="createForm">
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label>Nombre o raz&oacute;n social </label>
-                                                <input type="text" class="form-control" id="fact_nombre" name="fact_nombre" placeholder="Nombre o razón social">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Apellido</label>
-                                                <input type="text" class="form-control" id="fact_apellido" name="fact_apellido" placeholder="Apellido">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>DNI</label>
-                                                <input type="text" class="form-control" id="fact_dni" name="fact_dni" placeholder="DNI">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>CUIL/CUIT </label>
-                                                <input type="text" class="form-control" id="fact_cuil" name="fact_cuil" placeholder="CUIL/CUIT">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Calle</label>
-                                                <input type="text" class="form-control" id="fact_calle" name="fact_calle" placeholder="Calle">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Nro.</label>
-                                                <input type="text" class="form-control" id="fact_numero" name="fact_numero" placeholder="Número">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Piso</label>
-                                                <input type="text" class="form-control" id="fact_piso" name="fact_piso" placeholder="Piso">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Depto.</label>
-                                                <input type="text" class="form-control" id="fact_depto" name="fact_depto" placeholder="Departamento">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Provincia</label>
-                                                <input type="text" class="form-control" id="fact_provincia" name="fact_provincia" placeholder="Provincia">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Ciudad</label>
-                                                <input type="text" class="form-control" id="fact_ciudad" name="fact_ciudad" placeholder="Ciudad">
-                                            </div>
 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">Crear</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
                     </div>
 
-<!-- ********************************************************* -->
+                    <!-- ********************************************************* -->
                     <div class="panelEntrada">
                         <div class="panelInterno col-md-12">
                             <div class="table-responsive">
@@ -231,12 +169,78 @@
                 </div>
                 <br>
 
-<div class="foot">
- <input type="submit" value="Cargar" id="cargaPago" />
-</div>
+                <div class="foot">
+                    <input type="submit" value="Cargar" id="cargaPago" />
+                </div>
 
-</div>
+            </div>
         </form>
+           <!-- ********************* Modal ************************************ -->
+                        <div class="modal fade" tabindex="-1" role="dialog" id="addDomFact">
+                            <div class="modal-dialog modal-md" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button id="cerrarModal-desvincular" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                        <center>
+                                            <h3 class="modal-title">Datos de facturaci&oacute;n</h3>
+                                        </center>
+                                    </div>
+                                    <form method="post" action="" id="formAddDomFact">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Nombre o raz&oacute;n social </label>
+                                                <input type="text" class="form-control" id="fact_nombre" name="fact_nombre" placeholder="Nombre o razón social">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Apellido</label>
+                                                <input type="text" class="form-control" id="fact_apellido" name="fact_apellido" placeholder="Apellido">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>DNI</label>
+                                                <input type="text" class="form-control" id="fact_dni" name="fact_dni" placeholder="DNI">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>CUIL/CUIT </label>
+                                                <input type="text" class="form-control" id="fact_cuil" name="fact_cuil" placeholder="CUIL/CUIT">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Calle</label>
+                                                <input type="text" class="form-control" id="fact_calle" name="fact_calle" placeholder="Calle">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Nro.</label>
+                                                <input type="text" class="form-control" id="fact_numero" name="fact_numero" placeholder="Número">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Piso</label>
+                                                <input type="text" class="form-control" id="fact_piso" name="fact_piso" placeholder="Piso">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Depto.</label>
+                                                <input type="text" class="form-control" id="fact_depto" name="fact_depto" placeholder="Departamento">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Provincia</label>
+                                                <input type="text" class="form-control" id="fact_provincia" name="fact_provincia" placeholder="Provincia">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ciudad</label>
+                                                <input type="text" class="form-control" id="fact_ciudad" name="fact_ciudad" placeholder="Ciudad">
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="cancelModal-DomFact" type="button" class="btn btn-default">Cancelar</button>
+                                            <button id="guardarModal-DomFact" type="button" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
     </div>
 </body>
 

@@ -8,6 +8,48 @@ $(document).ready(function () {
         listaTipoPago();
     }
 
+     $('#addDomFact').modal({
+        show: false,
+        backdrop: 'static'
+    });
+
+
+ $('#cerrarModal-DomFact').click(function () {
+
+    $('#addDomFact').modal('hide');
+
+
+    });
+    $('#cancelModal-DomFact').click(function () {
+
+        $('#addDomFact').modal('hide');
+
+
+    });
+
+    $('#guardarModal-DomFact').click(function () {
+
+        var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#formAddDomFact").serialize() + "&tipo=cargarDatosFacturacion" +"&idPadrino=" + contentJson[padrinoSeleccionado].idPadrino.id, // Adjuntar los campos del formulario enviado.
+            success: function (data) {
+                if (data.includes("correctamente")) {
+                   // limpiarCampos();
+                    //tipo,titulo,mensaje
+                    check("success", "OK", data);
+                    obtenerDatosFacturacionPadrino(contentJson[padrinoSeleccionado].idPadrino.id);
+                    $('#addDomFact').modal('hide');
+                } else {
+                    //tipo,titulo,mensaje
+                    check("error", "Error al cargar los datos", data);
+                }
+
+            }
+        });
+    });
+
 });
 
 $(function () {
@@ -106,6 +148,7 @@ $(function () {
                     limpiarCampos();
                     //tipo,titulo,mensaje
                     check("success", "OK", data);
+
                 } else {
                     //tipo,titulo,mensaje
                     check("error", "Error al cargar los datos", data);
@@ -225,3 +268,4 @@ function loadTableDatosFacturacion(idPadrino) {
     // tableDomFact.order([0, 'asc']).draw();
 
 }
+

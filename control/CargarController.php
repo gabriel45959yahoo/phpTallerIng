@@ -152,6 +152,18 @@ class CargarController {
             return "Error: al cancelar la vinculacón.";
          }
     }
+    function cargarDatosFacturacion($padrino){
+        $facturaSingleton = ABMDatosFactura::singleton_DatosFactura();
+
+        // accedemos al método cargar datos de facturacion del padrino
+        $rest = $facturaSingleton->cargarDatosFactura($padrino);
+
+        if ($rest != 0) {
+                return "Error: al cargar los datos de facturacion del padrino.";
+            } else {
+                return "Datos de facturacion del Padrino fueron cargados correctamente.";
+        }
+    }
 
 }
 

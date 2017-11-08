@@ -36,9 +36,11 @@ class ABMDatosFactura{
             }
             $daoPadrino= new dao\DaoPadrinoImpl();
 
-            $restPadrino=$daoPadrino->select($padrino);
+            if($padrino->domicilioFact->getIdPadrino()==null || $padrino->domicilioFact->getIdPadrino()==0){
+                $restPadrino=$daoPadrino->select($padrino);
 
-            $padrino->domicilioFact->setIdPadrino($restPadrino[0]->id);
+                $padrino->domicilioFact->setIdPadrino($restPadrino[0]->id);
+            }
 
             $datosFactura= new dao\DaoDatosFactImpl();
 
@@ -50,6 +52,9 @@ class ABMDatosFactura{
                 echo $res;
                 return 1;
             }
+        }else{
+          echo $retDoc;
+          return 1;
         }
     }
     public function buscarDomFactPorPadrino($idPadrino){

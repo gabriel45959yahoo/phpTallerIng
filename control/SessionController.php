@@ -31,7 +31,7 @@ if(!isset($_SESSION['session']))
          '</div>'.
          '<div class="collapse navbar-collapse" id="myMenuNavbar">'.
          '<ul class="nav navbar-nav">'.
-         '<li class="active"><a href="../view/home.html">Home</a></li>';
+         '<li><a href="../view/home.html">Home</a></li>';
     if($rol=="ADMIN"){
 
          $menu=$menu.'<li class="dropdown">'.
@@ -39,6 +39,13 @@ if(!isset($_SESSION['session']))
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/CargarAlumno.html">Alumno</a></li>'.
          '<li><a href="/view/CargarPadrino.html">Padrino</a></li>'.
+         '</ul></li>'.
+         '<li class="dropdown">'.
+         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar </a>'.
+         '<ul class="dropdown-menu">'.
+         '<li><a href="/view/">Alumno</a></li>'.
+         '<li><a href="/view/">Padrino</a></li>'.
+         '<li><a href="/view/">Pagos</a></li>'.
          '</ul></li>'.
          '<li><a href="/view/CargarPago.html">Pagos</a></li>'.
          '<li><a href="/view/AdministrarUsuario.html">Administrar Usuarios</a></li>'.
@@ -50,7 +57,14 @@ if(!isset($_SESSION['session']))
          '<li><a href="/view/CargarAlumno.html">Alumno</a></li>'.
          '<li><a href="/view/CargarPadrino.html">Padrino</a></li>'.
          '</ul></li>'.
-         '<li><a href="/view/Vincular.html">Vincular</a></li>';
+         '<li class="dropdown">'.
+         '<li><a href="/view/Vincular.html">Vincular</a></li>'.
+         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar </a>'.
+         '<ul class="dropdown-menu">'.
+         '<li><a href="/view/">Alumno</a></li>'.
+         '<li><a href="/view/">Padrino</a></li>'.
+         '<li><a href="/view/">Pagos</a></li>'.
+         '</ul></li>';
     }
 
     $menu=$menu.'<li class="dropdown">'.
