@@ -16,9 +16,9 @@ include '../model/entities/PorcLibOcup.php';
 include '../control/ModificarController.php';
 
 function modificarUsuario(){
-    $consultarController = new ModificarController();
+    $modificarController = new ModificarController();
 
-    echo $consultarController->modificarUsuario($_POST['usuario'],$_POST['column_name'],$_POST['value']);
+    echo $modificarController->modificarUsuario($_POST['usuario'],$_POST['column_name'],$_POST['value']);
 
 }
 
