@@ -1,5 +1,4 @@
 <?php
-
 use model\dao\DaoUsuarioImpl;
 use model\entities\UsuarioEntity;
 
@@ -35,9 +34,26 @@ class Login {
         $usr = new UsuarioEntity();
         $usr->setUsuario($usuario);
 
-        return $daoUsuario->select($usr);
+        return json_encode($daoUsuario->select($usr));
     }
+    public function listarUsuarios(){
+        $daoUsuario = new DaoUsuarioImpl();
 
+        return $daoUsuario->select(null);
+    }
+    public function listarRol(){
+        $daoUsuario = new DaoUsuarioImpl();
+
+        return $daoUsuario->selectRol();
+    }
+    public function modificarUsuario($usuario,$columna,$valor){
+         $daoUsuario = new DaoUsuarioImpl();
+
+        if($daoUsuario->update($usuario,$columna,$valor)){
+            return "Los datos se modificaron correctamente";
+        }
+     return "Error al modificar los datos del usuario";
+    }
     public function __clone() {
 
         trigger_error('La clonación de este objeto no está permitida', E_USER_ERROR);

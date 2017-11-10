@@ -1,10 +1,12 @@
 <?php
+
 include '../model/ABMPadrino.php';
 include '../model/ABMAlumno.php';
 include '../model/ABMVincular.php';
 include '../model/ABMDatosFactura.php';
 include '../model/ABMPagos.php';
 include '../model/ABMPlanPactado.php';
+include '../model/Login.php';
 
 class ConsultarController{
 
@@ -134,6 +136,20 @@ class ConsultarController{
 
             return json_encode($rest);
 
+    }
+    function listarUsuarios(){
+        $nuevoSingleton = Login::singleton_login();
+
+         $rest = $nuevoSingleton->listarUsuarios();
+
+        return json_encode($rest);
+    }
+    function listarRol(){
+         $nuevoSingleton = Login::singleton_login();
+
+         $rest = $nuevoSingleton->listarRol();
+
+        return json_encode($rest);
     }
 }
 

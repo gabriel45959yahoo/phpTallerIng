@@ -1,5 +1,8 @@
 <?php
 session_start();
+include '../model/entities/Persona.php';
+include '../model/dao/DaoObject.php';
+include '../model/dao/DaoConnection.php';
 include '../model/Login.php';
 
 if(!isset($_SESSION['session']))

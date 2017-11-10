@@ -2,8 +2,6 @@
 
 namespace model\entities;
 
-include '../model/entities/Persona.php';
-
 class UsuarioEntity extends Persona {
 
     var $usuario;

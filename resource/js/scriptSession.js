@@ -10,8 +10,8 @@ function redireccionar() {
             var datos = data.replace("\n","");
             //data es la respuesta del php
             if (!datos.includes("<nav")) {
-                if(datos.startsWith("no login")){
-                        window.location.assign('/index.html');
+                if(datos.includes("no login")){
+                    window.location.assign('/index.html');
                 }else{
                     check("error", "Error Login", datos);
                 }

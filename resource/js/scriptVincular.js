@@ -1,5 +1,9 @@
 var idPadrino;
 $(document).ready(function () {
+     if (!redireccionar()) {
+        loadTablaPadrino();
+    }
+
 
     $('#modal-vincular').modal({
         show: false,
@@ -51,7 +55,6 @@ $(document).ready(function () {
             table.destroy();
         }
     });
-
 });
 
 function guardarVinculacion(idAlumno, idPadrino, seConocen, observaciones) {
