@@ -44,7 +44,7 @@ class DaoPagoRealizado implements DaoObject{
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+              //  $re = array_map('utf8_encode',$re);
                   //$id,$descripcion
                     $resultado[] = new TipoPagoEntity($re[0],$re[1]);
 
@@ -66,7 +66,7 @@ class DaoPagoRealizado implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+              //  $re = array_map('utf8_encode',$re);
                   //$id,$descripcion
                     $resultado[] = new TipoPagoEntity($re[0],$re[1]);
 
@@ -112,7 +112,7 @@ class DaoPagoRealizado implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+              //  $re = array_map('utf8_encode',$re);
                   //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
                    $alu = new AlumnoEntity($re[7],$re[8], $re[9],$re[10],null,$re[11],null,null,null);
 
@@ -123,7 +123,7 @@ class DaoPagoRealizado implements DaoObject{
                 $pagoCompletado= new EstadoPlan($re[12],$re[13], $re[14]);
                 //$id,$idPadrino,$idAlumno,$seConocen,$observaciones,$fechaAlta,$fechaBaja
                 $vinculardos=new VincularEntity($re[0],$padrino,$alu,null,null,null,null);
-                $vinculardos->estadoPlanPactado=$pagoCompletado;
+                $vinculardos->setEstadoPlanPactado($pagoCompletado);
                 $resultado['data'][]= $vinculardos;
                 }
         }
@@ -136,11 +136,11 @@ class DaoPagoRealizado implements DaoObject{
         $resultado = array();
         $conexion = DaoConnection::connection();
 
-        $sql="SELECT pr.pr_monto_pago,".
+        $sql="SELECT FORMAT(pr.pr_monto_pago,2),".
             "ifnull(DATE_FORMAT(pr.pr_id_fecha_pago, '%d/%m/%Y'),'-/-/-'),".
             "ifnull(DATE_FORMAT(pr.pr_fecha_registro, '%d/%m/%Y'),'-/-/-'),".
             "pr.pr_id_usuario,".
-            "pp.pp_monto_total,".
+            "FORMAT(pp.pp_monto_total,2),".
             "dp.dp_tipo_pago,".
             "tp.tp_descripcion,".
             "dp.dp_factura_acredita_pago,".
@@ -160,7 +160,7 @@ class DaoPagoRealizado implements DaoObject{
             return   $resultado;
         }
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+               // $re = array_map('utf8',$re);
 
                 //$idTipoPago,$facturaAcreditaPago,$comprobanteAcreditaPago,$descripcion)
                 $detallePago=new DetallePagoEntity(new TipoPagoEntity($re[5],$re[6]),$re[7],$re[8],$re[9]);
@@ -176,6 +176,81 @@ class DaoPagoRealizado implements DaoObject{
      return   $resultado;
     }
 
+public function deudaPadrinos($soloActivos){
+
+     $resultado = array();
+     $conexion = DaoConnection::connection();
+
+    if($soloActivos){
+      $sql=" SELECT vin.vin_id,".
+            "FORMAT(ifnull(pp.pp_monto_total-SUM(pr.pr_monto_pago),pp.pp_monto_total),2) as deuda,".
+            "alu.alu_id,".
+            "alu.alu_nombre,".
+            "alu.alu_apellido,".
+            "alu.alu_alias,".
+            "alu.alu_cursado,".
+            "pa.pa_id,".//7
+            "pa.pa_nombre,".
+            "pa.pa_apellido, ".
+            "pa.pa_alias, ".//10
+            "ifnull(TRUNCATE(sum(pr.pr_monto_pago)*100/pp.pp_monto_total,2),0) as porcentajePagado ".
+            "FROM Pago_realizado pr RIGHT JOIN Vincular vin on(pr.pr_id_vincular=vin.vin_id)  ".
+            "LEFT JOIN  Plan_pactado pp on(vin.vin_id_padrino=pp.pp_pa_id) ".
+            "INNER JOIN Alumno alu ON(alu.alu_id=vin.vin_id_ahijado) ".
+            "INNER JOIN Padrino pa ON(pa.pa_id=vin.vin_id_padrino) ".
+            "WHERE vin.vin_fecha_baja is null ".
+            "GROUP BY vin.vin_id ".
+            "ORDER BY pa.pa_nombre,pa.pa_apellido ASC ;";
+    }else{
+
+    $sql=" SELECT vin.vin_id,".
+            "FORMAT(ifnull(pp.pp_monto_total-SUM(pr.pr_monto_pago),pp.pp_monto_total),2) as deuda,".
+            "alu.alu_id,".
+            "alu.alu_nombre,".
+            "alu.alu_apellido,".
+            "alu.alu_alias,".
+            "alu.alu_cursado,".
+            "pa.pa_id,".//7
+            "pa.pa_nombre,".
+            "pa.pa_apellido, ".
+            "pa.pa_alias, ".//10
+            "ifnull(TRUNCATE(sum(pr.pr_monto_pago)*100/pp.pp_monto_total,2),0) as porcentajePagado ".
+            "FROM Pago_realizado pr RIGHT JOIN Vincular vin on(pr.pr_id_vincular=vin.vin_id)  ".
+            "LEFT JOIN  Plan_pactado pp on(vin.vin_id_padrino=pp.pp_pa_id) ".
+            "INNER JOIN Alumno alu ON(alu.alu_id=vin.vin_id_ahijado) ".
+            "INNER JOIN Padrino pa ON(pa.pa_id=vin.vin_id_padrino) ".
+            "GROUP BY vin.vin_id ".
+            "ORDER BY pa.pa_nombre,pa.pa_apellido ASC ;";
+    }
+     $result = mysqli_query($conexion, $sql);
+
+       if(empty($result)){
+            return   $resultado;
+        }
+            while($re = mysqli_fetch_row($result)) {
+               // $re = array_map('utf8_encode',$re);
+
+
+                //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
+                   $alu = new AlumnoEntity($re[2],$re[3],$re[4],$re[5],null,$re[6],null,null,null);
+
+                    //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$telefono,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja
+                   $padrino= new PadrinoEntity($re[7],$re[8],$re[9],$re[10],null, null,null,null, null,null,null, null,null,null,null,null,null);
+
+                //$porcentajePagado,$cuotasPagas,$fechaUltimaPaga
+                $pagoCompletado= new EstadoPlan($re[11],null,null);
+                $pagoCompletado->setDeuda($re[1]);
+                //$id,$idPadrino,$idAlumno,$seConocen,$observaciones,$fechaAlta,$fechaBaja
+                $vinculardos=new VincularEntity($re[0],$padrino,$alu,null,null,null,null);
+                $vinculardos->setEstadoPlanPactado($pagoCompletado);
+                $resultado['data'][]= $vinculardos;
+                }
+
+        echo $conexion->error;
+        mysqli_close($conexion);
+     return   $resultado;
+
+}
 
 }
 

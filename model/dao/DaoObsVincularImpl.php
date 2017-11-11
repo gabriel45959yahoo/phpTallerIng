@@ -47,7 +47,7 @@ class DaoObsVincularImpl implements DaoObject{
        if (mysqli_num_rows($result) > 0) {
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-                $re = array_map('utf8_encode',$re);
+                //$re = array_map('utf8_encode',$re);
                     //$id,$idVincular,$observacion
                    $resObsVincular["data"][]= new ObsVincularEntity($re[0],$re[1], $re[2],$re[3]);
                 }

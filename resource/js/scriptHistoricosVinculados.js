@@ -1,3 +1,11 @@
+$(document).ready(function () {
+    if (!redireccionar()) {
+        loadTablaVinculados();
+
+    }
+
+});
+
 function loadTablaVinculados() {
 
     var table = $("#historicosVinculados").DataTable({

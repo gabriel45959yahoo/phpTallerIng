@@ -78,6 +78,7 @@ function detallePagosPadrinos(){
 
     echo $consultarController->detallePagosPadrinos($_POST['idVinculado'],$_POST['fechaDesde'],$_POST['fechaHasta']);
 }
+
 function listarUsuarios(){
    $consultarController = new ConsultarController();
 
@@ -87,6 +88,16 @@ function listarRol(){
      $consultarController = new ConsultarController();
 
     echo $consultarController->listarRol();
+}
+function deudaPadrinosActivos(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->deudaPadrinosActivos();
+}
+function deudaPadrinosAll(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->deudaPadrinosAll();
 }
 if (! isset($_SESSION['session'])) {
 
@@ -155,6 +166,13 @@ if (! isset($_SESSION['session'])) {
                   //para pantalla administrar usuarios
                 case "listarRol":
                     listarRol();
+                // para pantalla DeudaPorPadrinoActivos
+                 case "DeudaPadrinosActivos":
+                    deudaPadrinosActivos();
+                    break;
+                // para pantalla DeudaPorPadrino
+                 case "DeudaAllPadrinos":
+                    deudaPadrinosAll();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

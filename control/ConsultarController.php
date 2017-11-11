@@ -151,6 +151,21 @@ class ConsultarController{
 
         return json_encode($rest);
     }
+    function deudaPadrinosActivos(){
+         $pagosSingleton = ABMPagos::singleton_Pagos();
+
+        $rest = $pagosSingleton->deudaPadrinosActivos();
+
+            return json_encode($rest);
+
+    }
+    function deudaPadrinosAll(){
+         $pagosSingleton = ABMPagos::singleton_Pagos();
+
+        $rest = $pagosSingleton->deudaPadrinosAll();
+
+            return json_encode($rest);
+    }
 }
 
 ?>

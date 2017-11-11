@@ -37,15 +37,15 @@ $(function () {
         if (idVinculado == null) {
             check("error", "Faltan Datos", 'Debe seleccionar un Padrino y uno de sus Ahijados')
         } else {
-            var tableAhijado = $('#detallePago').DataTable();
-            tableAhijado.clear().draw();
-            tableAhijado.destroy();
+            var tableDetallePago = $('#detallePago').DataTable();
+            tableDetallePago.clear().draw();
+            tableDetallePago.destroy();
 
 
             var fechaDesde = $('#reportrange span').text().split(" hasta ")[0].replace("Desde ", "");
             var fechaHasta = $('#reportrange span').text().split(" hasta ")[1];
 
-            var tableAhijado = $("#detallePago").DataTable({
+            var tableDetallePago = $("#detallePago").DataTable({
                 "bLengthChange": false,
                 "bPaginate": false,
                 "searching": false,
@@ -62,7 +62,10 @@ $(function () {
                 },
                 "columns": [
                     {
-                        "data": "montoPago"
+                        "data": "montoPago",
+                        "render": function (data, type, full, meta) {
+                    return '$ '+ data;
+                }
             },
                     {
                         "data": "idDetallePago.comprobanteAcreditaPago"
@@ -96,7 +99,7 @@ $(function () {
                 }
 
             });
-            tableAhijado.order([6, 'asc']).draw();
+            tableDetallePago.order([6, 'asc']).draw();
         }
     });
 });

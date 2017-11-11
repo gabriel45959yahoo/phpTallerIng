@@ -88,5 +88,11 @@ public function  getFechaBaja(){
  public function  setFechaBaja($fechaBaja){
         $this->id=$fechaBaja;
     }
+ public function  getEstadoPlanPactado(){
+        return $this->estadoPlanPactado;
+    }
+ public function  setEstadoPlanPactado($estadoPlanPactado){
+        $this->estadoPlanPactado=$estadoPlanPactado;
+    }
 }
 ?>

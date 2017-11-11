@@ -6,6 +6,7 @@ class EstadoPlan{
     var $porcentajePagado;
     var $cuotasPagas;
     var $fechaUltimaPaga;
+    var $deuda;
 
     function __construct()
 	{
@@ -30,6 +31,15 @@ class EstadoPlan{
         $this->fechaUltimaPaga=$fechaUltimaPaga;
 
 }
+
+    public function  getDeuda(){
+        return $this->deuda;
+    }
+     public function  setDeuda($deuda){
+        $this->deuda=$deuda;
+    }
+
+
 
 }
 

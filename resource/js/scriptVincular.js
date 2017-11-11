@@ -14,21 +14,13 @@ $(document).ready(function () {
 
         $('#modal-vincular').modal('hide');
 
-        //para poder recargar la tabla
-        var table = $('#AlumnosLibre').DataTable();
-        table.clear().draw();
-        table.destroy();
-
+        limpiarCampos();
     });
     $('#cancelModal-vincular').click(function () {
 
         $('#modal-vincular').modal('hide');
 
-        //para poder recargar la tabla
-        var table = $('#AlumnosLibre').DataTable();
-        table.clear().draw();
-        table.destroy();
-
+        limpiarCampos();
     });
 
     $('#guardarModal-vincular').click(function () {
@@ -49,10 +41,7 @@ $(document).ready(function () {
 
             $('#modal-vincular').modal('hide');
 
-            //para poder recargar la tabla
-            var table = $('#AlumnosLibre').DataTable();
-            table.clear().draw();
-            table.destroy();
+            limpiarCampos();
         }
     });
 });
@@ -178,4 +167,13 @@ var listarAlumnosLibres = function () {
 
 
     });
+}
+
+function limpiarCampos() {
+    //para poder recargar la tabla
+    var table = $('#AlumnosLibre').DataTable();
+    table.clear().draw();
+    table.destroy();
+    document.getElementById("observaciones").value = "";
+    document.getElementById("seConocen").checked = false;
 }
