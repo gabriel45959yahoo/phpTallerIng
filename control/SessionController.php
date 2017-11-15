@@ -87,6 +87,7 @@ if(!isset($_SESSION['session']))
          '</ul></li>'.
          '</ul>'.
          '<ul class="nav navbar-nav navbar-right">'.
+        '<li><a href="/view/Ayuda.html"><span class="glyphicon glyphicon-question-sign"/></a></li>'.
          '<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">&nbsp;</span>'.$usuario.'</a>'.
          '<ul class="dropdown-menu">'.
