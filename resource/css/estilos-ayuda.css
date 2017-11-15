@@ -31,6 +31,7 @@ h1{
     padding: 10px;
     font-weight: bold;
 }
+
 .panel-heading .accordion-toggle:after {
 
     font-family: 'Glyphicons Halflings';
@@ -40,13 +41,13 @@ h1{
     padding-right: 5px;
 }
 .panel-heading .accordion-toggle.collapsed:after {
-
+    font-family: 'Glyphicons Halflings';
     content: "\e080";
+    float: left;
+    color: white;
+    padding-right: 5px;
 }
 
-.panel-heading{
-
-}
 .panel-title a{
     text-decoration: none;
     display: block;
