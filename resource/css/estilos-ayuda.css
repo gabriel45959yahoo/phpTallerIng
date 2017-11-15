@@ -1,30 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.imgLogin img{
+
+.imgLogin img {
     border: 1px solid rgba(92, 91, 91, 0.11);
     border-radius: 10px;
     position: relative;
     max-width: 50%;
     height: auto;
--webkit-box-shadow: 20px 26px 62px -19px rgba(0,0,0,0.75);
--moz-box-shadow: 20px 26px 62px -19px rgba(0,0,0,0.75);
-box-shadow: 20px 26px 62px -19px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
+    box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
 
 }
-.imgLogin{
+
+.imgLogin {
     text-align: center;
 }
-.inicio{
+
+.inicio {
     text-align: center;
     text-decoration: underline;
 }
-h1{
+
+h1 {
     font-size: 3rem;
 }
-.segundo{
+
+.segundo {
     font-family: 'Roboto Slab', serif;
     font-size: 2rem;
     margin: 10px;
@@ -40,6 +45,7 @@ h1{
     color: white;
     padding-right: 5px;
 }
+
 .panel-heading .accordion-toggle.collapsed:after {
     font-family: 'Glyphicons Halflings';
     content: "\e080";
@@ -48,16 +54,18 @@ h1{
     padding-right: 5px;
 }
 
-.panel-title a{
+.panel-title a {
     text-decoration: none;
     display: block;
     padding: 10px 15px;
     margin: -10px -15px;
 }
-.panel-title a:hover{
+
+.panel-title a:hover {
     text-decoration: none;
 }
-.panel-body{
+
+.panel-body {
     font-family: 'Roboto Slab', serif;
     font-size: 1.5rem;
 }
