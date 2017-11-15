@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+*{
+    margin: 0;
+    padding: 0;
+}
+.inicio{
+    text-align: center;
+    text-decoration: underline;
+}
+h1{
+    font-size: 3rem;
+}
+.segundo{
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+    margin: 10px;
+    padding: 10px;
+    font-weight: bold;
+}
+.panel-heading .accordion-toggle:after {
+
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: left;
+    color: white;
+    padding-right: 5px;
+}
+.panel-heading .accordion-toggle.collapsed:after {
+
+    content: "\e080";
+}
+
+.panel-heading{
+
+}
+.panel-title a{
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    margin: -10px -15px;
+}
+.panel-title a:hover{
+    text-decoration: none;
+}
+.panel-body{
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.5rem;
+}
