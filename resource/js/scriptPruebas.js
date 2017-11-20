@@ -122,14 +122,14 @@ var cargarTablaUsuarios = function () {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="nombre">' + data.nombre + '</div>';
+                    return '<div>' + data.nombre + '</div>';
                 }
             },
             {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="apellido">' + data.apellido + '</div>';
+                    return '<div>' + data.apellido + '</div>';
                 }
             },
             {
@@ -139,7 +139,7 @@ var cargarTablaUsuarios = function () {
                     if (email == null) {
                         email = '';
                     }
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="email">' + email + '</div>';
+                    return '<div>' + email + '</div>';
                 }
             },
             {

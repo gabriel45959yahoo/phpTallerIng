@@ -166,6 +166,7 @@ if (! isset($_SESSION['session'])) {
                   //para pantalla administrar usuarios
                 case "listarRol":
                     listarRol();
+                    break;
                 // para pantalla DeudaPorPadrinoActivos
                  case "DeudaPadrinosActivos":
                     deudaPadrinosActivos();

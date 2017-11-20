@@ -3,8 +3,7 @@ $(function () {
 
     $("#listaRol").change(function (evt, params) {
         if (params.selected != undefined) {
-            check("info", "", 'selected: ' + datosChosenJson[params.selected].id);
-            idrolSelect = datosChosenJson[params.selected].id;
+
         }
         if (params.deselected != undefined) {
             alert('deselected: ' + params.deselected);
@@ -46,44 +45,33 @@ $(document).ready(function () {
 
 
     });
-
+//****************************iniicio carga *********************************************
     $('#guardarModal-addUsuario').click(function () {
+        var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#formAddUsuario").serialize() + "&tipo=addNewUsuarios",
+            success: function (data) {
+                if (data.includes("correctamente")) {
 
+                    check("success", "OK", data);
+                    $('#addUsuario').modal('hide');
+                    limpiarTabla();
+                    loadTablaUsuarios();
+                } else {
+
+                    check("error", "Error al crear el usuario", data);
+                }
+
+            }
+        });
 
     });
-
-    $("#listarUsuarios").on('blur', '.update', function () {
-        var id = $(this).data("id");
-        var column_name = $(this).data("column");
-        var value = $(this).text();
-
-        update_data(id, column_name, value);
-    });
+//****************************fin carga *********************************************
 
 });
 
-function update_data(id, column_name, value) {
-
-    var url = "../view/modificarDatos.php"; // El script a dónde se realizará la petición.
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: "&usuario=" + id + "&column_name=" + column_name + "&value=" + value + "&tipo=datosUsuarios", // Adjuntar los campos del formulario enviado.
-        success: function (data) {
-            if (data.includes("correctamente")) {
-
-                check("success", "OK", data);
-                limpiarTabla();
-                cargarTablaUsuarios();
-            } else {
-
-                check("error", "Error al modificar los datos", data);
-            }
-
-        }
-    });
-
-}
 
 function loadTablaUsuarios() {
 
@@ -115,21 +103,21 @@ var cargarTablaUsuarios = function () {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="usuario">' + data.usuario + '</div>';
+                    return '<div><span>' + data.usuario + '</span></div>';
                 }
             },
             {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="nombre">' + data.nombre + '</div>';
+                    return '<div>' + data.nombre + '</div>';
                 }
             },
             {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="apellido">' + data.apellido + '</div>';
+                    return '<div>' + data.apellido + '</div>';
                 }
             },
             {
@@ -139,19 +127,29 @@ var cargarTablaUsuarios = function () {
                     if (email == null) {
                         email = '';
                     }
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="email">' + email + '</div>';
+                    return '<div>' + email + '</div>';
                 }
             },
             {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div contenteditable class="update" data-id="' + data.usuario + '" data-column="rol.nombre">' + data.rol.nombre + '</div>';
+                    return '<div><span>' + data.rol.nombre + '</span></div>';
                 }
             },
             {
-                "data": "rol.descripcion",
+                "data": null,
+                "render": function (data, type, full, meta) {
 
+                    return '<div><span>' + data.rol.descripcion + '</span></div>';
+                }
+            },
+            {
+                "data": null,
+                "render": function (data, type, full, meta) {
+
+                    return '<div id="botones-' + data.usuario + '"><button id="editar-' + data.usuario + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
+                }
             }
         ],
 
@@ -191,7 +189,7 @@ function cargarChosenRol() {
                 var tds = '<option value="" selected></option>';
                 $("#listaRol").append(tds);
                 for (var i = 0; i <= n - 1; i++) {
-                    tds = '<option value="' + i + '" class="chosen-option">' + datosChosenJson[i].descripcion + '</option>';
+                    tds = '<option value="' + datosChosenJson[i].id + '" class="chosen-option">' + datosChosenJson[i].descripcion + '</option>';
                     $("#listaRol").append(tds);
                 }
 
@@ -210,3 +208,144 @@ function limpiarTabla() {
     table.clear().draw();
     table.destroy();
 }
+//******************************************* inicio modificar ************************************************
+var textId, btnGuardar, btnCancelar;
+ var datosOriginal = new Array();
+$(document).on('click', '.btnEditar', function () {
+    textId = $(this).attr('id');
+    $(this).disabled = true;
+    modificarDatosTabla();
+
+});
+
+$(document).on('click', '.btnGuardarTabla', function () {
+    btnGuardar = $(this).attr('id');
+    //  check("info", "guardar", btnGuardar);
+    guardarDatosTabla(btnGuardar);
+    $('.btnEditar').prop('disabled', false);
+});
+
+$(document).on('click', '.btnCancelarTabla', function () {
+    btnCancelar = $(this).attr('id');
+    //  check("info", "guardar", btnGuardar);
+    cancelarDatosTabla(btnCancelar);
+    $('.btnEditar').prop('disabled', false);
+});
+
+function modificarDatosTabla() {
+    var table = document.getElementById("listarUsuarios");
+    var rows = table.getElementsByTagName("TR");
+    var rowCount = rows.length;
+
+    if (rowCount > 0) {
+        for (var x = rowCount - 1; x > 0; x--) {
+            var text = rows[x].cells[0].childNodes[0].innerHTML;
+
+            if (text == '<span>'+textId.split('-')[1]+'</span>') {
+                // check("info", "modificar", rows[x].cells[0].innerHTML);
+                var cellCount = rows[x].cells.length;
+                for (var y = 0; y < cellCount - 1; y++) {
+                    var text2 = rows[x].cells[y].childNodes[0].innerHTML;
+                    var aux = rows[x].cells[y].innerHTML;
+                    if (!aux.includes('<span>')) {
+                        rows[x].cells[y].innerHTML = '<input type="text" name="in' + y + '" value="' + text2 + '"/>';
+                        datosOriginal[y]=text2;
+                    }
+                }
+                $('#botones-' + textId.split('-')[1]).append('<button id="guardar-' + textId.split('-')[1] + '" class="btnGuardarTabla btn btn-warning"><span class="glyphicon glyphicon-floppy-disk"/></button><button id="cancelar-' + textId.split('-')[1] + '" class="btnCancelarTabla btn btn-success"><span class="glyphicon glyphicon-floppy-remove"/></button>');
+                $('.btnEditar').prop('disabled', true);
+            }
+
+
+        }
+
+    }
+}
+
+function guardarDatosTabla(btnGuardar) {
+    var table = document.getElementById("listarUsuarios");
+    var rows = table.getElementsByTagName("TR");
+    var rowCount = rows.length;
+    var answer = new Array();
+    if (rowCount > 0) {
+        for (var x = rowCount - 1; x > 0; x--) {
+            var text = rows[x].cells[0].childNodes[0].innerHTML;
+
+            if (text == '<span>'+btnGuardar.split('-')[1]+'</span>') {
+                answer[0] = '' + btnGuardar.split('-')[1];
+                var cellCount = rows[x].cells.length;
+                for (var y = 0; y < cellCount - 1; y++) {
+                    var text2 = rows[x].cells[y].childNodes[0].innerHTML;
+                    var aux = rows[x].cells[y].innerHTML;
+                    if (!aux.includes('<span>')) {
+                        //check("info", "modificar", rows[x].cells[y].children[0].value);
+                        answer[y] = '' + rows[x].cells[y].children[0].value;
+                        rows[x].cells[y].innerHTML = '<div>' + rows[x].cells[y].children[0].value + '</div>';
+
+                    }
+
+                }
+                update_data(answer);
+                document.getElementById(btnGuardar).remove();
+                document.getElementById('cancelar-'+btnGuardar.split('-')[1]).remove();
+            }
+        }
+
+
+    }
+
+}
+
+
+function update_data(row) {
+
+    var url = "../view/modificarDatos.php"; // El script a dónde se realizará la petición.
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "&row=" + row + "&tipo=datosUsuarios", // Adjuntar los campos del formulario enviado.
+        success: function (data) {
+            if (data.includes("correctamente")) {
+
+                check("success", "OK", data);
+            } else {
+
+                check("error", "Error al modificar los datos", data);
+            }
+
+        }
+    });
+
+}
+function cancelarDatosTabla(btnCancelar){
+
+    var table = document.getElementById("listarUsuarios");
+    var rows = table.getElementsByTagName("TR");
+    var rowCount = rows.length;
+    if (rowCount > 0) {
+        for (var x = rowCount - 1; x > 0; x--) {
+            var text = rows[x].cells[0].childNodes[0].innerHTML;
+
+            if (text == '<span>'+btnCancelar.split('-')[1]+'</span>') {
+
+                var cellCount = rows[x].cells.length;
+                for (var y = 0; y < cellCount - 1; y++) {
+                    var text2 = rows[x].cells[y].childNodes[0].innerHTML;
+                    var aux = rows[x].cells[y].innerHTML;
+                    if (!aux.includes('<span>')) {
+
+                        rows[x].cells[y].innerHTML = '<div>' + datosOriginal[y] + '</div>';
+
+                    }
+
+                }
+                document.getElementById('guardar-'+btnCancelar.split('-')[1]).remove();
+                document.getElementById(btnCancelar).remove();
+            }
+        }
+
+
+    }
+
+}
+//******************************************* fin modificar ************************************************

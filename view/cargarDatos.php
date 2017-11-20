@@ -2,6 +2,7 @@
 session_start();
 use model\entities\PadrinoEntity as PadrinoEntity;
 use model\entities\AlumnoEntity as AlumnoEntity;
+use model\entities\UsuarioEntity as UsuarioEntity;
 use model\entities\PlanPactadoEntity as PlanPactadoEntity;
 use model\entities\VincularEntity as VincularEntity;
 use model\entities\PagoRealizadoEntity as PagoRealizadoEntity;
@@ -60,6 +61,13 @@ function cargarAlumno(){
          echo $cargarController->cargarAlumno($alumno);
 }
 
+function cargarUsuario(){
+        $cargarController = new CargarController();
+     //$nombre, $apellido, $usuario, $clave, $rol, $email
+        $usuario= new UsuarioEntity(ucwords($_POST['nombre']), ucwords($_POST['apellido']),$_POST['user'], $_POST['clave'],$_POST['listaRol'], $_POST['email']);
+
+         echo $cargarController->cargarUsuario($usuario);
+}
 
 function cargarVincular(){
     $cargarController = new CargarController();
@@ -137,6 +145,10 @@ if (! isset($_SESSION['session'])) {
                     break;
                 case "CargarPago":
                     cargarPago();
+                    break;
+                //Pantalla Administrar Usuario
+                case "addNewUsuarios":
+                    cargarUsuario();
                     break;
                 case "cargarDatosFacturacion":
                     cargarDatosFacturacion();

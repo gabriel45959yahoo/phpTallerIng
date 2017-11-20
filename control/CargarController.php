@@ -11,6 +11,7 @@ use model\entities\ObsVincularEntity as ObsVincularEntity;
 
 include '../model/ABMPadrino.php';
 include '../model/ABMAlumno.php';
+include '../model/Login.php';
 include '../model/ABMDatosFactura.php';
 include '../model/ABMPlanPactado.php';
 include '../model/ABMVincular.php';
@@ -102,10 +103,6 @@ class CargarController {
         
     }
 
-    function cargarUsuario($usuario) {
-        
-    }
-
     function vincular($vincular) {
         $vincularSingleton = ABMVincular::singleton_Vincular();
         $ObsVincularSingleton = ABMObsVincular::singleton_ObsVincular();
@@ -164,7 +161,17 @@ class CargarController {
                 return "Datos de facturacion del Padrino fueron cargados correctamente.";
         }
     }
+    function cargarUsuario($usuario){
+        $usuarioSingleton = Login::singleton_login();
 
+        $rest = $usuarioSingleton->cargarUsuario($usuario);
+
+        if ($rest != 0) {
+                return "Error: al crear el usuario.";
+            } else {
+                return "El usuario fue creado correctamente.";
+        }
+    }
 }
 
 ?>

@@ -34,10 +34,8 @@ if(!isset($_SESSION['session']))
          '</div>'.
          '<div class="collapse navbar-collapse" id="myMenuNavbar">'.
          '<ul class="nav navbar-nav">'.
-         '<li><a href="../view/home.html">Home</a></li>';
-    if($rol=="ADMIN"){
-
-         $menu=$menu.'<li class="dropdown">'.
+         '<li><a href="../view/home.html">Home</a></li>'.
+         '<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Cargar </a>'.
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/CargarAlumno.html">Alumno</a></li>'.
@@ -46,31 +44,16 @@ if(!isset($_SESSION['session']))
          '<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar </a>'.
          '<ul class="dropdown-menu">'.
-         '<li><a href="/view/">Alumno</a></li>'.
-         '<li><a href="/view/">Padrino</a></li>'.
-         '<li><a href="/view/">Pagos</a></li>'.
-         '</ul></li>'.
-         '<li><a href="/view/CargarPago.html">Pagos</a></li>'.
-         '<li><a href="/view/AdministrarUsuario.html">Administrar Usuarios</a></li>'.
-         '<li><a href="/view/Vincular.html">Vincular</a></li>';
-    }else{
-        $menu=$menu.'<li class="dropdown">'.
-         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Cargar </a>'.
-         '<ul class="dropdown-menu">'.
-         '<li><a href="/view/CargarAlumno.html">Alumno</a></li>'.
-         '<li><a href="/view/CargarPadrino.html">Padrino</a></li>'.
-         '</ul></li>'.
-         '<li class="dropdown">'.
-         '<li><a href="/view/Vincular.html">Vincular</a></li>'.
-         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Modificar </a>'.
-         '<ul class="dropdown-menu">'.
-         '<li><a href="/view/">Alumno</a></li>'.
-         '<li><a href="/view/">Padrino</a></li>'.
-         '<li><a href="/view/">Pagos</a></li>'.
+         '<li><a href="/view/ModificarAlumno.html">Alumno</a></li>'.
+         '<li><a href="/view/ModificarPadrino.html">Padrino</a></li>'.
+         '<li><a href="/view/ModificarPagos.html">Pagos</a></li>'.
          '</ul></li>';
+    if($rol=="ADMIN"){
+       $menu=$menu.'<li><a href="/view/CargarPago.html">Pagos</a></li>';
     }
-
-    $menu=$menu.'<li class="dropdown">'.
+    $menu=$menu.'<li><a href="/view/AdministrarUsuario.html">Administrar Usuarios</a></li>'.
+         '<li><a href="/view/Vincular.html">Vincular</a></li>'.
+         '<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados </a>'.
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/ListarPadrinoAhijado.html">Vinculaciones activas</a></li>'.

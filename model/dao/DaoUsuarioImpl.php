@@ -41,13 +41,13 @@ class DaoUsuarioImpl implements DaoUsuario, DaoObject {
         }
         return false;
     }
-    public function update($usuario,$columna,$valor) {
+    public function update($datos) {
 
         $conexion = DaoConnection::connection();
 
 
 
-        if ($usuario!=null && $columna!=null && $valor!=null) {
+      /*  if ($usuario!=null && $columna!=null && $valor!=null) {
 
              switch ($columna) {
                 //Pantalla administrar usuario
@@ -63,16 +63,16 @@ class DaoUsuarioImpl implements DaoUsuario, DaoObject {
                 case "email":
                     $columna="email";
                     break;
-            }
+            }*/
 
-            $consulta = "UPDATE usuario SET $columna='$valor' WHERE usr_id='$usuario'";
+            $consulta = "UPDATE usuario SET nombre='$datos[1]' ,apellido='$datos[2]',email='$datos[3]'   WHERE usr_id='$datos[0]'";
 
 
             mysqli_query($conexion, $consulta);
             mysqli_close($conexion);
             return true;
-        }
-        return false;
+        //}
+      //  return false;
     }
     public function crearUsuario($user) {
         
@@ -80,6 +80,23 @@ class DaoUsuarioImpl implements DaoUsuario, DaoObject {
 
     public function insert($obj) {
         
+        $conexion = DaoConnection::connection();
+
+         $sql = "INSERT INTO usuario(usr_id, usr_id_rol, nombre, apellido, email, clave) VALUES ('$obj->usuario','$obj->rol','$obj->nombre','$obj->apellido','$obj->email','$obj->clave')";
+
+
+
+        if ($conexion->query($sql) === TRUE) {
+            mysqli_commit($conexion);
+            mysqli_close($conexion);
+
+            return "OK";
+        } else {
+            $error = $conexion->error;
+            mysqli_rollback($conexion);
+            mysqli_close($conexion);
+            return "Error: " . $error;
+        }
     }
 
     public function select($obj) {

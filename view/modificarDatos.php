@@ -18,7 +18,8 @@ include '../control/ModificarController.php';
 function modificarUsuario(){
     $modificarController = new ModificarController();
 
-    echo $modificarController->modificarUsuario($_POST['usuario'],$_POST['column_name'],$_POST['value']);
+   // echo $modificarController->modificarUsuario($_POST['usuario'],$_POST['column_name'],$_POST['value']);
+  echo $modificarController->modificarUsuario($_POST['row']);
 
 }
 

@@ -46,13 +46,25 @@ class Login {
 
         return $daoUsuario->selectRol();
     }
-    public function modificarUsuario($usuario,$columna,$valor){
+    public function modificarUsuario($datos){
          $daoUsuario = new DaoUsuarioImpl();
 
-        if($daoUsuario->update($usuario,$columna,$valor)){
+        if($daoUsuario->update($datos)){
             return "Los datos se modificaron correctamente";
         }
      return "Error al modificar los datos del usuario";
+    }
+    public function cargarUsuario($usuario){
+       $daoUsuario = new DaoUsuarioImpl();
+
+       $res=$daoUsuario->insert($usuario);
+
+            if($res=="OK"){
+                    return 0;
+                }else{
+                    echo $res;
+                    return 1;
+                }
     }
     public function __clone() {
 

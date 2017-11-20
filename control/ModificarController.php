@@ -10,12 +10,12 @@ include '../model/Login.php';
 
 class ModificarController{
 
-    function modificarUsuario($usuario,$columna,$valor){
+    function modificarUsuario($datos){
         $nuevoSingleton = Login::singleton_login();
 
-         $rest = $nuevoSingleton->modificarUsuario($usuario,$columna,$valor);
+         $rest = $nuevoSingleton->modificarUsuario(explode(",", $datos));
 
-        return json_encode($rest);
+        return $rest;
     }
 
 }
