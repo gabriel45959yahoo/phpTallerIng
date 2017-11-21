@@ -1,22 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.inicio{
+
+.inicio {
     text-align: center;
     text-decoration: underline;
 }
-h1{
+
+h1 {
     font-size: 3rem;
 }
-.segundo{
+
+.segundo {
     font-family: 'Roboto Slab', serif;
     font-size: 2rem;
     margin: 10px;
     padding: 10px;
     font-weight: bold;
 }
+
 .panel-heading .accordion-toggle:after {
 
     font-family: 'Glyphicons Halflings';
@@ -25,24 +29,65 @@ h1{
     color: white;
     padding-right: 5px;
 }
+
 .panel-heading .accordion-toggle.collapsed:after {
 
     content: "\e080";
 }
 
-.panel-heading{
+.panel-heading {}
 
-}
-.panel-title a{
+.panel-title a {
     text-decoration: none;
     display: block;
     padding: 10px 15px;
     margin: -10px -10px;
 }
-.panel-title a:hover{
+
+.panel-title a:hover {
     text-decoration: none;
 }
-.panel-body{
+
+.panel-body {
     font-family: 'Roboto Slab', serif;
     font-size: 1.5rem;
+}
+
+.tercero {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+    margin: 10px;
+    padding: 10px;
+    font-weight: bold;
+    display: block;
+
+}
+
+.imagen {
+    text-align: center;
+}
+
+.imagen img {
+    width: 320px;
+    max-width: 90%;
+    height: auto;
+    border: 1px solid rgba(128, 128, 128, 0.22);
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+}
+
+.imagen-home {
+    text-align: center;
+}
+
+.imagen-home img {
+    max-width: 80%;
+    height: auto;
+    border: 1px solid rgba(128, 128, 128, 0.22);
+
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
 }
