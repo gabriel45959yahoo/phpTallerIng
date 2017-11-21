@@ -149,7 +149,8 @@ var cargarTablaUsuarios = function () {
                 "render": function (data, type, full, meta) {
 
                     return '<div id="botones-' + data.usuario + '" class="divBotonesTabla"><button id="editar-' + data.usuario + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
-                }
+                },
+                "orderable": false
             }
         ],
 

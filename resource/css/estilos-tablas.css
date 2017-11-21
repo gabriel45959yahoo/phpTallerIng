@@ -53,3 +53,6 @@ tr.shown td.details-control {
 .divBotonesTabla{
     display: flex;
 }
+.inEditDateTable{
+    height: 22px;
+}

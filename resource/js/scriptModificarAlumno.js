@@ -29,6 +29,8 @@ $(document).ready(function () {
     });
 //****************************fin carga *********************************************
 
+
+
 });
 
 
@@ -126,7 +128,8 @@ var cargarTablaUsuarios = function () {
                 "render": function (data, type, full, meta) {
 
                     return '<div id="botones-' + data.id + '" class="divBotonesTabla"><button id="editar-' + data.id + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
-                }
+                },
+                "orderable": false
             }
         ],
 
@@ -177,6 +180,7 @@ $(document).on('click', '.btnCancelarTabla', function () {
     $('.btnEditar').prop('disabled', false);
 });
 
+
 function modificarDatosTabla() {
     var table = document.getElementById("listarAlumnos");
     var rows = table.getElementsByTagName("TR");
@@ -193,7 +197,14 @@ function modificarDatosTabla() {
                     var text2 = rows[x].cells[y].childNodes[0].innerHTML;
                     var aux = rows[x].cells[y].innerHTML;
                     if (!aux.includes('<span>')) {
-                        rows[x].cells[y].innerHTML = '<input type="text" name="in' + y + '" value="' + text2 + '"/>';
+                        //pongo un formato de fecha valido para el input
+                       if (text2.includes('/')) {
+                           var fecha =text2.split('/');
+                           var formatoFecha=fecha[2]+'-'+fecha[1]+'-'+fecha[0];
+                         rows[x].cells[y].innerHTML ='<input class="inEditDateTable" type="date" name="in' + y + '" value="' + formatoFecha + '"/>';
+                       }else{
+                          rows[x].cells[y].innerHTML = '<input type="text" name="in' + y + '" value="' + text2 + '"/>';
+                       }
                         datosOriginal[y]=text2;
                     }
                 }
@@ -220,11 +231,17 @@ function guardarDatosTabla(btnGuardar) {
                 datosModificados[0] = '' + btnGuardar.split('-')[1];
                 var cellCount = rows[x].cells.length;
                 for (var y = 0; y < cellCount - 1; y++) {
-                    var text2 = rows[x].cells[y].childNodes[0].innerHTML;
+                    var text2 = rows[x].cells[y].children[0].value;
                     var aux = rows[x].cells[y].innerHTML;
                     if (!aux.includes('<span>')) {
-                        //check("info", "modificar", rows[x].cells[y].children[0].value);
-                        datosModificados[y] = '' + rows[x].cells[y].children[0].value;
+                        //pongo un formato de fecha valido
+                       if (text2.includes('-') && text2.split('-').length ==3) {
+                           var fecha =text2.split('-');
+                           var formatoFecha=fecha[2]+'/'+fecha[1]+'/'+fecha[0];
+                           datosModificados[y] = '' + formatoFecha;
+                       }else{
+                          datosModificados[y] = '' + rows[x].cells[y].children[0].value;
+                       }
                         rows[x].cells[y].innerHTML = '<div>' + rows[x].cells[y].children[0].value + '</div>';
 
                     }
