@@ -148,7 +148,7 @@ var cargarTablaUsuarios = function () {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div id="botones-' + data.usuario + '"><button id="editar-' + data.usuario + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
+                    return '<div id="botones-' + data.usuario + '" class="divBotonesTabla"><button id="editar-' + data.usuario + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
                 }
             }
         ],
@@ -252,7 +252,7 @@ function modificarDatosTabla() {
                         datosOriginal[y]=text2;
                     }
                 }
-                $('#botones-' + textId.split('-')[1]).append('<button id="guardar-' + textId.split('-')[1] + '" class="btnGuardarTabla btn btn-warning"><span class="glyphicon glyphicon-floppy-disk"/></button><button id="cancelar-' + textId.split('-')[1] + '" class="btnCancelarTabla btn btn-success"><span class="glyphicon glyphicon-floppy-remove"/></button>');
+                $('#botones-' + textId.split('-')[1]).append('<button id="guardar-' + textId.split('-')[1] + '" class="btnGuardarTabla btn btn-success"><span class="glyphicon glyphicon-floppy-disk"/></button><button id="cancelar-' + textId.split('-')[1] + '" class="btnCancelarTabla btn btn-danger"><span class="glyphicon glyphicon-floppy-remove"/></button>');
                 $('.btnEditar').prop('disabled', true);
             }
 
