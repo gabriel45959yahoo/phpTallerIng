@@ -7,14 +7,30 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="CHANGE-ME">
     <link rel="icon" sizes="192x192" href="../resource/images/logo_icon.ico">
+    <!--Menu-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resource/css/estilos-alertas-toast.css">
 
+    <link rel="stylesheet" href="../resource/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+    <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
+    <script type="text/javascript" src="../resource/js/alertas.js"></script>
+    <!--Menu-->
     <title>Ayuda</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="../resource/css/estilos-ayuda.css">
+
+
 </head>
 
-<body>
+<body onload="redireccionar()">
+    <!--Menu-->
+    <header id="menuid">
+
+    </header>
+
     <div class="inicio">
         <h1>Bienvenido a la guia para el usuario</h1>
     </div>
@@ -27,7 +43,7 @@
         <h4>Una vez que haya ingresado al sistema, prodr&aacute; visualizar el siguiente men&uacute; de navegaci&oacute;n en la parte superior de la pantalla:</h4>
         <div class="imgNav"><img src="../resource/images/Nav.jpg" alt=""></div>
         <br>
-        <h4>A continuaci&oacute;n se describir&aacute; cada una  de las opciones del men&uacute;. Porfavor, seleccione la opci&oacute;n deseada.</h4>
+        <h4>A continuaci&oacute;n se describir&aacute; cada una de las opciones del men&uacute;. Porfavor, seleccione la opci&oacute;n deseada.</h4>
     </div>
     <br>
     <div class="container">
@@ -181,6 +197,7 @@
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-XXXXXXXX-X', 'auto');
         ga('send', 'pageview');
+
     </script>
 </body>
 
