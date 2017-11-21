@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+.imgLogin {
+    text-align: center;
+}
+
 .imgLogin img {
     border: 1px solid rgba(92, 91, 91, 0.11);
     border-radius: 10px;
@@ -14,16 +18,13 @@
     -webkit-box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
     box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
-
 }
 
-.imgLogin {
+.imgNav {
     text-align: center;
 }
-.imgNav{
-    text-align: center;
-}
-.imgNav img{
+
+.imgNav img {
     border: 1px solid rgba(92, 91, 91, 0.11);
     position: relative;
     width: 80%;
@@ -33,6 +34,19 @@
     -moz-box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
     box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
 }
+
+.panel-body img{
+    border: 1px solid rgba(92, 91, 91, 0.11);
+    border-radius: 10px;
+    position: relative;
+    width: 250px;
+    width: 100%;
+    height: auto;
+    -webkit-box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
+    box-shadow: 20px 26px 62px -19px rgba(0, 0, 0, 0.75);
+}
+
 .inicio {
     text-align: center;
     text-decoration: underline;
