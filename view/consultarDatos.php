@@ -99,6 +99,11 @@ function deudaPadrinosAll(){
 
     echo $consultarController->deudaPadrinosAll();
 }
+function listarAlumnos(){
+   $consultarController = new ConsultarController();
+
+    echo $consultarController->listarAlumnos();
+}
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -174,6 +179,10 @@ if (! isset($_SESSION['session'])) {
                 // para pantalla DeudaPorPadrino
                  case "DeudaAllPadrinos":
                     deudaPadrinosAll();
+                    break;
+                 // para pantalla ModificarAlumno
+                 case "listarAlumnos":
+                    listarAlumnos();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

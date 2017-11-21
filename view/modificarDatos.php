@@ -16,13 +16,18 @@ include '../model/entities/PorcLibOcup.php';
 include '../control/ModificarController.php';
 
 function modificarUsuario(){
-    $modificarController = new ModificarController();
+  $modificarController = new ModificarController();
 
-   // echo $modificarController->modificarUsuario($_POST['usuario'],$_POST['column_name'],$_POST['value']);
   echo $modificarController->modificarUsuario($_POST['row']);
 
 }
+function modificarAlumno(){
+  $modificarController = new ModificarController();
 
+
+  echo $modificarController->modificarAlumno($_POST['row']);
+
+}
 
 if (! isset($_SESSION['session'])) {
 
@@ -39,7 +44,10 @@ if (! isset($_SESSION['session'])) {
                 case "datosUsuarios":
                     modificarUsuario();
                     break;
-
+                //Pantalla modificarAlumnos
+                case "datosAlumnos":
+                    modificarAlumno();
+                    break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];
             }

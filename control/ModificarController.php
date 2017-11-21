@@ -17,7 +17,15 @@ class ModificarController{
 
         return $rest;
     }
+    function modificarAlumno($datos){
+         $alumnoSingleton = ABMAlumno::singleton_Alumno();
 
+        $rest = $alumnoSingleton->modificarAlumno(explode(",", $datos));
+        if($rest="OK"){
+            return "Los datos se actualizaron correctamente";
+        }
+        return $rest;
+    }
 }
 
 ?>

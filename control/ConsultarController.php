@@ -166,6 +166,16 @@ class ConsultarController{
 
             return json_encode($rest);
     }
+    function listarAlumnos(){
+         $alumnoSingleton = ABMAlumno::singleton_Alumno();
+
+
+        $restAlumno = $alumnoSingleton->listarAlumnos();
+
+        return json_encode($restAlumno);
+
+
+    }
 }
 
 ?>

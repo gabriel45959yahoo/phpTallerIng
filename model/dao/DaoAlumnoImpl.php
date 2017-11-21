@@ -30,30 +30,65 @@ class DaoAlumnoImpl implements DaoObject
             return "Error: " . $error;
         }
     }
+    public function update($obj)
+    {
 
+
+        $conexion = DaoConnection::connection();
+
+         $sql = "update Alumno set alu_nombre='$obj->nombre', alu_apellido='$obj->apellido',alu_alias='$obj->alias', alu_cursado='$obj->nivelCurso', alu_observaciones='$obj->observaciones',alu_dni='$obj->dni',alu_fecha_nacimiento=STR_TO_DATE('$obj->fechaNacimiento', '%d/%m/%Y') where alu_id='$obj->id'";
+
+
+
+        if ($conexion->query($sql) === TRUE) {
+            mysqli_commit($conexion);
+            mysqli_close($conexion);
+
+            return "OK";
+        } else {
+            $error = $conexion->error;
+            mysqli_rollback($conexion);
+            mysqli_close($conexion);
+            return "Error: " . $error;
+        }
+    }
     public function select($obj)
     {
          $resAlumno = array();
         $conexion = DaoConnection::connection();
 
-        //SELECT alu_id, alu_nombre, alu_apellido, alu_cursado, alu_observaciones, alu_es_alumno, alu_fecha_nacimiento FROM Alumno WHERE 1
-        $sql="SELECT alu_id,". //0
-            " alu_nombre,".
-            " alu_apellido,".
-            " alu_alias,".
-            " alu_dni,".
-            " alu_cursado,".
-            " alu_observaciones,".
-            " alu_fecha_nacimiento,".
-            " alu_es_alumno".
-            " FROM Alumno WHERE ".
-            "alu_apellido='$obj->apellido' ".
-            (($obj->nombre==null)?" ":"and alu_nombre='$obj->nombre' ").
-            (($obj->nivelCurso==null)?" ":"and alu_cursado='$obj->nivelCurso'").
-            (($obj->fechaNacimiento==null)?" ":"and alu_fecha_nacimiento='$obj->fechaNacimiento'").
-            (($obj->dni==null)?" ":"and alu_dni='$obj->dni'").
-            " order by alu_id desc";
-
+        if($obj != null){
+            $sql="SELECT alu_id,". //0
+                " alu_nombre,".
+                " alu_apellido,".
+                " alu_alias,".
+                " alu_dni,".
+                " alu_cursado,".
+                " alu_observaciones,".
+                " ifnull(DATE_FORMAT(alu_fecha_nacimiento, '%d/%m/%Y'),'-/-/-') as fecha_nacimiento,".
+                " alu_es_alumno,".
+                " TIMESTAMPDIFF(YEAR, alu_fecha_nacimiento, CURDATE()) as edad".
+                " FROM Alumno WHERE ".
+                "alu_apellido='$obj->apellido' ".
+                (($obj->nombre==null)?" ":"and alu_nombre='$obj->nombre' ").
+                (($obj->nivelCurso==null)?" ":"and alu_cursado='$obj->nivelCurso'").
+                (($obj->fechaNacimiento==null)?" ":"and alu_fecha_nacimiento='$obj->fechaNacimiento'").
+                (($obj->dni==null)?" ":"and alu_dni='$obj->dni'").
+                " order by alu_id desc";
+        }else{
+             $sql="SELECT alu_id,". //0
+                " alu_nombre,".
+                " alu_apellido,".
+                " alu_alias,".
+                " alu_dni,".
+                " alu_cursado,".
+                " alu_observaciones,".
+                " ifnull(DATE_FORMAT(alu_fecha_nacimiento, '%d/%m/%Y'),'-/-/-') as fecha_nacimiento,".
+                " alu_es_alumno,".
+                " TIMESTAMPDIFF(YEAR, alu_fecha_nacimiento, CURDATE()) as edad".
+                " FROM Alumno ".
+                " order by alu_id desc";
+        }
 
         $result = mysqli_query($conexion, $sql);
        if (mysqli_num_rows($result) > 0) {
@@ -61,9 +96,12 @@ class DaoAlumnoImpl implements DaoObject
             while($re = mysqli_fetch_row($result)) {
                // $re = array_map('utf8_encode',$re);
                     //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
-                   $resAlumno[]= new AlumnoEntity($re[0],$re[1], $re[2],
+                  $alu=new AlumnoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
-                                                   $re[6],$re[7]);
+                                                   $re[6],$re[7],$re[8]);
+
+                  $alu->setEdad($re[9]);
+                   $resAlumno["data"][]=$alu;
                 }
         }
 

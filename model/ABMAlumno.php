@@ -64,7 +64,22 @@ class ABMAlumno{
 
       return $resultado;
     }
+    public function listarAlumnos(){
+        $daoAlumno= new model\dao\DaoAlumnoImpl();
 
+
+        return $daoAlumno->select(null);
+    }
+    public function modificarAlumno($datos){
+         $daoAlumno= new model\dao\DaoAlumnoImpl();
+
+        //$id,$nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$fechaNacimiento,$esAlumno
+        $alumno = new AlumnoEntity($datos[0], $datos[2],$datos[3],$datos[1], $datos[4],$datos[5],$datos[8],$datos[6],null);
+        //1,Javi,Javier,Diaz,9876543,3C,03/03/2000,,alumno
+
+        return $daoAlumno->update($alumno);
+
+    }
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private

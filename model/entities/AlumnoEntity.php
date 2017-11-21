@@ -62,6 +62,12 @@ function __construct7($nombre,$apellido,$alias,$dni,$nivelCurso,$observaciones,$
      public function  getAlias(){
         return $this->alias;
     }
+     public function  getEdad(){
+        return $this->edad;
+    }
+     public function  setEdad($edad){
+        $this->edad=$edad;
+    }
      public function  setAlias($alias){
         $this->alias=$alias;
     }
