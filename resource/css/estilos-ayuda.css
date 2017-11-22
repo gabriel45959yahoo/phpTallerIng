@@ -90,10 +90,12 @@ h1 {
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
 }
-.nav{
+
+.nav {
     text-align: center;
 }
-.nav img{
+
+.nav img {
     max-width: 90%;
     -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
