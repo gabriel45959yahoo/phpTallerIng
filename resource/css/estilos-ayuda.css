@@ -101,3 +101,21 @@ h1 {
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
 }
+.CargarAlumno{
+text-align: center;
+}
+.CargarAlumno img{
+max-width: 80%;
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+}
+.CargarPadrino{
+text-align: center;
+}
+.CargarPadrino img {
+max-width: 90%;
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+}
