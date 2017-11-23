@@ -182,7 +182,7 @@ function modificarDatosTabla() {
                         datosOriginal[y]=text2;
                     }
                 }
-                $('#botones-' + textId.split('-')[1]).append('<button id="guardar-' + textId.split('-')[1] + '" class="btnGuardarTabla btn btn-success"><span class="glyphicon glyphicon-floppy-disk"/></button><button id="cancelar-' + textId.split('-')[1] + '" class="btnCancelarTabla btn btn-danger"><span class="glyphicon glyphicon-floppy-remove"/></button>');
+                $('#botones-' + textId.split('-')[1]).append('<button id="guardar-' + textId.split('-')[1] + '" class="btnGuardarTabla btn btn-success"><span class="glyphicon glyphicon-floppy-disk" title="Guardar"/></button><button id="cancelar-' + textId.split('-')[1] + '" class="btnCancelarTabla btn btn-danger"><span class="glyphicon glyphicon-floppy-remove" title="Cancelar"/></button>');
                 $('.btnEditar').prop('disabled', true);
             }
 
