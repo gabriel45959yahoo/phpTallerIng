@@ -48,7 +48,8 @@ if(!isset($_SESSION['session']))
          '<li><a href="/view/ModificarPadrino.html">Padrino</a></li>'.
          '</ul></li>';
     if($rol=="ADMIN"){
-       $menu=$menu.'<li><a href="/view/CargarPago.html">Pagos</a></li>';
+       $menu=$menu.'<li><a href="/view/CargarPago.html">Pagos</a></li>'.
+           '<li><a href="/view/FinCicloLectivo.html">Fin Ciclo Lectivo</a></li>';
     }
     $menu=$menu.'<li><a href="/view/AdministrarUsuario.html">Administrar Usuarios</a></li>'.
          '<li><a href="/view/Vincular.html">Vincular</a></li>'.
