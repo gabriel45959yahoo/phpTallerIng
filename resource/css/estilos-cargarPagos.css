@@ -188,6 +188,9 @@
       position: relative;
       top: 1px;
   }
+.separador{
+    border-top: 1px solid #ccc;
+}
 
   @media(max-width:768px) {
       header label {
