@@ -46,7 +46,6 @@ if(!isset($_SESSION['session']))
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/ModificarAlumno.html">Alumno</a></li>'.
          '<li><a href="/view/ModificarPadrino.html">Padrino</a></li>'.
-         '<li><a href="/view/ModificarPagos.html">Pagos</a></li>'.
          '</ul></li>';
     if($rol=="ADMIN"){
        $menu=$menu.'<li><a href="/view/CargarPago.html">Pagos</a></li>';
@@ -60,13 +59,13 @@ if(!isset($_SESSION['session']))
          '<li><a href="">Detalle de Padrinos</a></li>'.
          '<li><a href="/view/DeudaPorPadrinoActivos.html">Deuda de Padrinos activos</a></li>'.
          '<li><a href="/view/DeudaTodosPadrinos.html">Deuda de todos los Padrinos</a></li>'.
-         '<li><a href="/view/GraficoVinculados.html">Gr&aacute;fico de Vinculados</a></li>'.
          '</ul></li>'.
          '<li class="dropdown">'.
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes </a>'.
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/HistoricoVinculados.html">Historico de Vinculaci&oacute;n</a></li>'.
          '<li><a href="/view/DetalleDePagos.html">Detalle de pagos</a></li>'.
+        '<li><a href="/view/GraficoVinculados.html">Gr&aacute;fico de Vinculados</a></li>'.
          '</ul></li>'.
          '</ul>'.
          '<ul class="nav navbar-nav navbar-right">'.
