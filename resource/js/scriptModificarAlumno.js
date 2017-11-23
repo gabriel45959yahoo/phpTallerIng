@@ -101,7 +101,7 @@ var cargarTablaUsuarios = function () {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div id="botones-' + data.id + '" class="divBotonesTabla"><button id="editar-' + data.id + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
+                    return '<div id="botones-' + data.id + '" class="divBotonesTabla"><button id="editar-' + data.id + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil" title="Modificar"/></button></div>';
                 },
                 "orderable": false
             }
