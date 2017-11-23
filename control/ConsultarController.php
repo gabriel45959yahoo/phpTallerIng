@@ -176,6 +176,26 @@ class ConsultarController{
 
 
     }
+    function listarPadrinos(){
+         $padrinoSingleton = ABMPadrino::singleton_Padrino();
+        
+         $restPadrino = $padrinoSingleton->listarPadrinos();
+            
+         return json_encode($restPadrino);
+
+    }
+    function listarDomicilioPadrino($idDomicilio){
+        $padrinoSingleton = ABMPadrino::singleton_Padrino();
+
+        $restDomicilio = $padrinoSingleton->listarDomicilioPadrino($idDomicilio);
+         
+        if(count($restDomicilio)==0){
+            return "Error: No se encontro el domicilio del Padrino";
+        }else{
+           
+            return json_encode($restDomicilio);
+        }
+    }
 }
 
 ?>

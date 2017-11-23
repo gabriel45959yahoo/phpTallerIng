@@ -65,7 +65,22 @@ class ABMDatosFactura{
 
       return $resultado;
     }
-
+    public function modificarDatosFacturacion($datoFact){
+        
+        $datosFactura= new dao\DaoDatosFactImpl();
+        $daoDomicilio= new dao\DaoDomicilioImpl();
+        //$id,$calle,$numero,$piso,$depto,$provincia,$ciudad
+        $dom= new entities\DomicilioEntity(0,$datoFact[5],$datoFact[6],$datoFact[7],$datoFact[8],$datoFact[9],$datoFact[10]);
+        
+        //$id,$nombre,$apellido,$dni,$cuil,$domicilio
+        $datosFact=new entities\DatosFactEntity($datoFact[0],$datoFact[1],$datoFact[2],$datoFact[3],$datoFact[4],$dom);
+        $datosFact->setIdPadrino($datoFact[6]);
+        
+        $datosFactura->update($datosFact);
+        $daoDomicilio->updateFact($dom,$datoFact[0]);
+        
+        
+    }
     public function __clone()
     {
 

@@ -32,12 +32,34 @@ class DaoPadrinoImpl implements DaoObject{
             return "Error: " . $error;
         }
     }
+ public function update($obj)
+    {
 
+        
+        $conexion = DaoConnection::connection();
+        
+        
+        $sql = "update  Padrino set pa_apellido='$obj->apellido' ,  pa_nombre='$obj->nombre' ,  pa_alias='$obj->alia' ,  pa_dni='$obj->dni' ,  pa_cuil='$obj->cuil' ,  pa_email='$obj->email' ,pa_email_alternativo='$obj->emailAlt',  pa_telefono='$obj->telefono' ,pa_telefono_alternativo='$obj->telefonoAlt',  pa_referencia_contacto='$obj->contacto' ,pa_ficha_fisica_ingreso='$obj->fichaFisicaIngreso' where  pa_id='$obj->id'";
+
+        if ($conexion->query($sql) === TRUE) {
+            mysqli_commit($conexion);
+            mysqli_close($conexion);
+
+            return "OK";
+        } else {
+            $error = $conexion->error;
+            mysqli_rollback($conexion);
+            mysqli_close($conexion);
+            return "Error: " . $error;
+        }
+    }
     public function select($obj)
     {
         $resultado = array();
         $conexion = DaoConnection::connection();
         $idDom=0;
+        if($obj!=null){
+            
         if($obj->domicilio!=null){
 
            $idDom=$obj->domicilio->id;
@@ -72,7 +94,25 @@ class DaoPadrinoImpl implements DaoObject{
             (($obj->fechaAlta==null)?" ":"and pa_fecha_alta='$obj->fechaAlta'").
             (($obj->fechaBaja==null)?" ":"and pa_fecha_baja='$obj->fechaBaja'").
             " order by pa_id desc";
-
+        }else{
+            $sql="SELECT pa_id,". //0
+            " pa_nombre,".
+            " pa_apellido,".
+            " pa_alias,".
+            " pa_dni,".
+            " pa_cuil,".//5
+            " pa_email,".
+            " pa_email_alternativo,".
+            " pa_telefono,".
+            " pa_telefono_alternativo,".
+            " pa_referencia_contacto,".//10
+            " pa_id_domicilio,".
+            " pa_fecha_alta,".
+            " pa_fecha_baja,".
+            " pa_ficha_fisica_ingreso".
+            " FROM Padrino ". 
+            " order by pa_id desc";
+        }
        // echo $sql;
 
         $result = mysqli_query($conexion, $sql);
@@ -81,10 +121,10 @@ class DaoPadrinoImpl implements DaoObject{
             while($re = mysqli_fetch_row($result)) {
                 
                    $re = array_map('utf8_encode',$re); //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso
-                   $resultado[]= new PadrinoEntity($re[0],$re[1], $re[2],
+                   $resultado["data"][]= new PadrinoEntity($re[0],$re[1], $re[2],
                                                    $re[3],$re[4], $re[5],
                                                    $re[6],$re[7], $re[8],
-                                                   $re[9],$re[10], null,null,$re[12],$re[13],null,$re[14]);
+                                                   $re[9],$re[10], $re[11],null,$re[12],$re[13],null,$re[14]);
                 }
         }
 

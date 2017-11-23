@@ -46,7 +46,12 @@ function __construct14($nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$tele
     $this->montoPactado=$montoPactado;
     $this->fichaFisicaIngreso=$fichaFisicaIngreso;
 }
-function __construct17($id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso){
+function __construct17($id,$nombre,$apellido,
+                       $alia,$dni,$cuil,
+                       $email,$emailAlt,$telefono,
+                       $telefonoAlt,$contacto,$domicilio,
+                       $domicilioFact,$fechaAlta,$fechaBaja,
+                       $montoPactado,$fichaFisicaIngreso){
     parent::__construct($nombre,$apellido,$dni);
     $this->id=$id;
     $this->cuil=$cuil;

@@ -8,13 +8,13 @@ $(document).ready(function () {
         listaTipoPago();
     }
 
-     $('#addDomFact').modal({
+   $('#addDomFact').modal({
         show: false,
         backdrop: 'static'
     });
 
 
- $('#cerrarModal-DomFact').click(function () {
+   $('#cerrarModal-DomFact').click(function () {
 
     $('#addDomFact').modal('hide');
 

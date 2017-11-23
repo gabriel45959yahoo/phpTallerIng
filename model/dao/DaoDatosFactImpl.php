@@ -27,6 +27,23 @@ class DaoDatosFactImpl implements DaoObject{
             return "Error: " . $error;
         }
     }
+     public function update($obj){
+        $conexion = DaoConnection::connection();
+
+       $sql = "UPDATE Datos_facturacion SET df_nombre='$obj->nombre',df_apellido='$obj->apellido',df_dni='$obj->dni',df_cuil_cuit='$obj->cuil' where df_id='$obj->id'";
+
+        if ($conexion->query($sql) === TRUE) {
+            mysqli_commit($conexion);
+            mysqli_close($conexion);
+
+            return "OK";
+        } else {
+            $error = $conexion->error;
+            mysqli_rollback($conexion);
+            mysqli_close($conexion);
+            return "Error: " . $error;
+        }
+    }
     /**
      * busco los datos de facturacion guardados
      * @param [[Type]] $obj [[Description]]
@@ -70,7 +87,7 @@ class DaoDatosFactImpl implements DaoObject{
 
        $sql="SELECT df_id, df_nombre, df_apellido,df_dni, df_cuil_cuit, df_fecha_alta,doc_id,doc_calle,doc_numero,doc_piso,doc_depto,doc_provincia,doc_ciudad FROM Datos_facturacion df, Domicilio doc WHERE df.df_id_domicilio=doc.doc_id ". "and df_id_padrino=$idPadrino".
             " order by df_id desc";
-      //  echo $sql;
+      ///  echo $sql;
 
         $result = mysqli_query($conexion, $sql);
 
@@ -81,7 +98,7 @@ class DaoDatosFactImpl implements DaoObject{
 
             // output data of each row
             while($re = mysqli_fetch_row($result)) {
-              //  $re = array_map('utf8_encode',$re);
+                $re = array_map('utf8_encode',$re);
                      //$id,$calle,$numero,$piso,$depto,$provincia,$ciudad
                     $domi = new DomicilioEntity($re[6],$re[7], $re[8], $re[9], $re[10], $re[11], $re[12]);
                     //$id,$nombre,$apellido,$dni,$cuil,$domicilio,$fechaAlta,$idPadrino

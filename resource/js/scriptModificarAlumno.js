@@ -1,35 +1,9 @@
 var idrolSelect, datosChosenJson;
+var nombreTabla='listarAlumnos';
 $(document).ready(function () {
     if (!redireccionar()) {
         loadTablaUsuarios();
     }
-
-//****************************iniicio carga *********************************************
-    $('#guardarModal-addUsuario').click(function () {
-        var url = "../view/cargarDatos.php"; // El script a dónde se realizará la petición.
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#formAddUsuario").serialize() + "&tipo=addNewUsuarios",
-            success: function (data) {
-                if (data.includes("correctamente")) {
-
-                    check("success", "OK", data);
-                    $('#addUsuario').modal('hide');
-                    limpiarTabla();
-                    loadTablaUsuarios();
-                } else {
-
-                    check("error", "Error al crear el usuario", data);
-                }
-
-            }
-        });
-
-    });
-//****************************fin carga *********************************************
-
-
 
 });
 
@@ -43,7 +17,7 @@ function loadTablaUsuarios() {
 var cargarTablaUsuarios = function () {
 
 
-    var table = $("#listarAlumnos").DataTable({
+    var table = $("#"+nombreTabla).DataTable({
 
         'select': {
             'style': 'single'
@@ -152,7 +126,7 @@ var cargarTablaUsuarios = function () {
 
 function limpiarTabla() {
     //para poder recargar la tabla
-    var table = $('#listarAlumnos').DataTable();
+    var table = $('#'+nombreTabla).DataTable();
     table.clear().draw();
     table.destroy();
 }
@@ -182,7 +156,7 @@ $(document).on('click', '.btnCancelarTabla', function () {
 
 
 function modificarDatosTabla() {
-    var table = document.getElementById("listarAlumnos");
+    var table = document.getElementById(nombreTabla);
     var rows = table.getElementsByTagName("TR");
     var rowCount = rows.length;
 
@@ -219,7 +193,7 @@ function modificarDatosTabla() {
 }
 
 function guardarDatosTabla(btnGuardar) {
-    var table = document.getElementById("listarAlumnos");
+    var table = document.getElementById(nombreTabla);
     var rows = table.getElementsByTagName("TR");
     var rowCount = rows.length;
     var datosModificados = new Array();
@@ -283,7 +257,7 @@ function update_data(row) {
 }
 function cancelarDatosTabla(btnCancelar){
 
-    var table = document.getElementById("listarAlumnos");
+    var table = document.getElementById(nombreTabla);
     var rows = table.getElementsByTagName("TR");
     var rowCount = rows.length;
     if (rowCount > 0) {

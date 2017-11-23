@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="CHANGE-ME">
+    <link rel="icon" sizes="192x192" href="../resource/images/logo_icon.ico">
+
+    <title>Modificar Padrino</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Data Tables ----------------------------------------------------->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <!-- ----------------------------------------------------------------->
+    <script src="../resource/js/chosen.js"></script>
+
+    <script src="../resource/js/scriptModificarPadrino.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!--Menu-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resource/css/estilos-alertas-toast.css">
+
+    <link rel="stylesheet" href="../resource/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+    <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
+    <script type="text/javascript" src="../resource/js/alertas.js"></script>
+    <!--Menu-->
+
+    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
+    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
+    <link rel="stylesheet" href="../resource/css/estilo-chosen.css" />
+    <link rel="stylesheet" href="../resource/css/estilos-modificarPadrino.css" />
+
+
+</head>
+
+<body>
+    <!--Menu-->
+    <header id="menuid">
+
+    </header>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h1 class="text-center">Modificar Padrino</h1>
+        </div>
+    </div>
+    <div class="contenedor">
+        <div class="table-responsive">
+            <table id="listarPadrinos" class="table table-hover filas" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="table-inverse">
+                        <th class="text-center">id</th>
+                        <th class="text-center">Alias</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">DNI</th>
+                        <th class="text-center">Cuil/Cuit</th>
+                        <th class="text-center">E-mail</th>
+                        <th class="text-center">E-mail alternativo</th>
+                        <th class="text-center">Telefono</th>
+                        <th class="text-center">Telefono alternativo</th>
+                        <th class="text-center">Contacto</th>
+                        <th class="text-center">Ficha Fisica</th>
+                        <th class="text-center">Domicilio</th>
+                        <th class="text-center">Datos Facturaci&oacute;n</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- ********************* Modal ************************************ -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="Domicilio">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="cerrarModal-domicilio" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                        <center>
+                            <h3 class="modal-title">Datos del domicilio</h3>
+                        </center>
+                    </div>
+                    <form method="post" action="" id="formDom">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Calle</label>
+                                <input type="text" class="form-control" id="dom_calle" name="dom_calle">
+                            </div>
+                            <div class="form-group">
+                                <label>N&uacute;mero</label>
+                                <input type="text" class="form-control" id="dom_numero" name="dom_numero">
+                            </div>
+                            <div class="form-group">
+                                <label>Piso</label>
+                                <input type="text" class="form-control" id="dom_piso" name="dom_piso">
+                            </div>
+                            <div class="form-group">
+                                <label>Departamento</label>
+                                <input type="text" class="form-control" id="dom_depto" name="dom_depto">
+                            </div>
+                            <div class="form-group">
+                                <label>Provincia</label>
+                                <input type="text" class="form-control" id="dom_provincia" name="dom_provincia">
+                            </div>
+                            <div class="form-group">
+                                <label>Ciudad</label>
+                                <input type="text" class="form-control" id="dom_ciudad" name="dom_ciudad">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="cancelModal-Dom" type="button" class="btn btn-default">Cancelar</button>
+                            <button id="guardarModal-Dom" type="button" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <!-- ********************* Modal ************************************ -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="DomicilioFact">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="cerrarModal-domicilioFact" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                        <center>
+                            <h3 class="modal-title">Datos de facturaci&oacute;n</h3>
+                        </center>
+                    </div>
+
+                    <div class="modal-body">
+                       
+                        
+                                <div class="table-responsive">
+                                    <button type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#addDomFact">Nuevo</button>
+                                    <table id="datosfacturacion" class="table table-hover filas" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="table-inverse">
+                                               <th class="text-center">Id</th>
+                                                <th class="text-center">Nombre</th>
+                                                <th class="text-center">Apellido</th>
+                                                <th class="text-center">DNI</th>
+                                                <th class="text-center">Cuil/Cuit</th>
+                                                <th class="text-center">calle</th>
+                                                <th class="text-center">Altura</th>
+                                                <th class="text-center">Piso</th>
+                                                <th class="text-center">Departamento</th>
+                                                <th class="text-center">Provincia</th>
+                                                <th class="text-center">Ciudad</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                           
+                      
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancelModal-DomFact" type="button" class="btn btn-default">Cancelar</button>
+                        <button id="guardarModal-DomFact" type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+         <!-- ********************* Modal ************************************ -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="addDomFact">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="cerrarModal-desvincular" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                        <center>
+                            <h3 class="modal-title">Datos de facturaci&oacute;n</h3>
+                        </center>
+                    </div>
+                    <form method="post" action="" id="formAddDomFact">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Nombre o raz&oacute;n social </label>
+                                <input type="text" class="form-control" id="fact_nombre" name="fact_nombre" placeholder="Nombre o razón social">
+                            </div>
+                            <div class="form-group">
+                                <label>Apellido</label>
+                                <input type="text" class="form-control" id="fact_apellido" name="fact_apellido" placeholder="Apellido">
+                            </div>
+                            <div class="form-group">
+                                <label>DNI</label>
+                                <input type="text" class="form-control" id="fact_dni" name="fact_dni" placeholder="DNI">
+                            </div>
+                            <div class="form-group">
+                                <label>CUIL/CUIT </label>
+                                <input type="text" class="form-control" id="fact_cuil" name="fact_cuil" placeholder="CUIL/CUIT">
+                            </div>
+                            <div class="form-group">
+                                <label>Calle</label>
+                                <input type="text" class="form-control" id="fact_calle" name="fact_calle" placeholder="Calle">
+                            </div>
+                            <div class="form-group">
+                                <label>Nro.</label>
+                                <input type="text" class="form-control" id="fact_numero" name="fact_numero" placeholder="Número">
+                            </div>
+                            <div class="form-group">
+                                <label>Piso</label>
+                                <input type="text" class="form-control" id="fact_piso" name="fact_piso" placeholder="Piso">
+                            </div>
+                            <div class="form-group">
+                                <label>Depto.</label>
+                                <input type="text" class="form-control" id="fact_depto" name="fact_depto" placeholder="Departamento">
+                            </div>
+                            <div class="form-group">
+                                <label>Provincia</label>
+                                <input type="text" class="form-control" id="fact_provincia" name="fact_provincia" placeholder="Provincia">
+                            </div>
+                            <div class="form-group">
+                                <label>Ciudad</label>
+                                <input type="text" class="form-control" id="fact_ciudad" name="fact_ciudad" placeholder="Ciudad">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button id="cancelModal-addDomFact" type="button" class="btn btn-default">Cancelar</button>
+                            <button id="guardarModal-addDomFact" type="button" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
+</body>
+
+</html>

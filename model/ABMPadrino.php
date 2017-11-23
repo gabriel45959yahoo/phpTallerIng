@@ -118,6 +118,27 @@ public function buscarHistoricoPadrinosVinculados(){
 
     return $resultado;
 }
+public function listarPadrinos(){
+      $daoPadrino= new model\dao\DaoPadrinoImpl();
+      $resultado=$daoPadrino->select(null);
+        
+     return $resultado;
+}
+public function listarDomicilioPadrino($idDomicilio){
+    $daoDomicilio= new model\dao\DaoDomicilioImpl();
+    return $daoDomicilio->selectDomicilio($idDomicilio);
+}
+    public function modificarPadrino($datos){
+        $daoPadrino= new model\dao\DaoPadrinoImpl();
+        //$id,$nombre,$apellido,$alia,$dni,$cuil,$email,$emailAlt,$telefono,$telefonoAlt,$contacto,$domicilio,$domicilioFact,$fechaAlta,$fechaBaja,$montoPactado,$fichaFisicaIngreso
+        $padrino = new PadrinoEntity($datos[0],$datos[2],$datos[3],$datos[1],$datos[4],$datos[5],$datos[6],$datos[7],$datos[8],$datos[9],$datos[10],null,null,null,null,null,$datos[11]);
+    return $daoPadrino->update($padrino);
+    }
+public function modificarDomicilioPadrino($domicilio){
+     $daoDomicilio= new model\dao\DaoDomicilioImpl();
+        
+    return $daoDomicilio->update($domicilio);
+}
     /**
      * Generar error al intentar clonar el obj de la clase
      * @private

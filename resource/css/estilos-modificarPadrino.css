@@ -1,0 +1,28 @@
+.btnDomicilio{
+     padding-top: 1px;
+    padding-right: 2px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    margin-left: 3px;
+    margin-right: 2px;
+    text-align: center;
+    vertical-align: middle;
+     background-color: rgba(214, 228, 240, 0.6);
+}
+.btnDomicilioFact{
+     padding-top: 1px;
+    padding-right: 2px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    margin-left: 3px;
+    margin-right: 2px;
+    text-align: center;
+    vertical-align: middle;
+     background-color: rgba(214, 228, 240, 0.6);
+}
+.btnDomicilioFact span{
+    text-align: center;
+}
+.btnDomicilio span{
+    text-align: center;
+}

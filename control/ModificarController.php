@@ -1,5 +1,5 @@
 <?php
-
+use model\ABMDatosFactura;
 include '../model/ABMPadrino.php';
 include '../model/ABMAlumno.php';
 include '../model/ABMVincular.php';
@@ -26,6 +26,35 @@ class ModificarController{
         }
         return $rest;
     }
+    function modificarPadrino($datos){
+        $padrinoSingleton = ABMPadrino::singleton_Padrino();
+        
+         $rest = $padrinoSingleton->modificarPadrino(explode(",", $datos));
+        if($rest="OK"){
+            return "Los datos se actualizaron correctamente";
+        }
+        return $rest;
+    }
+    function modificarDomicilioPadrino($domicilio){
+        $padrinoSingleton = ABMPadrino::singleton_Padrino();
+        
+         $rest = $padrinoSingleton->modificarDomicilioPadrino($domicilio);
+        if($rest="OK"){
+            return "Los datos se actualizaron correctamente";
+        }
+        return $rest;
+    }
+    function modificarDatosFacturacion($datos){
+        
+        $facturaSingleton = ABMDatosFactura::singleton_DatosFactura();
+        
+         $rest = $facturaSingleton->modificarDatosFacturacion(explode(",", $datos));
+        
+        if($rest="OK"){
+            return "Los datos se actualizaron correctamente";
+        }
+        return $rest;        
+    }
 }
-
+   
 ?>

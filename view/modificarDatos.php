@@ -28,7 +28,28 @@ function modificarAlumno(){
   echo $modificarController->modificarAlumno($_POST['row']);
 
 }
+function modificarPadrino(){
+  $modificarController = new ModificarController();
 
+
+  echo $modificarController->modificarPadrino($_POST['row']);
+
+}
+function modificarDomicilioPadrino(){
+    $modificarController = new ModificarController();
+     
+    $domicilio= new model\entities\DomicilioEntity($_POST['idDomicilio'],$_POST['dom_calle'], (int) $_POST['dom_numero'], $_POST['dom_piso'],
+                                  $_POST['dom_depto'], $_POST['dom_provincia'], $_POST['dom_ciudad']);
+    
+  echo $modificarController->modificarDomicilioPadrino($domicilio);
+}
+function modificarDatosFacturacion(){
+  $modificarController = new ModificarController();
+
+
+  echo $modificarController->modificarDatosFacturacion($_POST['row']);
+
+}
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -47,6 +68,17 @@ if (! isset($_SESSION['session'])) {
                 //Pantalla modificarAlumnos
                 case "datosAlumnos":
                     modificarAlumno();
+                    break;
+                 //Pantalla modificarPadrino
+                case "datosPadrino":
+                    modificarPadrino();
+                    break;
+                 //Pantalla modificarPadrino
+                case "domicilioPadrino":
+                    modificarDomicilioPadrino();
+                    break;
+                case "datosFacturacion":
+                    modificarDatosFacturacion();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

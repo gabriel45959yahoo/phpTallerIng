@@ -104,6 +104,17 @@ function listarAlumnos(){
 
     echo $consultarController->listarAlumnos();
 }
+function listarPadrinos(){
+     $consultarController = new ConsultarController();
+
+    echo $consultarController->listarPadrinos();
+}
+function listarDomicilioPadrino(){
+     $consultarController = new ConsultarController();
+
+    echo $consultarController->listarDomicilioPadrino($_POST['idDomicilio']);
+}
+
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -183,6 +194,14 @@ if (! isset($_SESSION['session'])) {
                  // para pantalla ModificarAlumno
                  case "listarAlumnos":
                     listarAlumnos();
+                    break;
+                 // para pantalla ModificarPadrinos 
+                 case "listarPadrinos":
+                    listarPadrinos();
+                    break;
+                // para pantalla ModificarPadrinos 
+                 case "domicilioPadrino":
+                    listarDomicilioPadrino();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];
