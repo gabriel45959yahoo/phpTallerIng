@@ -306,6 +306,14 @@ $(document).on('click', '.btnCancelarTabla', function () {
     $('.btnEditar').prop('disabled', false);
 });
 
+$(document).on('change', '.check', function() {
+  if($(this).is(':checked')){
+  $('#'+$(this).attr('id')).val(1);
+  }
+  else{
+  $('#'+$(this).attr('id')).val(0);
+  }
+});
 
 function modificarDatosTabla(nombreTabla, textId) {
     var table = document.getElementById(nombreTabla);
@@ -327,9 +335,9 @@ function modificarDatosTabla(nombreTabla, textId) {
                         if (text2.includes('checkbox')) {
                             var text3 = rows[x].cells[y].childNodes[0].children[0].value;
                             if (text3 == 1) {
-                                rows[x].cells[y].innerHTML = '<input type="checkbox" name="fichaFisicaIngreso-' + y + '" value="' + text3 + '" checked>';
+                                rows[x].cells[y].innerHTML = '<input class="check" type="checkbox" id="fichaFisicaIngreso-' + y + '" value="' + text3 + '" checked>';
                             } else {
-                                rows[x].cells[y].innerHTML = '<input type="checkbox" name="fichaFisicaIngreso-' + y + '" value="' + text3 + '">';
+                                rows[x].cells[y].innerHTML = '<input class="check" type="checkbox" id="fichaFisicaIngreso-' + y + '" value="' + text3 + '">';
                             }
                             //pongo un formato de fecha valido para el input
                         } else if (text2.includes('/')) {
