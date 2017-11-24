@@ -1,6 +1,7 @@
 $(document).ready(function () {
     if (!redireccionar()) {
         loadTablaPadrinoAhijado();
+
     }
 
 });
@@ -9,33 +10,13 @@ $(document).ready(function () {
 function loadTablaPadrinoAhijado() {
 
 
-
-
     var table = $("#PadrinosVinculados").DataTable({
-        dom: 'Blfrtip',
-        buttons: [
+        'initComplete': function () {
 
-            {
-                extend: 'colvis',
-                text: 'Columnas',
-                columns: ':not(.noVis)'
-            }, {
-                extend: 'excelHtml5',
-                title: 'Datos de Padrino y Ahijados',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                title: 'Datos de Padrino y Ahijados',
-                exportOptions: {
-                    columns: ':visible'
-                }
-            }
-        ],
+          // asignarEvento();
 
-        "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
+        },
+         "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
         "pagingType": "simple_numbers",
         "ajax": {
             "method": "POST",
@@ -49,12 +30,10 @@ function loadTablaPadrinoAhijado() {
                 "data": "idAlumno.alias"
             },
             {
-                "data": "idAlumno.nombre",
-                "visible": false
+                "data": "idAlumno.nombre"
             },
             {
-                "data": "idAlumno.apellido",
-                "visible": false
+                "data": "idAlumno.apellido"
             },
             {
                 "data": "idPadrino.alia"
@@ -83,11 +62,27 @@ function loadTablaPadrinoAhijado() {
                 }
             },
             {
-                "data": "estadoPlanPactado.cuotasPagas"
+                "data": null,
+                "render": function (data, type, full, meta) {
+                    var porcentaje;
+                    if (data.estadoPlanPactado.porcentajePagado == '') {
+                        porcentaje = 0;
+                    } else {
+                        porcentaje = data.estadoPlanPactado.porcentajePagado;
+                    }
+
+                    if (porcentaje < 100) {
+                        return '<div title="Aportes incompletos"><button class="btn btn-warning"  id="custom-confirmation-' + data.id + '">Finalizar</button></div>';
+                    } else {
+                        return '<div title="Aportes Completos" ><button class="btn btn-success" id="custom-' + data.id + '">Finalizar</button></div>';
+                    }
+
+                },
+                "orderable": false
             }
         ],
         "language": {
-            "lengthMenu": "Mostrar _MENU_ filas",
+             "lengthMenu": "Mostrar _MENU_ filas",
             "zeroRecords": "No se encuentran registros",
             "info": "Página _PAGE_ de _PAGES_ de _MAX_ registros",
             "infoEmpty": "No existen registros",
@@ -101,5 +96,42 @@ function loadTablaPadrinoAhijado() {
     table
         .order([1, 'asc'])
         .draw();
+
     return false; // Evitar ejecutar el submit del formulario.
 }
+
+$(document).on('click', '.btn', function () {
+var currency = '', btnFinalizar = $(this).attr('id');
+    if(btnFinalizar.includes('confirmation')){
+             $('#' + btnFinalizar).confirmation({
+                rootSelector: '#' + btnFinalizar,
+                container: 'body',
+                title: '¿Seguro que desea Finalizar el ciclo lectivo?',
+                onConfirm: function (currency) {
+                    if(currency.includes('SI')){
+                         check("error", "OK", btnFinalizar);
+                       }else{
+                         check("info", "OK", btnFinalizar);
+                       }
+
+                },
+                buttons: [
+                    {
+                        class: 'btn btn-primary',
+                        label: 'NO',
+                        value: 'NO'
+                    },
+                    {
+                        class: 'btn btn-success',
+                        label: 'SI',
+                        value: 'SI'
+                    }
+                ]
+            });
+       $('#'+btnFinalizar).confirmation('show')
+    }else if(!btnFinalizar.includes('Todos')){
+       check("info", "OK", "se actualiza");
+    }else{
+        check("info", "OK", "Fueron todos");
+    }
+});

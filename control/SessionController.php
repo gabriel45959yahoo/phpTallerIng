@@ -57,7 +57,6 @@ if(!isset($_SESSION['session']))
          '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Listados </a>'.
          '<ul class="dropdown-menu">'.
          '<li><a href="/view/ListarPadrinoAhijado.html">Vinculaciones activas</a></li>'.
-         '<li><a href="">Detalle de Padrinos</a></li>'.
          '<li><a href="/view/DeudaPorPadrinoActivos.html">Deuda de Padrinos activos</a></li>'.
          '<li><a href="/view/DeudaTodosPadrinos.html">Deuda de todos los Padrinos</a></li>'.
          '</ul></li>'.

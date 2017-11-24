@@ -1,147 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="CHANGE-ME">
-    <link rel="icon" sizes="192x192" href="../resource/images/logo_icon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cargar Pago</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     <!-- Data Tables ----------------------------------------------------->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <!-- ----------------------------------------------------------------->
-    <script src="../resource/js/chosen.js"></script>
-
-
-    <script src="../resource/js/scriptPruebas.js"></script>
-    <script src="../resource/js/scriptModificarTabla.js"></script>
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+  <title>Bootstrap Confirmation</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--Menu-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/resource/css/estilos-alertas-toast.css">
-
+    <link rel="stylesheet" href="/resource/css/estilo-menu.css">
     <link rel="stylesheet" href="../resource/css/bootstrap.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
     <script type="text/javascript" src="../resource/js/scriptSession.js"></script>
     <script type="text/javascript" src="../resource/js/alertas.js"></script>
     <!--Menu-->
-
-    <link rel="stylesheet" href="../resource/css/estilos-tablas.css">
-    <link rel="stylesheet" href="../resource/css/estilos-modalConsulta.css">
-    <link rel="stylesheet" href="../resource/css/estilo-chosen.css" />
-
-    <!-- rango de fechas -->
-    <script type="text/javascript" src="/resource/js/moment_RangoFechas.min.js"></script>
-    <script type="text/javascript" src="/resource/js/daterangepicker_RangoFechas.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resource/css/daterangepicker_RangoFechas.css" />
-    <script src="/resource/js/scriptSingleFechaPago.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resource/css/estilos-datepicker-fecha.css" />
-    <!-- ----------------------------------------------------------------->
-
-
-
-
+  <script type="text/javascript" src="../resource/js/bootstrap-confirmation.min.js"></script>
+  <script type="text/javascript" src="../resource/js/bootstrap-confirmation.js"></script>
 </head>
 
 <body>
-    <!--Menu-->
-    <header id="menuid">
 
-    </header>
-
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <h1 class="text-center">Administrar Usuario</h1>
-        </div>
+<div class="container">
+  <div class="col-md-12 col-lg-10 col-lg-offset-1">
+    <div class="page-header">
+      <a class="pull-right" href="https://github.com/mistic100/Bootstrap-Confirmation">
+        <img src="https://assets.github.com/images/icons/emoji/octocat.png" width=48px height=48px>
+      </a>
+      <h1>Bootstrap Confirmation</h1>
     </div>
-    <div class="contenedor">
 
-        <button type="button" class="btn btn-warning btn-md" data-toggle="modal" id="openAddUsuario">Nuevo Usuario</button>
-        <div class="table-responsive">
-            <table id="listarUsuarios" class="table table-hover filas" cellspacing="0" width="100%">
-                <thead>
-                    <tr class="table-inverse">
-                        <th class="text-center">Nombre usuario</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Apellido</th>
-                        <th class="text-center">E-mail</th>
-                        <th class="text-center">Rol</th>
-                        <th class="text-center">Rol descripci&oacute;n</th>
-                        <th></th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Basic</div>
+      <div class="panel-body">
+        <button class="btn btn-default" data-toggle="confirmation">Confirmation</button>
+      </div>
     </div>
-    <!-- ********************* Modal ************************************ -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="addUsuario">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button id="cerrarModal-addUsuario" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                    <center>
-                        <h3 class="modal-title">Datos de usuario</h3>
-                    </center>
-                </div>
-                <form method="post" action="" id="formAddUsuario">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Nombre de usuario </label>
-                            <input type="text" class="form-control" id="fact_nombre" name="user" placeholder="Nombre usuario">
-                        </div>
-                        <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" class="form-control" id="fact_apellido" name="nombre" placeholder="Nombre de la persona">
-                        </div>
-                        <div class="form-group">
-                            <label>Apellido</label>
-                            <input type="text" class="form-control" id="fact_dni" name="apellido" placeholder="Apellido de la persona">
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail </label>
-                            <input type="text" class="form-control" id="fact_cuil" name="email" placeholder="E-mail">
-                        </div>
-                        <div class="form-group">
-
-                            <label for="listaRol">Seleccionar Rol:</label>
-                            <select id="listaRol" name="listaRol" data-placeholder="Seleccionar un rol" class="chosen-select" tabindex="2">
-
-                                </select>
-                        </div>
-                        <div class="form-group">
-
-
-                            <label>Clave</label>
-                            <input type="password" class="form-control" id="fact_calle" name="clave" placeholder="Clave">
-                        </div>
-
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button id="cancelModal-addUsuario" type="button" class="btn btn-default">Cancelar</button>
-                        <button id="guardarModal-addUsuario" type="button" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+    <div class="panel panel-default">
+      <div class="panel-heading">Link</div>
+      <div class="panel-body">
+        <a class="btn btn-default" data-toggle="confirmation" href="https://google.com">Go to Google</a>
+      </div>
     </div>
-    <!-- /.modal -->
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Customize</div>
+      <div class="panel-body">
+        <button class="btn btn-default" data-toggle="confirmation"
+                data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                data-btn-ok-class="btn-success"
+                data-btn-cancel-label="Stoooop!" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                data-btn-cancel-class="btn-danger"
+                data-title="Is it ok?" data-content="This might be dangerous">
+          Confirmation
+        </button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Directions</div>
+      <div class="panel-body">
+        <button class="btn btn-default" data-toggle="confirmation" data-placement="left">Confirmation on left</button>
+        <button class="btn btn-default" data-toggle="confirmation" data-placement="top">Confirmation on top</button>
+        <button class="btn btn-default" data-toggle="confirmation" data-placement="bottom">Confirmation on bottom
+        </button>
+        <button class="btn btn-default" data-toggle="confirmation" data-placement="right">Confirmation on right</button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Singleton</div>
+      <div class="panel-body">
+        <button class="btn btn-default" data-toggle="confirmation-singleton" data-singleton="true">Confirmation 1
+        </button>
+        <button class="btn btn-default" data-toggle="confirmation-singleton" data-singleton="true">Confirmation 2
+        </button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Popout</div>
+      <div class="panel-body">
+        <button class="btn btn-default" data-toggle="confirmation-popout" data-popout="true">Confirmation 1</button>
+        <button class="btn btn-default" data-toggle="confirmation-popout" data-popout="true">Confirmation 2</button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Delegation</div>
+      <div class="panel-body" id="confirmation-delegate">
+        <button class="btn btn-default">Confirmation 1</button>
+        <button class="btn btn-default">Confirmation 2</button>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Custom buttons</div>
+      <div class="panel-body">
+        <button class="btn btn-default" id="custom-confirmation">Choose your currency</button>
+        <button class="btn btn-default" id="custom-confirmation-links">Share to</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  console.log('Bootstrap ' + $.fn.tooltip.Constructor.VERSION);
+  console.log('Bootstrap Confirmation ' + $.fn.confirmation.Constructor.VERSION);
+  $('[data-toggle=confirmation]').confirmation({
+    rootSelector: '[data-toggle=confirmation]',
+    container: 'body'
+  });
+  $('[data-toggle=confirmation-singleton]').confirmation({
+    rootSelector: '[data-toggle=confirmation-singleton]',
+    container: 'body'
+  });
+  $('[data-toggle=confirmation-popout]').confirmation({
+    rootSelector: '[data-toggle=confirmation-popout]',
+    container: 'body'
+  });
+  $('#confirmation-delegate').confirmation({
+    selector: 'button'
+  });
+  var currency = '';
+  $('#custom-confirmation').confirmation({
+    rootSelector: '# ',
+    container: 'body',
+    title: null,
+    onConfirm: function(currency) {
+      alert('You choosed ' + currency);
+    },
+    buttons: [
+      {
+        class: 'btn btn-danger',
+        icon: 'glyphicon glyphicon-usd',
+        value: 'US Dollar'
+      },
+      {
+        class: 'btn btn-primary',
+        icon: 'glyphicon glyphicon-euro',
+        value: 'Euro'
+      },
+      {
+        class: 'btn btn-warning',
+        icon: 'glyphicon glyphicon-bitcoin',
+        value: 'Bitcoin'
+      },
+      {
+        class: 'btn btn-default',
+        icon: 'glyphicon glyphicon-remove',
+        cancel: true
+      }
+    ]
+  });
+  $('#custom-confirmation-links').confirmation({
+    rootSelector: '#custom-confirmation-link',
+    container: 'body',
+    title: null,
+    buttons: [
+      {
+        label: 'Twitter',
+        attr: {
+          href: 'https://twitter.com'
+        }
+      },
+      {
+        label: 'Facebook',
+        attr: {
+          href: 'https://facebook.com'
+        }
+      },
+      {
+        label: 'Pinterest',
+        attr: {
+          href: 'https://pinterest.com'
+        }
+      }
+    ]
+  });
+</script>
+
 </body>
-
 </html>

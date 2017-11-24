@@ -65,11 +65,15 @@
     <link rel="stylesheet" href="/resource/css/estilos-tablas.css">
     <!-- ----------------------------------------------------------------->
 
+    <script type="text/javascript" src="../resource/js/bootstrap-confirmation.min.js"></script>
+    <script type="text/javascript" src="../resource/js/bootstrap-confirmation.js"></script>
 
 
     <script src="/resource/js/scriptFinCicloLectivo.js"></script>
 
     <link rel="stylesheet" href="/resource/css/estilo-progressBarHome.css">
+
+
 
 </head>
 
@@ -79,13 +83,14 @@
     <header id="menuid">
 
     </header>
-      <div class="row">
+    <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <h1 class="text-center">Fin Ciclo Lectivo</h1>
         </div>
     </div>
     <div class="contenedor">
         <div class="table-responsive">
+
             <table id="PadrinosVinculados" class="table table-hover filas" cellspacing="0" width="100%">
                 <thead>
                     <tr class="table-inverse">
@@ -101,7 +106,7 @@
                         <th class="text-center">Apellido</th>
                         <th class="text-center">Fecha ultimo pago</th>
                         <th class="text-center">% Pagado</th>
-                        <th class="text-center">Cuotas pagas</th>
+                        <th><button class="btn btn-default btn-danger" title="Aportes completos e incompletos" id="custom-Todos">Finalizar Todos</button></th>
                     </tr>
                 </thead>
             </table>
