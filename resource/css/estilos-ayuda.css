@@ -146,30 +146,72 @@ h1 {
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
 }
-.ModificarUsuarios{
+
+.ModificarUsuarios {
     text-align: center;
 }
-.ModificarUsuarios img{
+
+.ModificarUsuarios img {
     max-width: 90%;
     border: 1px solid rgba(128, 128, 128, 0.27);
     -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
 }
-.vincular{
+
+.vincular {
     text-align: center;
 }
-.vincular img{
+
+.vincular img {
     max-width: 80%;
     -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
 }
-.deuda{
+
+.deuda {
     text-align: center;
 }
-.deuda img{
+
+.deuda img {
     max-width: 80%;
+    border: 1px solid rgba(128, 128, 128, 0.27);
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+}
+
+.HistoricoVinculacion {
+    text-align: center;
+}
+
+.HistoricoVinculacion img {
+    max-width: 80%;
+    border: 1px solid rgba(128, 128, 128, 0.27);
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+}
+
+.DetallePagos {
+    text-align: center;
+}
+
+.DetallePagos img {
+    max-width: 80%;
+    border: 1px solid rgba(128, 128, 128, 0.27);
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+}
+
+.GraficoVinculados {
+    text-align: center;
+}
+
+.GraficoVinculados img {
+    max-width: 90%;
     border: 1px solid rgba(128, 128, 128, 0.27);
     -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
