@@ -146,3 +146,13 @@ h1 {
     -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
 }
+.ModificarUsuarios{
+    text-align: center;
+}
+.ModificarUsuarios img{
+    max-width: 90%;
+    border: 1px solid rgba(128, 128, 128, 0.27);
+    -webkit-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px -12px rgba(0, 0, 0, 0.75);
+}
