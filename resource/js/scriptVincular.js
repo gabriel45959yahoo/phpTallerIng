@@ -17,10 +17,12 @@ $(document).ready(function () {
         limpiarCampos();
     });
     $('#cancelModal-vincular').click(function () {
-
+ limpiarCampos();
         $('#modal-vincular').modal('hide');
 
-        limpiarCampos();
+
+  //     limpiarCamposPadrino();
+ //       loadTablaPadrino();
     });
 
     $('#guardarModal-vincular').click(function () {
@@ -40,8 +42,7 @@ $(document).ready(function () {
             guardarVinculacion(idAlumno, idPadrino, seConocenCheck, observaciones);
 
             $('#modal-vincular').modal('hide');
-
-            limpiarCampos();
+//            limpiarCampos();
         }
     });
 });
@@ -76,11 +77,13 @@ var listarPadrinoLibres = function () {
             $('#PadrinosLibre tbody').on('click', 'tr', function () {
                 var $dlg = $(this);
 
-                $('#modal-vincular').modal('show');
-                $('.modal-body', $dlg).html(table.row(this).data().dni + " " + table.row(this).data().nombre + " " + table.row(this).data().apellido);
-                $('h5').html("Padrino elegido: <b>" + table.row(this).data().nombre + " " + table.row(this).data().apellido + "</b>");
-                idPadrino = table.row(this).data().id;
+                 $('#modal-vincular').modal('show');
+                $('.modal-body', $dlg).html( " " + this.childNodes[2].innerHTML + " " + this.childNodes[3].innerHTML);
+                $('h5').html("Padrino elegido: <b>" + this.childNodes[2].innerHTML + " " + this.childNodes[3].innerHTML + "</b>");
+                idPadrino = this.childNodes[0].innerHTML;
+               // limpiarCampos();
                 listarAlumnosLibres();
+
             });
 
         },
@@ -95,6 +98,9 @@ var listarPadrinoLibres = function () {
             }
         },
         "columns": [
+            {
+                "data": "id"
+            },
             {
                 "data": "alia"
             },
@@ -123,9 +129,10 @@ var listarPadrinoLibres = function () {
 }
 
 var listarAlumnosLibres = function () {
-
-
-    var table = $("#AlumnosLibre").DataTable({
+  var table = $('#AlumnosLibre').DataTable();
+    table.clear().draw();
+    table.destroy();
+    table = $("#AlumnosLibre").DataTable({
         'select': {
             'style': 'single'
         },
@@ -163,7 +170,7 @@ var listarAlumnosLibres = function () {
             "infoEmpty": "No existen registros",
             "infoFiltered": "(Filtro de _MAX_ lineas en total)",
             "sSearch": "Buscar: "
-        },
+        }
 
 
     });
@@ -176,4 +183,10 @@ function limpiarCampos() {
     table.destroy();
     document.getElementById("observaciones").value = "";
     document.getElementById("seConocen").checked = false;
+}
+function limpiarCamposPadrino() {
+    //para poder recargar la tabla
+    var table = $('#PadrinosLibre').DataTable();
+    table.clear().draw();
+    table.destroy();
 }

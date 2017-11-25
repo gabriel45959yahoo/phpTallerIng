@@ -8,10 +8,22 @@ $(document).ready(function () {
             backdrop: 'static'
         });
 
-        $('#cerrarModal-Dom').click(function () {
+        $('#cerrarModal').click(function () {
             $('#modalConfirmarTodos').modal('hide');
         });
-        $('#cancelModal-Dom').click(function () {
+        $('#cancelModal-NO').click(function () {
+            $('#modalConfirmarTodos').modal('hide');
+        });
+        $('#guardarModal-SI').click(function () {
+            var btnFinalizar = $(this).attr('id'),
+        auxLen = btnFinalizar.split('-').length;
+            if (btnFinalizar.split('-')[auxLen - 1].includes('SI')) {
+                finalizarCicloLectivoVincular('todos');
+                $('#modalConfirmarTodos').modal('hide');
+            } else {
+                check("info", "OK", 'Se cancelo la acción de finalizar ciclo lectivo');
+                $('#modalConfirmarTodos').modal('hide');
+            }
             $('#modalConfirmarTodos').modal('hide');
         });
 
@@ -85,9 +97,9 @@ function loadTablaPadrinoAhijado() {
                     }
 
                     if (porcentaje < 100) {
-                        return '<div title="Aportes incompletos"><button class="btn btn-warning"  id="custom-confirmation-' + data.id + '">Finalizar</button></div>';
+                        return '<div title="Aportes incompletos"><button class="finC btn btn-warning"  id="custom-confirmation-' + data.id + '">Finalizar</button></div>';
                     } else {
-                        return '<div title="Aportes Completos" ><button class="btn btn-success" id="custom-' + data.id + '">Finalizar</button></div>';
+                        return '<div title="Aportes Completos" ><button class="finC btn btn-success" id="customsSI-' + data.id + '">Finalizar</button></div>';
                     }
 
                 },
@@ -144,17 +156,10 @@ $(document).on('click', '.btn', function () {
                 ]
         });
         $('#' + btnFinalizar).confirmation('show')
-    } else if (!btnFinalizar.includes('Todos')) {
-        if (btnFinalizar.split('-')[auxLen - 1].includes('SI')) {
-            finalizarCicloLectivoVincular('todos');
-            $('#modalConfirmarTodos').modal('hide');
-        } else {
-            check("info", "OK", 'Se cancelo la acción de finalizar ciclo lectivo');
-            $('#modalConfirmarTodos').modal('hide');
-        }
-
-    } else {
-        $('#modalConfirmarTodos').modal('show');
+    } else if (btnFinalizar.includes('Todos')) {
+         $('#modalConfirmarTodos').modal('show');
+    } else if (btnFinalizar.includes('customsSI')){
+        finalizarCicloLectivoVincular(btnFinalizar.split('-')[auxLen - 1]);
     }
 });
 

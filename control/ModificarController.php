@@ -63,7 +63,7 @@ class ModificarController{
          
 
             if ($rest == 0) {
-                return "Se finalizo el siclo lectivo.";
+                return "Se finalizo el ciclo lectivo.";
             } else {
                 return "Error: al Finalizar el ciclo lectivo.";
             }
