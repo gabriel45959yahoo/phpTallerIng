@@ -2,6 +2,19 @@ $(document).ready(function () {
     if (!redireccionar()) {
         loadTablaPadrinoAhijado();
 
+        //******************************************* inicio modal domicilio facturacion **************************
+        $('#modalConfirmarTodos').modal({
+            show: false,
+            backdrop: 'static'
+        });
+
+        $('#cerrarModal-Dom').click(function () {
+            $('#modalConfirmarTodos').modal('hide');
+        });
+        $('#cancelModal-Dom').click(function () {
+            $('#modalConfirmarTodos').modal('hide');
+        });
+
     }
 
 });
@@ -13,10 +26,10 @@ function loadTablaPadrinoAhijado() {
     var table = $("#PadrinosVinculados").DataTable({
         'initComplete': function () {
 
-          // asignarEvento();
+            // asignarEvento();
 
         },
-         "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
+        "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"]],
         "pagingType": "simple_numbers",
         "ajax": {
             "method": "POST",
@@ -82,7 +95,7 @@ function loadTablaPadrinoAhijado() {
             }
         ],
         "language": {
-             "lengthMenu": "Mostrar _MENU_ filas",
+            "lengthMenu": "Mostrar _MENU_ filas",
             "zeroRecords": "No se encuentran registros",
             "info": "Página _PAGE_ de _PAGES_ de _MAX_ registros",
             "infoEmpty": "No existen registros",
@@ -101,37 +114,72 @@ function loadTablaPadrinoAhijado() {
 }
 
 $(document).on('click', '.btn', function () {
-var currency = '', btnFinalizar = $(this).attr('id');
-    if(btnFinalizar.includes('confirmation')){
-             $('#' + btnFinalizar).confirmation({
-                rootSelector: '#' + btnFinalizar,
-                container: 'body',
-                title: '¿Seguro que desea Finalizar el ciclo lectivo?',
-                onConfirm: function (currency) {
-                    if(currency.includes('SI')){
-                         check("error", "OK", btnFinalizar);
-                       }else{
-                         check("info", "OK", btnFinalizar);
-                       }
+    var currency = '',
+        btnFinalizar = $(this).attr('id'),
+        auxLen = btnFinalizar.split('-').length;
+    if (btnFinalizar.includes('confirmation')) {
+        $('#' + btnFinalizar).confirmation({
+            rootSelector: '#' + btnFinalizar,
+            container: 'body',
+            title: '¿Seguro que desea Finalizar el ciclo lectivo?',
+            onConfirm: function (currency) {
+                if (currency.includes('SI')) {
+                    finalizarCicloLectivoVincular(btnFinalizar.split('-')[auxLen - 1]);
+                } else {
+                    check("info", "OK", 'Se cancelo la acción de finalizar ciclo lectivo');
+                }
 
-                },
-                buttons: [
-                    {
-                        class: 'btn btn-primary',
-                        label: 'NO',
-                        value: 'NO'
+            },
+            buttons: [
+                {
+                    class: 'btn btn-primary',
+                    label: 'NO',
+                    value: 'NO'
                     },
-                    {
-                        class: 'btn btn-success',
-                        label: 'SI',
-                        value: 'SI'
+                {
+                    class: 'btn btn-success',
+                    label: 'SI',
+                    value: 'SI'
                     }
                 ]
-            });
-       $('#'+btnFinalizar).confirmation('show')
-    }else if(!btnFinalizar.includes('Todos')){
-       check("info", "OK", "se actualiza");
-    }else{
-        check("info", "OK", "Fueron todos");
+        });
+        $('#' + btnFinalizar).confirmation('show')
+    } else if (!btnFinalizar.includes('Todos')) {
+        if (btnFinalizar.split('-')[auxLen - 1].includes('SI')) {
+            finalizarCicloLectivoVincular('todos');
+            $('#modalConfirmarTodos').modal('hide');
+        } else {
+            check("info", "OK", 'Se cancelo la acción de finalizar ciclo lectivo');
+            $('#modalConfirmarTodos').modal('hide');
+        }
+
+    } else {
+        $('#modalConfirmarTodos').modal('show');
     }
 });
+
+function finalizarCicloLectivoVincular(idVinculacion) {
+    var url = "../view/modificarDatos.php"; // El script a dónde se realizará la petición.
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: "&tipo=finalizarCicloLectivo" + "&idVinculacion=" + idVinculacion,
+        success: function (data) {
+            if (!data.includes("Error")) {
+                check("success", "OK", data);
+                limpiarTabla('PadrinosVinculados');
+                loadTablaPadrinoAhijado();
+            } else {
+                //tipo,titulo,mensaje
+                check("error", "Error al finalizar ciclo lectivo", data);
+            }
+        }
+    });
+}
+
+function limpiarTabla(nombreTabla) {
+    //para poder recargar la tabla
+    var table = $('#' + nombreTabla).DataTable();
+    table.clear().draw();
+    table.destroy();
+}

@@ -31,8 +31,12 @@ class DaoVincularImpl implements DaoObject{
     }
     public function desvincular($obj){
      $conexion = DaoConnection::connection();
-
-     $sql="update Vincular set vin_fecha_baja=date_add(sysdate(), INTERVAL -3 hour) WHERE vin_id='$obj'";
+        
+        if($obj=='todos'){
+            $sql="update Vincular set vin_fecha_baja=date_add(sysdate(), INTERVAL -3 hour) WHERE vin_fecha_baja is null";
+        }else{
+            $sql="update Vincular set vin_fecha_baja=date_add(sysdate(), INTERVAL -3 hour) WHERE vin_id='$obj'";
+        }
     //   echo $sql;
       if ($conexion->query($sql) === TRUE) {
             mysqli_commit($conexion);

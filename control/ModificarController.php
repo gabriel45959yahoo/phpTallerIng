@@ -55,6 +55,20 @@ class ModificarController{
         }
         return $rest;        
     }
+    function finCicloLectivo($idVinculacion) {
+
+         $vincularSingleton = ABMVincular::singleton_Vincular();
+            
+         $rest = $vincularSingleton->anularVinculacion($idVinculacion);
+         
+
+            if ($rest == 0) {
+                return "Se finalizo el siclo lectivo.";
+            } else {
+                return "Error: al Finalizar el ciclo lectivo.";
+            }
+         
+    }
 }
    
 ?>

@@ -50,6 +50,12 @@ function modificarDatosFacturacion(){
   echo $modificarController->modificarDatosFacturacion($_POST['row']);
 
 }
+function finalizarCicloLectivo(){
+    $modificarController = new ModificarController();
+
+
+  echo $modificarController->finCicloLectivo($_POST['idVinculacion']);
+}
 if (! isset($_SESSION['session'])) {
 
     header('Location: https://tallermr2g.000webhostapp.com/index.html');
@@ -77,8 +83,13 @@ if (! isset($_SESSION['session'])) {
                 case "domicilioPadrino":
                     modificarDomicilioPadrino();
                     break;
+                 //Pantalla modificarPadrino
                 case "datosFacturacion":
                     modificarDatosFacturacion();
+                    break;
+                 //Pantalla FincicloLectivo
+                case "finalizarCicloLectivo":
+                    finalizarCicloLectivo();
                     break;
                 default:
                     echo "{\"data\":[\"Error no llego parametro\"]}"+$_POST["tipo"];

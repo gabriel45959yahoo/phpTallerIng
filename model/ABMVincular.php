@@ -69,9 +69,7 @@ class ABMVincular{
                 return 'Error: '.$e->getMessage(). "\n";
         }
     }
-    function historialPadrino(){
-
-    }
+ 
     function listarPadrinoAhijado(){
       try{
         $daoVincular= new model\dao\DaoVincularImpl();

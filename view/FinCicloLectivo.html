@@ -94,7 +94,7 @@
             <table id="PadrinosVinculados" class="table table-hover filas" cellspacing="0" width="100%">
                 <thead>
                     <tr class="table-inverse">
-                        <th class="text-center-group" colspan="3">Alumno</th>
+                       <th class="text-center-group" colspan="3">Alumno</th>
                         <th class="text-center" colspan="6">Padrino</th>
                     </tr>
                     <tr class="table-inverse">
@@ -115,7 +115,32 @@
 
         <br>
     </div>
+        <!-- ********************* Modal ************************************ -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalConfirmarTodos">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="cerrarModal" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
+                        <center>
+                            <h3 class="modal-title">Fin ciclo lectivo Masivo</h3>
+                        </center>
+                    </div>
+
+                    <div class="modal-body">
+                       ¿Esta seguro que desea Finalizar el ciclo lectivo a todos los Padrinos?                      
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancelModal-NO" type="button" class="btn btn-default">NO</button>
+                        <button id="guardarModal-SI" type="button" class="btn btn-primary">Si</button>
+                    </div>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
     <script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
