@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    background: #dedede;
+    display: block;
+    min-height: 100vh;
+}
+
+form {
+    position: relative;
+    margin: auto;
+    margin-top: 3%;
+    width: 47%;
+    max-width: 400px;
+    /*background: #f3f3f3;*/
+    background: rgb(68, 65, 65);
+    padding: 40px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 15px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(252, 248, 248);
+}
+h3{
+    text-align: center;
+    font-size: 1.5em;
+}
+
+input {
+    display: inline-block;
+    padding: 10px;
+    width: 90%;
+    margin: 5px 0;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+input[type="submit"] {
+    background: linear-gradient(#ffda63, #ffb940);
+    border: 0;
+    color: brown;
+    opacity: .8;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-bottom: 0;
+    -webkit-box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    opacity: 1;
+}
+
+input[type="submit"]:active {
+    /*transform: scale(.9);*/
+    -webkit-box-shadow: 10px 10px 0px -200px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 0px -200px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 0px -200px rgba(0, 0, 0, 0.75);
+}
+
+form p a {
+    text-decoration: none;
+    color: white;
+    width: 100%
+}
+
+form p a:hover {
+    text-decoration: underline;
+}
+
+.elements {
+    display: inline-block;
+    text-align: right;
+    margin: auto;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+    border-radius: 5px;
+}
+.fa-envelope-o {
+    font-size: 23px;
+    color: black;
+}
+.Logo-central {
+    display: block;
+    margin: auto;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+@media (max-width:768px) {
+    form {
+        width: 75%
+    }
+    .fa-envelope-o {
+        font-size: 20px;
+        color: black;
+    }
+}
+
+@media (max-width:480px) {
+    form {
+        width: 95%
+    }
+}
+
+@media (max-width:320px) {
+    form {
+        width: 90%
+    }
+    .fa-envelope-o {
+        font-size: 15px;
+        color: black;
+    }
+    input{
+        font-size: 15px;
+    }
+    h2{
+        font-size: 20px
+    }
+}
