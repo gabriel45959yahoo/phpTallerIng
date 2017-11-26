@@ -238,7 +238,7 @@ var cargarTablaUsuarios = function () {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div id="botones-' + data.id + '" class="divBotonesTabla"><button id="editar-' + data.id + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil" title="Editar"/></button></div>';
+                    return '<div id="botonesPadrino-' + data.id + '" class="divBotonesTabla"><button id="editar-' + data.id + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil" title="Editar"/></button></div>';
                 },
                 "orderable": false
             }
@@ -276,9 +276,9 @@ $(document).on('click', '.btnEditar', function () {
     $(this).disabled = true;
     tablaModificar = textId;
     if (tablaModificar.includes('Fact')) {
-        modificarDatosTabla(nombreTablaFacturacion, textId);
+        modificarDatosTabla(nombreTablaFacturacion, textId,'Fact');
     } else {
-        modificarDatosTabla(nombreTablaPadrino, textId);
+        modificarDatosTabla(nombreTablaPadrino, textId,'Padrino');
     }
 
 
@@ -315,7 +315,7 @@ $(document).on('change', '.check', function() {
   }
 });
 
-function modificarDatosTabla(nombreTabla, textId) {
+function modificarDatosTabla(nombreTabla, textId,tipo) {
     var table = document.getElementById(nombreTabla);
     var rows = table.getElementsByTagName("TR");
     var rowCount = rows.length;
@@ -350,7 +350,7 @@ function modificarDatosTabla(nombreTabla, textId) {
                         datosOriginal[y] = text2;
                     }
                 }
-                $('#botones-' + textId.split('-')[1]).append('<button id="guardar-' + textId.split('-')[1] + '" class="btnGuardarTabla btn btn-success"><span class="glyphicon glyphicon-floppy-disk" title="Guardar"/></button><button id="cancelar-' + textId.split('-')[1] + '" class="btnCancelarTabla btn btn-danger"><span class="glyphicon glyphicon-floppy-remove" title="Cancelar"/></button>');
+                $('#botones'+tipo+'-' + textId.split('-')[1]).append('<button id="guardar-' + textId.split('-')[1] + '" class="btnGuardarTabla btn btn-success"><span class="glyphicon glyphicon-floppy-disk" title="Guardar"/></button><button id="cancelar-' + textId.split('-')[1] + '" class="btnCancelarTabla btn btn-danger"><span class="glyphicon glyphicon-floppy-remove" title="Cancelar"/></button>');
                 $('.btnEditar').prop('disabled', true);
             }
 
@@ -630,7 +630,7 @@ function loadTableDatosFacturacion(idPadrino) {
                 "data": null,
                 "render": function (data, type, full, meta) {
 
-                    return '<div id="botones-' + data.id + '" class="divBotonesTabla"><button id="editarFact-' + data.id + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
+                    return '<div id="botonesFact-' + data.id + '" class="divBotonesTabla"><button id="editarFact-' + data.id + '" class="btnEditar btn btn-primary"><span class="glyphicon glyphicon-pencil"/></button></div>';
                 },
                 "orderable": false
             }
