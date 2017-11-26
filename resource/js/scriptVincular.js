@@ -77,13 +77,11 @@ var listarPadrinoLibres = function () {
             $('#PadrinosLibre tbody').on('click', 'tr', function () {
                 var $dlg = $(this);
 
-                 $('#modal-vincular').modal('show');
-                $('.modal-body', $dlg).html( " " + this.childNodes[2].innerHTML + " " + this.childNodes[3].innerHTML);
-                $('h5').html("Padrino elegido: <b>" + this.childNodes[2].innerHTML + " " + this.childNodes[3].innerHTML + "</b>");
-                idPadrino = this.childNodes[0].innerHTML;
-               // limpiarCampos();
+                $('#modal-vincular').modal('show');
+                $('.modal-body', $dlg).html(table.row(this).data().dni + " " + table.row(this).data().nombre + " " + table.row(this).data().apellido);
+                $('h5').html("Padrino elegido: <b>" + table.row(this).data().nombre + " " + table.row(this).data().apellido + "</b>");
+                idPadrino = table.row(this).data().id;
                 listarAlumnosLibres();
-
             });
 
         },
@@ -98,9 +96,6 @@ var listarPadrinoLibres = function () {
             }
         },
         "columns": [
-            {
-                "data": "id"
-            },
             {
                 "data": "alia"
             },
